@@ -6,6 +6,8 @@ After cloning, enable the leak guard once:
 git config core.hooksPath .githooks
 ```
 
+The hook is per clone, and `git push --no-verify` bypasses it (accepted risk).
+
 # Astro Starter Kit: Minimal
 
 ```sh

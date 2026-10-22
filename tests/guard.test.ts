@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { beforeEach, describe, expect, it } from "vitest";
 import { parseSession } from "../scripts/lib/parse-session";
-import { runGuard } from "../scripts/guard";
+import { runGuard, runGuardOnPush } from "../scripts/guard";
 
 const root = join(__dirname, "fixtures/vault");
 const drills = new Map<string, string>(
@@ -95,8 +95,8 @@ describe("runGuard", () => {
     git("add", "-A");
     const r = runGuard(dir);
     expect(r.ok).toBe(false);
-    expect(rules(r)).toContain("forbidden:GoogleDrive-");
-    expect(rules(r)).toContain("forbidden:Obsidian-vault");
+    expect(rules(r)).toContain("identity:googledrive-");
+    expect(rules(r)).toContain("identity:obsidian-vault");
   });
 
   it("fails on content without any manifest", () => {
@@ -115,5 +115,131 @@ describe("runGuard", () => {
     put("scripts/x.ts", "const a = '[[x]]'");
     git("add", "-A");
     expect(runGuard(dir).ok).toBe(true);
+  });
+});
+
+describe("identity patterns", () => {
+  const withReadme = (text: string) => {
+    setup();
+    put("README.md", text);
+    git("add", "-A");
+    return rules(runGuard(dir));
+  };
+
+  it("fails on /Users/ path in astro.config.mjs", () => {
+    setup();
+    put("astro.config.mjs", "export default { root: '/Users/someone/x' };\n");
+    git("add", "-A");
+    const r = runGuard(dir);
+    expect(r.findings).toContainEqual({ file: "astro.config.mjs", line: 1, rule: "identity:/users/" });
+  });
+
+  it("fails on uppercase GMAIL", () => {
+    expect(withReadme("mail X@GMAIL.COM\n")).toContain("identity:@gmail.com");
+  });
+
+  it("fails on percent-encoded path", () => {
+    expect(withReadme("see %2FUsers%2Fx\n")).toContain("identity:%2fusers%2f");
+  });
+
+  it("fails on encoded gmail forms", () => {
+    expect(withReadme("x%40gmail.com\n")).toContain("identity:%40gmail.com");
+    expect(withReadme("x&#64;gmail.com\n")).toContain("identity:&#64;gmail.com");
+  });
+
+  it("fails on VAULT_DIR from .env.local without printing it", () => {
+    setup();
+    put(".env.local", 'VAULT_DIR="/secret/place/zz"\n');
+    put("notes.txt", "path /Secret/Place/ZZ here\n");
+    git("add", "notes.txt");
+    const r = runGuard(dir);
+    expect(r.findings).toContainEqual({ file: "notes.txt", line: 1, rule: "identity:vault-dir" });
+    expect(JSON.stringify(r)).not.toContain("secret");
+  });
+
+  it("exempts only scripts/guard.ts and tests/guard.test.ts from identity patterns", () => {
+    setup();
+    put("scripts/guard.ts", "'@gmail.com'\n");
+    put("tests/guard.test.ts", "'@gmail.com'\n");
+    put("scripts/other.ts", "'@gmail.com'\n");
+    git("add", "-A");
+    expect(runGuard(dir).findings.map((f) => f.file)).toEqual(["scripts/other.ts"]);
+  });
+
+  it("does not apply markup patterns outside src/public/README", () => {
+    setup();
+    put("tests/fx.md", "[[wikilink]]\n");
+    git("add", "-A");
+    expect(runGuard(dir).ok).toBe(true);
+  });
+});
+
+describe("runGuardOnPush", () => {
+  const ZERO = "0".repeat(40);
+  const head = () => execFileSync("git", ["rev-parse", "HEAD"], { cwd: dir, encoding: "utf8" }).trim();
+  const commit = (msg: string) => git("commit", "-q", "-m", msg);
+  const line = (local: string, remote = ZERO) => `refs/heads/main ${local} refs/heads/main ${remote}\n`;
+
+  beforeEach(() => {
+    git("checkout", "-q", "-b", "main");
+  });
+
+  it("fails when a leak was committed then deleted before push", () => {
+    setup();
+    commit("base");
+    put("public/leak.txt", "mail me at someone@gmail.com\n");
+    git("add", "-A");
+    commit("add leak");
+    git("rm", "-q", "public/leak.txt");
+    commit("remove leak");
+    expect(runGuard(dir).ok).toBe(true);
+    const r = runGuardOnPush(dir, line(head()));
+    expect(r.ok).toBe(false);
+    expect(r.findings).toHaveLength(1);
+    expect(r.findings[0].rule).toBe("identity:@gmail.com");
+    expect(r.findings[0].file).toMatch(/^[0-9a-f]{7,}:public\/leak\.txt$/);
+  });
+
+  it("passes clean pushed history", () => {
+    setup();
+    commit("base");
+    expect(runGuardOnPush(dir, line(head()))).toEqual({ ok: true, findings: [] });
+  });
+
+  it("ignores content the remote already has, still flags new leaks", () => {
+    put("public/old.txt", "x@gmail.com\n");
+    git("add", "-A");
+    commit("old leak, already remote");
+    const remoteSha = head();
+    setup();
+    commit("clean new");
+    expect(runGuardOnPush(dir, line(head(), remoteSha)).findings).toEqual([]);
+    put("public/new.txt", "y@gmail.com\n");
+    git("add", "-A");
+    commit("new leak");
+    const r = runGuardOnPush(dir, line(head(), remoteSha));
+    expect(r.findings.map((f) => f.file.split(":")[1])).toEqual(["public/new.txt"]);
+  });
+
+  it("checks manifest against pushed tip, not disk", () => {
+    setup();
+    commit("base");
+    const tip = head();
+    put(SESSION_PATH, JSON.stringify({ ...validSession, title: "changed on disk" }));
+    const r = runGuardOnPush(dir, line(tip));
+    expect(r.ok).toBe(true);
+    // and the other way: tip is bad, disk is good
+    setup(validSession, { manifestHash: "0".repeat(64) });
+    commit("bad manifest");
+    const bad = head();
+    setup();
+    const r2 = runGuardOnPush(dir, line(bad));
+    expect(r2.findings).toContainEqual({ file: SESSION_PATH, line: 0, rule: "hash-mismatch" });
+  });
+
+  it("ignores deletes", () => {
+    setup();
+    commit("base");
+    expect(runGuardOnPush(dir, line(ZERO, head())).ok).toBe(true);
   });
 });
