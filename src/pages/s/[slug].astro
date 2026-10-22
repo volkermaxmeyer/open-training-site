@@ -20,6 +20,11 @@ const feedbackUrl = `${site.tallyFormUrl}?session=${encodeURIComponent(session.s
 
 <Base title={`${session.title} | ${site.name}`} description={session.aim}>
   <h1 class="text-3xl font-bold">{session.title}</h1>
+  {session.status !== "tested" && (
+    <p data-session-badge class="mt-2 inline-block rounded-full bg-amber-200 px-3 py-1 text-base font-semibold text-amber-950">
+      New — tell us how it went
+    </p>
+  )}
   <p class="mt-2 text-lg">{session.aim}</p>
   <p class="mt-1 text-base text-slate-600">{session.duration} min</p>
   <div class="mt-6 space-y-4">

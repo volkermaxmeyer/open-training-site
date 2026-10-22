@@ -114,6 +114,26 @@ describe("parseSession", () => {
   });
 });
 
+describe("drill id", () => {
+  it("drill card id is the number only", () => {
+    const s = parseSession(session, drills);
+    expect(s.stages.map((st) => st.drill.id)).toEqual(["901", "902", "903"]);
+    expect(JSON.stringify(s)).not.toContain("wall-taps");
+    const d = new Map(drills);
+    d.set("00-zero-drill", drills.get("901-wall-taps")!);
+    const z = parseSession(session.replace("drills: [901-wall-taps", "drills: [00-zero-drill"), d);
+    expect(z.stages[0].drill.id).toBe("00");
+  });
+
+  it("rejects drill filename without a leading number", () => {
+    const d = new Map(drills);
+    d.set("wall-taps", drills.get("901-wall-taps")!);
+    const e = fails(session.replace("drills: [901-wall-taps", "drills: [wall-taps"), d);
+    expect(e.slug).toBe("fixture-session");
+    expect(e.message).toContain("wall-taps");
+  });
+});
+
 describe("parseDrill", () => {
   it("coerces players and flags new", () => {
     const d = parseDrill(drills.get("902-paired-lobs")!, "902-paired-lobs");

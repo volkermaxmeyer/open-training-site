@@ -6,6 +6,8 @@ const WATCH = /^[ \t]*-[ \t]+\*\*▶ Watch the drill:\*\*[ \t]*(.*)$/m;
 const PLAYERS = new Set(["2", "3", "4", "Wall"]);
 
 export function parseDrill(fileText: string, id: string): DrillCard {
+  const number = id.match(/^(\d+)(?:-|$)/)?.[1];
+  if (!number) throw new PublishError(id, `drill ${id}: filename has no leading number`);
   const parts = splitFrontmatter(fileText);
   if (!parts) throw new PublishError(id, `drill ${id}: no parseable frontmatter`);
   const { fm, body } = parts;
@@ -27,5 +29,5 @@ export function parseDrill(fileText: string, id: string): DrillCard {
   const before = watch[1].slice(0, urlMatch.index).replace(/[\s—–-]+$/, "");
   const watchLabel = toPlainText(before) || "Watch the drill";
 
-  return { id, title, players: players as DrillCard["players"], isNew: str(fm.status) === "new", watchUrl, watchLabel };
+  return { id: number, title, players: players as DrillCard["players"], isNew: str(fm.status) === "new", watchUrl, watchLabel };
 }

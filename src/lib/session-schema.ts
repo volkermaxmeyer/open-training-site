@@ -2,7 +2,7 @@ import { z } from "astro/zod";
 
 export const DrillCard = z
   .object({
-    id: z.string().min(1),
+    id: z.string().regex(/^\d+$/),
     title: z.string().min(1),
     players: z.enum(["2", "3", "4", "Wall"]),
     isNew: z.boolean(),

@@ -58,9 +58,18 @@ describe("built site", () => {
     }
   });
 
-  it("new badge only on status new drills", () => {
-    expect(html("s/warm-hands/index.html").match(/New — tell us how it went/g)).toHaveLength(1);
+  it("drill badge only on status new drills", () => {
+    expect(html("s/warm-hands/index.html").match(/data-stage-card[\s\S]*?<\/section>/g)!.filter((c) => c.includes("New — tell us how it went"))).toHaveLength(1);
     expect(html("s/steady-lobs/index.html")).not.toContain("New — tell us how it went");
+  });
+
+  it("session badge only when session is not tested", () => {
+    const badge = /New — tell us how it went/g;
+    // warm-hands: status v1 (badge) + 1 new drill; steady-lobs: status tested, no new drills
+    expect(html("s/warm-hands/index.html").match(badge)).toHaveLength(2);
+    expect(html("s/steady-lobs/index.html")).not.toMatch(badge);
+    expect(html("s/warm-hands/index.html")).toMatch(/<h1[^>]*>[^<]*<\/h1>\s*<p[^>]*data-session-badge/);
+    expect(html("s/steady-lobs/index.html")).not.toContain("data-session-badge");
   });
 
   it("feedback link carries ?session=<slug>", () => {
