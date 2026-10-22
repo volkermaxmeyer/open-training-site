@@ -103,6 +103,15 @@ function loadEnv(repoRoot: string): void {
   }
 }
 
+/** Stages and commits only src/content; anything else in the index stays staged. Returns false if nothing changed. */
+export function commitContent(repoDir: string, message: string): boolean {
+  const run = (...a: string[]) => execFileSync("git", a, { cwd: repoDir, stdio: "inherit" });
+  run("add", "src/content");
+  if (spawnSync("git", ["diff", "--cached", "--quiet", "--", "src/content"], { cwd: repoDir }).status === 0) return false;
+  run("commit", "-m", message, "-m", "Co-Authored-By: Claude Opus 5.5 (1M context) <noreply@anthropic.com>", "--", "src/content");
+  return true;
+}
+
 async function main(): Promise<number> {
   const repoRoot = execFileSync("git", ["rev-parse", "--show-toplevel"], { encoding: "utf8" }).trim();
   const dryRun = process.argv.includes("--dry-run");
@@ -148,20 +157,11 @@ async function main(): Promise<number> {
     return 1;
   }
 
-  const git = (...a: string[]) => execFileSync("git", a, { cwd: repoRoot, stdio: "inherit" });
-  git("add", "src/content");
-  if (spawnSync("git", ["diff", "--cached", "--quiet", "--", "src/content"], { cwd: repoRoot }).status === 0) {
+  if (!commitContent(repoRoot, `content: publish ${result.slugs.join(", ") || "(none)"}`)) {
     console.log("nothing to publish");
     return 0;
   }
-  git(
-    "commit",
-    "-m",
-    `content: publish ${result.slugs.join(", ") || "(none)"}`,
-    "-m",
-    "Co-Authored-By: Claude Opus 5.5 (1M context) <noreply@anthropic.com>",
-  );
-  git("push");
+  execFileSync("git", ["push"], { cwd: repoRoot, stdio: "inherit" });
   console.log(`live: ${LIVE_URL}`);
   return 0;
 }

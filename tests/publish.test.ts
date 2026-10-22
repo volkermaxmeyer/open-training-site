@@ -3,7 +3,8 @@ import { mkdirSync, mkdtempSync, readFileSync, readdirSync, writeFileSync, exist
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { beforeEach, describe, expect, it } from "vitest";
-import { publish } from "../scripts/publish";
+import { execFileSync } from "node:child_process";
+import { commitContent, publish } from "../scripts/publish";
 
 const vaultDir = join(__dirname, "fixtures/vault");
 let root: string;
@@ -64,5 +65,22 @@ describe("publish", () => {
     const r = await publish(opts({ dryRun: true }));
     expect(r.written).toHaveLength(1);
     expect(existsSync(outDir)).toBe(false);
+  });
+});
+
+describe("commitContent", () => {
+  it("commits only src/content, leaving other staged files staged", () => {
+    const g = (...a: string[]) => execFileSync("git", a, { cwd: root, encoding: "utf8" });
+    g("init", "-q");
+    g("config", "user.email", "t@example.test");
+    g("config", "user.name", "t");
+    mkdirSync(join(root, "src/content"), { recursive: true });
+    writeFileSync(join(root, "src/content/a.json"), "{}\n");
+    writeFileSync(join(root, "other.txt"), "x\n");
+    g("add", "other.txt");
+    expect(commitContent(root, "content: test")).toBe(true);
+    expect(g("show", "--name-only", "--format=", "HEAD").trim()).toBe("src/content/a.json");
+    expect(g("diff", "--cached", "--name-only").trim()).toBe("other.txt");
+    expect(commitContent(root, "again")).toBe(false);
   });
 });
