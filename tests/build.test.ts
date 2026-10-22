@@ -18,10 +18,25 @@ function walk(dir: string): string[] {
 beforeAll(() => {
   execFileSync("npx", ["astro", "build", "--outDir", out], {
     cwd: root,
-    env: { ...process.env, SESSIONS_DIR: join(root, "tests/fixtures/sessions-json") },
+    env: { ...process.env, SESSIONS_DIR: join(root, "tests/fixtures/sessions-json"), TALLY_FORM_URL: "https://tally.so/r/test" },
     stdio: "pipe",
   });
 }, 180_000);
+
+describe("placeholder guard", () => {
+  it("build with sessions and placeholder tally URL fails", () => {
+    const env = { ...process.env, SESSIONS_DIR: join(root, "tests/fixtures/sessions-json") };
+    delete env.TALLY_FORM_URL;
+    let err = "";
+    try {
+      execFileSync("npx", ["astro", "build", "--outDir", mkdtempSync(join(tmpdir(), "ots-fail-"))], { cwd: root, env, stdio: "pipe" });
+    } catch (e) {
+      const x = e as { stdout?: Buffer; stderr?: Buffer };
+      err = `${x.stdout ?? ""}${x.stderr ?? ""}`;
+    }
+    expect(err).toContain("tallyFormUrl");
+  }, 180_000);
+});
 
 describe("built site", () => {
   it("index lists every session", () => {

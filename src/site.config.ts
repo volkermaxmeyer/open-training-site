@@ -1,6 +1,6 @@
 export const site = {
   name: "Open Training",
-  tallyFormUrl: "TODO-tally-form-url",
+  tallyFormUrl: process.env.TALLY_FORM_URL ?? "TODO-tally-form-url",
   contactEmail: "TODO-contact-email",
   imprint: {
     name: "TODO",

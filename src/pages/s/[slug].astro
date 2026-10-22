@@ -6,6 +6,11 @@ import { site } from "../../site.config";
 
 export async function getStaticPaths() {
   const sessions = await getCollection("sessions");
+  if (sessions.length > 0 && !site.tallyFormUrl.startsWith("https://")) {
+    throw new Error(
+      `site.tallyFormUrl is "${site.tallyFormUrl}": set a real https:// feedback form URL in src/site.config.ts (or TALLY_FORM_URL) before building with sessions.`,
+    );
+  }
   return sessions.map((s) => ({ params: { slug: s.data.slug }, props: { session: s.data } }));
 }
 

@@ -53,12 +53,10 @@ export async function publish(opts: PublishOptions): Promise<PublishResult> {
   for (const f of readdirSync(sessionDir).filter((f) => f.endsWith(".md")).sort()) {
     const text = readFileSync(join(sessionDir, f), "utf8");
     const parts = splitFrontmatter(text);
-    if (!parts) {
-      warnings.push(`${f}: no readable frontmatter, skipped`);
-      continue;
-    }
+    if (!parts) throw new PublishError(f, "no readable frontmatter (half-synced file?); aborting so nothing gets unpublished");
     if (parts.fm.publish !== true) continue;
     const session = parseSession(text, drills);
+    if (`${session.slug}.md` !== f) throw new PublishError(session.slug, `slug "${session.slug}" does not match filename "${f}"`);
     if (!SLUG.test(session.slug)) throw new PublishError(session.slug, "slug must be lowercase letters, digits and hyphens");
     if (outputs.has(session.slug)) throw new PublishError(session.slug, "duplicate slug");
     outputs.set(session.slug, JSON.stringify(session, null, 2) + "\n");
@@ -94,6 +92,12 @@ export async function publish(opts: PublishOptions): Promise<PublishResult> {
   return { written, removed, warnings, slugs };
 }
 
+/** Returns an abort message when the run would unpublish sessions and that was not explicitly allowed. */
+export function checkUnpublish(result: PublishResult, allow: boolean): string | null {
+  if (allow || result.removed.length === 0) return null;
+  return `this would unpublish ${result.removed.length} session(s): ${result.removed.join(", ")}. Re-run with --allow-unpublish if intended.`;
+}
+
 function loadEnv(repoRoot: string): void {
   const file = join(repoRoot, ".env.local");
   if (!existsSync(file)) return;
@@ -103,10 +107,17 @@ function loadEnv(repoRoot: string): void {
   }
 }
 
-/** Stages and commits only src/content; anything else in the index stays staged. Returns false if nothing changed. */
-export function commitContent(repoDir: string, message: string): boolean {
+/**
+ * Stages src/content, runs `check` on the staged state (false = abort, unstage), then commits only src/content.
+ * Anything else in the index stays staged. Returns false if nothing changed.
+ */
+export function commitContent(repoDir: string, message: string, check: () => boolean = () => true): boolean {
   const run = (...a: string[]) => execFileSync("git", a, { cwd: repoDir, stdio: "inherit" });
   run("add", "src/content");
+  if (!check()) {
+    run("reset", "-q", "--", "src/content");
+    throw new Error("guard failed, nothing committed");
+  }
   if (spawnSync("git", ["diff", "--cached", "--quiet", "--", "src/content"], { cwd: repoDir }).status === 0) return false;
   run("commit", "-m", message, "-m", "Co-Authored-By: Claude Opus 5.5 (1M context) <noreply@anthropic.com>", "--", "src/content");
   return true;
@@ -126,15 +137,22 @@ async function main(): Promise<number> {
     return 1;
   }
 
+  const base = {
+    vaultDir,
+    outDir: join(repoRoot, "src/content"),
+    repoRoot,
+    validateCmd: ["python3", join(vaultDir, "app/tooling/validate.py")],
+  };
   let result: PublishResult;
   try {
-    result = await publish({
-      vaultDir,
-      outDir: join(repoRoot, "src/content"),
-      repoRoot,
-      dryRun,
-      validateCmd: ["python3", join(vaultDir, "app/tooling/validate.py")],
-    });
+    // Plan first without writing, so an unpublish can be refused before anything changes.
+    result = await publish({ ...base, dryRun: true });
+    const blocked = dryRun ? null : checkUnpublish(result, process.argv.includes("--allow-unpublish"));
+    if (blocked) {
+      console.error(`publish aborted: ${blocked}`);
+      return 1;
+    }
+    if (!dryRun) result = await publish({ ...base, dryRun: false, validateCmd: undefined });
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     console.error(`publish aborted: ${msg.split(vaultDir).join("<vault>")}`);
@@ -150,16 +168,19 @@ async function main(): Promise<number> {
     return 0;
   }
 
-  const guard = runGuard(repoRoot);
-  if (!guard.ok) {
+  const guardOk = () => {
+    const guard = runGuard(repoRoot);
     for (const f of guard.findings) console.error(`${f.file}:${f.line} ${f.rule}`);
-    console.error("guard failed, not committing");
+    return guard.ok;
+  };
+  try {
+    if (!commitContent(repoRoot, `content: publish ${result.slugs.join(", ") || "(none)"}`, guardOk)) {
+      console.log("nothing to publish");
+      return 0;
+    }
+  } catch (e) {
+    console.error(e instanceof Error ? e.message : String(e));
     return 1;
-  }
-
-  if (!commitContent(repoRoot, `content: publish ${result.slugs.join(", ") || "(none)"}`)) {
-    console.log("nothing to publish");
-    return 0;
   }
   execFileSync("git", ["push"], { cwd: repoRoot, stdio: "inherit" });
   console.log(`live: ${LIVE_URL}`);

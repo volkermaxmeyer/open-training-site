@@ -1,10 +1,10 @@
 import { createHash } from "node:crypto";
-import { mkdirSync, mkdtempSync, readFileSync, readdirSync, writeFileSync, existsSync } from "node:fs";
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, writeFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { beforeEach, describe, expect, it } from "vitest";
 import { execFileSync } from "node:child_process";
-import { commitContent, publish } from "../scripts/publish";
+import { checkUnpublish, commitContent, publish } from "../scripts/publish";
 
 const vaultDir = join(__dirname, "fixtures/vault");
 let root: string;
@@ -61,6 +61,27 @@ describe("publish", () => {
     expect(existsSync(outDir)).toBe(false);
   });
 
+  it("aborts on empty session file", async () => {
+    const vault = mkdtempSync(join(tmpdir(), "vault-"));
+    cpSync(vaultDir, vault, { recursive: true });
+    await publish(opts({ vaultDir: vault }));
+    const json = join(outDir, "sessions/published-session.json");
+    expect(existsSync(json)).toBe(true);
+    writeFileSync(join(vault, "sessions/web/published-session.md"), "");
+    await expect(publish(opts({ vaultDir: vault }))).rejects.toThrow(/published-session\.md/);
+    expect(existsSync(json)).toBe(true);
+    expect(Object.keys(manifest().files)).toEqual(["src/content/sessions/published-session.json"]);
+  });
+
+  it("rejects slug that differs from filename", async () => {
+    const vault = mkdtempSync(join(tmpdir(), "vault-"));
+    cpSync(vaultDir, vault, { recursive: true });
+    const src = readFileSync(join(vault, "sessions/web/published-session.md"), "utf8");
+    writeFileSync(join(vault, "sessions/web/other-name.md"), src.replace("slug: published-session", "slug: different-slug"));
+    await expect(publish(opts({ vaultDir: vault }))).rejects.toThrow(/different-slug.*other-name\.md/);
+    expect(existsSync(outDir)).toBe(false);
+  });
+
   it("dry run touches nothing", async () => {
     const r = await publish(opts({ dryRun: true }));
     expect(r.written).toHaveLength(1);
@@ -82,5 +103,30 @@ describe("commitContent", () => {
     expect(g("show", "--name-only", "--format=", "HEAD").trim()).toBe("src/content/a.json");
     expect(g("diff", "--cached", "--name-only").trim()).toBe("other.txt");
     expect(commitContent(root, "again")).toBe(false);
+  });
+});
+
+describe("checkUnpublish", () => {
+  const res = (removed: string[]) => ({ written: [], removed, warnings: [], slugs: [] });
+  it("blocks removals without the flag", () => {
+    expect(checkUnpublish(res(["src/content/sessions/old.json"]), false)).toMatch(/old\.json.*--allow-unpublish/s);
+  });
+  it("passes with the flag or without removals", () => {
+    expect(checkUnpublish(res(["x.json"]), true)).toBeNull();
+    expect(checkUnpublish(res([]), false)).toBeNull();
+  });
+});
+
+describe("commitContent guard", () => {
+  it("unstages and aborts when the guard rejects staged content", () => {
+    const g = (...a: string[]) => execFileSync("git", a, { cwd: root, encoding: "utf8" });
+    g("init", "-q");
+    g("config", "user.email", "t@example.test");
+    g("config", "user.name", "t");
+    mkdirSync(join(root, "src/content"), { recursive: true });
+    writeFileSync(join(root, "src/content/stray.json"), "{}\n");
+    expect(() => commitContent(root, "x", () => false)).toThrow(/guard/i);
+    expect(g("diff", "--cached", "--name-only").trim()).toBe("");
+    expect(() => g("rev-parse", "--verify", "-q", "HEAD")).toThrow();
   });
 });
