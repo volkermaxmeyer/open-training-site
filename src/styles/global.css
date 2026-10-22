@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+html { font-size: 112.5%; }
+
 @theme {
   --font-sans: ui-sans-serif, system-ui, sans-serif;
 }

@@ -1,0 +1,13 @@
+{
+  "slug": "warm-hands",
+  "title": "Invented Warm Hands",
+  "competency": "Dink",
+  "aim": "Keep a soft rally going for ten shots in a row.",
+  "duration": 30,
+  "status": "published",
+  "stages": [
+    {"title":"Tap it soft","rules":["Stand close to the wall","Keep your eyes on the ball"],"tooEasy":"Step back one pace.","tooHard":"Use a bigger ball.","goodLooksLike":"Ten taps without a bounce.","drill":{"id":"901-wall-taps","title":"Wall taps","players":"Wall","isNew":false,"watchUrl":"https://youtu.be/AAAAAAAAAAA?t=10","watchLabel":"Wall taps, 0:10"}},
+    {"title":"Lob in pairs","rules":["Lob high","Call mine"],"tooEasy":"Add a target.","tooHard":"Lob lower.","drill":{"id":"902-paired-lobs","title":"Paired lobs","players":"2","isNew":true,"watchUrl":"https://youtu.be/BBBBBBBBBBB?t=20","watchLabel":"Paired lobs, 0:20"}},
+    {"title":"Cone game","rules":["Play to 11"],"tooEasy":"Shrink the cones.","tooHard":"Widen the cones.","drill":{"id":"903-cone-game","title":"Cone game","players":"4","isNew":false,"watchUrl":"https://youtu.be/CCCCCCCCCCC","watchLabel":"Cone game"}}
+  ]
+}

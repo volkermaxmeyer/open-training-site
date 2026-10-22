@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import StageCard from "../../components/StageCard.astro";
+import { site } from "../../site.config";
+
+export async function getStaticPaths() {
+  const sessions = await getCollection("sessions");
+  return sessions.map((s) => ({ params: { slug: s.data.slug }, props: { session: s.data } }));
+}
+
+const { session } = Astro.props;
+const feedbackUrl = `${site.tallyFormUrl}?session=${encodeURIComponent(session.slug)}`;
+---
+
+<Base title={`${session.title} | ${site.name}`} description={session.aim}>
+  <h1 class="text-3xl font-bold">{session.title}</h1>
+  <p class="mt-2 text-lg">{session.aim}</p>
+  <p class="mt-1 text-base text-slate-600">{session.duration} min</p>
+  <div class="mt-6 space-y-4">
+    {session.stages.map((stage, i) => <StageCard stage={stage} number={i + 1} />)}
+  </div>
+  <a
+    href={feedbackUrl}
+    class="mt-8 flex min-h-14 items-center justify-center rounded-xl bg-emerald-700 px-4 py-3 text-lg font-semibold text-white"
+  >
+    Tell us how it went
+  </a>
+</Base>

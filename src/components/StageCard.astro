@@ -1,0 +1,41 @@
+---
+import type { Stage } from "../lib/session-schema";
+
+interface Props {
+  stage: Stage;
+  number: number;
+}
+const { stage, number } = Astro.props;
+---
+
+<section data-stage-card class="rounded-2xl border-2 border-slate-300 p-4">
+  <p class="text-base font-semibold text-slate-600">Stage {number}</p>
+  <h2 class="text-2xl font-bold">{stage.title}</h2>
+  {stage.drill.isNew && (
+    <p class="mt-2 inline-block rounded-full bg-amber-200 px-3 py-1 text-base font-semibold text-amber-950">
+      New — tell us how it went
+    </p>
+  )}
+  <ul class="mt-3 list-disc space-y-2 pl-6">
+    {stage.rules.map((rule) => <li>{rule}</li>)}
+  </ul>
+  <a
+    href={stage.drill.watchUrl}
+    target="_blank"
+    rel="noopener"
+    class="mt-4 flex min-h-14 items-center justify-center rounded-xl bg-slate-900 px-4 py-3 text-lg font-semibold text-white"
+  >
+    ▶ Watch: {stage.drill.watchLabel}
+  </a>
+  <details class="mt-3">
+    <summary class="flex min-h-12 cursor-pointer items-center font-semibold">Too easy? Too hard?</summary>
+    <p class="mt-1"><strong>Too easy:</strong> {stage.tooEasy}</p>
+    <p class="mt-2"><strong>Too hard:</strong> {stage.tooHard}</p>
+  </details>
+  {stage.goodLooksLike && (
+    <details class="mt-1">
+      <summary class="flex min-h-12 cursor-pointer items-center font-semibold">Good looks like</summary>
+      <p class="mt-1">{stage.goodLooksLike}</p>
+    </details>
+  )}
+</section>

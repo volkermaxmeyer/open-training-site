@@ -1,0 +1,38 @@
+---
+import "../styles/global.css";
+import { site } from "../site.config";
+
+interface Props {
+  title: string;
+  description?: string;
+  noindex?: boolean;
+}
+const { title, description, noindex = false } = Astro.props;
+const version = (process.env.VERCEL_GIT_COMMIT_SHA ?? "local").slice(0, 7);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    {description && <meta name="description" content={description} />}
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title}</title>
+  </head>
+  <body class="bg-white text-slate-900 antialiased">
+    <div class="mx-auto flex min-h-screen max-w-2xl flex-col px-4">
+      <header class="py-4">
+        <a href="/" class="inline-block py-2 text-xl font-bold">{site.name}</a>
+      </header>
+      <main class="flex-1 pb-8"><slot /></main>
+      <footer class="flex flex-wrap gap-x-6 gap-y-1 border-t border-slate-200 py-4 text-base text-slate-600">
+        <a href="/imprint/" class="py-2 underline">Imprint</a>
+        <a href="/privacy/" class="py-2 underline">Privacy</a>
+        <span class="py-2">v {version}</span>
+      </footer>
+    </div>
+  </body>
+</html>
