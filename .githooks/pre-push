@@ -1,0 +1,5 @@
+#!/bin/sh
+# Blocks the push if the leak guard finds private text. Enable once per clone:
+#   git config core.hooksPath .githooks
+command -v fnm >/dev/null && eval "$(fnm env)" && fnm use 24 >/dev/null 2>&1
+exec npm run guard --silent

@@ -1,3 +1,11 @@
+## Setup
+
+After cloning, enable the leak guard once:
+
+```sh
+git config core.hooksPath .githooks
+```
+
 # Astro Starter Kit: Minimal
 
 ```sh
