@@ -65,7 +65,13 @@ export function parseSession(fileText: string, drills: Map<string, string>): Ses
     if (drillFm && str(drillFm.fm.status) === "archived") {
       fail(`stage ${n}: drill '${drillId}' is archived`);
     }
-    const drill = parseDrill(drillText as string, drillId);
+    let drill;
+    try {
+      drill = parseDrill(drillText as string, drillId);
+    } catch (e) {
+      if (e instanceof PublishError) fail(`stage ${n}, drill ${drillId}: ${e.reason}`);
+      throw e;
+    }
 
     stages.push({
       title: stageTitle,

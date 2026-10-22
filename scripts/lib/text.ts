@@ -4,8 +4,9 @@ export function toPlainText(md: string): string {
   return md
     .replace(/\s*\[added[^\]]*\]/gi, "")
     .replace(/\s*\[UNVERIFIED[^\]]*\]/gi, "")
+    .replace(/!\[\[[^\]]*\]\]/g, "")
     .replace(/\[\[[^\]|]*\|([^\]]*)\]\]/g, "$1")
-    .replace(/\[\[([^\]]*)\]\]/g, "$1")
+    .replace(/\[\[([^\]]*)\]\]/g, (_, t: string) => t.split("#")[0].split("/").pop() ?? "")
     .replace(/\*\*/g, "")
     .replace(/\s+/g, " ")
     .trim();

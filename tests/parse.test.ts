@@ -51,6 +51,17 @@ describe("parseSession", () => {
     expect(toPlainText("Play like [[113-x|Dinkles]] and [[plain]]")).toBe("Play like Dinkles and plain");
   });
 
+  it("reduces alias-less wikilinks and removes embeds", () => {
+    expect(toPlainText("[[a#h]]")).toBe("a");
+    expect(toPlainText("[[folder/note]]")).toBe("note");
+    expect(toPlainText("[[folder/note#h]]")).toBe("note");
+    expect(toPlainText("[[a#h|Shown]]")).toBe("Shown");
+    const out = toPlainText("see ![[x.png]] here");
+    expect(out).toBe("see here");
+    expect(toPlainText("a ![[x.png|cap]] b")).toBe("a b");
+    expect(out).not.toMatch(/!|x\.png|\[\[/);
+  });
+
   it("drops [added] and [UNVERIFIED] markers", () => {
     const s = parseSession(session, drills);
     const json = JSON.stringify(s);
@@ -74,6 +85,7 @@ describe("parseSession", () => {
 
   it("rejects drill without watch line", () => {
     const e = fails(session.replace("903-cone-game", "905-no-video"));
+    expect(e.slug).toBe("fixture-session");
     expect(e.message).toContain("905-no-video");
   });
 
