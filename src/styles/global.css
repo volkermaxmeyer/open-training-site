@@ -1,10 +1,15 @@
 @import "tailwindcss";
+@import "@fontsource/poppins/latin-600.css";
+@import "@fontsource/poppins/latin-700.css";
+@import "@fontsource/crimson-text/latin-700.css";
 
 html { font-size: 112.5%; }
 
 /* Values derived from Astryx's Y2K theme (MIT, Meta). Roles and rules: DESIGN.md. */
 @theme {
-  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-head: Poppins, system-ui, sans-serif;
+  --font-display: "Crimson Text", Georgia, serif;
 
   --color-ink: #2d241b;
   --color-ink-soft: #4f453b;
@@ -17,4 +22,11 @@ html { font-size: 112.5%; }
   --color-badge: #ffe08a;
   --color-badge-ink: #584400;
   --color-go: #c5e17a;
+}
+
+@layer base {
+  summary { list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; margin-left: auto; font-size: 1.5rem; line-height: 1; }
+  details[open] > summary::after { content: "–"; }
 }

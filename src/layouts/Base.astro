@@ -24,16 +24,16 @@ const version = (process.env.VERCEL_GIT_COMMIT_SHA ?? "local").slice(0, 7);
     <title>{title}</title>
     <Analytics />
   </head>
-  <body class="bg-white text-slate-900 antialiased">
-    <div class="mx-auto flex min-h-screen max-w-2xl flex-col px-4">
+  <body class="bg-paper font-sans text-ink antialiased">
+    <div class="mx-auto flex min-h-screen max-w-[430px] flex-col px-4">
       <header class="py-4">
-        <a href="/" class="inline-block py-2 text-xl font-bold">{site.name}</a>
+        <a href="/" class="inline-block py-2 font-head text-xl font-bold">{site.name}</a>
       </header>
       <main class="flex-1 pb-8"><slot /></main>
-      <footer class="flex flex-wrap gap-x-6 gap-y-1 border-t border-slate-200 py-4 text-base text-slate-600">
-        <a href="/imprint/" class="py-2 underline">Imprint</a>
-        <a href="/privacy/" class="py-2 underline">Privacy</a>
-        <span class="py-2">v {version}</span>
+      <footer class="mt-4 flex flex-wrap gap-x-6 gap-y-1 border-t-2 border-ink py-2 text-base">
+        <a href="/imprint/" class="inline-flex min-h-12 items-center underline">Imprint</a>
+        <a href="/privacy/" class="inline-flex min-h-12 items-center underline">Privacy</a>
+        <span class="inline-flex min-h-12 items-center">v {version}</span>
       </footer>
     </div>
   </body>

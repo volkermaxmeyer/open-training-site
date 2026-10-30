@@ -28,7 +28,7 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 | secondary text on any surface | `--color-ink-soft` only on `--color-card` | 6.2:1 on periwinkle |
 | green and pink badges | badge in yellow (`--color-badge`) | 6.3:1 and 6.6:1 |
 | soft shadows | hard offset shadow | more character, no blur to wash out in sun |
-| fonts from Google Fonts | self-hosted | no third-party request, no IP sent to Google |
+| fonts from Google Fonts | bundled into the site (Fontsource) | no third-party request, no IP sent to Google |
 | light and dark mode | light only | sun |
 
 ## Colour roles
@@ -46,10 +46,11 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 
 ## Type
 
-- **Headings:** Poppins 700. **Display** (session title, stage numbers): Crimson Text 700. Both OFL, self-hosted under
-  `public/fonts/`.
-- **Body:** open — Poppins or the system font. Poppins is wide and the rules are long; decided on a phone, not by a
-  ratio.
+- **Headings, labels, buttons:** Poppins 600/700 (`--font-head`). **Display** (session title, stage numbers, jump
+  links): Crimson Text 700 (`--font-display`). Both OFL, latin subset only, bundled from Fontsource into the site's
+  own assets (~41 KB woff2 in total).
+- **Body:** the system font (`--font-sans`). Chosen over Poppins on a phone: Poppins is wide and the rules are long;
+  the narrower system font shortens each card and leaves room for clearer gaps between rules.
 - **Sizes:** base 18 px · stage title 26 px · session title 44 px · stage number 64 px · labels 14 px uppercase,
   letter-spaced.
 
@@ -61,12 +62,13 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 
 ## Patterns
 
+- **Jump links:** a sticky bar at the top of the session page, three equal links "1 · 2 · 3" in the stage colours,
+  48 px high, anchor links only. Each stage card has `scroll-margin` so it is not hidden under the bar.
 - **Stage card:** number block (stage colour, display font) beside label and title; then rules as a list; a full-width
-  `--color-ink` "▶ Watch" button; then `<details>` "Too easy? Too hard?" holding Too easy, Too hard and Good looks
+  `--color-ink` "▶ Watch" button; then one `<details>` "Too easy? Too hard?" holding Too easy, Too hard and Good looks
   like.
 - **Badges:** one per session under the title until the session is tested; one per card when its drill is new.
 - **Feedback button:** after the last card, `--color-go` with the card border and shadow.
-- **Open:** sticky jump links 1 · 2 · 3, because Stage 2 starts about two screens down.
 
 ## Don't
 
