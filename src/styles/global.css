@@ -2,6 +2,19 @@
 
 html { font-size: 112.5%; }
 
+/* Values derived from Astryx's Y2K theme (MIT, Meta). Roles and rules: DESIGN.md. */
 @theme {
   --font-sans: ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #2d241b;
+  --color-ink-soft: #4f453b;
+  --color-paper: #cccffa;
+  --color-card: #ffffff;
+  --color-on-ink: #ffffff;
+  --color-stage-1: #addbff;
+  --color-stage-2: #d5cdff;
+  --color-stage-3: #ffe08a;
+  --color-badge: #ffe08a;
+  --color-badge-ink: #584400;
+  --color-go: #c5e17a;
 }
