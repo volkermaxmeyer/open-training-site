@@ -26,7 +26,7 @@ beforeAll(() => {
 describe("placeholder guard", () => {
   it("build with sessions and placeholder tally URL fails", () => {
     const env = { ...process.env, SESSIONS_DIR: join(root, "tests/fixtures/sessions-json") };
-    delete env.TALLY_FORM_URL;
+    env.TALLY_FORM_URL = "TODO-tally-form-url";
     let err = "";
     try {
       execFileSync("npx", ["astro", "build", "--outDir", mkdtempSync(join(tmpdir(), "ots-fail-"))], { cwd: root, env, stdio: "pipe" });
