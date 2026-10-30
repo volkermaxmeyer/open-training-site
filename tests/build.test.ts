@@ -99,9 +99,12 @@ describe("built site", () => {
     }
   });
 
-  it("no <script> tags in session pages", () => {
+  it("session pages carry no script except the inline Vercel Analytics loader", () => {
     for (const s of ["warm-hands", "steady-lobs"]) {
-      expect(html(`s/${s}/index.html`)).not.toMatch(/<script/i);
+      const scripts = html(`s/${s}/index.html`).match(/<script[\s\S]*?<\/script>/gi) ?? [];
+      expect(scripts).toHaveLength(1);
+      expect(scripts[0]).toMatch(/^<script type="module">/);
+      expect(scripts[0]).toContain("@vercel/analytics");
     }
   });
 
