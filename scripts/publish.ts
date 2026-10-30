@@ -98,7 +98,7 @@ export function checkUnpublish(result: PublishResult, allow: boolean): string | 
   return `this would unpublish ${result.removed.length} session(s): ${result.removed.join(", ")}. Re-run with --allow-unpublish if intended.`;
 }
 
-function loadEnv(repoRoot: string): void {
+export function loadEnv(repoRoot: string): void {
   const file = join(repoRoot, ".env.local");
   if (!existsSync(file)) return;
   for (const line of readFileSync(file, "utf8").split("\n")) {
