@@ -147,6 +147,16 @@ describe("identity patterns", () => {
     expect(withReadme("x&#64;gmail.com\n")).toContain("identity:&#64;gmail.com");
   });
 
+  it("allows the public contact address in all forms", () => {
+    expect(withReadme("Contact: Pickleballinberlin@gmail.com\n")).toEqual([]);
+    expect(withReadme("mailto:pickleballinberlin%40gmail.com and pickleballinberlin&#64;gmail.com\n")).toEqual([]);
+  });
+
+  it("still fails on other gmail addresses next to or containing the public one", () => {
+    expect(withReadme("pickleballinberlin@gmail.com, someone@gmail.com\n")).toContain("identity:@gmail.com");
+    expect(withReadme("xpickleballinberlin@gmail.com\n")).toContain("identity:@gmail.com");
+  });
+
   it("fails on VAULT_DIR from .env.local without printing it", () => {
     setup();
     put(".env.local", 'VAULT_DIR="/secret/place/zz"\n');

@@ -12,6 +12,8 @@ export type GuardResult = { ok: boolean; findings: Finding[] };
 const IDENTITY = ["/users/", "googledrive-", "obsidian-vault", "@gmail.com", "%40gmail.com", "%2fusers%2f", "&#64;gmail.com"];
 // Markup patterns: matched case-sensitively, only in the published scope.
 const MARKUP = ["[[", "[added", "[UNVERIFIED]", "claude.ai/artifact"];
+// Public addresses that may appear despite the gmail patterns; removed before matching.
+const ALLOWED = /(?<![a-z0-9._%+-])pickleballinberlin(?:@|%40|&#64;)gmail\.com/g;
 const IDENTITY_EXEMPT = new Set(["scripts/guard.ts", "tests/guard.test.ts"]);
 const MANIFEST = "src/content/.manifest.json";
 const SCOPE = /^(src\/|public\/|README\.md$)/;
@@ -40,8 +42,9 @@ function scanText(repoDir: string, label: string, path: string, bytes: Buffer, v
   const markup = SCOPE.test(path);
   bytes.toString("utf8").split("\n").forEach((text, i) => {
     const lower = text.toLowerCase();
+    const scrubbed = lower.replace(ALLOWED, "");
     if (identity) {
-      for (const n of IDENTITY) if (lower.includes(n)) out.push({ file: label, line: i + 1, rule: `identity:${n}` });
+      for (const n of IDENTITY) if (scrubbed.includes(n)) out.push({ file: label, line: i + 1, rule: `identity:${n}` });
       if (vault && lower.includes(vault)) out.push({ file: label, line: i + 1, rule: "identity:vault-dir" });
     }
     if (markup) for (const n of MARKUP) if (text.includes(n)) out.push({ file: label, line: i + 1, rule: `forbidden:${n}` });

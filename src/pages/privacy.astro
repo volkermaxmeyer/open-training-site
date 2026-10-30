@@ -5,6 +5,28 @@ import { site } from "../site.config";
 
 <Base title={`Privacy | ${site.name}`} >
   <h1 class="text-3xl font-bold">Privacy</h1>
-  <p class="mt-4">Placeholder: privacy text follows.</p>
-  <p class="mt-2">Contact: {site.contactEmail}</p>
+
+  <h2 class="mt-6 text-xl font-semibold">Who is responsible</h2>
+  <p class="mt-2">{site.imprint.name}, {site.imprint.street}, {site.imprint.city}. Contact: {site.contactEmail}</p>
+
+  <h2 class="mt-6 text-xl font-semibold">Visiting this site</h2>
+  <p class="mt-2">
+    This site is hosted by Vercel Inc. (USA). When you open a page, Vercel's servers record technical data such as your IP
+    address, the time and the page requested, to deliver the site and keep it secure. This site sets no cookies, loads no
+    external fonts or scripts and uses no analytics or tracking.
+  </p>
+
+  <h2 class="mt-6 text-xl font-semibold">Feedback form</h2>
+  <p class="mt-2">
+    The feedback link opens a form at Tally (Tally BV, Belgium). Data goes to Tally only if you click that link. The form
+    records which session you played and your answers; your email address is optional. Answers are stored at Tally and in
+    a Google Sheet (Google) that only the organisers can read, and are used only to improve the sessions.
+  </p>
+
+  <h2 class="mt-6 text-xl font-semibold">Your rights</h2>
+  <p class="mt-2">
+    You can ask us what we store about you, and have it corrected or deleted, by writing to {site.contactEmail}. You can
+    also complain to a data protection authority, in Berlin the Berliner Beauftragte für Datenschutz und
+    Informationsfreiheit.
+  </p>
 </Base>
