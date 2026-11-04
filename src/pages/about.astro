@@ -1,0 +1,40 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../site.config";
+import BackLink from "../components/BackLink.astro";
+---
+
+<Base title={`About | ${site.name}`}>
+  <BackLink />
+  <h1 class="mt-1 font-display text-[44px] leading-none font-bold">About</h1>
+  <p class="mt-4">
+    Open Training gives you a ready-made 30-minute session for the court, with no coach needed. Pick what you want to get
+    better at, and you get three drills that build on each other, each with a short video that shows how it is played.
+  </p>
+
+  <h2 class="mt-6 font-head text-xl font-bold">Where the drills come from</h2>
+  <p class="mt-2">The drills and tactics come from more than 200 reviewed YouTube videos by coaches and pros. Each drill plays the part of the video that shows it.</p>
+
+  <h2 class="mt-6 font-head text-xl font-bold">How a session is built</h2>
+  <p class="mt-2">
+    The sessions follow sports-science research on how people learn movement skills. Each session is a ladder: Drill 1
+    lets you find the shot, Drill 2 adds pressure, and Drill 3 puts it into a real point. Every step uses constraints,
+    simple rules like a target zone, a limited number of shots or a point scored differently. Under such a rule, the right
+    shot is the one that wins, so you learn it without anyone explaining it. Aim for about seven good balls in ten. If a
+    drill is too easy or too hard, it tells you how to adjust it.
+  </p>
+
+  <h2 class="mt-6 font-head text-xl font-bold">Made with AI, checked by a player</h2>
+  <p class="mt-2">
+    AI helped turn the videos into drills and sessions. A player decides which sessions go online, and your feedback from
+    the court decides what stays.
+  </p>
+
+  <h2 class="mt-6 font-head text-xl font-bold">Non-commercial</h2>
+  <p class="mt-2">
+    Open Training is a non-commercial project by players in Berlin. There are no ads and no sign-up, and nothing is for
+    sale. We want to help players get better and bring pickleball to the people.
+  </p>
+
+  <p class="mt-6">Every session ends with a short feedback form. What you tell us there is how the sessions get better.</p>
+</Base>

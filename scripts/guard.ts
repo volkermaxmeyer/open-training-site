@@ -4,6 +4,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Session } from "../src/lib/session-schema";
+import { VERSION_FILE, parseVersionFile, versionSteps } from "./lib/version";
 
 export type Finding = { file: string; line: number; rule: string };
 export type GuardResult = { ok: boolean; findings: Finding[] };
@@ -109,6 +110,24 @@ export function runGuard(repoDir: string): GuardResult {
   return { ok: findings.length === 0, findings };
 }
 
+function versionAt(repoDir: string, commit: string): string | null | undefined {
+  try {
+    return parseVersionFile(gitBuf(repoDir, ["show", `${commit}:${VERSION_FILE}`]).toString("utf8"));
+  } catch {
+    return undefined; // no version file in that commit
+  }
+}
+
+/** Every push to main is a new site version: once main has one, the pushed tip must carry a higher number. */
+function checkVersionBump(repoDir: string, local: string, remote: string): Finding[] {
+  const before = versionAt(repoDir, remote);
+  if (before === undefined) return [];
+  const after = versionAt(repoDir, local);
+  if (!after) return [{ file: VERSION_FILE, line: 0, rule: "version-missing" }];
+  if (before !== null && versionSteps(after)! <= versionSteps(before)!) return [{ file: VERSION_FILE, line: 0, rule: `version-not-bumped:${before}` }];
+  return [];
+}
+
 /** Push mode: every blob of every commit about to be pushed, plus manifest/schema checks on each pushed tip. */
 export function runGuardOnPush(repoDir: string, refLines: string): GuardResult {
   const findings: Finding[] = [];
@@ -117,9 +136,10 @@ export function runGuardOnPush(repoDir: string, refLines: string): GuardResult {
   const tips = new Set<string>();
 
   for (const line of refLines.split("\n").map((l) => l.trim()).filter(Boolean)) {
-    const [, local, , remote] = line.split(/\s+/);
+    const [, local, remoteRef, remote] = line.split(/\s+/);
     if (!local || ZERO.test(local)) continue;
     tips.add(local);
+    if (remoteRef === "refs/heads/main" && remote && !ZERO.test(remote)) findings.push(...checkVersionBump(repoDir, local, remote));
     let commits: string[];
     try {
       commits = remote && !ZERO.test(remote) ? git(repoDir, ["rev-list", local, `^${remote}`]) : git(repoDir, ["rev-list", local, "--not", "--remotes"]);

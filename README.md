@@ -3,14 +3,15 @@
 Self-explanatory pickleball training sessions for peer-led groups, one phone page per session:
 https://open-training-site.vercel.app/
 
-Each session has three stages. Every stage shows what to do, a ▶ link to the moment in a YouTube video where the
-drill is demonstrated, how to make it easier or harder, and what good looks like. A feedback link at the end tells
+Each session is a ladder of three drills for one player goal. Every drill shows a short sentence, the part of a YouTube
+video that demonstrates it (it plays inside the card after a tap), the rules, how to make it easier or harder, and what
+good looks like. A feedback link at the end tells
 us whether the session worked without anyone explaining it.
 
 ## Why
 
-Our club's advanced group trains without trained coaches. A drill only helps if four players can pick it up from a
-phone on court and run it. The sessions come from a larger private training system; this site publishes the parts
+Our club's advanced group trains without trained coaches. A drill only helps if the players can pick it up from a
+phone on court and run it. Sessions are written for two players; groups of four get one warning line. The sessions come from a larger private training system; this site publishes the parts
 that are ready, in a form that needs no explanation.
 
 ## How it works
@@ -21,7 +22,8 @@ private notes ──publish script──▶ src/content/sessions/*.json ──gi
                   allowlist fields)
 ```
 
-- **Astro, static output, no adapter.** Tailwind for styling. No external fonts, embeds or third-party scripts.
+- **Astro, static output, no adapter.** Tailwind for styling. No external fonts or third-party scripts; a YouTube player
+  (youtube-nocookie.com) loads only after a tap on a video.
 - **Content is JSON, not copied notes.** `scripts/publish.ts` reads the sessions marked for publishing and builds
   each one from named fields only, so private notes and links never reach the repo. The site validates the JSON
   against `src/lib/session-schema.ts`.
@@ -41,7 +43,14 @@ npx tsx scripts/check-deploy.ts     # wait until Vercel serves the new commit
 ```
 
 The script aborts before writing anything if a source note is unreadable or a slug does not match its filename.
-Removing a session that is already live needs `--allow-unpublish`. It commits only `src/content`.
+Removing a session that is already live needs `--allow-unpublish`. It commits only `src/content` and the bumped `src/version.json`.
+
+## Version
+
+The imprint shows the site version from `src/version.json`. It started at 1.000 and goes up by 0.001 with every push
+to main: the publish script bumps it itself, a code change runs `npm run version:bump` before its commit. To jump to
+another number, write it into the file by hand. The pre-push guard blocks a push to main whose version is not higher
+than the live one.
 
 ## Leak guard
 
@@ -53,6 +62,7 @@ It fails on:
 - notes markup that should never reach the site
 - content files the publish script did not produce, or whose hash does not match its manifest
 - session files that do not match the schema
+- a push to main without a higher version
 
 After cloning, enable the hook once:
 
@@ -77,17 +87,28 @@ Local settings go in `.env.local` (gitignored), see `.env.example`.
 
 ## Credits
 
-The drills are demonstrated in videos by these channels. The ▶ links point straight to the demonstration; all
+The drills are demonstrated in videos by these channels. Each card plays only the part that shows the drill; all
 videos remain theirs.
 
+- Backpaddle Pickleball
 - Briones Pickleball Academy
+- Building Pickleball
 - Cam Luhring
+- Catherine Parenteau
+- Coach Jess | Athena Pickleball
+- Cracked Pickleball
 - Enhance Pickleball
+- In2Pickle
 - Jack Munro
 - John Cincola Pickleball
+- Pickleball Hub
+- Pickleball Studio
 - PickleballPlaybook - Austin Hardy
 - Simone Jardim Pickleball
+- ThatPickleballGuy - Kyle Koszuta
 - Troy Akin Pickleball
+- Walker Sisters Pickleball - Angie & Alex Walker
+- Zane Navratil Pickleball
 
 ## Contact
 

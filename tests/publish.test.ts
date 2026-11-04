@@ -118,7 +118,8 @@ describe("commitContent", () => {
     writeFileSync(join(root, "other.txt"), "x\n");
     g("add", "other.txt");
     expect(commitContent(root, "content: test")).toBe(true);
-    expect(g("show", "--name-only", "--format=", "HEAD").trim()).toBe("src/content/a.json");
+    expect(g("show", "--name-only", "--format=", "HEAD").trim().split("\n")).toEqual(["src/content/a.json", "src/version.json"]);
+    expect(readFileSync(join(root, "src/version.json"), "utf8")).toContain('"1.000"');
     expect(g("diff", "--cached", "--name-only").trim()).toBe("other.txt");
     expect(commitContent(root, "again")).toBe(false);
   });

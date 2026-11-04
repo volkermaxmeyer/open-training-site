@@ -7,6 +7,7 @@ import { PublishError } from "./lib/errors";
 import { parseSession, type Goals } from "./lib/parse-session";
 import { splitFrontmatter } from "./lib/text";
 import { runGuard } from "./guard";
+import { VERSION_FILE, bumpVersion } from "./lib/version";
 import type { Session } from "../src/lib/session-schema";
 
 export const LIVE_URL = "https://open-training-site.vercel.app";
@@ -131,7 +132,8 @@ export function loadEnv(repoRoot: string): void {
 }
 
 /**
- * Stages src/content, runs `check` on the staged state (false = abort, unstage), then commits only src/content.
+ * Stages src/content, runs `check` on the staged state (false = abort, unstage), then commits only src/content
+ * plus the bumped src/version.json.
  * Anything else in the index stays staged. Returns false if nothing changed.
  */
 export function commitContent(repoDir: string, message: string, check: () => boolean = () => true): boolean {
@@ -142,7 +144,11 @@ export function commitContent(repoDir: string, message: string, check: () => boo
     throw new Error("guard failed, nothing committed");
   }
   if (spawnSync("git", ["diff", "--cached", "--quiet", "--", "src/content"], { cwd: repoDir }).status === 0) return false;
-  run("commit", "-m", message, "-m", "Co-Authored-By: Claude Opus 5.5 (1M context) <noreply@anthropic.com>", "--", "src/content");
+  // Every publication is a new site version, one above what is live.
+  spawnSync("git", ["fetch", "-q", "origin", "main"], { cwd: repoDir });
+  bumpVersion(repoDir);
+  run("add", VERSION_FILE);
+  run("commit", "-m", message, "-m", "Co-Authored-By: Claude Opus 5.5 (1M context) <noreply@anthropic.com>", "--", "src/content", VERSION_FILE);
   return true;
 }
 
@@ -206,6 +212,7 @@ async function main(): Promise<number> {
     return 1;
   }
   execFileSync("git", ["push"], { cwd: repoRoot, stdio: "inherit" });
+  console.log(`version ${JSON.parse(readFileSync(join(repoRoot, VERSION_FILE), "utf8")).version}`);
   console.log(`live: ${LIVE_URL}`);
   return 0;
 }

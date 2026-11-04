@@ -65,23 +65,21 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 
 ## Patterns
 
-- **Jump bar:** sticky at the top of the session page, on `--color-paper`. Three equal tabs, each the drill number in the
-  display font over the small label "DRILL", 64 px high, 10 px apart, 2 px `--color-ink` border. The **selected tab** takes
-  its stage colour, the hard shadow and a 2 px lift; the others stay `--color-card` with `--color-ink-soft` text. The
-  selection is the drill named in the URL hash, Drill 1 when there is none: pure CSS (`:has(:target)`), no script. It
-  changes when a tab is tapped, not while scrolling. Each stage card has `scroll-margin` so the bar does not cover it.
+- **Jump bar:** sticky on the session page, on `--color-paper`. Three equal tabs, 56 px high, 10 px apart, 2 px
+  `--color-ink` border, each permanently in its stage colour with the drill number and "DRILL" on one line. No selected
+  state (see critique round 2). Each stage card has `scroll-margin` so the bar does not cover it.
 - **Chips:** 14 px Poppins 600, 2 px `--color-ink` border, optional person icon. Plain on `--color-card` (duration), `--color-chip`
   (player counts), `--color-warn` (a drill that needs more people than the first one).
 - **Stage card:** number block (stage colour, display font) beside the title and, under it, two chips: the duration
   ("10 min", session duration ÷ 3) and the players ("2 players", or "Needs 4 players" in warn when it asks for more than
-  the first drill). No "Stage N" label: the number block and the jump bar carry it. Then the **video first**: a full-width
-  `--color-ink` "▶ Watch the drill" button, at least 72 px high, with the channel and time on a second line. Below it the
-  one-sentence summary ("In short"), visible. On a 4-player stage, one regular-weight line for pairs that carries Drill 2's
-  actual "Too easy" rule. Then two collapsed `<details>`: "How to play" (the "new" badge and the rules) and "Too easy? Too
-  hard?" (Too easy, Too hard, Good looks like).
-- **Session top:** title, then two chips (the aim is not shown on the page, only as the meta description for link
-  previews; Volker 2026-11-04): the duration and a players summary ("Drills 1–2: 2 players · Drill 3: 4
-  players", or "All drills: 2 players"). Then the **four-on-court line**: one line on `--color-warn` with a 6 px `--color-ink`
+  the first drill). No "Stage N" label: the number block and the jump bar carry it. Then the **video first**: the in-card
+  player surface (see "Video in the card"); only a drill without an end time falls back to the black "▶ Watch the drill"
+  button. Below it the one-sentence summary ("In short"), visible. On a 4-player stage, the authored "Only two of you?"
+  block (see critique round 2). Then two collapsed `<details>`: "How to play" (the "new" badge and the rules) and "Too
+  easy? Too hard?" (Too easy, Too hard, Good looks like).
+- **Session top:** back link, title, then two chips (the aim is not shown on the page, only as the meta description for
+  link previews; Volker 2026-11-04): "30 min" and the players ("2+ players · Drill 3 needs 4"). Then the jump bar, then
+  the **four-on-court line**: one line on `--color-warn` with a 6 px `--color-ink`
   bar on the left, no box shadow, the safety rule in bold. Red, not yellow, so it does not rhyme with Drill 3 (design critique
   2026-11-04).
 - **Badges:** one inside "How to play" when its drill is new. No session badge under the title (removed 2026-11-04,
@@ -99,7 +97,7 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 - Put `--color-ink-soft` on `--color-paper` or a stage colour.
 - Add a colour without adding its pair to `tests/contrast.test.ts`.
 - Write a hex value outside `@theme`.
-- Load fonts, scripts or images from another host.
+- Load fonts, scripts or images from another host. The one exception is the YouTube player, and only after a tap.
 
 ## Changes after critique round 2 (2026-11-04, 24/36)
 
@@ -126,7 +124,8 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
   - Card-style links shift on hover for mouse users, as they do on tap.
   - Footer and back links share the same underline offset. "← All goals" is one component.
   - The watch link tells screen readers it opens YouTube.
-  - The footer shows only Imprint and Privacy; the version number is gone (check-deploy reads `version.txt`). The kicker
+  - The footer shows no version number (check-deploy reads `version.txt`). Since 2026-11-04 it reads About · Imprint ·
+    Privacy, see below. The kicker
     "Good training, no coach" and the goal "Special shots" stay (Volker's call, against Impeccable's kicker ban).
 - **Delight (2026-11-04):** one authored mark and one authored moment.
   - **The pickleball** (`Ball.astro`, the same drawing as `public/favicon.svg` and `apple-touch-icon.png`): a
@@ -143,3 +142,11 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
   - **Note for later:** a content security policy would need `frame-src https://www.youtube-nocookie.com`, and
     `Referrer-Policy: no-referrer` breaks YouTube embeds.
 
+## About page and site version (2026-11-04)
+
+- **Footer:** About · Imprint · Privacy, About first.
+- **About** (`/about/`): what the site is, where the drills come from, how a session ladder and its constraints work, a
+  note that AI helped and a player decides what goes online, and that the project is non-commercial. It names no club
+  until the club has agreed; the imprint keeps the legal address.
+- **Version:** `src/version.json`, shown as the last line of the imprint ("Version 1.000", 14 px, ink, thin rule above;
+  grey would miss 7:1 on paper). It goes up by 0.001 with every push to main, see README.

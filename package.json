@@ -12,7 +12,8 @@
     "astro": "astro",
     "test": "vitest run",
     "publish:site": "tsx scripts/publish.ts",
-    "guard": "tsx scripts/guard.ts"
+    "guard": "tsx scripts/guard.ts",
+    "version:bump": "tsx scripts/bump-version.ts"
   },
   "dependencies": {
     "@fontsource/crimson-text": "^5.3.0",

@@ -247,6 +247,23 @@ describe("runGuardOnPush", () => {
     expect(r2.findings).toContainEqual({ file: SESSION_PATH, line: 0, rule: "hash-mismatch" });
   });
 
+  it("demands a higher version on every push to main once main has one", () => {
+    setup();
+    put("src/version.json", '{ "version": "1.000" }\n');
+    git("add", "-A");
+    commit("base");
+    const remoteSha = head();
+    put("public/x.txt", "x\n");
+    git("add", "-A");
+    commit("change without bump");
+    expect(rules(runGuardOnPush(dir, line(head(), remoteSha)))).toContain("version-not-bumped:1.000");
+    put("src/version.json", '{ "version": "1.001" }\n');
+    git("add", "-A");
+    commit("bump");
+    expect(runGuardOnPush(dir, line(head(), remoteSha)).ok).toBe(true);
+    expect(runGuardOnPush(dir, `refs/heads/x ${head()} refs/heads/side ${remoteSha}\n`).ok).toBe(true);
+  });
+
   it("ignores deletes", () => {
     setup();
     commit("base");

@@ -106,7 +106,6 @@ describe("built site", () => {
     const cards = page.match(/<section[^>]*data-stage-card[\s\S]*?<\/section>/g)!;
     expect(cards.map((c) => chip(c, "data-players-badge")[0])).toEqual(["Wall", "Needs 2 players", "Needs 4 players"]);
     expect(cards.map((c) => c.includes("data-pair-hint"))).toEqual([false, false, true]);
-    // the hint carries Stage 2's actual "Too easy" rule, not a pointer to it
     // authored per 4-player stage, not borrowed from Drill 2's "Too easy" (critique round 2)
     expect(cards[2]).toMatch(/data-pair-hint[\s\S]*?Only two of you\?<\/span>\s*<span[^>]*>Play stage 2 again with a target\.</);
     expect(cards[2]).not.toContain("Add a target.</p>");
@@ -146,6 +145,17 @@ describe("built site", () => {
     expect(page.replace(/<head>[\s\S]*<\/head>/, "")).not.toContain("Keep a soft rally going");
     for (const f of ["index.html", "s/warm-hands/index.html", "imprint/index.html"]) expect(html(f)).not.toContain("<header");
     for (const f of ["imprint/index.html", "privacy/index.html"]) expect(html(f)).toContain('href="/" data-back');
+  });
+
+  it("footer starts with About; the about page explains the project", () => {
+    expect(html("index.html")).toMatch(/<footer[\s\S]*?href="\/about\/"[\s\S]*?href="\/imprint\/"[\s\S]*?href="\/privacy\/"/);
+    const about = html("about/index.html");
+    for (const t of ["more than 200 reviewed YouTube videos", "Made with AI, checked by a player", "non-commercial", "bring pickleball to the people"]) expect(about).toContain(t);
+    expect(about).toContain('href="/" data-back');
+  });
+
+  it("imprint shows the site version", () => {
+    expect(html("imprint/index.html")).toMatch(/data-version[^>]*>Version \d+\.\d{3}</);
   });
 
   it("imprint has robots noindex", () => {
@@ -217,8 +227,8 @@ describe("built site", () => {
   });
 
   it("privacy page covers the YouTube links and tap-to-load", () => {
-    expect(html("privacy/index.html")).toContain("link to videos on YouTube (Google)");
-    expect(html("privacy/index.html")).toContain("nothing is loaded from YouTube");
+    expect(html("privacy/index.html")).toContain("a video from YouTube (Google)");
+    expect(html("privacy/index.html")).toContain("Nothing is loaded from YouTube until you");
   });
 
   it("version.txt exists", () => {

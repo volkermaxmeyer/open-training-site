@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import { site } from "../site.config";
 import BackLink from "../components/BackLink.astro";
+import { version } from "../version.json";
 ---
 
 <Base title={`Imprint | ${site.name}`} noindex>
@@ -9,4 +10,5 @@ import BackLink from "../components/BackLink.astro";
   <h1 class="mt-1 font-display text-[44px] leading-none font-bold">Imprint</h1>
   <p class="mt-4">{site.imprint.name}<br />{site.imprint.street}<br />{site.imprint.city}</p>
   <p class="mt-2">Contact: {site.contactEmail}</p>
+  <p data-version class="mt-8 border-t border-ink/30 pt-3 text-sm">Version {version}</p>
 </Base>
