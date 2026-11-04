@@ -43,14 +43,15 @@ npx tsx scripts/check-deploy.ts     # wait until Vercel serves the new commit
 ```
 
 The script aborts before writing anything if a source note is unreadable or a slug does not match its filename.
-Removing a session that is already live needs `--allow-unpublish`. It commits only `src/content` and the bumped `src/version.json`.
+Removing a session that is already live needs `--allow-unpublish`. It commits only `src/content`, the bumped `src/version.json` and its `CHANGELOG.md` line.
 
 ## Version
 
 The imprint shows the site version from `src/version.json`. It started at 1.000 and goes up by 0.001 with every push
-to main: the publish script bumps it itself, a code change runs `npm run version:bump` before its commit. To jump to
-another number, write it into the file by hand. The pre-push guard blocks a push to main whose version is not higher
-than the live one.
+to main, and every version gets one line in `CHANGELOG.md`. The publish script does both itself and names the sessions
+it changed; a code change runs `npm run version:bump -- "what changed"` before its commit. To jump to another number,
+write it into the file by hand and add its changelog line. The pre-push guard blocks a push to main whose version is
+not higher than the live one or has no changelog line.
 
 ## Leak guard
 
@@ -62,7 +63,7 @@ It fails on:
 - notes markup that should never reach the site
 - content files the publish script did not produce, or whose hash does not match its manifest
 - session files that do not match the schema
-- a push to main without a higher version
+- a push to main without a higher version or without its changelog line
 
 After cloning, enable the hook once:
 

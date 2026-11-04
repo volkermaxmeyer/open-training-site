@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatVersion, nextVersion, parseVersionFile, versionSteps } from "../scripts/lib/version";
+import { addChangelogEntry, formatVersion, hasChangelogEntry, nextVersion, parseVersionFile, versionSteps } from "../scripts/lib/version";
 
 describe("version", () => {
   it("counts in steps of 0.001", () => {
@@ -26,5 +26,15 @@ describe("version", () => {
     expect(parseVersionFile('{"version":"1.000"}')).toBe("1.000");
     expect(parseVersionFile('{"version":"x"}')).toBeNull();
     expect(parseVersionFile("nope")).toBeNull();
+  });
+
+  it("writes one changelog line per version, newest first", () => {
+    const base = "# Changelog\n\nIntro.\n\n- 1.000 · 2026-11-04 · First.\n";
+    const next = addChangelogEntry(base, "1.001", "Second.", "2026-11-05");
+    expect(next).toBe("# Changelog\n\nIntro.\n\n- 1.001 · 2026-11-05 · Second.\n- 1.000 · 2026-11-04 · First.\n");
+    expect(addChangelogEntry(next, "1.001", "Again.", "2026-11-06")).toBe(next);
+    expect(addChangelogEntry("# Changelog\n", "1.000", "First.", "2026-11-04")).toBe("# Changelog\n\n- 1.000 · 2026-11-04 · First.\n");
+    expect(hasChangelogEntry(next, "1.001")).toBe(true);
+    expect(hasChangelogEntry(next, "1.00")).toBe(false);
   });
 });

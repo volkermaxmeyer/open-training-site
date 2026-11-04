@@ -5,6 +5,7 @@ import { join } from "node:path";
 // The site version shown on the imprint: starts at 1.000 and goes up by 0.001 with every push to main.
 // A different number is set by hand in src/version.json; the push guard only demands that it went up.
 export const VERSION_FILE = "src/version.json";
+export const CHANGELOG_FILE = "CHANGELOG.md";
 export const FIRST_VERSION = "1.000";
 const FORMAT = /^\d+\.\d{3}$/;
 
@@ -51,5 +52,32 @@ export function bumpVersion(repoDir: string): string {
   const local = existsSync(path) ? parseVersionFile(readFileSync(path, "utf8")) : null;
   const v = nextVersion(local, remoteVersion(repoDir));
   writeFileSync(path, JSON.stringify({ version: v }, null, 2) + "\n");
+  return v;
+}
+
+const today = () => new Date().toLocaleDateString("sv-SE"); // YYYY-MM-DD, local time
+
+/** True when the changelog has a line for this version ("- 1.001 · …"). */
+export function hasChangelogEntry(changelog: string, version: string): boolean {
+  return changelog.split("\n").some((l) => l.startsWith(`- ${version} · `));
+}
+
+/** Puts "- <version> · <date> · <note>" above the newest entry; leaves the text alone if the version is there. */
+export function addChangelogEntry(changelog: string, version: string, note: string, date = today()): string {
+  if (hasChangelogEntry(changelog, version)) return changelog;
+  const line = `- ${version} · ${date} · ${note.trim()}`;
+  const lines = changelog.split("\n");
+  const first = lines.findIndex((l) => l.startsWith("- "));
+  if (first === -1) return changelog.replace(/\n*$/, "\n\n") + line + "\n";
+  lines.splice(first, 0, line);
+  return lines.join("\n");
+}
+
+/** Bumps the version and writes its changelog line. Returns the new version. */
+export function release(repoDir: string, note: string): string {
+  const v = bumpVersion(repoDir);
+  const path = join(repoDir, CHANGELOG_FILE);
+  const text = existsSync(path) ? readFileSync(path, "utf8") : "# Changelog\n";
+  writeFileSync(path, addChangelogEntry(text, v, note));
   return v;
 }

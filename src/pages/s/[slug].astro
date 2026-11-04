@@ -59,9 +59,11 @@ import BackLink from "../../components/BackLink.astro";
   </div>
   <a
     href={feedbackUrl}
+    target="_blank"
+    rel="noopener"
     class="mt-4 flex min-h-15 items-center justify-center border-2 border-ink bg-go px-4 py-3 font-head text-xl font-bold shadow-[6px_6px_0_var(--color-ink)]"
   >
-    Tell us how it went
+    Tell us how it went<span class="sr-only"> (opens in a new tab)</span>
   </a>
   {session.next && (
     <a

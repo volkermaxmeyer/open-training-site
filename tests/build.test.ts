@@ -77,7 +77,7 @@ describe("built site", () => {
   });
 
   it("feedback link carries ?session=<slug>", () => {
-    expect(html("s/warm-hands/index.html")).toMatch(/href="[^"]*\?session=warm-hands"/);
+    expect(html("s/warm-hands/index.html")).toMatch(/href="[^"]*\?session=warm-hands" target="_blank" rel="noopener"/);
   });
 
   it("index asks the goal question with one button per goal, in goal order", () => {

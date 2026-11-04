@@ -7,7 +7,7 @@ import { PublishError } from "./lib/errors";
 import { parseSession, type Goals } from "./lib/parse-session";
 import { splitFrontmatter } from "./lib/text";
 import { runGuard } from "./guard";
-import { VERSION_FILE, bumpVersion } from "./lib/version";
+import { CHANGELOG_FILE, VERSION_FILE, release } from "./lib/version";
 import type { Session } from "../src/lib/session-schema";
 
 export const LIVE_URL = "https://open-training-site.vercel.app";
@@ -133,10 +133,10 @@ export function loadEnv(repoRoot: string): void {
 
 /**
  * Stages src/content, runs `check` on the staged state (false = abort, unstage), then commits only src/content
- * plus the bumped src/version.json.
+ * plus the bumped src/version.json and its CHANGELOG.md line (`note`, default: the commit message).
  * Anything else in the index stays staged. Returns false if nothing changed.
  */
-export function commitContent(repoDir: string, message: string, check: () => boolean = () => true): boolean {
+export function commitContent(repoDir: string, message: string, check: () => boolean = () => true, note = message): boolean {
   const run = (...a: string[]) => execFileSync("git", a, { cwd: repoDir, stdio: "inherit" });
   run("add", "src/content");
   if (!check()) {
@@ -146,9 +146,9 @@ export function commitContent(repoDir: string, message: string, check: () => boo
   if (spawnSync("git", ["diff", "--cached", "--quiet", "--", "src/content"], { cwd: repoDir }).status === 0) return false;
   // Every publication is a new site version, one above what is live.
   spawnSync("git", ["fetch", "-q", "origin", "main"], { cwd: repoDir });
-  bumpVersion(repoDir);
-  run("add", VERSION_FILE);
-  run("commit", "-m", message, "-m", "Co-Authored-By: Claude Opus 5.5 (1M context) <noreply@anthropic.com>", "--", "src/content", VERSION_FILE);
+  release(repoDir, note);
+  run("add", VERSION_FILE, CHANGELOG_FILE);
+  run("commit", "-m", message, "-m", "Co-Authored-By: Claude Opus 5.5 (1M context) <noreply@anthropic.com>", "--", "src/content", VERSION_FILE, CHANGELOG_FILE);
   return true;
 }
 
@@ -203,7 +203,12 @@ async function main(): Promise<number> {
     return guard.ok;
   };
   try {
-    if (!commitContent(repoRoot, `content: publish ${result.slugs.join(", ") || "(none)"}`, guardOk)) {
+    const slugOf = (f: string) => f.replace(/^.*\//, "").replace(/\.json$/, "");
+    const note = [
+      result.written.length ? `Sessions published or updated: ${result.written.map(slugOf).join(", ")}.` : "",
+      result.removed.length ? `Sessions taken offline: ${result.removed.map(slugOf).join(", ")}.` : "",
+    ].filter(Boolean).join(" ") || "Session content updated.";
+    if (!commitContent(repoRoot, `content: publish ${result.slugs.join(", ") || "(none)"}`, guardOk, note)) {
       console.log("nothing to publish");
       return 0;
     }

@@ -259,7 +259,11 @@ describe("runGuardOnPush", () => {
     expect(rules(runGuardOnPush(dir, line(head(), remoteSha)))).toContain("version-not-bumped:1.000");
     put("src/version.json", '{ "version": "1.001" }\n');
     git("add", "-A");
-    commit("bump");
+    commit("bump without changelog line");
+    expect(rules(runGuardOnPush(dir, line(head(), remoteSha)))).toContain("changelog-missing:1.001");
+    put("CHANGELOG.md", "# Changelog\n\n- 1.001 · 2026-11-04 · Change.\n");
+    git("add", "-A");
+    commit("changelog");
     expect(runGuardOnPush(dir, line(head(), remoteSha)).ok).toBe(true);
     expect(runGuardOnPush(dir, `refs/heads/x ${head()} refs/heads/side ${remoteSha}\n`).ok).toBe(true);
   });

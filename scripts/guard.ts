@@ -4,7 +4,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Session } from "../src/lib/session-schema";
-import { VERSION_FILE, parseVersionFile, versionSteps } from "./lib/version";
+import { CHANGELOG_FILE, VERSION_FILE, hasChangelogEntry, parseVersionFile, versionSteps } from "./lib/version";
 
 export type Finding = { file: string; line: number; rule: string };
 export type GuardResult = { ok: boolean; findings: Finding[] };
@@ -118,13 +118,20 @@ function versionAt(repoDir: string, commit: string): string | null | undefined {
   }
 }
 
-/** Every push to main is a new site version: once main has one, the pushed tip must carry a higher number. */
+/** Every push to main is a new site version: once main has one, the pushed tip must carry a higher number and its changelog line. */
 function checkVersionBump(repoDir: string, local: string, remote: string): Finding[] {
   const before = versionAt(repoDir, remote);
   if (before === undefined) return [];
   const after = versionAt(repoDir, local);
   if (!after) return [{ file: VERSION_FILE, line: 0, rule: "version-missing" }];
   if (before !== null && versionSteps(after)! <= versionSteps(before)!) return [{ file: VERSION_FILE, line: 0, rule: `version-not-bumped:${before}` }];
+  let changelog = "";
+  try {
+    changelog = gitBuf(repoDir, ["show", `${local}:${CHANGELOG_FILE}`]).toString("utf8");
+  } catch {
+    // no changelog in the pushed tip
+  }
+  if (!hasChangelogEntry(changelog, after)) return [{ file: CHANGELOG_FILE, line: 0, rule: `changelog-missing:${after}` }];
   return [];
 }
 
