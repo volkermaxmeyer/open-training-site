@@ -78,7 +78,7 @@
       }
     }
   ],
-  "status": "draft",
+  "status": "v1",
   "goal": {
     "id": "pick-the-right-shot",
     "label": "Pick the right shot",

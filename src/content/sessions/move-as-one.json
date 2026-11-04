@@ -79,7 +79,7 @@
       }
     }
   ],
-  "status": "draft",
+  "status": "v1",
   "goal": {
     "id": "move-as-a-team",
     "label": "Move as a team",

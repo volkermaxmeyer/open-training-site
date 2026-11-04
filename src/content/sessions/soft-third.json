@@ -79,7 +79,7 @@
       }
     }
   ],
-  "status": "draft",
+  "status": "v1",
   "goal": {
     "id": "third-shot-land-soft",
     "label": "Make our third shot land soft",

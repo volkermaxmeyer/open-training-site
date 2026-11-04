@@ -81,7 +81,7 @@
       }
     }
   ],
-  "status": "draft",
+  "status": "v1",
   "goal": {
     "id": "special-shots",
     "label": "Special shots",

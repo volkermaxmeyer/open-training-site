@@ -80,7 +80,7 @@
       }
     }
   ],
-  "status": "draft",
+  "status": "v1",
   "goal": {
     "id": "drives-that-hurt",
     "label": "Hit drives that hurt",

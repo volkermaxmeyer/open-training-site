@@ -79,7 +79,7 @@
       }
     }
   ],
-  "status": "draft",
+  "status": "v1",
   "goal": {
     "id": "get-to-the-kitchen",
     "label": "Get to the kitchen",

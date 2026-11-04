@@ -1,14 +1,14 @@
 {
   "files": {
-    "src/content/sessions/deep-serve-deep-return.json": "b082ece20099b857971fb0074ca814404f0b95f623f506d3fe2fcb7207136730",
-    "src/content/sessions/drives-that-hurt.json": "d75eab2ed4f2f66ee0142a5bda0064604fdb5d22aee5748aa880198f59309d60",
-    "src/content/sessions/fast-hands.json": "d340d63df9625c38d6d36015cfd416a2bf4531b687b9d1340c35470a4a38579e",
-    "src/content/sessions/lob-game.json": "85d92cc0a0f4e91f23eac969288b010520b65509c3149df431c1a3c74d02f95f",
-    "src/content/sessions/move-as-one.json": "8d35fd943e4a8501e94960a36f59b2ba0d2243b902f7262a43922475bc2007c5",
-    "src/content/sessions/read-and-choose.json": "a74c630930b8a8c09e0ee8c2e42cfa6ecc079be0c4c8e5d3ef1af5ac922f95b5",
-    "src/content/sessions/soft-third.json": "33c9078108161226ab126a1704e5350dd5bac6667060961d12230a24c863409c",
-    "src/content/sessions/win-the-dink-battle.json": "6a4a2a63221625421f70d0f08256aad271ab0ccf31fc7128bfb4d5012ddaf371",
-    "src/content/sessions/work-your-way-in.json": "4693de92baf81494c55f031e2e6e4554d8e90a2f4f41fd09f6757013155853b6"
+    "src/content/sessions/deep-serve-deep-return.json": "f8c5d43acf84d32ef2f86612348283e69bc88f521fea89b64dfb64741826885b",
+    "src/content/sessions/drives-that-hurt.json": "6241949a362d3bb566e77eb373a7a75728b4cfc98414ec7d61706ddf9f3f9ef3",
+    "src/content/sessions/fast-hands.json": "0b262a771a11cce1775bdbb819218048126f089eeef2cc38cafe079845d9e53f",
+    "src/content/sessions/lob-game.json": "c7b85b26ba13c148f92024354048d4701fcc0aec848bcdc3535a34ebdcc0ff93",
+    "src/content/sessions/move-as-one.json": "516eaa9910f8e45369202bb885b1c39c51de3df715652bb324f580eaaf2cf123",
+    "src/content/sessions/read-and-choose.json": "c0f520bea25e7ffe6c77abff5747f61c043eb473ce8a42bed8f6ce963441cecb",
+    "src/content/sessions/soft-third.json": "4b91bf0202f27fcbdcd6f621c740e9faf662d989833a037af09a04dfcc8dbcf8",
+    "src/content/sessions/win-the-dink-battle.json": "05f267df33c86c18e24e5a3ada358d8351fb81fa111c4beed221871c832ffc4c",
+    "src/content/sessions/work-your-way-in.json": "dfe1ebbdbb4d33e6b102d6f04c48b120c5f055207520a840032de2913c946c6b"
   },
   "slugsEverPublished": [
     "work-your-way-in",

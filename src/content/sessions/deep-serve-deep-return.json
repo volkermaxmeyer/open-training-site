@@ -79,7 +79,7 @@
       }
     }
   ],
-  "status": "draft",
+  "status": "v1",
   "goal": {
     "id": "serve-return-deep",
     "label": "Serve and return deep",

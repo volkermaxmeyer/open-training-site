@@ -82,7 +82,7 @@
       }
     }
   ],
-  "status": "draft",
+  "status": "v1",
   "goal": {
     "id": "win-the-dink-battle",
     "label": "Win the dink battle",
