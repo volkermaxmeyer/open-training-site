@@ -9,8 +9,9 @@ tokens and gives the reasons. `tests/design-doc.test.ts` fails if a token named 
 - **Direct sun, midday.** Every text/background pair reaches at least 7:1. Light mode only: dark surfaces wash out in
   glare.
 - **One hand, thumb only.** Tap targets at least 48 px high, primary buttons 56 px. No precise taps.
-- **Four people, one phone.** Base text 18 px, readable at arm's length. The glance question is always "what are the
-  rules of this stage again?", so the stage number and title must be findable by scanning.
+- **Four people, one phone.** Base text 18 px, readable at arm's length. The glance question is always "what are we
+  doing in this stage?", so the drill number, title and the one-sentence summary must be findable by scanning. The
+  rules sit one tap away (collapsed, Volker 2026-11-04). Whether that holds on court is checked on the first Friday.
 - **A bit funky.** Playful and sporty, never at the cost of the three points above.
 - **No JavaScript in the design.** Native `<details>` for anything that opens. The page carries only the cookieless
   analytics loader.
@@ -26,7 +27,7 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 | --- | --- | --- |
 | secondary text `#675d52` | `--color-ink-soft` (Y2K's darker gray) | 6.4:1 on white, 4.2:1 on periwinkle |
 | secondary text on any surface | `--color-ink-soft` only on `--color-card` | 6.2:1 on periwinkle |
-| green and pink badges | badge in yellow (`--color-badge`) | 6.3:1 and 6.6:1 |
+| green and pink badges | the "new" badge in the feedback green (`--color-go`), ink text | 6.3:1 and 6.6:1 |
 | soft shadows | hard offset shadow | more character, no blur to wash out in sun |
 | fonts from Google Fonts | bundled into the site (Fontsource) | no third-party request, no IP sent to Google |
 | light and dark mode | light only | sun |
@@ -36,13 +37,14 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 | Role | Token | Used for |
 | --- | --- | --- |
 | Text | `--color-ink` | all body text, headings, borders, shadows |
-| Secondary text | `--color-ink-soft` | small labels ("Stage 1"), **only on cards** |
+| Secondary text | `--color-ink-soft` | small labels and the inactive jump tabs, **only on cards** |
 | Page | `--color-paper` | page background (periwinkle) |
 | Card | `--color-card` | stage cards, session list items |
 | Text on dark | `--color-on-ink` | text on `--color-ink` buttons |
 | Stage blocks | `--color-stage-1`, `--color-stage-2`, `--color-stage-3` | the number block of each stage card (blue, purple, yellow) |
-| Badge | `--color-badge`, `--color-badge-ink` | "New — tell us how it went" |
-| Go | `--color-go` | the feedback button (neon green) |
+| Go | `--color-go` | the feedback button and the "New — tell us how it went" badge (neon green) |
+| Warn | `--color-warn` | the one-line four-on-court rule and the chips for a drill that needs more people (light red, ink text) |
+| Chip | `--color-chip` | player-count chips (light periwinkle, ink text) |
 
 ## Type
 
@@ -62,13 +64,34 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 
 ## Patterns
 
-- **Jump links:** a sticky bar at the top of the session page, three equal links "1 · 2 · 3" in the stage colours,
-  48 px high, anchor links only. Each stage card has `scroll-margin` so it is not hidden under the bar.
-- **Stage card:** number block (stage colour, display font) beside label and title; then rules as a list; a full-width
-  `--color-ink` "▶ Watch" button; then one `<details>` "Too easy? Too hard?" holding Too easy, Too hard and Good looks
-  like.
-- **Badges:** one per session under the title until the session is tested; one per card when its drill is new.
-- **Feedback button:** after the last card, `--color-go` with the card border and shadow.
+- **Jump bar:** sticky at the top of the session page, on `--color-paper`. Three equal tabs, each the drill number in the
+  display font over the small label "DRILL", 64 px high, 10 px apart, 2 px `--color-ink` border. The **selected tab** takes
+  its stage colour, the hard shadow and a 2 px lift; the others stay `--color-card` with `--color-ink-soft` text. The
+  selection is the drill named in the URL hash, Drill 1 when there is none: pure CSS (`:has(:target)`), no script. It
+  changes when a tab is tapped, not while scrolling. Each stage card has `scroll-margin` so the bar does not cover it.
+- **Chips:** 14 px Poppins 600, 2 px `--color-ink` border, optional person icon. Plain on `--color-card` (duration), `--color-chip`
+  (player counts), `--color-warn` (a drill that needs more people than the first one).
+- **Stage card:** number block (stage colour, display font) beside the title and, under it, two chips: the duration
+  ("10 min", session duration ÷ 3) and the players ("2 players", or "Needs 4 players" in warn when it asks for more than
+  the first drill). No "Stage N" label: the number block and the jump bar carry it. Then the **video first**: a full-width
+  `--color-ink` "▶ Watch the drill" button, at least 72 px high, with the channel and time on a second line. Below it the
+  one-sentence summary ("In short"), visible. On a 4-player stage, one regular-weight line for pairs that carries Drill 2's
+  actual "Too easy" rule. Then two collapsed `<details>`: "How to play" (the "new" badge and the rules) and "Too easy? Too
+  hard?" (Too easy, Too hard, Good looks like).
+- **Session top:** title, then two chips (the aim is not shown on the page, only as the meta description for link
+  previews; Volker 2026-11-04): the duration and a players summary ("Drills 1–2: 2 players · Drill 3: 4
+  players", or "All drills: 2 players"). Then the **four-on-court line**: one line on `--color-warn` with a 6 px `--color-ink`
+  bar on the left, no box shadow, the safety rule in bold. Red, not yellow, so it does not rhyme with Drill 3 (design critique
+  2026-11-04).
+- **Badges:** one inside "How to play" when its drill is new. No session badge under the title (removed 2026-11-04,
+  Volker).
+- **Feedback button:** after the last card, `--color-go` with the card border and shadow. Below it, when the next
+  session is published, a card-style link "Got another 30 min? Next: …".
+- **Start page:** the goal question as the display heading, then one card-style button per goal: the goal label large, a
+  chevron on the right, and chips under the label: the minimum ("2+ players" or "Wall") and one warn chip per drill that
+  needs more ("Drill 3 needs 4"). No duration chip: every session is 30 min. All cards share one height (room for a
+  two-line label and one chip row), content centred, so the list reads as an even grid. No site-name header on any page: the start page is the question, and every
+  other page has "← All goals".
 
 ## Don't
 
@@ -76,3 +99,38 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 - Add a colour without adding its pair to `tests/contrast.test.ts`.
 - Write a hex value outside `@theme`.
 - Load fonts, scripts or images from another host.
+
+## Changes after critique round 2 (2026-11-04, 24/36)
+
+- **Jump bar:** the three tabs sit permanently in their stage colours with ink text, without any "selected" state. A
+  state driven by the URL hash showed Drill 1 after scrolling, which is wrong status on the one fixed element.
+- **Pairs on a 4-player stage:** an authored `**Only two:**` line per such stage (required by parser and validator). It
+  is shown as a block on `--color-chip` with a 6 px ink bar and the label "ONLY TWO OF YOU?". It replaces the
+  automatic reuse of Drill 2's "Too easy", which told a pair to play with a serving team.
+- **Four-on-court rule:** "Four of you? **Never two balls with pace.**" At 390 px it still takes two lines.
+- **Watch label:** channel only, and "at 1:41" instead of "@1:41". ▶ uses text presentation (U+FE0E) and is
+  `aria-hidden`.
+- **Small fixes:** the "+"/"–" of summaries is not read aloud; the three woff2 files are preloaded; the "new" badge has
+  6.75 px vertical padding; titles use `text-wrap: balance`; goal cards are taller below 360 px so they stay equal.
+- **Session page order (Volker, the same evening):** back link, title, the two chips, then the sticky jump tabs, then the
+  rule line and the cards. The title comes first, so the page opens on what the session is.
+- **Layout pass (2026-11-04):** the session page reads in three groups. (1) Title and one chip row, tight: the players chip
+  uses the start-page wording ("2+ players · Drill 3 needs 4"), so it fits beside "30 min". (2) Jump tabs, 56 px high
+  with the number and "DRILL" on one line, and the rule line tight under them as one band. (3) The drill cards, after a
+  clear break. In the watch button, "at 3:54" never wraps on its own.
+- **Polish (2026-11-04):**
+  - The "new" badge is green like the feedback button it asks for, so yellow means Stage 3 only. The badge tokens are
+    gone.
+  - One focus ring everywhere: 3 px ink, 3 px offset. Text selection uses the Stage-3 yellow.
+  - Card-style links shift on hover for mouse users, as they do on tap.
+  - Footer and back links share the same underline offset. "← All goals" is one component.
+  - The watch link tells screen readers it opens YouTube.
+  - The footer shows only Imprint and Privacy; the version number is gone (check-deploy reads `version.txt`). The kicker
+    "Good training, no coach" and the goal "Special shots" stay (Volker's call, against Impeccable's kicker ban).
+- **Delight (2026-11-04):** one authored mark and one authored moment.
+  - **The pickleball** (`Ball.astro`, the same drawing as `public/favicon.svg` and `apple-touch-icon.png`): a
+    `--color-go` disc, 4 px ink outline, seven ink holes. It replaces the Astro default favicon.
+  - **The finish:** before the feedback button, the ball plus "That's 30 minutes. / Good rally, everyone." The ball
+    drops in and bounces once as it scrolls into view. This is CSS only (scroll timeline), skipped for reduced motion, and
+    static where unsupported. No other motion on the site.
+

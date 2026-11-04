@@ -1,0 +1,20 @@
+---
+interface Props {
+  /** plain: outlined on the card · people: player counts · warn: a drill that needs more people. */
+  tone?: "plain" | "people" | "warn";
+  /** Person icon in front of the text. */
+  icon?: boolean;
+}
+const { tone = "plain", icon = false, ...rest } = Astro.props;
+const bg = { plain: "bg-card", people: "bg-chip", warn: "bg-warn" }[tone];
+---
+
+<span {...rest} class={`${bg} inline-flex items-center gap-1.5 border-2 border-ink px-2 py-0.5 font-head text-[14px] leading-snug font-semibold text-ink`}>
+  {icon && (
+    <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" class="shrink-0">
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21c0-4.5 3.5-7 8-7s8 2.5 8 7" />
+    </svg>
+  )}
+  <slot />
+</span>

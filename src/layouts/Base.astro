@@ -9,7 +9,11 @@ interface Props {
   noindex?: boolean;
 }
 const { title, description, noindex = false } = Astro.props;
-const version = (process.env.VERCEL_GIT_COMMIT_SHA ?? "local").slice(0, 7);
+// Preload the three bundled woff2 files so headings don't swap fonts on first paint (same files the CSS imports).
+import poppins600 from "@fontsource/poppins/files/poppins-latin-600-normal.woff2?url";
+import poppins700 from "@fontsource/poppins/files/poppins-latin-700-normal.woff2?url";
+import crimson700 from "@fontsource/crimson-text/files/crimson-text-latin-700-normal.woff2?url";
+const fonts = [poppins600, poppins700, crimson700];
 ---
 
 <!doctype html>
@@ -20,20 +24,18 @@ const version = (process.env.VERCEL_GIT_COMMIT_SHA ?? "local").slice(0, 7);
     <meta name="generator" content={Astro.generator} />
     {description && <meta name="description" content={description} />}
     {noindex && <meta name="robots" content="noindex" />}
+    {fonts.map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>{title}</title>
     <Analytics />
   </head>
   <body class="bg-paper font-sans text-ink antialiased">
     <div class="mx-auto flex min-h-screen max-w-[430px] flex-col px-4">
-      <header class="py-4">
-        <a href="/" class="inline-block py-2 font-head text-xl font-bold">{site.name}</a>
-      </header>
-      <main class="flex-1 pb-8"><slot /></main>
+      <main class="flex-1 pt-4 pb-8"><slot /></main>
       <footer class="mt-4 flex flex-wrap gap-x-6 gap-y-1 border-t-2 border-ink py-2 text-base">
-        <a href="/imprint/" class="inline-flex min-h-12 items-center underline">Imprint</a>
-        <a href="/privacy/" class="inline-flex min-h-12 items-center underline">Privacy</a>
-        <span class="inline-flex min-h-12 items-center">v {version}</span>
+        <a href="/imprint/" class="inline-flex min-h-12 items-center underline underline-offset-4">Imprint</a>
+        <a href="/privacy/" class="inline-flex min-h-12 items-center underline underline-offset-4">Privacy</a>
       </footer>
     </div>
   </body>

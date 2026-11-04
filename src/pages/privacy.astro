@@ -1,10 +1,12 @@
 ---
 import Base from "../layouts/Base.astro";
 import { site } from "../site.config";
+import BackLink from "../components/BackLink.astro";
 ---
 
 <Base title={`Privacy | ${site.name}`} >
-  <h1 class="mt-2 font-display text-[44px] leading-none font-bold">Privacy</h1>
+  <BackLink />
+  <h1 class="mt-1 font-display text-[44px] leading-none font-bold">Privacy</h1>
 
   <h2 class="mt-6 font-head text-xl font-bold">Who is responsible</h2>
   <p class="mt-2">{site.imprint.name}, {site.imprint.street}, {site.imprint.city}. Contact: {site.contactEmail}</p>
@@ -22,6 +24,15 @@ import { site } from "../site.config";
     browser. It works without cookies and stores no personal profiles; visitors are told apart only by an anonymous
     hash of the request that is reset every day, so visits cannot be linked across days or sites. We cannot see who you
     are.
+  </p>
+
+  <h2 class="mt-6 font-head text-xl font-bold">Videos</h2>
+  <p class="mt-2">
+    The "Watch the drill" buttons link to videos on YouTube (Google). Opening one takes you to YouTube, and YouTube's
+    privacy policy applies there. Where a page offers to play a video right on the page, nothing is loaded from YouTube
+    until you tap it. When you tap, the player loads from youtube-nocookie.com: Google (USA, under the EU-US Data Privacy
+    Framework) receives your IP address and device data, may store data in your browser while the video plays, and may
+    show ads. If you prefer, use the link to open the video on YouTube instead.
   </p>
 
   <h2 class="mt-6 font-head text-xl font-bold">Feedback form</h2>

@@ -4,9 +4,10 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync
 import { join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { PublishError } from "./lib/errors";
-import { parseSession } from "./lib/parse-session";
+import { parseSession, type Goals } from "./lib/parse-session";
 import { splitFrontmatter } from "./lib/text";
 import { runGuard } from "./guard";
+import type { Session } from "../src/lib/session-schema";
 
 export const LIVE_URL = "https://open-training-site.vercel.app";
 const SLUG = /^[a-z0-9][a-z0-9-]*$/;
@@ -32,6 +33,16 @@ function readManifest(path: string): Manifest {
   return { files: m.files ?? {}, slugsEverPublished: m.slugsEverPublished ?? [] };
 }
 
+/** player_goals from the vault's schema block (system/datenmodell.md); empty when the vault has none. */
+export function readGoals(vaultDir: string): Goals {
+  const path = join(vaultDir, "system/datenmodell.md");
+  if (!existsSync(path)) return new Map();
+  const m = readFileSync(path, "utf8").match(/```json schema\n([\s\S]*?)\n```/);
+  if (!m) throw new PublishError("datenmodell.md", "no ```json schema block");
+  const list: { id: string; label: string }[] = JSON.parse(m[1]).player_goals ?? [];
+  return new Map(list.map((g, order) => [g.id, { label: g.label, order }]));
+}
+
 export async function publish(opts: PublishOptions): Promise<PublishResult> {
   const repoRoot = opts.repoRoot ?? process.cwd();
 
@@ -45,21 +56,33 @@ export async function publish(opts: PublishOptions): Promise<PublishResult> {
   const drills = new Map<string, string>(
     readdirSync(drillDir).filter((f) => f.endsWith(".md")).map((f) => [f.slice(0, -3), readFileSync(join(drillDir, f), "utf8")]),
   );
+  const goals = readGoals(opts.vaultDir);
   const sessionDir = join(opts.vaultDir, "sessions/web");
   const warnings: string[] = [];
 
   // Parse everything first: any PublishError aborts before a single write.
-  const outputs = new Map<string, string>(); // slug -> JSON text
+  const sessions = new Map<string, Session>();
+  const nextOf = new Map<string, string>(); // slug -> slug of the follow-up session
   for (const f of readdirSync(sessionDir).filter((f) => f.endsWith(".md")).sort()) {
     const text = readFileSync(join(sessionDir, f), "utf8");
     const parts = splitFrontmatter(text);
     if (!parts) throw new PublishError(f, "no readable frontmatter (half-synced file?); aborting so nothing gets unpublished");
     if (parts.fm.publish !== true) continue;
-    const session = parseSession(text, drills);
+    const session = parseSession(text, drills, goals);
     if (`${session.slug}.md` !== f) throw new PublishError(session.slug, `slug "${session.slug}" does not match filename "${f}"`);
     if (!SLUG.test(session.slug)) throw new PublishError(session.slug, "slug must be lowercase letters, digits and hyphens");
-    if (outputs.has(session.slug)) throw new PublishError(session.slug, "duplicate slug");
-    outputs.set(session.slug, JSON.stringify(session, null, 2) + "\n");
+    if (sessions.has(session.slug)) throw new PublishError(session.slug, "duplicate slug");
+    sessions.set(session.slug, session);
+    const next = typeof parts.fm.next === "string" ? parts.fm.next.trim() : "";
+    if (next) nextOf.set(session.slug, next);
+  }
+
+  // "Got another 30 min?" only points at a session that is published in this same run.
+  const outputs = new Map<string, string>(); // slug -> JSON text
+  for (const [slug, session] of sessions) {
+    const target = sessions.get(nextOf.get(slug) ?? "");
+    const out = target && target.slug !== slug ? { ...session, next: { slug: target.slug, title: target.title } } : session;
+    outputs.set(slug, JSON.stringify(out, null, 2) + "\n");
   }
 
   const manifestPath = join(opts.outDir, ".manifest.json");

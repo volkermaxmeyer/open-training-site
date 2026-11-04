@@ -1,28 +1,38 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
-import { site } from "../site.config";
+import Chip from "../components/Chip.astro";
+import { playersFitParts, site } from "../site.config";
 
-const sessions = (await getCollection("sessions")).sort((a, b) =>
-  a.data.title.localeCompare(b.data.title),
-);
+const sessions = (await getCollection("sessions")).map((s) => s.data);
+const withGoal = sessions
+  .filter((s) => s.goal)
+  .sort((a, b) => a.goal!.order - b.goal!.order || a.title.localeCompare(b.title));
+const others = sessions.filter((s) => !s.goal).sort((a, b) => a.title.localeCompare(b.title));
 ---
 
-<Base title={site.name} description="Good training, no coach. Four players, one court, about 30 minutes.">
-  <h1 class="mt-2 font-display text-[44px] leading-none font-bold tracking-[-0.02em]">Good training, no coach</h1>
-  <p class="mt-3 text-[19px]">Four players, one court, about 30 minutes. Pick a session and follow the three stages on your phone.</p>
+<Base title={site.name} description="Good training, no coach. Pick what you want to get better at, and follow three stages on your phone.">
+  <p class="mt-2 font-head text-[14px] font-semibold tracking-[0.08em] uppercase">Good training, no coach</p>
+  <h1 class="mt-2 font-display text-[44px] leading-none font-bold tracking-[-0.02em] text-balance">{site.goalQuestion}</h1>
   {sessions.length === 0 ? (
     <p class="mt-8 border-2 border-dashed border-ink bg-card p-4">
       No sessions yet. Check back soon.
     </p>
   ) : (
-    <ul class="mt-7 space-y-5">
-      {sessions.map(({ data }) => (
+    <ul class="mt-7 space-y-4">
+      {[...withGoal, ...others].map((data) => (
         <li>
-          <a href={`/s/${data.slug}/`} class="block min-h-14 border-2 border-ink bg-card p-4 shadow-[6px_6px_0_var(--color-ink)] active:translate-x-1 active:translate-y-1 active:shadow-none">
-            <span class="block font-head text-[22px] leading-tight font-bold">{data.title}</span>
-            <span class="mt-1 block">{data.aim}</span>
-            <span class="mt-1 block font-semibold text-ink-soft">{data.duration} min</span>
+          <a data-goal={data.goal?.id} href={`/s/${data.slug}/`} class="flex min-h-[6.875rem] max-[359px]:min-h-[8.75rem] items-center gap-3 border-2 border-ink bg-card px-4 py-3 shadow-[6px_6px_0_var(--color-ink)] active:translate-x-1 active:translate-y-1 active:shadow-none [@media(hover:hover)]:hover:translate-x-0.5 [@media(hover:hover)]:hover:translate-y-0.5 [@media(hover:hover)]:hover:shadow-[3px_3px_0_var(--color-ink)]">
+            <span class="flex min-w-0 flex-1 flex-col gap-2">
+              <span class="block font-head text-[22px] leading-tight font-bold">{data.goal?.label ?? data.title}</span>
+              <span data-fit class="flex flex-wrap gap-1.5">
+                <Chip data-chip-base tone="people" icon>{playersFitParts(data.stages.map((s) => s.drill.players)).base}</Chip>
+                {playersFitParts(data.stages.map((s) => s.drill.players)).extras.map((extra) => (
+                  <Chip data-chip-extra tone="warn">{extra}</Chip>
+                ))}
+              </span>
+            </span>
+            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" class="shrink-0"><path d="M9 5l7 7-7 7" /></svg>
           </a>
         </li>
       ))}

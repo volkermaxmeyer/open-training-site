@@ -5,15 +5,18 @@ import type { Session, Stage } from "../../src/lib/session-schema";
 
 const STAGES = 3;
 const MAX_RULES = 6;
+const MAX_IN_SHORT = 160;
+
+export type Goals = Map<string, { label: string; order: number }>;
 
 function labelled(block: string, label: string): string {
   const m = block.match(
-    new RegExp(`^\\*\\*${label}:\\*\\*[ \\t]*([\\s\\S]*?)(?=^\\*\\*[^*\\n]+:\\*\\*|^#|(?![\\s\\S]))`, "m"),
+    new RegExp(`^\\*\\*${label}:\\*\\*[ \\t]*([\\s\\S]*?)(?=^\\*\\*[^*\\n]+:\\*\\*|^- |^#|(?![\\s\\S]))`, "m"),
   );
   return m ? toPlainText(m[1]) : "";
 }
 
-export function parseSession(fileText: string, drills: Map<string, string>): Session {
+export function parseSession(fileText: string, drills: Map<string, string>, goals: Goals = new Map()): Session {
   const parts = splitFrontmatter(fileText);
   if (!parts) throw new PublishError("(unknown)", "empty or frontmatter-less file");
   const { fm, body } = parts;
@@ -35,6 +38,10 @@ export function parseSession(fileText: string, drills: Map<string, string>): Ses
   if (!status) fail("missing status");
   if (!Number.isFinite(duration) || duration <= 0) fail("duration is not a positive number");
 
+  const goalId = str(fm.goal);
+  const goalRef = goalId ? goals.get(goalId) : undefined;
+  if (goalId && !goalRef) fail(`goal: unknown id '${goalId}' (see player_goals)`);
+
   const ids = Array.isArray(fm.drills) ? fm.drills.map(str) : [];
   if (ids.length !== STAGES) fail(`drills: needs ${STAGES} entries, has ${ids.length}`);
 
@@ -51,6 +58,13 @@ export function parseSession(fileText: string, drills: Map<string, string>): Ses
     const rules = [...block.matchAll(/^- (.+)$/gm)].map((r) => toPlainText(r[1])).filter(Boolean);
     if (rules.length === 0) fail(`stage ${n}: no rules`);
     if (rules.length > MAX_RULES) fail(`stage ${n}: ${rules.length} rules, max ${MAX_RULES}`);
+
+    const inShort = labelled(block, "In short");
+    if (!inShort) fail(`stage ${n}: missing 'In short'`);
+    if (inShort.length > MAX_IN_SHORT) fail(`stage ${n}: 'In short' has ${inShort.length} characters, max ${MAX_IN_SHORT}`);
+
+    const onlyTwo = labelled(block, "Only two");
+    if (onlyTwo.length > MAX_IN_SHORT) fail(`stage ${n}: 'Only two' has ${onlyTwo.length} characters, max ${MAX_IN_SHORT}`);
 
     const tooEasy = labelled(block, "Too easy");
     const tooHard = labelled(block, "Too hard");
@@ -73,8 +87,12 @@ export function parseSession(fileText: string, drills: Map<string, string>): Ses
       throw e;
     }
 
+    if (drill.players === "4" && !onlyTwo) fail(`stage ${n}: 4-player drill needs an '**Only two:**' line for pairs`);
+
     stages.push({
       title: stageTitle,
+      inShort,
+      ...(onlyTwo ? { onlyTwo } : {}),
       rules,
       tooEasy,
       tooHard,
@@ -83,5 +101,14 @@ export function parseSession(fileText: string, drills: Map<string, string>): Ses
     });
   }
 
-  return { slug, title, competency, aim, duration, stages: stages as Session["stages"], status };
+  return {
+    slug,
+    title,
+    competency,
+    aim,
+    duration,
+    stages: stages as Session["stages"],
+    status,
+    ...(goalRef ? { goal: { id: goalId, ...goalRef } } : {}),
+  };
 }

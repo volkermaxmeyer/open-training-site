@@ -19,14 +19,38 @@ html { font-size: 112.5%; }
   --color-stage-1: #addbff;
   --color-stage-2: #d5cdff;
   --color-stage-3: #ffe08a;
-  --color-badge: #ffe08a;
-  --color-badge-ink: #584400;
   --color-go: #c5e17a;
+  --color-warn: #ffc9c9;
+  --color-chip: #e6e6ff;
 }
 
 @layer base {
+  :focus-visible { outline: 3px solid var(--color-ink); outline-offset: 3px; }
+  ::selection { background: var(--color-stage-3); color: var(--color-ink); }
   summary { list-style: none; }
   summary::-webkit-details-marker { display: none; }
-  summary::after { content: "+"; margin-left: auto; font-size: 1.5rem; line-height: 1; }
-  details[open] > summary::after { content: "–"; }
+  summary::after { content: "+" / ""; margin-left: auto; font-size: 1.5rem; line-height: 1; }
+  details[open] > summary::after { content: "–" / ""; }
+}
+
+/* The one authored moment: the finish ball drops in and bounces once as it scrolls into view. CSS only, scroll-linked,
+   skipped for reduced motion and in browsers without scroll timelines (the ball then just sits there). */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .finish-ball {
+      /* via a variable: the CSS minifier would otherwise fold the timeline into the shorthand, where it is invalid */
+      --finish-timeline: view();
+      animation: ball-drop linear both;
+      animation-timeline: var(--finish-timeline);
+      animation-range: entry 10% cover 35%;
+    }
+  }
+}
+@keyframes ball-drop {
+  0% { transform: translateY(-48px); }
+  55% { transform: translateY(0); }
+  72% { transform: translateY(-12px); }
+  86% { transform: translateY(0); }
+  93% { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
 }

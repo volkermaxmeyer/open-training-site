@@ -14,6 +14,8 @@ export const DrillCard = z
 export const Stage = z
   .object({
     title: z.string().min(1),
+    inShort: z.string().min(1).max(160),
+    onlyTwo: z.string().min(1).max(160).optional(),
     rules: z.array(z.string().min(1)).min(1).max(6),
     tooEasy: z.string().min(1),
     tooHard: z.string().min(1),
@@ -31,6 +33,8 @@ export const Session = z
     duration: z.number().positive(),
     stages: z.tuple([Stage, Stage, Stage]),
     status: z.string().min(1),
+    goal: z.object({ id: z.string().min(1), label: z.string().min(1), order: z.number().int().min(0) }).strict().optional(),
+    next: z.object({ slug: z.string().min(1), title: z.string().min(1) }).strict().optional(),
   })
   .strict();
 

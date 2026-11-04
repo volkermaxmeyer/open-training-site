@@ -10,8 +10,9 @@ const PAIRS: [text: string, background: string][] = [
   ["ink", "stage-1"],
   ["ink", "stage-2"],
   ["ink", "stage-3"],
-  ["badge-ink", "badge"],
   ["ink", "go"],
+  ["ink", "warn"],
+  ["ink", "chip"],
 ];
 
 function themeColors(css: string): Map<string, string> {

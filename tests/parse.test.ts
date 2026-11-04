@@ -114,6 +114,38 @@ describe("parseSession", () => {
   });
 });
 
+describe("In short and goal", () => {
+  it("reads one In-short sentence per stage without swallowing the rules", () => {
+    const s = parseSession(session, drills);
+    expect(s.stages.map((st) => st.inShort)).toEqual([
+      "Short line for stage 1.",
+      "Short line for stage 2.",
+      "Short line for stage 3.",
+    ]);
+    expect(s.stages[0].rules).toHaveLength(2);
+  });
+
+  it("rejects a stage without In short, or one over 160 characters", () => {
+    expect(fails(session.replace("**In short:** Short line for stage 2.\n", "")).reason).toMatch(/stage 2.*In short/);
+    expect(fails(session.replace("Short line for stage 1.", "x".repeat(161))).reason).toMatch(/stage 1.*161 characters/);
+  });
+
+  it("resolves a known goal and rejects an unknown one", () => {
+    const goals = new Map([["g1", { label: "Hit soft balls", order: 0 }]]);
+    const withGoal = session.replace("publish: false\n", "publish: false\ngoal: g1\n");
+    expect(parseSession(withGoal, drills, goals).goal).toEqual({ id: "g1", label: "Hit soft balls", order: 0 });
+    expect(parseSession(session, drills, goals).goal).toBeUndefined();
+    expect(fails(withGoal.replace("goal: g1", "goal: nope")).reason).toMatch(/unknown id 'nope'/);
+  });
+});
+
+describe("Only two", () => {
+  it("is read on a 4-player stage and required there", () => {
+    expect(parseSession(session, drills).stages[2].onlyTwo).toBe("Play stage 2 again with a target.");
+    expect(fails(session.replace("**Only two:** Play stage 2 again with a target.\n", "")).reason).toMatch(/stage 3.*Only two/);
+  });
+});
+
 describe("drill id", () => {
   it("drill card id is the number only", () => {
     const s = parseSession(session, drills);

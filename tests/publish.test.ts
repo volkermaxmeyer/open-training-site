@@ -82,6 +82,24 @@ describe("publish", () => {
     expect(existsSync(outDir)).toBe(false);
   });
 
+  it("adds the goal label from the vault schema", async () => {
+    await publish(opts());
+    const json = JSON.parse(readFileSync(join(outDir, "sessions/published-session.json"), "utf8"));
+    expect(json.goal).toEqual({ id: "fixture-goal", label: "Hit soft balls", order: 0 });
+  });
+
+  it("links next only to a session published in the same run", async () => {
+    await publish(opts());
+    const read = () => JSON.parse(readFileSync(join(outDir, "sessions/published-session.json"), "utf8"));
+    expect(read().next).toBeUndefined();
+    const vault = mkdtempSync(join(tmpdir(), "vault-"));
+    cpSync(vaultDir, vault, { recursive: true });
+    const f = join(vault, "sessions/web/fixture-session.md");
+    writeFileSync(f, readFileSync(f, "utf8").replace("publish: false", "publish: true\nchecked-by: test"));
+    await publish(opts({ vaultDir: vault }));
+    expect(read().next).toEqual({ slug: "fixture-session", title: "Invented Warm Hands" });
+  });
+
   it("dry run touches nothing", async () => {
     const r = await publish(opts({ dryRun: true }));
     expect(r.written).toHaveLength(1);
