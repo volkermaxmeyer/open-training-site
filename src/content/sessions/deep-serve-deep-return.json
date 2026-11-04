@@ -1,0 +1,95 @@
+{
+  "slug": "deep-serve-deep-return",
+  "title": "Deep Serve, Deep Return",
+  "competency": "Serve & Return",
+  "aim": "Land serves and returns in the back third of the court, then follow the return up to the kitchen line in time to volley.",
+  "duration": 30,
+  "stages": [
+    {
+      "title": "Serve Deep",
+      "inShort": "A serves 10 balls deep, and B calls each one in front of or behind the mark and counts the deep ones.",
+      "rules": [
+        "Mark the back third: put a shoe or bottle on each sideline, about 1.5 m in front of the far baseline.",
+        "A serves 10 balls cross-court, as in a game. No hurry: take your time between serves.",
+        "B stands outside the far sideline next to the mark, calls each serve \"in front\", \"behind\" or \"out\", and counts the deep ones out loud.",
+        "Behind the mark counts as deep. A serve past the baseline is out.",
+        "B collects the balls and rolls them back to A. After 10 serves, swap roles."
+      ],
+      "tooEasy": "9 of 10 land deep: keep the depth and change the spin, flat first, then topspin, then slice.",
+      "tooHard": "Serves keep landing short: hit the first few on purpose past the baseline, then pull back until they land just inside.",
+      "goodLooksLike": "Most serves bounce behind the mark, and nobody is afraid of serving too long.",
+      "drill": {
+        "id": "00",
+        "title": "Julian Arnold Depth Drill (Serve)",
+        "players": "2",
+        "isNew": false,
+        "watchUrl": "https://youtu.be/1gBC2lC2JvY?t=547",
+        "watchLabel": "PickleballPlaybook - Austin Hardy @9:07–10:22",
+        "videoId": "1gBC2lC2JvY",
+        "start": 547,
+        "end": 622
+      }
+    },
+    {
+      "title": "Return Deep",
+      "inShort": "A serves, and B returns 10 balls deep behind the mark, with the paddle back before the bounce.",
+      "rules": [
+        "Move the marks to A's end, about 1.5 m in front of A's baseline. A return past the baseline is out.",
+        "A serves from the right side. B returns from just behind the far baseline, in the half diagonally across.",
+        "B aims all 10 returns deep, behind the mark. A calls each return \"deep\", \"short\" or \"out\" and counts.",
+        "Beat the bounce: take your paddle back early, so you are set before the ball bounces.",
+        "After 10 returns, swap roles."
+      ],
+      "tooEasy": "8 of 10 land deep: aim deep and to the middle, and A mixes the depth and pace of the serves.",
+      "tooHard": "A serves easy balls, nobody counts, and after each return you just say where it landed.",
+      "goodLooksLike": "Returns land deep, and the returner is set before the bounce instead of falling backward.",
+      "drill": {
+        "id": "97",
+        "title": "Return Depth (Back Third)",
+        "players": "2",
+        "isNew": false,
+        "watchUrl": "https://youtu.be/KLvEi8RA3nk?t=127",
+        "watchLabel": "Cam Luhring @2:07–3:56",
+        "videoId": "KLvEi8RA3nk",
+        "start": 127,
+        "end": 236
+      }
+    },
+    {
+      "title": "Don't Let It Bounce",
+      "inShort": "Two against two: from the third shot on, the receiving team must volley every ball. Any bounce on their side is the servers' point.",
+      "onlyTwo": "Play Drill 2 again: it only counts once 8 of 10 returns land deep.",
+      "rules": [
+        "Four players, two teams of two, regular doubles. Serve and return as usual, and both bounce, as always. The serving team's third shot is a drop (a soft ball that lands in the kitchen).",
+        "From the third shot on, the receiving team may not let any ball bounce on its side. Every ball has to be volleyed (hit out of the air). As always, no volleying while standing in the kitchen.",
+        "If a ball bounces on the receivers' side, the serving team wins the point. The servers can also win it any other way. So after the return, get to the kitchen line fast.",
+        "The rule belongs to whoever receives, so it switches sides with the serve.",
+        "Rally scoring to 11, so every rally is a point. The team that wins the rally serves next."
+      ],
+      "tooEasy": "The servers aim every drop at the returner's feet. Still easy: the servers may also drive the third shot hard, so the receivers have to read drop or drive while moving in.",
+      "tooHard": "The rule starts one ball later, with the fifth shot. Still too hard: the servers play an easy drop as the third, the receivers practise getting in and volleying it, and nobody keeps score.",
+      "goodLooksLike": "The returner is at the kitchen line before the drop lands. At the line, balls are taken out of the air instead of left to bounce.",
+      "drill": {
+        "id": "118",
+        "title": "No Bounce for the Receivers (Return Rush)",
+        "players": "4",
+        "isNew": true,
+        "watchUrl": "https://youtu.be/xt29HuwNqyc?t=421",
+        "watchLabel": "Simone Jardim Pickleball @7:01–9:03",
+        "videoId": "xt29HuwNqyc",
+        "start": 421,
+        "end": 543
+      }
+    }
+  ],
+  "status": "draft",
+  "goal": {
+    "id": "serve-return-deep",
+    "label": "Serve and return deep",
+    "order": 5
+  },
+  "next": {
+    "slug": "read-and-choose",
+    "title": "Read and Choose"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "slug": "soft-third",
+  "title": "Soft Third",
+  "competency": "Drop",
+  "aim": "Land your third shot soft in the kitchen after a real serve and return, and know when to drop and when to drive instead.",
+  "duration": 30,
+  "stages": [
+    {
+      "title": "Fifteen Soft Drops",
+      "inShort": "B plays balls like a return, and A answers each one from the baseline with a soft drop into the kitchen. 15 balls, then swap.",
+      "rules": [
+        "A stands behind the baseline. B stands at the kitchen line on the other side and starts every ball: a flat, medium-deep ball, like a return.",
+        "B mixes where the balls go: to A's forehand, backhand and middle, in a set order (for example forehand, backhand, forehand).",
+        "A moves the feet to the ball and lets it rise and fall: hit it on the way down, after its highest point.",
+        "A plays a drop (a soft ball that lands in the kitchen), cross-court or to the middle: about 45 cm over the net, landing in the kitchen close to B's feet.",
+        "After each ball, A notes silently: good, too high, or into the net. B says nothing.",
+        "15 balls, then swap roles."
+      ],
+      "tooEasy": "B plays the balls at real return pace, and after each drop A moves forward and split-steps (a small hop that lands just as B hits).",
+      "tooHard": "B plays slow, medium balls, always to the same spot.",
+      "goodLooksLike": "About 12 of 15 drops are good: low over the net and landing in the kitchen.",
+      "drill": {
+        "id": "08",
+        "title": "Feeder Drop: Consistency Block (2 Players)",
+        "players": "2",
+        "isNew": true,
+        "watchUrl": "https://youtu.be/4FEuHE2xzZY?t=324",
+        "watchLabel": "Catherine Parenteau @5:24–7:30",
+        "videoId": "4FEuHE2xzZY",
+        "start": 324,
+        "end": 450
+      }
+    },
+    {
+      "title": "Three Balls, One Point",
+      "inShort": "A serves deep, B returns deep, A drops into the kitchen. A point counts only when all three balls land right.",
+      "rules": [
+        "Mark a strip about 1.2 m deep in front of each baseline, with a shoe or bottle on each sideline. That is the target for serve and return.",
+        "A serves deep into B's strip. B returns deep into A's strip. A plays the third shot as a drop (a soft ball that lands in the kitchen).",
+        "A point counts only when all three land right: serve in the strip, return in the strip, drop in the kitchen.",
+        "At 3 points, swap roles.",
+        "Give the third shot equal time cross-court and straight ahead, because real thirds come from both."
+      ],
+      "tooEasy": "Keep playing after the third shot: play the point out. Still easy: make the strips narrower.",
+      "tooHard": "Play cooperatively at low pace, and only think about getting the serve and return deep.",
+      "goodLooksLike": "A plays the drop from wherever the return really lands, not from a standing start.",
+      "drill": {
+        "id": "84",
+        "title": "Serve–Return–Third (Three-Shot Sequence)",
+        "players": "2",
+        "isNew": false,
+        "watchUrl": "https://youtu.be/DRfWeKzFE_w?t=6",
+        "watchLabel": "Cracked Pickleball @0:06–1:20",
+        "videoId": "DRfWeKzFE_w",
+        "start": 6,
+        "end": 80
+      }
+    },
+    {
+      "title": "Drive or Drop",
+      "inShort": "A starts at the baseline, chooses drive or drop by the ball, then plays the point out. A needs 7 points, B needs 11.",
+      "rules": [
+        "A stands behind the baseline, B at the kitchen line. B starts every rally with an easy, deep ball to A.",
+        "A plays a drive (a hard, low shot) and a drop as a combination, choosing by the ball: well balanced and the ball in front of you = drive; stretched, short or off balance = drop.",
+        "After the combination, the point is live: play it out.",
+        "Both score on every rally. A needs 7, B needs 11, because A starts from the baseline. Then swap roles.",
+        "After a rally, B may say whether A's choice fit the ball."
+      ],
+      "tooEasy": "After every good drop, B attacks actively instead of playing it back.",
+      "tooHard": "No score. B blocks every ball back easily, and A simply alternates drive, drop, drive, drop. Still too hard: practise only the forehand side, then only the backhand side.",
+      "goodLooksLike": "A drives only a ball in front of the body and drops when stretched or late. The choice comes from the ball, not from a plan.",
+      "drill": {
+        "id": "83",
+        "title": "Drive–Drop Combo with Role Switch (7-11 Format)",
+        "players": "2",
+        "isNew": true,
+        "watchUrl": "https://youtu.be/p-kBPmxCT1c?t=417",
+        "watchLabel": "John Cincola Pickleball @6:57–9:07",
+        "videoId": "p-kBPmxCT1c",
+        "start": 417,
+        "end": 547
+      }
+    }
+  ],
+  "status": "draft",
+  "goal": {
+    "id": "third-shot-land-soft",
+    "label": "Make our third shot land soft",
+    "order": 2
+  },
+  "next": {
+    "slug": "fast-hands",
+    "title": "Fast Hands"
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "slug": "win-the-dink-battle",
+  "title": "Win the Dink Battle",
+  "competency": "Dink",
+  "aim": "Keep a dink rally calm and on target, stop giving points away into the net, and switch to a live point the moment a dink rally dies.",
+  "duration": 30,
+  "stages": [
+    {
+      "title": "Count to 50",
+      "inShort": "A and B dink together and count out loud: 50 in a row, and a ball in the net sends you back to zero.",
+      "rules": [
+        "A and B face each other at the kitchen line and dink (soft shots that land in the kitchen). Count every ball out loud together.",
+        "Four rounds of about 2–3 minutes: cross-court from the right half, cross-court from the left half, middle to middle, straight ahead along one sideline.",
+        "A ball in the net sends the count back to zero. A ball wide, or one that just trickles over the net, keeps the count going.",
+        "No hard hits. If a ball comes up high, roll it back with topspin and keep the pressure on.",
+        "Lean forward and keep your feet working. No waiting for the ball.",
+        "Reached 50? Keep the same pattern going with a bit more pressure until someone hits the net."
+      ],
+      "tooEasy": "One of you plays faster dinks and tries to force the other into the net. Or raise the target to 75.",
+      "tooHard": "Lower the target to 30.",
+      "goodLooksLike": "A calm, steady rally, both players leaning in, and the pattern runs without thinking.",
+      "drill": {
+        "id": "80",
+        "title": "Dink Patterns: Series of 50 (Warm-Up + Pattern Lock)",
+        "players": "2",
+        "isNew": false,
+        "watchUrl": "https://youtu.be/kSGkbMYudPE?t=101",
+        "watchLabel": "Jack Munro @1:41–3:00",
+        "videoId": "kSGkbMYudPE",
+        "start": 101,
+        "end": 180
+      }
+    },
+    {
+      "title": "Net Costs Double",
+      "inShort": "A and B dink to 11 on half the court. A ball in the net costs double: the rally and one of your own points.",
+      "rules": [
+        "A and B at the kitchen line, on half the court: straight ahead or cross-court. Agree before you start.",
+        "Dink under control. Attack only a ball that sits up high enough to hit down. Everything else stays a dink.",
+        "Rally scoring to 11: whoever wins the rally gets the point.",
+        "A ball in the net: the other player gets the rally point, and you also lose one of your own points. Wide or long only costs the rally point. The score can go below zero.",
+        "Whoever lost the rally starts the next one with a dink.",
+        "Cross-court only: if you get pulled far out wide, you may play one straight dink to recover. The next ball goes cross-court again."
+      ],
+      "tooEasy": "A ball you pop up (high enough for the other player to attack) costs you two points. Still easy: mix topspin and slice dinks and change your targets to break the rhythm.",
+      "tooHard": "Drop the penalty: a ball in the net just loses the rally. Still too hard: no score, just dink in a free rhythm.",
+      "goodLooksLike": "Patient dinks and very few balls in the net. You attack a ball that is really up, never one that is still below the net.",
+      "drill": {
+        "id": "81",
+        "title": "Dink Duel with Penalty Points",
+        "players": "2",
+        "isNew": false,
+        "watchUrl": "https://youtu.be/eQ9FKwiFGhQ?t=234",
+        "watchLabel": "John Cincola Pickleball @3:54–5:38",
+        "videoId": "eQ9FKwiFGhQ",
+        "start": 234,
+        "end": 338
+      }
+    },
+    {
+      "title": "Dinkles",
+      "inShort": "Two dink rallies at once. When one ball dies, shout \"Dinkles!\" and the other ball becomes a live point for all four.",
+      "onlyTwo": "Play Drill 2 again: now a ball you pop up costs you two points.",
+      "rules": [
+        "Four players, two teams of two, all at the kitchen line. Two balls at once: both diagonals dink cross-court. Before every point, one player counts \"3, 2, 1, go\" so both balls start together.",
+        "While you dink, every ball must land inside the kitchen.",
+        "When a ball dies (in the net, missed, or landing outside the kitchen), whoever caused it shouts \"Dinkles!\". The other ball becomes a live point for all four, team against team. If the dead ball lies where someone could step on it, call \"Ball!\" and replay the point.",
+        "The first ball after \"Dinkles!\" is still a dink. No instant hard hit.",
+        "On \"Dinkles!\", both teammates move toward the middle. If you are right-handed: on the left side you cover the middle with your forehand, on the right side with your backhand.",
+        "Play 10 live points. The team that wins more of them wins. At 5–5, play one more."
+      ],
+      "tooEasy": "The live point has to be won at the kitchen line. Nobody backs up. Still easy: the first ball after \"Dinkles!\" may be hit hard right away.",
+      "tooHard": "Say the dink-first rule out loud before the next point. If it's still too chaotic, everyone freezes on \"Dinkles!\" and says who covers the middle, then restart without playing the point.",
+      "goodLooksLike": "\"Dinkles!\" is called right away, and the live point starts without a pause. Both teammates slide to the middle together.",
+      "drill": {
+        "id": "113",
+        "title": "Dinkles (Two Balls → Live Conversion)",
+        "players": "4",
+        "isNew": false,
+        "watchUrl": "https://youtu.be/hqtlQ-9I0i8?t=560",
+        "watchLabel": "Cam Luhring @9:20–12:10",
+        "videoId": "hqtlQ-9I0i8",
+        "start": 560,
+        "end": 730
+      }
+    }
+  ],
+  "status": "draft",
+  "goal": {
+    "id": "win-the-dink-battle",
+    "label": "Win the dink battle",
+    "order": 1
+  },
+  "next": {
+    "slug": "soft-third",
+    "title": "Soft Third"
+  }
+}

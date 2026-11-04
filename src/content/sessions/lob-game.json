@@ -1,0 +1,97 @@
+{
+  "slug": "lob-game",
+  "title": "Lob Game",
+  "competency": "Specialty Shot",
+  "aim": "Hit an overhead with the same motion as a throw, lob only off a ball you can attack, and play the lob-against-overhead duel at the kitchen line.",
+  "duration": 30,
+  "stages": [
+    {
+      "title": "Throw It Down",
+      "inShort": "A tosses high balls, and B throws them down by hand first, then hits the same motion with the paddle as an overhead.",
+      "rules": [
+        "An overhead is a hard shot hit from above your head, like a tennis serve. B stands near the baseline. A tosses slow, high, predictable balls to B.",
+        "First without paddles: B uses the empty hand and the natural throwing motion. Step, pull the elbow back, reach up, throw down.",
+        "The elbow and the feet move at the same time.",
+        "Then with the paddle in the throwing hand: A plays high balls, and B keeps the same order: elbow back, reach up, hit down.",
+        "Point your free hand at the ball. That gives you the distance and gets you to hit high and in front.",
+        "Swap roles after about 5 minutes."
+      ],
+      "tooEasy": "A mixes the depth and pace: one step for a near ball, two or more for a deep one. Even harder: A now and then tosses a wrong ball (too short or too deep), and B decides: overhead or reset (a soft ball back).",
+      "tooHard": "Stay longer without the paddle, until the throwing motion and the footwork work together.",
+      "goodLooksLike": "Contact high and in front, the free arm stays up, and the paddle finishes across to the opposite hip.",
+      "drill": {
+        "id": "64",
+        "title": "Throwing → Overhead Connection",
+        "players": "2",
+        "isNew": true,
+        "watchUrl": "https://youtu.be/L65JcXD4_Js?t=134",
+        "watchLabel": "Building Pickleball @2:14–3:26",
+        "videoId": "L65JcXD4_Js",
+        "start": 134,
+        "end": 206
+      }
+    },
+    {
+      "title": "Lob Over the Paddle",
+      "inShort": "A holds a paddle up high as a marker, and B calls the lob and sends it just over, about 60 cm above the paddle.",
+      "rules": [
+        "A stands on the other side of the net at the kitchen line and holds a paddle straight up, as high as possible. That is the height marker.",
+        "B calls \"lob\" first, then lobs. Target: about 60 cm above A's paddle, no higher.",
+        "Same stroke as a dink (a soft shot into the kitchen): open paddle face, just more speed. Do not change the technique.",
+        "Take the ball as early as you can. The earlier you hit it, the higher it goes on the other side.",
+        "Off the bounce, make the motion bigger and get the power from your legs: stand up quickly as you hit.",
+        "Aim at A's backhand side. Swap roles after about 5 minutes."
+      ],
+      "tooEasy": "Dink rally with no call: B lobs only when the ball is short or can be taken out of the air, and A may answer with an overhead. Even harder: take the marker away, and A steps back or holds, so B reads it and decides: lob, flick or dink.",
+      "tooHard": "Lob only when your feet are set. If you still have to move to reach the ball, dink instead.",
+      "goodLooksLike": "The lob stays low over A's paddle, goes to the backhand side, and only comes off a ball you can attack.",
+      "drill": {
+        "id": "67",
+        "title": "Offensive Kitchen Lob (Attack-Ball Context)",
+        "players": "2",
+        "isNew": true,
+        "watchUrl": "https://youtu.be/3lqzrl8pbWk?t=329",
+        "watchLabel": "John Cincola Pickleball @5:29–6:29",
+        "videoId": "3lqzrl8pbWk",
+        "start": 329,
+        "end": 389
+      }
+    },
+    {
+      "title": "Lob Starts the Point",
+      "inShort": "Dink on half the court until A lobs over B. B answers with an overhead or lets it bounce, then you start again.",
+      "rules": [
+        "Both on one diagonal half of the court. A is the lobber, B defends with the overhead.",
+        "B starts with a drop (a soft ball into the kitchen) and moves up to the kitchen line. Then dink, no hard hits.",
+        "A looks for the moment to lob over B's head: deep, 60 to 90 cm inside the baseline, not onto the line.",
+        "B gets back and hits an overhead (forehand, backhand, or a hook-shot style overhead when running back), or lets the ball bounce and plays a drop. Then start again.",
+        "No score, just reps. Aim for about 8 of 10 lobs deep and controlled, and about 7 of 10 overheads down the middle.",
+        "Swap roles, and change court spots so each of you plays both roles from both sides."
+      ],
+      "tooEasy": "Play to 11, but a point only counts once a lob has been hit. A lob that works scores 2 points. Even harder: B starts deeper, or A has to call where the lob is going.",
+      "tooHard": "Stay with no score, and A lobs only over B's backhand shoulder, so B knows where it is coming.",
+      "goodLooksLike": "Every rally has a lob and an overhead in it, the lobs land deep but in, and the overheads go down the middle.",
+      "drill": {
+        "id": "99",
+        "title": "Lob ↔ Overhead Duel (Live-After-Lob)",
+        "players": "2",
+        "isNew": true,
+        "watchUrl": "https://youtu.be/N46dsVdAX3A?t=1095",
+        "watchLabel": "PickleballPlaybook - Austin Hardy @18:15–24:05",
+        "videoId": "N46dsVdAX3A",
+        "start": 1095,
+        "end": 1445
+      }
+    }
+  ],
+  "status": "draft",
+  "goal": {
+    "id": "special-shots",
+    "label": "Special shots",
+    "order": 8
+  },
+  "next": {
+    "slug": "work-your-way-in",
+    "title": "Work Your Way In"
+  }
+}

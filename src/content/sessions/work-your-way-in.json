@@ -87,5 +87,9 @@
     "id": "get-to-the-kitchen",
     "label": "Get to the kitchen",
     "order": 0
+  },
+  "next": {
+    "slug": "win-the-dink-battle",
+    "title": "Win the Dink Battle"
   }
 }

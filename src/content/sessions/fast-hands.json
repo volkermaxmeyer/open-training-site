@@ -1,0 +1,96 @@
+{
+  "slug": "fast-hands",
+  "title": "Fast Hands",
+  "competency": "Speedup/Hands",
+  "aim": "Switch between forehand and backhand volleys without thinking, keep fast balls low with a block or a counter, and react to a speed-up you did not see coming.",
+  "duration": 30,
+  "stages": [
+    {
+      "title": "Forehand, Backhand, Repeat",
+      "inShort": "A and B volley back and forth at chest height, switching forehand and backhand on every ball.",
+      "rules": [
+        "A and B stand straight across from each other at the net (not diagonal).",
+        "A hits a forehand volley (a ball hit out of the air, before it bounces) at B's chest. B takes it on the backhand and sends it back.",
+        "Each of you switches on every ball: forehand, backhand, forehand, backhand. No free play.",
+        "Start so close to the net you can almost touch it. Once the streak holds, both step back to the kitchen line: you will feel you have far more time.",
+        "Medium pace, go for long streaks. A mistake costs nothing: just start again.",
+        "Between balls, hold the paddle up in front of your belly. Everything through the middle goes on the backhand."
+      ],
+      "tooEasy": "Raise the pace and play for the streak: whoever breaks it loses the point. Whoever makes three mistakes starts the next ball.",
+      "tooHard": "Skip the close start and play only from the kitchen line, where you have the most time.",
+      "goodLooksLike": "Every ball arrives at chest height, the elbow stays in front of the body, and you let the ball come to you instead of reaching for it.",
+      "drill": {
+        "id": "36",
+        "title": "Alternating Volleys (Chest-to-Chest)",
+        "players": "2",
+        "isNew": true,
+        "watchUrl": "https://youtu.be/0aMgIXQYR5s?t=4",
+        "watchLabel": "Walker Sisters Pickleball - Angie & Alex Walker @0:04–1:10",
+        "videoId": "0aMgIXQYR5s",
+        "start": 4,
+        "end": 70
+      }
+    },
+    {
+      "title": "Only A Attacks",
+      "inShort": "A and B dink, only A may suddenly hit hard, and B blocks or counters without ever attacking.",
+      "rules": [
+        "A and B dink as normal at the kitchen line (soft shots that land in the kitchen).",
+        "Only A may speed up (a sudden fast, hard ball at B), whenever A wants: on the first dink or the fifth.",
+        "For now, A speeds up at about 60% pace.",
+        "B never speeds up. B blocks (holds the paddle still and lets the ball bounce off it) or counters (hits the fast ball back fast).",
+        "B's focus: paddle up in front, weight forward.",
+        "Then swap roles."
+      ],
+      "tooEasy": "A speeds up at normal pace, and B has to decide each time between block and counter. Neither is wrong, as long as the ball stays low.",
+      "tooHard": "Before the rally, A calls where the speed-up will go: \"line\", \"body\" or \"cross\". Drop the call once B is ready.",
+      "goodLooksLike": "B's paddle is already up and in front when the speed-up comes, and B's answer stays low over the net.",
+      "drill": {
+        "id": "31",
+        "title": "Speed-Up Game (one-sided) – Counter off the Dink Pattern",
+        "players": "2",
+        "isNew": true,
+        "watchUrl": "https://youtu.be/pgMkaTR5HNM?t=1150",
+        "watchLabel": "Pickleball Studio @19:10–20:22",
+        "videoId": "pgMkaTR5HNM",
+        "start": 1150,
+        "end": 1222
+      }
+    },
+    {
+      "title": "Nobody Knows When",
+      "inShort": "A and B dink together, either may speed up at any time, and the other has to answer it.",
+      "rules": [
+        "A and B dink together at the kitchen line.",
+        "Either of you may speed up at any time. Do not give it away in advance.",
+        "For now: about 3 speed-ups in every 10 dinks, at moderate pace.",
+        "The other answers with a counter or a reset (a soft ball that takes the pace off and drops low).",
+        "No points yet."
+      ],
+      "tooEasy": "Speed up whenever you like, at full pace, and play for points.",
+      "tooHard": "The attacker may aim at only two targets, the right shoulder or straight down the line, and calls it out loud first: \"shoulder!\" or \"line!\".",
+      "goodLooksLike": "The defender reads the attacker's paddle angle and knows where the ball is going before it is hit.",
+      "drill": {
+        "id": "38",
+        "title": "Paranoid Dink → Live Speedup",
+        "players": "2",
+        "isNew": true,
+        "watchUrl": "https://youtu.be/pCXvUVoBcVo?t=100",
+        "watchLabel": "ThatPickleballGuy - Kyle Koszuta @1:40–3:09",
+        "videoId": "pCXvUVoBcVo",
+        "start": 100,
+        "end": 189
+      }
+    }
+  ],
+  "status": "draft",
+  "goal": {
+    "id": "win-fast-balls",
+    "label": "Win fast balls at the net",
+    "order": 3
+  },
+  "next": {
+    "slug": "drives-that-hurt",
+    "title": "Drives That Hurt"
+  }
+}

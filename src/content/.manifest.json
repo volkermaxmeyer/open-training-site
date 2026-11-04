@@ -1,8 +1,24 @@
 {
   "files": {
-    "src/content/sessions/work-your-way-in.json": "681e2e454a9e01d39d3baf3a2162d4c7d35744f96ef008521070f28811ff2a48"
+    "src/content/sessions/deep-serve-deep-return.json": "b082ece20099b857971fb0074ca814404f0b95f623f506d3fe2fcb7207136730",
+    "src/content/sessions/drives-that-hurt.json": "d75eab2ed4f2f66ee0142a5bda0064604fdb5d22aee5748aa880198f59309d60",
+    "src/content/sessions/fast-hands.json": "d340d63df9625c38d6d36015cfd416a2bf4531b687b9d1340c35470a4a38579e",
+    "src/content/sessions/lob-game.json": "85d92cc0a0f4e91f23eac969288b010520b65509c3149df431c1a3c74d02f95f",
+    "src/content/sessions/move-as-one.json": "8d35fd943e4a8501e94960a36f59b2ba0d2243b902f7262a43922475bc2007c5",
+    "src/content/sessions/read-and-choose.json": "a74c630930b8a8c09e0ee8c2e42cfa6ecc079be0c4c8e5d3ef1af5ac922f95b5",
+    "src/content/sessions/soft-third.json": "33c9078108161226ab126a1704e5350dd5bac6667060961d12230a24c863409c",
+    "src/content/sessions/win-the-dink-battle.json": "6a4a2a63221625421f70d0f08256aad271ab0ccf31fc7128bfb4d5012ddaf371",
+    "src/content/sessions/work-your-way-in.json": "4693de92baf81494c55f031e2e6e4554d8e90a2f4f41fd09f6757013155853b6"
   },
   "slugsEverPublished": [
-    "work-your-way-in"
+    "work-your-way-in",
+    "deep-serve-deep-return",
+    "drives-that-hurt",
+    "fast-hands",
+    "lob-game",
+    "move-as-one",
+    "read-and-choose",
+    "soft-third",
+    "win-the-dink-battle"
   ]
 }

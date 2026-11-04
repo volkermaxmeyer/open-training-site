@@ -1,0 +1,96 @@
+{
+  "slug": "drives-that-hurt",
+  "title": "Drives That Hurt",
+  "competency": "Drive/Backhand",
+  "aim": "Drive with control at well under full power, aim it low at your opponent's backhand or feet, and follow a good drive or swing in to the net.",
+  "duration": 30,
+  "stages": [
+    {
+      "title": "Serve, Return, Drive, Counter",
+      "inShort": "A serves and drives down the line, B returns, runs across to the kitchen and counters the drive.",
+      "rules": [
+        "A serves cross-court from the right half (right as you face the net): into the back third, angled to B's forehand near the sideline, well over the net.",
+        "B returns back toward A, near the sideline, high enough to give you time. Then B runs diagonally across to the other side of the kitchen line.",
+        "A drives (a hard, flat shot) straight down the line at B's backhand. Only 40–60% power, 15–50 cm over the net.",
+        "B split-steps (a small hop that lands just as A hits), then counters with a short two-handed backhand (lefties: forehand), down toward the floor and deep.",
+        "Stop after the counter and start again. Build it up: serve and return only until steady, then add the drive, then the counter. No points.",
+        "Swap roles after about 50 chains."
+      ],
+      "tooEasy": "Play the full chain each time and count clean chains out of 10. Then serve from the left half.",
+      "tooHard": "B returns to the middle and runs to the middle of the kitchen line, and A drives down the middle. Less running.",
+      "goodLooksLike": "7 out of 10 chains with all four shots clean: serve deep near the sideline, return near the sideline, drive at the backhand low over the net, counter down and deep.",
+      "drill": {
+        "id": "101",
+        "title": "First Four Shots — Down-the-Line Drive Chain (Worst-Case Reps)",
+        "players": "2",
+        "isNew": true,
+        "watchUrl": "https://youtu.be/o0pjBeKC13U?t=71",
+        "watchLabel": "Backpaddle Pickleball @1:11–3:04",
+        "videoId": "o0pjBeKC13U",
+        "start": 71,
+        "end": 184
+      }
+    },
+    {
+      "title": "The 60% Drive",
+      "inShort": "B hits a compact drive at 60% power to the cones at A's feet, then runs in. A says how it arrived.",
+      "rules": [
+        "Put two cones (or bottles) about 1.2–1.5 m behind the kitchen line on A's side. A stands there, like an opponent who has not reached the net yet.",
+        "From the baseline, B plays a hybrid drive: a compact swing at about 60% power, aimed at the cones, so it arrives at A's ankles.",
+        "A tries to return it and tells B: good ankle height, too high or too fast.",
+        "B runs in to the net right behind the hybrid drive.",
+        "A stands still for now.",
+        "Swap roles after 8 balls."
+      ],
+      "tooEasy": "A moves sideways while B hits. B has to place the hybrid drive where A is moving to, or behind A.",
+      "tooHard": "B stays at the baseline and works only on the 60% swing and the ankle height, without running in.",
+      "goodLooksLike": "Every ball arrives low at A's ankles, not at the body, and B is already moving in as it lands.",
+      "drill": {
+        "id": "17",
+        "title": "Hybrid-Drive Drill with Cone Targets",
+        "players": "2",
+        "isNew": true,
+        "watchUrl": "https://youtu.be/7Gs5ke38K-o?t=195",
+        "watchLabel": "Zane Navratil Pickleball @3:15–4:17",
+        "videoId": "7Gs5ke38K-o",
+        "start": 195,
+        "end": 257
+      }
+    },
+    {
+      "title": "Swing and Charge",
+      "inShort": "From mid-court, A swings at every ball above the waist and charges the net. Low balls get a soft reset instead.",
+      "rules": [
+        "A and B both start at mid-court (halfway between baseline and kitchen line).",
+        "A starts the ball at about half pace to B, then plays B's reply.",
+        "Ball above A's waist: A hits a swinging volley (a full swing at the ball before it bounces) and charges the net behind it.",
+        "Ball too low, below the net: A does not force it and plays a reset (a soft ball that drops into the kitchen). That is the right answer, not a mistake.",
+        "As soon as B has hit the first ball, B also moves forward. From there, play the point out, any shot allowed. No points yet."
+      ],
+      "tooEasy": "Keep score, first to 7. Whoever loses the point starts the next ball.",
+      "tooHard": "No live point: B just sends A balls, and A only practises the swing and the run to the net.",
+      "goodLooksLike": "A brushes up the back of the ball, hits it out in front and finishes short, ready for the counter.",
+      "drill": {
+        "id": "95",
+        "title": "Swinging-Volley Charge (Transition Offense)",
+        "players": "2",
+        "isNew": true,
+        "watchUrl": "https://youtu.be/mwIorEUP6j0?t=1200",
+        "watchLabel": "PickleballPlaybook - Austin Hardy @20:00–22:01",
+        "videoId": "mwIorEUP6j0",
+        "start": 1200,
+        "end": 1321
+      }
+    }
+  ],
+  "status": "draft",
+  "goal": {
+    "id": "drives-that-hurt",
+    "label": "Hit drives that hurt",
+    "order": 4
+  },
+  "next": {
+    "slug": "deep-serve-deep-return",
+    "title": "Deep Serve, Deep Return"
+  }
+}
