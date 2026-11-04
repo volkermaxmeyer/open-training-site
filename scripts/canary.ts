@@ -30,7 +30,12 @@ export async function readFeedback(sheetId: string): Promise<FeedbackRow[]> {
   return parseFeedback(JSON.parse(out.slice(out.indexOf("{"))).values ?? []);
 }
 
-export function checkCanary(rows: FeedbackRow[], publishedSlugs: string[]): string[] {
+// Rows submitted before the first session went live (2026-11-04) were form tests; they are greyed out in the Sheet
+// and skipped here, so a real empty or unknown session after launch still counts as a problem.
+export const LIVE_SINCE = "2026-11-04 00:00:00";
+
+export function checkCanary(rows: FeedbackRow[], publishedSlugs: string[], since = LIVE_SINCE): string[] {
+  rows = rows.filter((r) => r.submittedAt >= since);
   const known = new Set(publishedSlugs);
   const problems: string[] = [];
   for (const r of rows) {

@@ -181,7 +181,9 @@ describe("built site", () => {
       expect(page).not.toMatch(/<script[^>]*\ssrc=/);
       expect(scripts.filter((x) => x.includes("@vercel/analytics"))).toHaveLength(1);
       const video = scripts.find((x) => !x.includes("@vercel/analytics"))!;
-      expect([...video.matchAll(/https?:\/\/[a-z0-9.-]+[^"'\s]*/gi)].map((m) => m[0])).toEqual(["https://www.youtube-nocookie.com/embed/"]);
+      const hosts = [...video.matchAll(/https?:\/\/[a-z0-9.-]+/gi)].map((m) => m[0]);
+      expect(hosts.length).toBeGreaterThan(0);
+      expect(new Set(hosts)).toEqual(new Set(["https://www.youtube-nocookie.com"]));
       expect(page).not.toContain("<iframe");
     }
   });

@@ -3,17 +3,17 @@ import { checkCanary, parseFeedback } from "../scripts/canary";
 
 describe("checkCanary", () => {
   it("flags empty session", () => {
-    const problems = checkCanary([{ session: "", submittedAt: "2026-10-30 16:35:56" }], []);
-    expect(problems).toEqual(["row submitted 2026-10-30 16:35:56 has no session"]);
+    const problems = checkCanary([{ session: "", submittedAt: "2026-11-05 16:35:56" }], []);
+    expect(problems).toEqual(["row submitted 2026-11-05 16:35:56 has no session"]);
   });
 
   it("flags unknown session", () => {
-    const problems = checkCanary([{ session: "test", submittedAt: "2026-10-30 16:38:49" }], ["win-the-dink-battle"]);
-    expect(problems).toContain('row submitted 2026-10-30 16:38:49 has unknown session "test"');
+    const problems = checkCanary([{ session: "test", submittedAt: "2026-11-05 16:38:49" }], ["win-the-dink-battle"]);
+    expect(problems).toContain('row submitted 2026-11-05 16:38:49 has unknown session "test"');
   });
 
   it("passes known session", () => {
-    const rows = [{ session: "win-the-dink-battle", submittedAt: "2026-11-01 10:00:00" }];
+    const rows = [{ session: "win-the-dink-battle", submittedAt: "2026-11-05 10:00:00" }];
     expect(checkCanary(rows, ["win-the-dink-battle"])).toEqual([]);
   });
 
@@ -37,5 +37,19 @@ describe("parseFeedback", () => {
 
   it("throws when a column is missing", () => {
     expect(() => parseFeedback([["Submitted at"]])).toThrow(/session/);
+  });
+});
+
+describe("checkCanary: pre-launch test rows", () => {
+  it("skips rows before LIVE_SINCE but still flags a bad row after it", () => {
+    const rows = [
+      { session: "", submittedAt: "2026-10-30 16:35:56" },
+      { session: "test", submittedAt: "2026-10-30 16:38:49" },
+      { session: "work-your-way-in", submittedAt: "2026-11-04 21:00:00" },
+    ];
+    expect(checkCanary(rows, ["work-your-way-in"])).toEqual([]);
+    expect(checkCanary([...rows, { session: "", submittedAt: "2026-11-05 10:00:00" }], ["work-your-way-in"])).toEqual([
+      "row submitted 2026-11-05 10:00:00 has no session",
+    ]);
   });
 });

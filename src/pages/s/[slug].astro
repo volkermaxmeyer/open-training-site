@@ -77,31 +77,54 @@ import BackLink from "../../components/BackLink.astro";
     // The one exception to "no JavaScript" besides analytics (DESIGN.md): a tap on the video area plays the drill
     // segment inside the card. Without this script the area is a plain link to YouTube. Replay inserts a fresh iframe
     // instead of resetting src, so the back gesture still leaves the page.
+    // Players talk to the page through YouTube's postMessage protocol (no extra script from YouTube): when one starts
+    // playing, every other player on the page pauses in place, so only one video plays at a time (Volker, 2026-11-04).
+    const players = [];
+    function send(frame, msg) {
+      frame.contentWindow && frame.contentWindow.postMessage(JSON.stringify(msg), "https://www.youtube-nocookie.com");
+    }
+    function pauseOthers(except) {
+      players.forEach((p) => p.frame !== except && send(p.frame, { event: "command", func: "pauseVideo", args: "" }));
+    }
     function playerFor(a) {
       const f = document.createElement("iframe");
-      f.src = "https://www.youtube-nocookie.com/embed/" + a.dataset.id + "?start=" + a.dataset.start + "&end=" + a.dataset.end + "&autoplay=1&playsinline=1&rel=0";
+      f.src = "https://www.youtube-nocookie.com/embed/" + a.dataset.id + "?start=" + a.dataset.start + "&end=" + a.dataset.end + "&autoplay=1&playsinline=1&rel=0&enablejsapi=1&origin=" + encodeURIComponent(location.origin);
       f.title = a.dataset.title + " – drill video";
       f.allow = "autoplay; encrypted-media; picture-in-picture";
       f.setAttribute("allowfullscreen", "");
       f.tabIndex = 0;
       f.style.cssText = "aspect-ratio:16/9;width:100%;border:0;display:block;scroll-margin-top:6rem";
+      f.addEventListener("load", () => send(f, { event: "listening", id: a.dataset.id, channel: "widget" }));
       return f;
     }
+    window.addEventListener("message", (e) => {
+      if (e.origin !== "https://www.youtube-nocookie.com") return;
+      let data;
+      try { data = JSON.parse(e.data); } catch { return; }
+      const playing = data && data.info && data.info.playerState === 1;
+      if (!playing) return;
+      const p = players.find((x) => x.frame.contentWindow === e.source);
+      if (p) pauseOthers(p.frame);
+    });
     document.querySelectorAll("[data-video]").forEach((a) => {
       a.addEventListener("click", (e) => {
         e.preventDefault();
         const box = a.parentElement;
-        let frame = playerFor(a);
-        a.replaceWith(frame);
-        frame.focus();
+        const current = { frame: playerFor(a) };
+        pauseOthers(null);
+        a.replaceWith(current.frame);
+        current.frame.focus();
+        players.push(current);
+        // Replay inserts a fresh iframe instead of resetting src, so the back gesture still leaves the page.
         const replay = document.createElement("button");
         replay.type = "button";
         replay.textContent = "\u21BA Replay the drill";
         replay.className = "mt-4 flex min-h-12 w-full items-center justify-center border-2 border-ink bg-card font-head font-bold";
         replay.addEventListener("click", () => {
+          pauseOthers(current.frame);
           const next = playerFor(a);
-          frame.replaceWith(next);
-          frame = next;
+          current.frame.replaceWith(next);
+          current.frame = next;
         });
         box.after(replay);
       });
