@@ -13,8 +13,9 @@ tokens and gives the reasons. `tests/design-doc.test.ts` fails if a token named 
   doing in this stage?", so the drill number, title and the one-sentence summary must be findable by scanning. The
   rules sit one tap away (collapsed, Volker 2026-11-04). Whether that holds on court is checked on the first Friday.
 - **A bit funky.** Playful and sporty, never at the cost of the three points above.
-- **No JavaScript in the design.** Native `<details>` for anything that opens. The page carries only the cookieless
-  analytics loader.
+- **No JavaScript in the design**, with one exception. Native `<details>` for anything that opens. Besides the
+  cookieless analytics loader, session pages carry one inline script for the in-card video player (2026-11-04). Without
+  it, the video area is a plain link to YouTube.
 
 ## Origin
 
@@ -133,4 +134,11 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
   - **The finish:** before the feedback button, the ball plus "That's 30 minutes. / Good rally, everyone." The ball
     drops in and bounces once as it scrolls into view. This is CSS only (scroll timeline), skipped for reduced motion, and
     static where unsupported. No other motion on the site.
+- **Video in the card (2026-11-04):** for a drill whose Watch line has an end time (`@1:41–2:41`), the stage card shows
+  a 16:9 `--color-ink` surface with a round play mark: "Play the drill here" and "Channel · 1:41–2:41 · about 1 min".
+  It is a link to YouTube. A tap swaps it for a youtube-nocookie player with start, end, `playsinline`, `rel=0`, and
+  "↺ Replay the drill" below it; replay inserts a new iframe, so the back gesture is untouched. Below the area, always:
+  "or open it on YouTube". Nothing loads from YouTube before the tap. Drills without an end time keep the black button.
+  - **Note for later:** a content security policy would need `frame-src https://www.youtube-nocookie.com`, and
+    `Referrer-Policy: no-referrer` breaks YouTube embeds.
 

@@ -166,6 +166,34 @@ describe("drill id", () => {
   });
 });
 
+describe("parseDrill: in-card player data", () => {
+  const drill = (watch: string) =>
+    `---\ntitle: T\nplayers: "2"\nstatus: tested\n---\n\n- **▶ Watch the drill:** ${watch}\n`;
+  const p = (w: string) => parseDrill(drill(w), "950-x");
+
+  it("reads id, start and end from the Watch line", () => {
+    expect(p("Jack Munro @1:41–2:41 — https://youtu.be/kSGkbMYudPE?t=101")).toMatchObject({ videoId: "kSGkbMYudPE", start: 101, end: 161 });
+  });
+
+  it("accepts ids with - and _, t=63s, a plain hyphen, and watch?v= links", () => {
+    expect(p("PB @24:02-27:44 — https://youtu.be/-1rLB-T4OlM?t=1442")).toMatchObject({ videoId: "-1rLB-T4OlM", start: 1442, end: 1664 });
+    expect(p("X @1:03–2:00 — https://www.youtube.com/watch?v=l__Qq4ySh-I&t=63s")).toMatchObject({ videoId: "l__Qq4ySh-I", start: 63, end: 120 });
+  });
+
+  it("keeps the plain link without an end, with an end before the start, or when marked (embed: no)", () => {
+    for (const w of [
+      "Jack Munro @1:41 — https://youtu.be/kSGkbMYudPE?t=101",
+      "Jack Munro @1:41–1:30 — https://youtu.be/kSGkbMYudPE?t=101",
+      "Jack Munro @1:41–2:41 — https://youtu.be/kSGkbMYudPE?t=101 (embed: no)",
+      "Demo Club — https://youtu.be/BBBB2222",
+    ]) expect(p(w).videoId).toBeUndefined();
+  });
+
+  it("a marker after the URL never reaches the label", () => {
+    expect(p("Hub @2:46–3:31 — https://youtu.be/BEP_XUqAglw?t=166 (end to re-check: x)").watchLabel).toBe("Hub @2:46–3:31");
+  });
+});
+
 describe("parseDrill", () => {
   it("coerces players and flags new", () => {
     const d = parseDrill(drills.get("902-paired-lobs")!, "902-paired-lobs");

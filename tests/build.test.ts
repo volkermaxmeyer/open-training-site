@@ -56,7 +56,8 @@ describe("built site", () => {
   it("session page has 3 stage cards and 3 watch links", () => {
     const page = html("s/warm-hands/index.html");
     expect(page.match(/data-stage-card/g)).toHaveLength(3);
-    const watch = page.match(/<a[^>]+href="https:\/\/youtu\.be\/[^"]+"[^>]*>/g) ?? [];
+    // one YouTube link per card (the button, or "or open it on YouTube" under the tap-to-play area)
+    const watch = page.match(/<a data-watch[^>]+href="https:\/\/youtu\.be\/[^"]+"[^>]*>/g) ?? [];
     expect(watch).toHaveLength(3);
     for (const a of watch) {
       expect(a).toContain('target="_blank"');
@@ -170,13 +171,29 @@ describe("built site", () => {
     }
   });
 
-  it("session pages carry no script except the inline Vercel Analytics loader", () => {
+  it("session pages carry exactly two inline scripts: analytics and the video player", () => {
+    // Deliberately widened 2026-11-04 (video in the card): one inline video script, no <script src>, and the only
+    // host it may load is youtube-nocookie.com/embed, and only after a tap.
     for (const s of ["warm-hands", "steady-lobs"]) {
-      const scripts = html(`s/${s}/index.html`).match(/<script[\s\S]*?<\/script>/gi) ?? [];
-      expect(scripts).toHaveLength(1);
-      expect(scripts[0]).toMatch(/^<script type="module">/);
-      expect(scripts[0]).toContain("@vercel/analytics");
+      const page = html(`s/${s}/index.html`);
+      const scripts = page.match(/<script[\s\S]*?<\/script>/gi) ?? [];
+      expect(scripts).toHaveLength(2);
+      expect(page).not.toMatch(/<script[^>]*\ssrc=/);
+      expect(scripts.filter((x) => x.includes("@vercel/analytics"))).toHaveLength(1);
+      const video = scripts.find((x) => !x.includes("@vercel/analytics"))!;
+      expect([...video.matchAll(/https?:\/\/[a-z0-9.-]+[^"'\s]*/gi)].map((m) => m[0])).toEqual(["https://www.youtube-nocookie.com/embed/"]);
+      expect(page).not.toContain("<iframe");
     }
+  });
+
+  it("a drill with an end time gets the tap-to-play area plus the YouTube link; others keep the button", () => {
+    const cards = html("s/warm-hands/index.html").match(/<section[^>]*data-stage-card[\s\S]*?<\/section>/g)!;
+    expect(cards[0]).toMatch(/data-video[^>]*data-id="AAAAAAA1111"[^>]*data-start="10"[^>]*data-end="70"/);
+    expect(cards[0]).toMatch(/<a data-video[^>]*role="button"[^>]*href="https:\/\/youtu\.be\/AAAAAAA1111\?t=10"/);
+    expect(cards[0]).toContain("0:10–1:10 · about 1 min");
+    expect(cards[0]).toContain("or open it on YouTube");
+    expect(cards[1]).not.toContain("data-video");
+    expect(cards[1]).toContain("Watch the drill");
   });
 
   it("footer shows no version to players; check-deploy reads version.txt instead", () => {
@@ -199,16 +216,6 @@ describe("built site", () => {
   it("privacy page covers the YouTube links and tap-to-load", () => {
     expect(html("privacy/index.html")).toContain("link to videos on YouTube (Google)");
     expect(html("privacy/index.html")).toContain("nothing is loaded from YouTube");
-  });
-
-  it("video test page is unlisted: noindex, linked from nowhere, no iframe before a tap", () => {
-    const lab = html("lab/video/index.html");
-    expect(lab).toContain('<meta name="robots" content="noindex">');
-    expect(lab).not.toContain("<iframe");
-    expect(lab).toContain("youtube-nocookie.com/embed/");
-    for (const f of walk(out).filter((p) => p.endsWith(".html") && !p.includes("/lab/"))) {
-      expect(readFileSync(f, "utf8"), f).not.toContain("/lab/video");
-    }
   });
 
   it("version.txt exists", () => {

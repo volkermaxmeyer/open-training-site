@@ -73,4 +73,38 @@ import BackLink from "../../components/BackLink.astro";
       <span class="mt-1 block font-head text-[22px] leading-tight font-bold">Next: {session.next.title} →</span>
     </a>
   )}
+  <script is:inline>
+    // The one exception to "no JavaScript" besides analytics (DESIGN.md): a tap on the video area plays the drill
+    // segment inside the card. Without this script the area is a plain link to YouTube. Replay inserts a fresh iframe
+    // instead of resetting src, so the back gesture still leaves the page.
+    function playerFor(a) {
+      const f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + a.dataset.id + "?start=" + a.dataset.start + "&end=" + a.dataset.end + "&autoplay=1&playsinline=1&rel=0";
+      f.title = a.dataset.title + " – drill video";
+      f.allow = "autoplay; encrypted-media; picture-in-picture";
+      f.setAttribute("allowfullscreen", "");
+      f.tabIndex = 0;
+      f.style.cssText = "aspect-ratio:16/9;width:100%;border:0;display:block;scroll-margin-top:6rem";
+      return f;
+    }
+    document.querySelectorAll("[data-video]").forEach((a) => {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        const box = a.parentElement;
+        let frame = playerFor(a);
+        a.replaceWith(frame);
+        frame.focus();
+        const replay = document.createElement("button");
+        replay.type = "button";
+        replay.textContent = "\u21BA Replay the drill";
+        replay.className = "mt-2 flex min-h-12 w-full items-center justify-center border-2 border-ink bg-card font-head font-bold";
+        replay.addEventListener("click", () => {
+          const next = playerFor(a);
+          frame.replaceWith(next);
+          frame = next;
+        });
+        box.append(replay);
+      });
+    });
+  </script>
 </Base>

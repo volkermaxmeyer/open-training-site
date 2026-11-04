@@ -21,8 +21,11 @@
         "title": "Wall taps",
         "players": "Wall",
         "isNew": false,
-        "watchUrl": "https://youtu.be/AAAAAAAAAAA?t=10",
-        "watchLabel": "Wall taps, 0:10"
+        "watchUrl": "https://youtu.be/AAAAAAA1111?t=10",
+        "watchLabel": "Wall taps @0:10\u20131:10",
+        "videoId": "AAAAAAA1111",
+        "start": 10,
+        "end": 70
       }
     },
     {

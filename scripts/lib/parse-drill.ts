@@ -4,6 +4,9 @@ import type { DrillCard } from "../../src/lib/session-schema";
 
 const WATCH = /^[ \t]*-[ \t]+\*\*▶ Watch the drill:\*\*[ \t]*(.*)$/m;
 const PLAYERS = new Set(["2", "3", "4", "Wall"]);
+const VIDEO_ID = /(?:youtu\.be\/|[?&]v=)([A-Za-z0-9_-]{11})(?![A-Za-z0-9_-])/;
+const START = /[?&]t=(\d+)s?(?:&|$)/;
+const SEGMENT = /@(\d+):(\d{2})\s*[–-]\s*(\d+):(\d{2})/;
 
 export function parseDrill(fileText: string, id: string): DrillCard {
   const number = id.match(/^(\d+)(?:-|$)/)?.[1];
@@ -29,5 +32,17 @@ export function parseDrill(fileText: string, id: string): DrillCard {
   const before = watch[1].slice(0, urlMatch.index).replace(/[\s—–-]+$/, "");
   const watchLabel = toPlainText(before) || "Watch the drill";
 
-  return { id: number, title, players: players as DrillCard["players"], isNew: str(fm.status) === "new", watchUrl, watchLabel };
+  // In-card player (2026-11-04): only when the line gives a video id, a start (t=) and an end ("@1:41–2:41"),
+  // and is not marked "(embed: no)". Anything else keeps the plain link to YouTube.
+  const after = watch[1].slice((urlMatch.index ?? 0) + watchUrl.length);
+  const videoId = watchUrl.match(VIDEO_ID)?.[1];
+  const start = Number(watchUrl.match(START)?.[1]);
+  const seg = before.match(SEGMENT);
+  const end = seg ? Number(seg[3]) * 60 + Number(seg[4]) : NaN;
+  const player =
+    videoId && Number.isFinite(start) && Number.isFinite(end) && end > start && !/\(embed:\s*no\)/i.test(after)
+      ? { videoId, start, end }
+      : {};
+
+  return { id: number, title, players: players as DrillCard["players"], isNew: str(fm.status) === "new", watchUrl, watchLabel, ...player };
 }

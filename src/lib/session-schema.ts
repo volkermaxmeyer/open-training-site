@@ -8,6 +8,9 @@ export const DrillCard = z
     isNew: z.boolean(),
     watchUrl: z.string().url(),
     watchLabel: z.string().min(1),
+    videoId: z.string().regex(/^[A-Za-z0-9_-]{11}$/).optional(),
+    start: z.number().int().min(0).optional(),
+    end: z.number().int().positive().optional(),
   })
   .strict();
 
