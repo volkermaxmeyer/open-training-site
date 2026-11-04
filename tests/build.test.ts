@@ -65,14 +65,8 @@ describe("built site", () => {
     }
   });
 
-  it("drill badge only on status new drills", () => {
-    expect(html("s/warm-hands/index.html").match(/data-stage-card[\s\S]*?<\/section>/g)!.filter((c) => c.includes("New — tell us how it went"))).toHaveLength(1);
-    expect(html("s/steady-lobs/index.html")).not.toContain("New — tell us how it went");
-  });
-
-  it("no session-level badge at the top, only the per-drill one (Volker 2026-11-04)", () => {
-    // warm-hands: status v1 with 1 new drill -> exactly the one badge inside that stage card
-    expect(html("s/warm-hands/index.html").match(/New — tell us how it went/g)).toHaveLength(1);
+  it("no \"New — tell us how it went\" badge anywhere (Volker 2026-11-04)", () => {
+    expect(html("s/warm-hands/index.html")).not.toContain("New — tell us how it went");
     expect(html("s/warm-hands/index.html")).not.toContain("data-session-badge");
   });
 

@@ -28,7 +28,7 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 | --- | --- | --- |
 | secondary text `#675d52` | `--color-ink-soft` (Y2K's darker gray) | 6.4:1 on white, 4.2:1 on periwinkle |
 | secondary text on any surface | `--color-ink-soft` only on `--color-card` | 6.2:1 on periwinkle |
-| green and pink badges | the "new" badge in the feedback green (`--color-go`), ink text | 6.3:1 and 6.6:1 |
+| green and pink badges | no badges (the "new" badge was removed 2026-11-04) | – |
 | soft shadows | hard offset shadow | more character, no blur to wash out in sun |
 | fonts from Google Fonts | bundled into the site (Fontsource) | no third-party request, no IP sent to Google |
 | light and dark mode | light only | sun |
@@ -43,7 +43,7 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 | Card | `--color-card` | stage cards, session list items |
 | Text on dark | `--color-on-ink` | text on `--color-ink` buttons |
 | Stage blocks | `--color-stage-1`, `--color-stage-2`, `--color-stage-3` | the number block of each stage card (blue, purple, yellow) |
-| Go | `--color-go` | the feedback button and the "New — tell us how it went" badge (neon green) |
+| Go | `--color-go` | the feedback button (neon green) |
 | Warn | `--color-warn` | the one-line four-on-court rule and the chips for a drill that needs more people (light red, ink text) |
 | Chip | `--color-chip` | player-count chips (light periwinkle, ink text) |
 
@@ -60,7 +60,7 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 ## Shapes
 
 - Corners: 0 radius everywhere.
-- Borders: 2 px in `--color-ink` around cards, badges, the feedback button and between card sections.
+- Borders: 2 px in `--color-ink` around cards, the feedback button and between card sections.
 - Shadow: hard offset, 6 px right and down, in `--color-ink`, no blur. Only on cards and the feedback button.
 
 ## Patterns
@@ -75,15 +75,15 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
   the first drill). No "Stage N" label: the number block and the jump bar carry it. Then the **video first**: the in-card
   player surface (see "Video in the card"); only a drill without an end time falls back to the black "▶ Watch the drill"
   button. Below it the one-sentence summary ("In short"), visible. On a 4-player stage, the authored "Only two of you?"
-  block (see critique round 2). Then two collapsed `<details>`: "How to play" (the "new" badge and the rules) and "Too
+  block (see critique round 2). Then two collapsed `<details>`: "How to play" (the rules) and "Too
   easy? Too hard?" (Too easy, Too hard, Good looks like).
 - **Session top:** back link, title, then two chips (the aim is not shown on the page, only as the meta description for
   link previews; Volker 2026-11-04): "30 min" and the players ("2+ players · Drill 3 needs 4"). Then the jump bar, then
   the **four-on-court line**: one line on `--color-warn` with a 6 px `--color-ink`
   bar on the left, no box shadow, the safety rule in bold. Red, not yellow, so it does not rhyme with Drill 3 (design critique
   2026-11-04).
-- **Badges:** one inside "How to play" when its drill is new. No session badge under the title (removed 2026-11-04,
-  Volker).
+- **Badges:** none. The session badge under the title and the per-drill "New — tell us how it went" badge were both
+  removed on 2026-11-04 (Volker). The `isNew` field was removed from the data the same day.
 - **Feedback button:** after the last card, `--color-go` with the card border and shadow. Below it, when the next
   session is published, a card-style link "Got another 30 min? Next: …".
 - **Start page:** the goal question as the display heading, then one card-style button per goal: the goal label large, a

@@ -5,7 +5,6 @@ export const DrillCard = z
     id: z.string().regex(/^\d+$/),
     title: z.string().min(1),
     players: z.enum(["2", "3", "4", "Wall"]),
-    isNew: z.boolean(),
     watchUrl: z.string().url(),
     watchLabel: z.string().min(1),
     videoId: z.string().regex(/^[A-Za-z0-9_-]{11}$/).optional(),

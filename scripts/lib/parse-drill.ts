@@ -44,5 +44,5 @@ export function parseDrill(fileText: string, id: string): DrillCard {
       ? { videoId, start, end }
       : {};
 
-  return { id: number, title, players: players as DrillCard["players"], isNew: str(fm.status) === "new", watchUrl, watchLabel, ...player };
+  return { id: number, title, players: players as DrillCard["players"], watchUrl, watchLabel, ...player };
 }

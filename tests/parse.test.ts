@@ -34,8 +34,6 @@ describe("parseSession", () => {
     expect(s.stages[0].drill.watchUrl).toBe("https://youtu.be/AAAA1111?t=65");
     expect(s.stages[0].drill.watchLabel).toBe("Fake Channel @1:05");
     expect(s.stages[0].drill.players).toBe("Wall");
-    expect(s.stages[0].drill.isNew).toBe(false);
-    expect(s.stages[1].drill.isNew).toBe(true);
     expect(s.stages[1].drill.watchUrl).toBe("https://youtu.be/BBBB2222");
     expect(s.stages[1].drill.watchLabel).toBe("Demo Club");
     expect(s.stages[2].drill.players).toBe("4");
@@ -195,9 +193,9 @@ describe("parseDrill: in-card player data", () => {
 });
 
 describe("parseDrill", () => {
-  it("coerces players and flags new", () => {
+  it("coerces players and drops the drill status", () => {
     const d = parseDrill(drills.get("902-paired-lobs")!, "902-paired-lobs");
     expect(d.players).toBe("2");
-    expect(d.isNew).toBe(true);
+    expect(d).not.toHaveProperty("isNew");
   });
 });

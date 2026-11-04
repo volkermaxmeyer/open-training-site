@@ -20,7 +20,6 @@
         "id": "901",
         "title": "Wall taps",
         "players": "Wall",
-        "isNew": false,
         "watchUrl": "https://youtu.be/AAAAAAAAAAA?t=10",
         "watchLabel": "Wall taps, 0:10"
       }
@@ -38,7 +37,6 @@
         "id": "902",
         "title": "Paired lobs",
         "players": "2",
-        "isNew": false,
         "watchUrl": "https://youtu.be/BBBBBBBBBBB?t=20",
         "watchLabel": "Paired lobs, 0:20"
       }
@@ -56,7 +54,6 @@
         "id": "903",
         "title": "Cone game",
         "players": "4",
-        "isNew": false,
         "watchUrl": "https://youtu.be/CCCCCCCCCCC",
         "watchLabel": "Cone game"
       }
