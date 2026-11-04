@@ -24,9 +24,10 @@ const fonts = [poppins600, poppins700, crimson700];
     {description && <meta name="description" content={description} />}
     {noindex && <meta name="robots" content="noindex" />}
     {fonts.map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
-    <link rel="icon" href="/favicon.ico" sizes="32x32" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    {/* ?v= forces browsers that cached the old Astro icon to fetch the ball; raise it when the icon changes */}
+    <link rel="icon" href="/favicon.ico?v=2" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
     <title>{title}</title>
     <Analytics />
   </head>

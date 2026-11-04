@@ -219,7 +219,7 @@ describe("built site", () => {
     expect(page.match(/data-finish/g)).toHaveLength(1);
     expect(page.indexOf("data-finish")).toBeLessThan(page.indexOf("?session=warm-hands"));
     expect(page).toMatch(/That's 30 minutes\.\s*<span[^>]*>Good rally, everyone\.<\/span>/);
-    expect(page).toContain('<link rel="apple-touch-icon" href="/apple-touch-icon.png">');
+    for (const icon of ["favicon.ico", "favicon.svg", "apple-touch-icon.png"]) expect(page).toContain(`href="/${icon}?v=2"`);
     const fav = readFileSync(join(out, "favicon.svg"), "utf8");
     expect(fav).toContain("#c5e17a");
     expect(fav).not.toContain("M50.4 78.5"); // the old Astro rocket
