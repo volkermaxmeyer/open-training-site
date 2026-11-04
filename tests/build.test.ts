@@ -56,8 +56,8 @@ describe("built site", () => {
   it("session page has 3 stage cards and 3 watch links", () => {
     const page = html("s/warm-hands/index.html");
     expect(page.match(/data-stage-card/g)).toHaveLength(3);
-    // one YouTube link per card (the button, or "or open it on YouTube" under the tap-to-play area)
-    const watch = page.match(/<a data-watch[^>]+href="https:\/\/youtu\.be\/[^"]+"[^>]*>/g) ?? [];
+    // exactly one YouTube link per card: the black button, or the tap-to-play area (a link without JavaScript)
+    const watch = page.match(/<a[^>]+href="https:\/\/youtu\.be\/[^"]+"[^>]*>/g) ?? [];
     expect(watch).toHaveLength(3);
     for (const a of watch) {
       expect(a).toContain('target="_blank"');
@@ -186,12 +186,13 @@ describe("built site", () => {
     }
   });
 
-  it("a drill with an end time gets the tap-to-play area plus the YouTube link; others keep the button", () => {
+  it("a drill with an end time gets the edge-to-edge tap-to-play area; others keep the button", () => {
     const cards = html("s/warm-hands/index.html").match(/<section[^>]*data-stage-card[\s\S]*?<\/section>/g)!;
     expect(cards[0]).toMatch(/data-video[^>]*data-id="AAAAAAA1111"[^>]*data-start="10"[^>]*data-end="70"/);
     expect(cards[0]).toMatch(/<a data-video[^>]*role="button"[^>]*href="https:\/\/youtu\.be\/AAAAAAA1111\?t=10"/);
     expect(cards[0]).toContain("0:10–1:10 · about 1 min");
-    expect(cards[0]).toContain("or open it on YouTube");
+    expect(cards[0]).not.toContain("or open it on YouTube"); // removed 2026-11-04 (Volker)
+    expect(cards[0]).toMatch(/<div data-player class="-mx-4 -mt-4">/);
     expect(cards[1]).not.toContain("data-video");
     expect(cards[1]).toContain("Watch the drill");
   });

@@ -97,13 +97,13 @@ import BackLink from "../../components/BackLink.astro";
         const replay = document.createElement("button");
         replay.type = "button";
         replay.textContent = "\u21BA Replay the drill";
-        replay.className = "mt-2 flex min-h-12 w-full items-center justify-center border-2 border-ink bg-card font-head font-bold";
+        replay.className = "mt-4 flex min-h-12 w-full items-center justify-center border-2 border-ink bg-card font-head font-bold";
         replay.addEventListener("click", () => {
           const next = playerFor(a);
           frame.replaceWith(next);
           frame = next;
         });
-        box.append(replay);
+        box.after(replay);
       });
     });
   </script>

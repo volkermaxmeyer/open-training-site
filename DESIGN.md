@@ -136,9 +136,10 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
     static where unsupported. No other motion on the site.
 - **Video in the card (2026-11-04):** for a drill whose Watch line has an end time (`@1:41–2:41`), the stage card shows
   a 16:9 `--color-ink` surface with a round play mark: "Play the drill here" and "Channel · 1:41–2:41 · about 1 min".
-  It is a link to YouTube. A tap swaps it for a youtube-nocookie player with start, end, `playsinline`, `rel=0`, and
-  "↺ Replay the drill" below it; replay inserts a new iframe, so the back gesture is untouched. Below the area, always:
-  "or open it on YouTube". Nothing loads from YouTube before the tap. Drills without an end time keep the black button.
+  It runs edge to edge in the card, directly under the title row, and the channel/segment line is 14 px. It is a link to
+  YouTube. A tap swaps it for a youtube-nocookie player with start, end, `playsinline` and `rel=0`, and adds "↺ Replay the
+  drill" below it. Replay inserts a new iframe, so the back gesture is untouched. There is no separate YouTube link (removed
+  by Volker): without JavaScript the area itself opens YouTube. Nothing loads from YouTube before the tap. Drills without an end time keep the black button.
   - **Note for later:** a content security policy would need `frame-src https://www.youtube-nocookie.com`, and
     `Referrer-Policy: no-referrer` breaks YouTube embeds.
 
