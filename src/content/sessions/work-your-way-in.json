@@ -1,0 +1,91 @@
+{
+  "slug": "work-your-way-in",
+  "title": "Work Your Way In",
+  "competency": "Reset",
+  "aim": "Move from the baseline to the kitchen line in small, balanced steps, and send hard balls back soft instead of popping them up (hitting them high enough to be attacked).",
+  "duration": 30,
+  "stages": [
+    {
+      "title": "One Step at a Time",
+      "inShort": "A feeds calm balls, and B steps in from the baseline one good drop at a time.",
+      "rules": [
+        "A stands at the kitchen line and starts every ball: calm balls at B's feet.",
+        "B starts behind the baseline and plays a drop: a soft ball that lands in or near the kitchen.",
+        "Good drop: B takes one step forward and split-steps (a small hop that lands just as A hits). Step by step to the kitchen line, then back out to the baseline the same way.",
+        "Bad or high ball: B holds or steps back, and plays the next one soft.",
+        "Keep the stroke small: a little push and lift, not a big swing.",
+        "Swap roles after about 5 minutes."
+      ],
+      "tooEasy": "A plays with pace at B's feet, so B has to decide under pressure whether to step in or hold.",
+      "tooHard": "A feeds only calm, easy balls, and B thinks only about the timing of the split-step.",
+      "goodLooksLike": "Balanced at every step, the soft ball stays low, and B only moves forward after a good ball.",
+      "drill": {
+        "id": "18",
+        "title": "Split-Step Ladder",
+        "players": "2",
+        "isNew": false,
+        "watchUrl": "https://youtu.be/YdbziiaSXcI?t=460",
+        "watchLabel": "Troy Akin Pickleball @7:40–8:40",
+        "videoId": "YdbziiaSXcI",
+        "start": 460,
+        "end": 520
+      }
+    },
+    {
+      "title": "Survive the Pressure",
+      "inShort": "A attacks at the feet, and B resets soft from further and further back.",
+      "rules": [
+        "A stands at the kitchen line and attacks with pace at B's feet. Every ball must stay in the court.",
+        "B plays resets: soft balls that take the pace off and land in front of A's feet, near the middle.",
+        "B moves to every ball but holds the set distance: first at the kitchen line, then about 1 m behind it, then about 2 m behind it.",
+        "High ball: B stays balanced and lowers the paddle, the ball will come down. A ball clearly flying out: let it go.",
+        "Points to 5: B only has to survive, A plays to win. Then swap roles."
+      ],
+      "tooEasy": "A plays at full pace, and only resets that land in the middle count for B.",
+      "tooHard": "A aims clearly at the feet and plays at moderate pace, so B can read every ball.",
+      "goodLooksLike": "Quiet feet, a loose grip, and resets that drop low in front of A instead of popping up.",
+      "drill": {
+        "id": "22",
+        "title": "Survival Points (Progressive Reset Stress Test)",
+        "players": "2",
+        "isNew": false,
+        "watchUrl": "https://youtu.be/_Oe45bLIOuo?t=862",
+        "watchLabel": "Briones Pickleball Academy @14:22–17:40",
+        "videoId": "_Oe45bLIOuo",
+        "start": 862,
+        "end": 1060
+      }
+    },
+    {
+      "title": "Seven Against Eleven",
+      "inShort": "B works in from the baseline on half the court, and A tries to keep B back.",
+      "rules": [
+        "Half the court, lengthwise. A starts at the kitchen line, B behind the baseline.",
+        "No serve: A starts every rally with an easy ball to B. A start ball that is too hard or goes wrong is played again.",
+        "B works in with drops and resets. A keeps B back with soft volleys at the feet, no hard hits.",
+        "Once B reaches the kitchen line, anything goes: play the point out. Lobs are allowed.",
+        "Both score on every rally. A needs 11, B only 7, because B's job is harder. Then swap roles."
+      ],
+      "tooEasy": "A may now use every shot, hard hits included.",
+      "tooHard": "B may drive the first ball instead of dropping it, and A has to block it soft or step back.",
+      "goodLooksLike": "B moves forward only behind a low ball, split-steps as A hits, and holds or steps back after a high one.",
+      "drill": {
+        "id": "47",
+        "title": "7-11 Game (Half-Court Transition)",
+        "players": "2",
+        "isNew": false,
+        "watchUrl": "https://youtu.be/g5fkSrkpGSg?t=726",
+        "watchLabel": "Enhance Pickleball @12:06–13:52",
+        "videoId": "g5fkSrkpGSg",
+        "start": 726,
+        "end": 832
+      }
+    }
+  ],
+  "status": "draft",
+  "goal": {
+    "id": "get-to-the-kitchen",
+    "label": "Get to the kitchen",
+    "order": 0
+  }
+}
