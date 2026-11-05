@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.004 · 2026-11-05 · Old session URLs redirect to the new one (vercel.json); the feedback check counts rows for a renamed session towards its new name.
 - 1.003 · 2026-11-04 · No more "New — tell us how it went" badge on the drill cards; the drill status is no longer carried into the site data.
 - 1.002 · 2026-11-04 · Favicon links carry ?v=2, so browsers that cached the old Astro icon load the ball.
 - 1.001 · 2026-11-04 · Feedback opens in a new tab.

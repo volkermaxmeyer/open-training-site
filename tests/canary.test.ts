@@ -17,6 +17,11 @@ describe("checkCanary", () => {
     expect(checkCanary(rows, ["win-the-dink-battle"])).toEqual([]);
   });
 
+  it("counts a row for a renamed session towards its new slug", () => {
+    const rows = [{ session: "old-name", submittedAt: "2026-11-05 10:00:00" }];
+    expect(checkCanary(rows, ["new-name"], undefined, { "old-name": "new-name" })).toEqual([]);
+  });
+
   it("flags a published session without any row", () => {
     expect(checkCanary([], ["work-your-way-in"])).toEqual(['no feedback row for published session "work-your-way-in"']);
   });

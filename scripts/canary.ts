@@ -3,6 +3,7 @@ import { existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadEnv } from "./publish";
+import { renamedSlugs } from "./lib/renamed";
 
 export type FeedbackRow = { session: string; submittedAt: string };
 
@@ -34,8 +35,9 @@ export async function readFeedback(sheetId: string): Promise<FeedbackRow[]> {
 // and skipped here, so a real empty or unknown session after launch still counts as a problem.
 export const LIVE_SINCE = "2026-11-04 00:00:00";
 
-export function checkCanary(rows: FeedbackRow[], publishedSlugs: string[], since = LIVE_SINCE): string[] {
-  rows = rows.filter((r) => r.submittedAt >= since);
+// A row for a renamed session counts for its new slug (see renamedSlugs).
+export function checkCanary(rows: FeedbackRow[], publishedSlugs: string[], since = LIVE_SINCE, renamed: Record<string, string> = {}): string[] {
+  rows = rows.filter((r) => r.submittedAt >= since).map((r) => ({ ...r, session: renamed[r.session] ?? r.session }));
   const known = new Set(publishedSlugs);
   const problems: string[] = [];
   for (const r of rows) {
@@ -60,7 +62,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   const dir = join(repoRoot, "src/content/sessions");
   const slugs = existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith(".json")).map((f) => f.slice(0, -5)) : [];
   readFeedback(sheetId).then((rows) => {
-    const problems = checkCanary(rows, slugs);
+    const problems = checkCanary(rows, slugs, LIVE_SINCE, renamedSlugs(repoRoot));
     console.log(`${rows.length} row(s), ${slugs.length} published session(s)`);
     for (const p of problems) console.log(`- ${p}`);
     console.log(problems.length ? `${problems.length} problem(s)` : "canary ok");
