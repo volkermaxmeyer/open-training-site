@@ -7,8 +7,8 @@
     "src/content/sessions/move-as-one.json": "516eaa9910f8e45369202bb885b1c39c51de3df715652bb324f580eaaf2cf123",
     "src/content/sessions/read-and-choose.json": "c0f520bea25e7ffe6c77abff5747f61c043eb473ce8a42bed8f6ce963441cecb",
     "src/content/sessions/soft-third.json": "4b91bf0202f27fcbdcd6f621c740e9faf662d989833a037af09a04dfcc8dbcf8",
-    "src/content/sessions/win-the-dink-battle.json": "05f267df33c86c18e24e5a3ada358d8351fb81fa111c4beed221871c832ffc4c",
-    "src/content/sessions/work-your-way-in.json": "dfe1ebbdbb4d33e6b102d6f04c48b120c5f055207520a840032de2913c946c6b"
+    "src/content/sessions/steady-dinks.json": "4f58655cbb91fd041c76a9a12b242bf2930659f5f009d79146fea57afa3de622",
+    "src/content/sessions/work-your-way-in.json": "072ec518f68471f8d63480789d39cd2455c1c678723d943aa9cf97363d50771f"
   },
   "slugsEverPublished": [
     "work-your-way-in",
@@ -19,6 +19,7 @@
     "move-as-one",
     "read-and-choose",
     "soft-third",
-    "win-the-dink-battle"
+    "win-the-dink-battle",
+    "steady-dinks"
   ]
 }
