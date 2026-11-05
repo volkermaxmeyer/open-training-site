@@ -1,0 +1,32 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../site.config";
+import BackLink from "../components/BackLink.astro";
+---
+
+<Base title={`Not me | ${site.name}`} noindex>
+  <BackLink />
+  <h1 class="mt-1 font-display text-[44px] leading-none font-bold">Not me</h1>
+  <p class="mt-4">
+    For the people who run this site: the button stops visits from this browser being counted in the visitor statistics.
+    It stores one flag in this browser and nothing else. Do it once on every device you use.
+  </p>
+  <p data-state class="mt-6 font-head text-xl font-bold">This needs JavaScript.</p>
+  <button data-toggle type="button" hidden class="mt-4 min-h-12 border-2 border-ink bg-card px-4 py-2 font-head text-lg font-bold shadow-[6px_6px_0_var(--color-ink)] active:translate-x-1 active:translate-y-1 active:shadow-none"></button>
+  <script is:inline>
+    const state = document.querySelector("[data-state]");
+    const button = document.querySelector("[data-toggle]");
+    function show() {
+      let off = false;
+      try { off = !!localStorage.getItem("va-disable"); } catch { state.textContent = "This browser blocks storage, so it can't be excluded."; return; }
+      state.textContent = off ? "This device is not counted." : "This device is counted.";
+      button.textContent = off ? "Count this device again" : "Don't count this device";
+      button.hidden = false;
+    }
+    button.addEventListener("click", () => {
+      try { localStorage.getItem("va-disable") ? localStorage.removeItem("va-disable") : localStorage.setItem("va-disable", "1"); } catch {}
+      show();
+    });
+    show();
+  </script>
+</Base>

@@ -29,6 +29,14 @@ const fonts = [poppins600, poppins700, crimson700];
     <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
     <title>{title}</title>
+    {/* Own visits don't count (Volker, 2026-11-05): a browser that pressed the button on the hidden "Not me" page carries
+        va-disable, and the analytics loader drops its events. Must run before the loader, so it is a plain inline script. */}
+    <script is:inline>
+      window.webAnalyticsBeforeSend = (event) => {
+        try { if (localStorage.getItem("va-disable")) return null; } catch {}
+        return event;
+      };
+    </script>
     <Analytics />
   </head>
   <body class="bg-paper font-sans text-ink antialiased">

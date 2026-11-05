@@ -15,7 +15,8 @@ tokens and gives the reasons. `tests/design-doc.test.ts` fails if a token named 
 - **A bit funky.** Playful and sporty, never at the cost of the three points above.
 - **No JavaScript in the design**, with one exception. Native `<details>` for anything that opens. Besides the
   cookieless analytics loader, session pages carry one inline script for the in-card video player (2026-11-04). Without
-  it, the video area is a plain link to YouTube.
+  it, the video area is a plain link to YouTube. Every page also carries a tiny opt-out check before the loader, and the
+  hidden `/not-me/` page has one button script, so the operator's own visits are not counted (2026-11-05).
 
 ## Origin
 

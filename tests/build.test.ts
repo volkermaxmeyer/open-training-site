@@ -175,16 +175,19 @@ describe("built site", () => {
     }
   });
 
-  it("session pages carry exactly two inline scripts: analytics and the video player", () => {
+  it("session pages carry exactly three inline scripts: own-visit opt-out, analytics and the video player", () => {
     // Deliberately widened 2026-11-04 (video in the card): one inline video script, no <script src>, and the only
-    // host it may load is youtube-nocookie.com/embed, and only after a tap.
+    // host it may load is youtube-nocookie.com/embed, and only after a tap. 2026-11-05: plus the opt-out check.
     for (const s of ["warm-hands", "steady-lobs"]) {
       const page = html(`s/${s}/index.html`);
       const scripts = page.match(/<script[\s\S]*?<\/script>/gi) ?? [];
-      expect(scripts).toHaveLength(2);
+      expect(scripts).toHaveLength(3);
       expect(page).not.toMatch(/<script[^>]*\ssrc=/);
       expect(scripts.filter((x) => x.includes("@vercel/analytics"))).toHaveLength(1);
-      const video = scripts.find((x) => !x.includes("@vercel/analytics"))!;
+      const optOut = scripts.filter((x) => x.includes("va-disable"));
+      expect(optOut).toHaveLength(1);
+      expect(optOut[0]).not.toMatch(/https?:\/\//);
+      const video = scripts.find((x) => !x.includes("@vercel/analytics") && !x.includes("va-disable"))!;
       const hosts = [...video.matchAll(/https?:\/\/[a-z0-9.-]+/gi)].map((m) => m[0]);
       expect(hosts.length).toBeGreaterThan(0);
       expect(new Set(hosts)).toEqual(new Set(["https://www.youtube-nocookie.com"]));
@@ -238,6 +241,22 @@ describe("built site", () => {
     const buttons = page.match(/<a[^>]*data-(?:video|watch)[\s\S]*?<\/a>/g) ?? [];
     expect(buttons.length).toBe(3);
     for (const b of buttons) expect(b).toMatch(/· YouTube<|on YouTube</);
+  });
+
+  it("own visits: the opt-out check runs before the analytics loader on every page; /not-me/ is hidden", () => {
+    for (const p of ["index.html", "about/index.html", "s/warm-hands/index.html"]) {
+      const page = html(p);
+      const opt = page.indexOf("webAnalyticsBeforeSend");
+      expect(opt, p).toBeGreaterThan(-1);
+      expect(opt, p).toBeLessThan(page.indexOf("@vercel/analytics"));
+      expect(page).toContain('localStorage.getItem("va-disable")');
+    }
+    const notMe = html("not-me/index.html");
+    expect(notMe).toContain('<meta name="robots" content="noindex"');
+    expect(notMe).toContain("data-toggle");
+    for (const f of walk(out).filter((p) => p.endsWith(".html") && !p.includes("not-me"))) {
+      expect(readFileSync(f, "utf8"), f).not.toContain("/not-me/");
+    }
   });
 
   it("version.txt exists", () => {
