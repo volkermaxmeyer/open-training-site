@@ -9,43 +9,55 @@ import BackLink from "../components/BackLink.astro";
   <h1 class="mt-1 font-display text-[44px] leading-none font-bold">Privacy</h1>
 
   <h2 class="mt-6 font-head text-xl font-bold">Who is responsible</h2>
-  <p class="mt-2">{site.imprint.name}, {site.imprint.street}, {site.imprint.city}. Contact: {site.contactEmail}</p>
+  <p class="mt-2">{site.imprint.name}, {site.imprint.address.join(", ")}. Contact: {site.contactEmail}</p>
 
   <h2 class="mt-6 font-head text-xl font-bold">Visiting this site</h2>
   <p class="mt-2">
-    This site is hosted by Vercel Inc. (USA). When you open a page, Vercel's servers record technical data such as your IP
-    address, the time and the page requested, to deliver the site and keep it secure. Until you play a video, this site sets no
-    cookies and loads no external fonts or scripts (see Videos).
+    This site is hosted by Vercel Inc. (USA). When you open a page, Vercel's servers process technical data such as your IP
+    address, the time and the page requested, to deliver the site and keep it secure. Legal basis: our legitimate interest
+    in running a working, secure site (Art. 6(1)(f) GDPR). Vercel keeps these request logs for a short time only (one hour
+    on the plan this site uses). Until you play a video, this site sets no cookies and loads no external fonts or scripts
+    (see Videos).
   </p>
 
   <h2 class="mt-6 font-head text-xl font-bold">Visitor statistics</h2>
   <p class="mt-2">
     We use Vercel Web Analytics to count visits: which pages are viewed, the referring site, country, device type and
-    browser. It works without cookies and stores no personal profiles; visitors are told apart only by an anonymous
-    hash of the request that is reset every day, so visits cannot be linked across days or sites. We cannot see who you
-    are.
+    browser. It works without cookies, stores nothing on your device and keeps no personal profiles; visitors are told
+    apart only by an anonymous hash of the request that is reset every day, so visits cannot be linked across days or
+    sites. We cannot see who you are. Legal basis: our legitimate interest in knowing which sessions are used
+    (Art. 6(1)(f) GDPR). The statistics are kept for at least one month.
   </p>
 
   <h2 class="mt-6 font-head text-xl font-bold">Videos</h2>
   <p class="mt-2">
     Each drill shows a video from YouTube (Google) that plays right on the page. Nothing is loaded from YouTube until you
-    tap it. When you tap, the player loads from youtube-nocookie.com: Google (USA, under the EU-US Data Privacy
-    Framework) receives your IP address and device data, may store data in your browser while the video plays, and may
-    show ads. If your browser has JavaScript switched off, the tap opens the video on YouTube instead, where YouTube's
-    privacy policy applies.
+    tap it, and if you never tap, no data goes to YouTube. When you tap, the player loads from youtube-nocookie.com:
+    Google receives your IP address and device data, may store data in your browser while the video plays, and may show
+    ads. Legal basis: your consent, given by tapping (Art. 6(1)(a) GDPR). If your browser has JavaScript switched off,
+    the tap opens the video on YouTube instead, where YouTube's privacy policy applies.
   </p>
 
   <h2 class="mt-6 font-head text-xl font-bold">Feedback form</h2>
   <p class="mt-2">
     The feedback link opens a form at Tally (Tally BV, Belgium). Data goes to Tally only if you click that link. The form
-    records which session you played and your answers; your email address is optional. Answers are stored at Tally and in
-    a Google Sheet (Google) that only the organisers can read, and are used only to improve the sessions.
+    records which session you played and your answers; your email address is optional. Please do not enter names. Answers
+    are stored at Tally and in a Google Sheet (Google) that only the operator of this site can read, and are used only to
+    improve the sessions. Legal basis: your consent, given by sending the form (Art. 6(1)(a) GDPR). Answers are deleted
+    once they are no longer needed for that purpose, at the latest after two years.
+  </p>
+
+  <h2 class="mt-6 font-head text-xl font-bold">Transfers outside the EU</h2>
+  <p class="mt-2">
+    Vercel and Google are based in the USA. Both are certified under the EU-US Data Privacy Framework, which the EU
+    Commission recognises as providing an adequate level of protection (Art. 45 GDPR).
   </p>
 
   <h2 class="mt-6 font-head text-xl font-bold">Your rights</h2>
   <p class="mt-2">
-    You can ask us what we store about you, and have it corrected or deleted, by writing to {site.contactEmail}. You can
-    also complain to a data protection authority, in Berlin the Berliner Beauftragte für Datenschutz und
-    Informationsfreiheit.
+    You can ask what we store about you and have it corrected, deleted or restricted, object to processing based on our
+    legitimate interest, and withdraw a consent at any time with effect for the future (Art. 15 to 21 GDPR). Write to
+    {site.contactEmail}. You can also complain to a data protection authority, in Berlin the Berliner Beauftragte für
+    Datenschutz und Informationsfreiheit.
   </p>
 </Base>

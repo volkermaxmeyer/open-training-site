@@ -225,6 +225,21 @@ describe("built site", () => {
     expect(html("privacy/index.html")).toContain("Nothing is loaded from YouTube until you");
   });
 
+  it("privacy page names legal bases, transfers and the operator", () => {
+    const page = html("privacy/index.html");
+    for (const s of ["Art. 6(1)(f) GDPR", "Art. 6(1)(a) GDPR", "Data Privacy Framework", "only the operator", "Please do not enter names"]) {
+      expect(page).toContain(s);
+    }
+    expect(page).not.toContain("organisers");
+  });
+
+  it("every video button names YouTube before the tap", () => {
+    const page = html("s/warm-hands/index.html");
+    const buttons = page.match(/<a[^>]*data-(?:video|watch)[\s\S]*?<\/a>/g) ?? [];
+    expect(buttons.length).toBe(3);
+    for (const b of buttons) expect(b).toMatch(/· YouTube<|on YouTube</);
+  });
+
   it("version.txt exists", () => {
     expect(existsSync(join(out, "version.txt"))).toBe(true);
     expect(html("version.txt").trim().length).toBeGreaterThan(0);

@@ -4,8 +4,7 @@ export const site = {
   contactEmail: "pickleballinberlin@gmail.com",
   imprint: {
     name: "BTV Olympia e.V., Abt. Pickleball",
-    street: "Paul-Heyse-Str. 25",
-    city: "10407 Berlin, Germany",
+    address: ["Paul-Heyse-Str. 25", "10407 Berlin, Germany"],
   },
   goalQuestion: "What do you want to get better at today?",
   fourOnCourt: {
