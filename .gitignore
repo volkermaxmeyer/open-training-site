@@ -26,3 +26,6 @@ pnpm-debug.log*
 # local env
 .env.local
 .vercel/
+
+# design plugin (impeccable): local config, cache and critique reports
+.impeccable/
