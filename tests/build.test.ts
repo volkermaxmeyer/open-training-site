@@ -160,9 +160,23 @@ describe("built site", () => {
     expect(chip(page, "data-players-summary")[0]).toBe("Wall · Drill 2 needs 2 · Drill 3 needs 4");
   });
 
-  it("session page names the home page goal above its title", () => {
+  const crumbText = (h: string) => text(h.match(/<nav aria-label="Breadcrumb"[\s\S]*?<\/nav>/)![0]).replace(/\s*›\s*/g, " › ");
+  it("session page names the home page goal above its title, as breadcrumbs (2026-11-07)", () => {
     const page = html("s/warm-hands/index.html");
-    expect(page).toMatch(/data-goal-label[^>]*>Hit soft balls<\/p>\s*<h1/);
+    const crumbs = page.match(/<nav aria-label="Breadcrumb"[\s\S]*?<\/nav>/)![0];
+    expect(crumbs).toMatch(/href="\/"[^>]*>Goals<\/a>/);
+    expect(crumbText(page)).toBe("Goals › Hit soft balls");
+    expect(crumbs).toMatch(/aria-current="location"[^>]*>Hit soft balls/);
+    expect(page.indexOf("data-breadcrumbs")).toBeLessThan(page.indexOf("<h1"));
+    expect(page).not.toContain("data-back");
+  });
+
+  it("shot and drill pages show the way back as breadcrumbs", () => {
+    expect(crumbText(html("shots/dink/index.html"))).toBe("Shots › Dink");
+    const drill = html("drill/901/index.html").match(/<nav aria-label="Breadcrumb"[\s\S]*?<\/nav>/)![0];
+    expect(crumbText(html("drill/901/index.html"))).toBe("Shots › Dink › Cross-court dink");
+    expect(drill).toContain('href="/shots/dink/"');
+    expect(crumbText(html("drill/902/index.html"))).toBe("Shots › Dink"); // no variant
   });
 
   it("four-on-court warning appears exactly once per session page, before the first stage", () => {
@@ -191,7 +205,6 @@ describe("built site", () => {
     expect(page).toMatch(/data-next[^>]*href="\/s\/steady-lobs\/"/);
     expect(page.indexOf("data-next")).toBeGreaterThan(page.indexOf("?session=warm-hands"));
     expect(html("s/steady-lobs/index.html")).not.toContain("data-next");
-    expect(page).toContain('href="/" data-back');
     // aim only in the link preview, not on the page (Volker 2026-11-04)
     expect(page).toContain('<meta name="description" content="Keep a soft rally going for ten shots in a row.">');
     expect(page.replace(/<head>[\s\S]*<\/head>/, "")).not.toContain("Keep a soft rally going");
