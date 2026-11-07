@@ -47,6 +47,34 @@ describe("publish", () => {
     expect(manifest().slugsEverPublished).toEqual(["gone-slug", "published-session"]);
   });
 
+  it("does not warn for a renamed slug that redirects to a published session", async () => {
+    mkdirSync(outDir, { recursive: true });
+    writeFileSync(join(outDir, ".manifest.json"), JSON.stringify({ files: {}, slugsEverPublished: ["old-name"] }));
+    writeFileSync(join(root, "vercel.json"), JSON.stringify({ redirects: [{ source: "/s/old-name", destination: "/s/published-session" }] }));
+    const r = await publish(opts());
+    expect(r.warnings.filter((w) => w.includes("old-name"))).toEqual([]);
+  });
+
+  // Fixture vault: 5 drills, 1 archived, 1 tested; its schema block has no weekly_themes.
+  const overview = (totals: Record<string, number>) => {
+    mkdirSync(join(root, "src/data"), { recursive: true });
+    writeFileSync(join(root, "src/data/overview.json"), JSON.stringify({ totals }));
+  };
+
+  it("stays quiet when the Overview totals match the vault", async () => {
+    overview({ drills: 4, tested: 1, themes: 13 });
+    const r = await publish(opts());
+    expect(r.warnings.filter((w) => w.startsWith("Overview"))).toEqual([]);
+  });
+
+  it("warns when a drill was tested since the Overview snapshot", async () => {
+    overview({ drills: 4, tested: 0 });
+    const r = await publish(opts());
+    expect(r.warnings.filter((w) => w.startsWith("Overview"))).toEqual([
+      "Overview says 0 drills tested on court, the vault has 1: refresh src/data/overview.json (vault dashboard/README.md, Updating)",
+    ]);
+  });
+
   it("manifest hashes match written files", async () => {
     await publish(opts());
     const m = manifest();

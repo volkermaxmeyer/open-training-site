@@ -5,6 +5,7 @@ import { join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { PublishError } from "./lib/errors";
 import { parseSession, type Goals } from "./lib/parse-session";
+import { renamedSlugs } from "./lib/renamed";
 import { splitFrontmatter } from "./lib/text";
 import { runGuard } from "./guard";
 import { CHANGELOG_FILE, VERSION_FILE, release } from "./lib/version";
@@ -32,6 +33,31 @@ function readManifest(path: string): Manifest {
   if (!existsSync(path)) return { files: {}, slugsEverPublished: [] };
   const m = JSON.parse(readFileSync(path, "utf8"));
   return { files: m.files ?? {}, slugsEverPublished: m.slugsEverPublished ?? [] };
+}
+
+/**
+ * The Overview (src/data/overview.json) is a hand-kept snapshot. Compare the three totals that can be read reliably from
+ * the vault and say which ones moved: live drills (status not archived), drills tested on court (tested + favorite,
+ * as system/feedback-loop.md counts "drills that held up") and themes (weekly_themes in the schema block). Cues and
+ * plans are prose lines and are left out on purpose. No overview file, no comparison (data architecture review 2026-11-07).
+ */
+export function overviewDrift(repoRoot: string, vaultDir: string, drills: Map<string, string>): string[] {
+  const file = join(repoRoot, "src/data/overview.json");
+  if (!existsSync(file)) return [];
+  const totals: Record<string, number> = JSON.parse(readFileSync(file, "utf8")).totals ?? {};
+  const status = [...drills].filter(([name]) => /^\d+-/.test(name)).map(([, text]) => String(splitFrontmatter(text)?.fm.status ?? ""));
+  const vault: Record<string, number | undefined> = {
+    drills: status.filter((s) => s !== "archived").length,
+    tested: status.filter((s) => s === "tested" || s === "favorite").length,
+  };
+  const schema = join(vaultDir, "system/datenmodell.md");
+  const block = existsSync(schema) ? readFileSync(schema, "utf8").match(/```json schema\n([\s\S]*?)\n```/) : null;
+  const themes = block ? JSON.parse(block[1]).weekly_themes : undefined;
+  if (Array.isArray(themes)) vault.themes = themes.length;
+  const label: Record<string, string> = { drills: "drills", tested: "drills tested on court", themes: "themes" };
+  return Object.entries(vault)
+    .filter(([k, v]) => v !== undefined && totals[k] !== undefined && totals[k] !== v)
+    .map(([k, v]) => `Overview says ${totals[k]} ${label[k]}, the vault has ${v}: refresh src/data/overview.json (vault dashboard/README.md, Updating)`);
 }
 
 /** player_goals from the vault's schema block (system/datenmodell.md); empty when the vault has none. */
@@ -110,9 +136,13 @@ export async function publish(opts: PublishOptions): Promise<PublishResult> {
   const removed = Object.keys(prev.files).filter((k) => !(k in files));
 
   const slugs = [...outputs.keys()];
+  // A renamed session redirects (vercel.json), so its old URL does not 404: only warn when nothing catches it.
+  const renamed = renamedSlugs(repoRoot);
   for (const s of prev.slugsEverPublished) {
-    if (!outputs.has(s)) warnings.push(`previously published slug "${s}" is no longer published; its URL will 404`);
+    if (!outputs.has(s) && !(renamed[s] && outputs.has(renamed[s])))
+      warnings.push(`previously published slug "${s}" is no longer published; its URL will 404`);
   }
+  warnings.push(...overviewDrift(repoRoot, opts.vaultDir, drills));
   const everPublished = [...new Set([...prev.slugsEverPublished, ...slugs])];
 
   if (!opts.dryRun) {
