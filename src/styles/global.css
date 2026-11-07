@@ -4,6 +4,9 @@
 @import "@fontsource/crimson-text/latin-700.css";
 
 html { font-size: 112.5%; }
+/* Where scrollbars take space (a desktop with a mouse), keep room for one on every page, so short pages don't sit 7 px
+   off from long ones and the footer links stay in place (2026-11-07). Overlay scrollbars (phones, iPad) are unaffected. */
+html { scrollbar-gutter: stable; }
 
 /* Values derived from Astryx's Y2K theme (MIT, Meta). Roles and rules: DESIGN.md. */
 @theme {
