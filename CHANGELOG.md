@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.024 · 2026-11-07 · Breadcrumbs on session, shot and drill pages (Goals › goal, Shots › shot › variant) instead of the back link and the label above the title.
 - 1.023 · 2026-11-07 · Drill pages: the address to copy under Wish for a drill? Mail me, for devices without a mail app.
 - 1.022 · 2026-11-07 · Drill pages end with a closing row like sessions: a wish mail (Wish for a drill? Mail me) and the session for points.
 - 1.021 · 2026-11-07 · Drill pages published or updated: 02, 03, 04, 05, 106.
