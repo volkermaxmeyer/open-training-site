@@ -3,8 +3,8 @@ export const site = {
   tallyFormUrl: process.env.TALLY_FORM_URL ?? "https://tally.so/r/rD5DBL",
   contactEmail: "pickleballinberlin@gmail.com",
   imprint: {
-    name: "BTV Olympia e.V., Abt. Pickleball",
-    address: ["Paul-Heyse-Str. 25", "10407 Berlin, Germany"],
+    name: "Volker Max Meyer",
+    address: ["c/o BTV Olympia e.V., Abt. Pickleball", "Paul-Heyse-Str. 25", "10407 Berlin, Germany"],
   },
   goalQuestion: "What do you want to get better at today?",
   fourOnCourt: {
