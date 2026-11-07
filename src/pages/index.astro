@@ -18,16 +18,16 @@ const sharedBase = bases.size === 1 ? [...bases][0] : undefined;
 ---
 
 <Base wide title={site.name} description="Good training, no coach. Pick what you want to get better at, and follow three drills on your phone.">
-  <p class="mt-2 font-head text-[14px] font-semibold tracking-[0.08em] uppercase">Good training, no coach</p>
   <HomeTabs active="goals" />
-  <h1 class="mt-5 font-display text-[44px] leading-none font-bold tracking-[-0.02em] text-balance tablet:text-[60px]">{site.goalQuestion}</h1>
+  <h1 class="mt-7 font-display text-[44px] leading-none font-bold tracking-[-0.02em] text-balance tablet:text-[60px]">{site.goalQuestion}</h1>
   {sessions.length === 0 ? (
     <p class="mt-8 border-2 border-dashed border-ink bg-card p-4">
       No sessions yet. Check back soon.
     </p>
   ) : (
     <>
-    {sharedBase && <p data-shared-base class="mt-4 flex flex-wrap items-center gap-2">Every session works with <Chip tone="people" icon>{sharedBase}</Chip></p>}
+    {/* One line instead of two (Volker 2026-11-07): what a session is, and the group size every session works with. */}
+    <p data-tab-line class="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[17px]">One goal, three drills, 30 minutes{sharedBase ? <>, for <Chip data-shared-base tone="people" icon>{sharedBase}</Chip></> : "."}</p>
     <ul class="mt-7 space-y-4 tablet:grid tablet:grid-cols-2 tablet:gap-5 tablet:space-y-0 lg:grid-cols-3">
       {[...withGoal, ...others].map((data) => (
         <li>

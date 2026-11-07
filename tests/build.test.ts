@@ -48,9 +48,9 @@ describe("shots area (2026-11-07)", () => {
     expect(index).toMatch(/href="\/shots\/"[^>]*data-tab="shots"/);
     expect(index).not.toContain("data-shot-tile");
     expect(html("shots/index.html")).toMatch(/data-tab="shots"[^>]*aria-current="page"/);
-    expect(text(index)).toContain("One goal, three drills, 30 minutes.");
-    expect(text(html("shots/index.html"))).toContain("One shot, from calm to full pace.");
-    expect(html("shots/index.html")).toMatch(/data-shared-base[^>]*>Every drill works with <span[\s\S]*?2\+ players<\/span>/);
+    expect(text(index)).toContain("One goal, three drills, 30 minutes, for Wall"); // the fixtures start with a wall
+    expect(text(html("shots/index.html"))).toContain("One shot, from calm to full pace, for 2+ players");
+    expect(index).not.toContain("Good training, no coach</p>"); // the kicker went (Volker 2026-11-07, R2)
   });
 
   it("Shots tab shows a tile per shot, Coming soon when nothing is released", () => {
@@ -95,7 +95,7 @@ describe("built site", () => {
     expect(index).not.toContain("data-chip-minutes"); // every session is 30 min, so the chip said nothing (2026-11-04)
     // both fixtures start with a wall, so that is said once above the list, not on each card (design critique 2026-11-07)
     expect(index).not.toContain("data-chip-base");
-    expect(index).toMatch(/data-shared-base[^>]*>Every session works with <span[\s\S]*?Wall<\/span>/);
+    expect(index).toMatch(/<span[^>]*data-shared-base[^>]*>[\s\S]*?Wall<\/span>/);
     expect(chip(index, "data-chip-extra")).toEqual(expect.arrayContaining(["Drill 2 needs 2", "Drill 3 needs 4"]));
   });
 

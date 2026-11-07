@@ -1,26 +1,25 @@
 ---
-// Two tabs at the top of the start page (Shots area prototype, Volker 2026-11-07, variant G): a slim pill, then one
-// short line saying what the tab offers. Two plain pages with the same bar, so no JavaScript and each tab has its own
-// address. The page's big question follows below.
+// Two tabs at the top of the start page (Shots area prototype, Volker 2026-11-07, variant "R2 wide"): a slim pill, the
+// first thing on the page. Full width on the phone, 360 px from tablet width. Two plain pages with the same bar, so no
+// JavaScript and each tab has its own address. The page's big question and its one-line hint follow below.
 interface Props {
   active: "goals" | "shots";
 }
 const { active } = Astro.props;
 const tabs = [
-  { id: "goals", label: "Goals", href: "/", line: "One goal, three drills, 30 minutes." },
-  { id: "shots", label: "Shots", href: "/shots/", line: "One shot, from calm to full pace." },
+  { id: "goals", label: "Goals", href: "/" },
+  { id: "shots", label: "Shots", href: "/shots/" },
 ] as const;
-const current = tabs.find((t) => t.id === active)!;
 ---
 
-<nav aria-label="Start" data-home-tabs class="mt-4 grid max-w-sm grid-cols-2 rounded-full border-2 border-ink bg-card p-[3px]">
+<nav aria-label="Start" data-home-tabs class="mt-3 grid w-full grid-cols-2 rounded-full border-2 border-ink bg-card p-1 shadow-[5px_5px_0_var(--color-ink)] tablet:w-[360px]">
   {tabs.map((t) => (
     <a
       href={t.href}
       data-tab={t.id}
       aria-current={active === t.id ? "page" : undefined}
       class:list={[
-        "flex min-h-12 items-center justify-center rounded-full font-head text-[17px] font-bold",
+        "flex min-h-13 items-center justify-center rounded-full font-head text-[19px] font-bold",
         active === t.id ? "bg-ink text-on-ink" : "text-ink [@media(hover:hover)]:hover:bg-chip",
       ]}
     >
@@ -28,4 +27,3 @@ const current = tabs.find((t) => t.id === active)!;
     </a>
   ))}
 </nav>
-<p data-tab-line class="mt-2.5 text-[17px] leading-snug">{current.line}</p>

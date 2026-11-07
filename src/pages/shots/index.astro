@@ -19,10 +19,9 @@ const minPlayers = counts.length ? Math.min(...counts) : undefined;
 ---
 
 <Base wide title={`Shots | ${site.name}`} description="Practise one shot at a time: drills that repeat a single shot, from calm to full pace.">
-  <p class="mt-2 font-head text-[14px] font-semibold tracking-[0.08em] uppercase">Good training, no coach</p>
   <HomeTabs active="shots" />
-  <h1 class="mt-5 font-display text-[44px] leading-none font-bold tracking-[-0.02em] text-balance tablet:text-[60px]">Which shot do you want to practise?</h1>
-  {minPlayers && <p data-shared-base class="mt-4 flex flex-wrap items-center gap-2">Every drill works with <Chip tone="people" icon>{minPlayers}+ players</Chip></p>}
+  <h1 class="mt-7 font-display text-[44px] leading-none font-bold tracking-[-0.02em] text-balance tablet:text-[60px]">Which shot do you want to practise?</h1>
+  <p data-tab-line class="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[17px]">One shot, from calm to full pace{minPlayers ? <>, for <Chip data-shared-base tone="people" icon>{minPlayers}+ players</Chip></> : "."}</p>
   <section data-shots>
     <ul class="mt-7 grid grid-cols-2 gap-3.5 tablet:grid-cols-3 tablet:gap-5 lg:grid-cols-4">
       {tiles.map((t) => (
