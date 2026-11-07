@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-05",
+ "as_of": "2026-11-08",
  "totals": {
   "drills": 117,
   "tested": 11,
@@ -127,9 +127,9 @@
   },
   {
    "name": "Volley",
-   "drills": 21,
-   "cues": 9,
-   "plays": 1,
+   "drills": 23,
+   "cues": 15,
+   "plays": 3,
    "examples": [
     {
      "n": "14",
@@ -226,6 +226,28 @@
       {
        "n": "16",
        "title": "Shake & Bake with Poach Timing",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Erne",
+     "drills": 2,
+     "examples": [
+      {
+       "n": "68",
+       "title": "Ernie Anticipation Drill",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Switcheroo",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "119",
+       "title": "Switcheroo — Off-Hand Deception Progression",
        "tested": false
       }
      ]
@@ -358,9 +380,9 @@
   },
   {
    "name": "Drive",
-   "drills": 11,
-   "cues": 24,
-   "plays": 8,
+   "drills": 12,
+   "cues": 30,
+   "plays": 9,
    "examples": [
     {
      "n": "11",
@@ -373,23 +395,12 @@
      "tested": false
     },
     {
-     "n": "17",
-     "title": "Hybrid-Drive Drill with Cone Targets",
+     "n": "48",
+     "title": "Lefty-Forehand Isolation",
      "tested": false
     }
    ],
    "variants": [
-    {
-     "name": "Hybrid drive",
-     "drills": 1,
-     "examples": [
-      {
-       "n": "17",
-       "title": "Hybrid-Drive Drill with Cone Targets",
-       "tested": false
-      }
-     ]
-    },
     {
      "name": "Topspin drive",
      "drills": 1,
@@ -408,6 +419,17 @@
       {
        "n": "101",
        "title": "First Four Shots — Down-the-Line Drive Chain (Worst-Case Reps)",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "ATP (around the post)",
+     "drills": 2,
+     "examples": [
+      {
+       "n": "102",
+       "title": "ATP Pull-and-Defend (Advanced)",
        "tested": false
       }
      ]
@@ -484,78 +506,9 @@
    ]
   },
   {
-   "name": "Specialty shots",
-   "drills": 6,
-   "cues": 8,
-   "plays": 2,
-   "examples": [
-    {
-     "n": "68",
-     "title": "Ernie Anticipation Drill",
-     "tested": false
-    },
-    {
-     "n": "102",
-     "title": "ATP Pull-and-Defend (Advanced)",
-     "tested": false
-    },
-    {
-     "n": "103",
-     "title": "Ernie Live-Point Game",
-     "tested": false
-    }
-   ],
-   "variants": [
-    {
-     "name": "Erne",
-     "drills": 2,
-     "examples": [
-      {
-       "n": "68",
-       "title": "Ernie Anticipation Drill",
-       "tested": false
-      }
-     ]
-    },
-    {
-     "name": "ATP (around the post)",
-     "drills": 2,
-     "examples": [
-      {
-       "n": "102",
-       "title": "ATP Pull-and-Defend (Advanced)",
-       "tested": false
-      }
-     ]
-    },
-    {
-     "name": "Tweener",
-     "drills": 1,
-     "examples": [
-      {
-       "n": "104",
-       "title": "Tweener Forced-Return Live Point",
-       "tested": false
-      }
-     ]
-    },
-    {
-     "name": "Switcheroo",
-     "drills": 1,
-     "examples": [
-      {
-       "n": "119",
-       "title": "Switcheroo — Off-Hand Deception Progression",
-       "tested": false
-      }
-     ]
-    }
-   ]
-  },
-  {
    "name": "Lob",
-   "drills": 3,
-   "cues": 9,
+   "drills": 4,
+   "cues": 13,
    "plays": 2,
    "examples": [
     {
@@ -601,6 +554,17 @@
        "tested": false
       }
      ]
+    },
+    {
+     "name": "Tweener",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "104",
+       "title": "Tweener Forced-Return Live Point",
+       "tested": false
+      }
+     ]
     }
    ]
   },
@@ -625,7 +589,7 @@
   },
   {
    "name": "Drip",
-   "drills": 1,
+   "drills": 2,
    "cues": 3,
    "plays": 2,
    "examples": [
@@ -633,9 +597,26 @@
      "n": "115",
      "title": "Third-Shot Drip (Reps → Steal Time → Mix & Drip)",
      "tested": false
+    },
+    {
+     "n": "17",
+     "title": "Hybrid-Drive Drill with Cone Targets",
+     "tested": false
     }
    ],
-   "variants": []
+   "variants": [
+    {
+     "name": "Hybrid drive",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "17",
+       "title": "Hybrid-Drive Drill with Cone Targets",
+       "tested": false
+      }
+     ]
+    }
+   ]
   }
  ],
  "serve_return": [
@@ -751,7 +732,6 @@
    "Speed-up",
    "Drive",
    "Counter & block",
-   "Specialty shots",
    "Lob",
    "Overhead",
    "Drip"
@@ -776,7 +756,7 @@
     1,
     4,
     7,
-    8
+    10
    ],
    [
     0,
@@ -801,10 +781,10 @@
    ],
    [
     2,
-    8,
+    7,
     2,
     0,
-    0
+    2
    ],
    [
     1,
@@ -812,13 +792,6 @@
     2,
     1,
     7
-   ],
-   [
-    0,
-    0,
-    0,
-    0,
-    5
    ],
    [
     0,
@@ -836,7 +809,7 @@
    ],
    [
     0,
-    1,
+    2,
     0,
     0,
     0

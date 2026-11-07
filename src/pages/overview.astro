@@ -4,7 +4,7 @@
 // snapshot, its date shown on the page); the script below only switches tabs and filters games. Without JavaScript all
 // four panels show one under the other and the tab links jump to them.
 import Base from "../layouts/Base.astro";
-import BackLink from "../components/BackLink.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 import { site } from "../site.config";
 import D from "../data/overview.json";
 import { getCollection } from "astro:content";
@@ -49,11 +49,11 @@ const startTag = (g: Game) => (/\bserve\b/.test(g.start) ? "serve" : /\b(feed|fe
 ---
 
 <Base wide title={`Training System Overview | ${site.name}`} description="What the Pickleball Training System contains: shots, when in the point they come up, combos and games.">
-  <BackLink />
+  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Overview" }]} />
   <div class="ov">
     <header class="head">
-      <span class="eyebrow">Pickleball Training System · what's inside · as of <span data-as-of>{asOf}</span></span>
       <h1>Training System Overview</h1>
+      <p class="intro">Everything inside the Pickleball Training System, as of <span data-as-of>{asOf}</span>.</p>
       <div class="tiles">
         {tiles.map(([c, n, l, d, x]) => (
           <div class={`tile ${c}`} data-tile={l}><b>{n}</b><span>{l}</span><small>{d}</small>{x && <small class="x">{x}</small>}</div>
@@ -186,7 +186,7 @@ const startTag = (g: Game) => (/\bserve\b/.test(g.start) ? "serve" : /\b(feed|fe
   .ov h3 { font: 700 17px/1.25 var(--font-head); }
   .ov p { margin: 0; }
   .head { display: grid; gap: 12px; }
-  .eyebrow { font: 600 14px/1.2 var(--font-head); letter-spacing: .08em; text-transform: uppercase; color: var(--color-ink); }
+  .intro { font-size: 17px; max-width: 60ch; }
   .muted { color: var(--color-ink-soft); }
   .small { font-size: 14px; }
   .tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }

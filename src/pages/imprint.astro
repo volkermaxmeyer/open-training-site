@@ -1,12 +1,12 @@
 ---
 import Base from "../layouts/Base.astro";
 import { site } from "../site.config";
-import BackLink from "../components/BackLink.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 import { version } from "../version.json";
 ---
 
 <Base title={`Imprint | ${site.name}`} noindex>
-  <BackLink />
+  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Imprint" }]} />
   <h1 class="mt-1 font-display text-[44px] leading-none font-bold">Imprint</h1>
   <p class="mt-4">{site.imprint.name}{site.imprint.address.map((line) => <><br />{line}</>)}</p>
   <p class="mt-2">Contact: {site.contactEmail}</p>

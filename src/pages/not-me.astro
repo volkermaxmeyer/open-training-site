@@ -1,11 +1,11 @@
 ---
 import Base from "../layouts/Base.astro";
 import { site } from "../site.config";
-import BackLink from "../components/BackLink.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 ---
 
 <Base title={`Not me | ${site.name}`} noindex>
-  <BackLink />
+  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Not me" }]} />
   <h1 class="mt-1 font-display text-[44px] leading-none font-bold">Not me</h1>
   <p class="mt-4">
     For the people who run this site: the button stops visits from this browser being counted in the visitor statistics.

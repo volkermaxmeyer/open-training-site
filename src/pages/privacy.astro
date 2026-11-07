@@ -1,11 +1,11 @@
 ---
 import Base from "../layouts/Base.astro";
 import { site } from "../site.config";
-import BackLink from "../components/BackLink.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 ---
 
 <Base title={`Privacy | ${site.name}`} >
-  <BackLink />
+  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Privacy" }]} />
   <h1 class="mt-1 font-display text-[44px] leading-none font-bold">Privacy</h1>
 
   <h2 class="mt-6 font-head text-xl font-bold text-balance">Who is responsible</h2>

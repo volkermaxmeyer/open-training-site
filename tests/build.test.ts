@@ -209,18 +209,31 @@ describe("built site", () => {
     expect(page).toContain('<meta name="description" content="Keep a soft rally going for ten shots in a row.">');
     expect(page.replace(/<head>[\s\S]*<\/head>/, "")).not.toContain("Keep a soft rally going");
     for (const f of ["index.html", "s/warm-hands/index.html", "imprint/index.html"]) expect(html(f)).not.toContain("<header");
-    for (const f of ["imprint/index.html", "privacy/index.html"]) expect(html(f)).toContain('href="/" data-back');
+    // footer pages: "Home › <page>" breadcrumbs instead of "← All goals", right for visitors from Goals and Shots (Volker 2026-11-08, variant 2)
+    for (const [f, t] of [["imprint/index.html", "Imprint"], ["privacy/index.html", "Privacy"], ["about/index.html", "About"], ["overview/index.html", "Overview"], ["not-me/index.html", "Not me"]]) {
+      expect(crumbText(html(f))).toBe(`Home › ${t}`);
+      expect(html(f)).not.toContain("data-back");
+      expect(html(f)).not.toContain("All goals");
+    }
   });
 
   it("footer starts with About; the about page explains the project", () => {
     expect(html("index.html")).toMatch(/<footer[\s\S]*?href="\/about\/"[\s\S]*?href="\/imprint\/"[\s\S]*?href="\/privacy\/"/);
     const about = html("about/index.html");
     for (const t of ["more than 200 reviewed YouTube videos", "Made with AI, checked by a player", "non-commercial", "bring pickleball to the people"]) expect(about).toContain(t);
-    expect(about).toContain('href="/" data-back');
+    expect(about).toMatch(/href="\/"[^>]*>Home<\/a>/);
   });
 
   it("overview (2026-11-07): footer order, the About link, and the page rendered from its data at build time", () => {
     const D = JSON.parse(readFileSync(join(root, "src/data/overview.json"), "utf8"));
+    // special shots dissolved, hybrid drive under Drip (Volker 2026-11-07, Overview refreshed 2026-11-08)
+    expect(D.shots.map((s: { name: string }) => s.name)).not.toContain("Specialty shots");
+    expect(D.matrix.rows).toEqual(D.shots.map((s: { name: string }) => s.name));
+    const variantsOf = (n: string) => D.shots.find((s: { name: string }) => s.name === n).variants.map((v: { name: string }) => v.name);
+    expect(variantsOf("Drip")).toContain("Hybrid drive");
+    expect(variantsOf("Volley")).toEqual(expect.arrayContaining(["Erne", "Switcheroo"]));
+    expect(variantsOf("Drive")).toContain("ATP (around the post)");
+    expect(variantsOf("Lob")).toContain("Tweener");
     for (const f of ["index.html", "about/index.html", "overview/index.html", "s/warm-hands/index.html"]) {
       const footer = html(f).match(/<footer[\s\S]*?<\/footer>/)![0];
       expect([...footer.matchAll(/href="([^"]+)"/g)].map((m) => m[1])).toEqual(["/about/", "/overview/", "/imprint/", "/privacy/"]);

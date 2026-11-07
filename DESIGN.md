@@ -94,7 +94,7 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
   chevron on the right, and chips under the label: the minimum ("2+ players" or "Wall") and one warn chip per drill that
   needs more ("Drill 3 needs 4"). No duration chip: every session is 30 min. All cards share one height (room for a
   two-line label and one chip row), content centred, so the list reads as an even grid. No site-name header on any page: the start page is the question, and every
-  other page has "← All goals".
+  other page starts with breadcrumbs.
 
 ## Don't
 
@@ -140,7 +140,7 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
     gone.
   - One focus ring everywhere: 3 px ink, 3 px offset. Text selection uses the Stage-3 yellow.
   - Card-style links shift on hover for mouse users, as they do on tap.
-  - Footer and back links share the same underline offset. "← All goals" is one component.
+  - Footer and back links share the same underline offset. The breadcrumbs are one component.
   - The watch link tells screen readers it opens YouTube.
   - The footer shows no version number (check-deploy reads `version.txt`). Since 2026-11-04 it reads About · Imprint ·
     Privacy, see below. The kicker
@@ -177,4 +177,4 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 - **Drill page** `/drill/<number>/`: the player card drawn like a stage card (`DrillCard.astro`): the number block shows the drill number on `--color-stage-1`, no minutes chip (not part of a timed session), then "Ready for points?" to a session. The in-card video player is shared with session pages (`VideoPlayerScript.astro`).
 - **A drill without an end time** (session stage or drill page, 2026-11-07): the plain YouTube link is drawn in the same 16:9 ink block as the in-card player (circle icon, "Watch the drill", channel and time), so the card never shows a gap under a short bar.
 - **Drill page closing row** (Volker 2026-11-07): like a session page, three equal fields from lg: the ball with "Good reps. Swap roles and go again.", a green box "Wish for a drill? Mail me" (a mail to the project address with a subject naming the drill; no feedback form on drill pages, no address on the button; under it a small line "or write to …" with the address to copy, because a mail link does nothing where no mail app is set up), and "Ready for points?" to a session. On lg the green box breaks after the question mark.
-- **Breadcrumbs** (`Breadcrumbs.astro`, Volker 2026-11-07, style 1 of three previews): on session, shot and drill pages one line in the label type (14 px, uppercase, letter-spaced) replaces the old back link and the label above the title: "Goals › <goal>", "Shots › <shot>", "Shots › <shot> › <variant>". Links underlined and at least 44 px high, the last level plain; the separator ends a line, so a wrapped line starts with a level. The page title is not repeated in the crumbs. About, Imprint, Privacy and the Overview keep "← All goals".
+- **Breadcrumbs** (`Breadcrumbs.astro`, Volker 2026-11-07, style 1 of three previews): on session, shot and drill pages one line in the label type (14 px, uppercase, letter-spaced) replaces the old back link and the label above the title: "Goals › <goal>", "Shots › <shot>", "Shots › <shot> › <variant>". Links underlined and at least 44 px high, the last level plain; the separator ends a line, so a wrapped line starts with a level. The page title is not repeated in the crumbs. The footer pages (About, Overview, Imprint, Privacy, Not me) show "Home › <page>" (Volker 2026-11-08, variant 2 of three previews): "← All goals" was wrong for visitors from Shots. Here the page name is the last crumb, because "Home" alone would not read as a path. "Home" leads to the start page, which opens on Goals.

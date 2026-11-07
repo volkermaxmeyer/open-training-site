@@ -1,11 +1,11 @@
 ---
 import Base from "../layouts/Base.astro";
 import { site } from "../site.config";
-import BackLink from "../components/BackLink.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 ---
 
 <Base title={`About | ${site.name}`}>
-  <BackLink />
+  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About" }]} />
   <h1 class="mt-1 font-display text-[44px] leading-none font-bold">About</h1>
   <p class="mt-4">
     Open Training gives you a ready-made 30-minute session for the court, with no coach needed. Pick what you want to get
