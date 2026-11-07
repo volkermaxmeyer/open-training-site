@@ -110,6 +110,11 @@ describe("built site", () => {
     expect(chip(page, "data-players-summary")[0]).toBe("Wall · Drill 2 needs 2 · Drill 3 needs 4");
   });
 
+  it("session page names the home page goal above its title", () => {
+    const page = html("s/warm-hands/index.html");
+    expect(page).toMatch(/data-goal-label[^>]*>Hit soft balls<\/p>\s*<h1/);
+  });
+
   it("four-on-court warning appears exactly once per session page, before the first stage", () => {
     for (const s of ["warm-hands", "steady-lobs"]) {
       const page = html(`s/${s}/index.html`);

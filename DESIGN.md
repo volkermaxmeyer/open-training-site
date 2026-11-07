@@ -57,7 +57,9 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 - **Body:** the system font (`--font-sans`). Chosen over Poppins on a phone: Poppins is wide and the rules are long;
   the narrower system font shortens each card and leaves room for clearer gaps between rules.
 - **Sizes:** base 18 px · stage title 26 px · session title 44 px · stage number 64 px · labels 14 px uppercase,
-  letter-spaced.
+  letter-spaced. Above the session title, the home page goal as such a label (2026-11-07), so the two names read as one.
+- **Overview** (`/overview/`, a dense page for iPad and desktop): nothing below 14 px; from tablet width 18 px base and
+  16 px for running text, uppercase labels stay 14 px. Drill names are plain lines; only links carry border and shadow.
 
 ## Shapes
 
