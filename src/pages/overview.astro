@@ -8,18 +8,15 @@ import BackLink from "../components/BackLink.astro";
 import { site } from "../site.config";
 import D from "../data/overview.json";
 import { getCollection } from "astro:content";
+import { sessionsByDrill, sessionsOfDrills } from "../lib/sessions";
 
 type Example = { n: string; title: string; tested: boolean };
 type Shot = { name: string; drills: number; cues?: number; plays?: number; examples: Example[]; variants: { name: string; drills: number }[] };
 
-// Drills that are a stage of a ready-made session link there (2026-11-07). Matched by drill number.
-const inSession = new Map<number, { slug: string; title: string; stage: number }>();
-for (const s of await getCollection("sessions")) s.data.stages.forEach((st, i) => inSession.set(Number(st.drill.id), { slug: s.data.slug, title: s.data.title, stage: i + 1 }));
-const sessionsOf = (ns: string[]) => {
-  const by = new Map<string, { title: string; ns: string[] }>();
-  for (const n of ns) { const w = inSession.get(Number(n)); if (w) (by.get(w.slug) ?? by.set(w.slug, { title: w.title, ns: [] }).get(w.slug)!).ns.push(n); }
-  return [...by].map(([slug, v]) => ({ slug, ...v }));
-};
+// Drills that are a stage of a ready-made session link there (2026-11-07). Matched by drill number; a drill can sit in
+// several sessions (data architecture review 2026-11-07), so each one gets its own row.
+const bySession = sessionsByDrill((await getCollection("sessions")).map((s) => s.data));
+const sessionsOf = (ns: string[]) => sessionsOfDrills(bySession, ns);
 // The vault says "Specialty shots"; the home page goal says "Special shots". Show the home page's word here too.
 const shotName = (n: string) => (n === "Specialty shots" ? "Special shots" : n);
 const num = (n: number, w: string) => `${n} ${w}${n === 1 ? "" : "s"}`;
@@ -145,7 +142,7 @@ const startTag = (g: Game) => (/\bserve\b/.test(g.start) ? "serve" : /\b(feed|fe
               <h3>{g.title} <span class="muted small">#{g.n}</span>{g.tested && <span class="ok">tested</span>}</h3>
               <span class="pl">{g.players} players</span>
               <div class="meta"><span class={`tag ${startTag(g)}`}>{g.start}</span><span class="tag">{g.scoring}</span><span class="tag">{g.court}</span></div>
-              {inSession.has(Number(g.n)) && (() => { const w = inSession.get(Number(g.n))!; return <a class="inses" href={`/s/${w.slug}/#stage-${w.stage}`}><span>In session: <b>{w.title}</b>, drill&nbsp;{w.stage}&nbsp;<span aria-hidden="true">→</span></span></a>; })()}
+              {(bySession.get(Number(g.n)) ?? []).map((w) => <a class="inses" href={`/s/${w.slug}/#stage-${w.stage}`}><span>In session: <b>{w.title}</b>, drill&nbsp;{w.stage}&nbsp;<span aria-hidden="true">→</span></span></a>)}
             </div>
           ))}
         </div>

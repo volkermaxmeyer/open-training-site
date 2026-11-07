@@ -1,6 +1,8 @@
 #!/bin/sh
-# Blocks the push if the leak guard finds private text in the commits being pushed.
+# Blocks the push if a test fails or the leak guard finds private text in the commits being pushed.
 # Git feeds "<local ref> <local sha> <remote ref> <remote sha>" lines on stdin.
 # Enable once per clone:  git config core.hooksPath .githooks
 command -v fnm >/dev/null && eval "$(fnm env)" && fnm use 24 >/dev/null 2>&1
+# The test suite runs first, so a push with red tests never reaches Vercel (data architecture review 2026-11-07).
+npm test --silent </dev/null || { echo "pre-push: tests failed, push blocked" >&2; exit 1; }
 exec npm run guard --silent -- --push

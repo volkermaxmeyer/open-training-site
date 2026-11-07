@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import Chip from "../components/Chip.astro";
 import { playersFitParts, site } from "../site.config";
+import { cardText } from "../lib/sessions";
 
 const sessions = (await getCollection("sessions")).map((s) => s.data);
 const withGoal = sessions
@@ -30,7 +31,8 @@ const sharedBase = bases.size === 1 ? [...bases][0] : undefined;
         <li>
           <a data-goal={data.goal?.id} href={`/s/${data.slug}/`} class="flex tablet:h-full min-h-[6.875rem] max-[359px]:min-h-[8.75rem] items-center gap-3 border-2 border-ink bg-card px-4 py-3 shadow-[6px_6px_0_var(--color-ink)] active:translate-x-1 active:translate-y-1 active:shadow-none [@media(hover:hover)]:hover:translate-x-0.5 [@media(hover:hover)]:hover:translate-y-0.5 [@media(hover:hover)]:hover:shadow-[3px_3px_0_var(--color-ink)]">
             <span class="flex min-w-0 flex-1 flex-col gap-2">
-              <span class="block font-head text-[22px] leading-tight font-bold">{data.goal?.label ?? data.title}</span>
+              <span class="block font-head text-[22px] leading-tight font-bold">{cardText(data, sessions).title}</span>
+              {cardText(data, sessions).session && <span data-card-session class="block font-head text-[16px] leading-tight font-semibold">{cardText(data, sessions).session}</span>}
               {(!sharedBase || playersFitParts(data.stages.map((s) => s.drill.players)).extras.length > 0) && <span data-fit class="flex flex-wrap gap-1.5">
                 {!sharedBase && <Chip data-chip-base tone="people" icon>{playersFitParts(data.stages.map((s) => s.drill.players)).base}</Chip>}
                 {playersFitParts(data.stages.map((s) => s.drill.players)).extras.map((extra) => (

@@ -141,7 +141,7 @@ export function commitContent(repoDir: string, message: string, check: () => boo
   run("add", "src/content");
   if (!check()) {
     run("reset", "-q", "--", "src/content");
-    throw new Error("guard failed, nothing committed");
+    throw new Error("guard or tests failed, nothing committed");
   }
   if (spawnSync("git", ["diff", "--cached", "--quiet", "--", "src/content"], { cwd: repoDir }).status === 0) return false;
   // Every publication is a new site version, one above what is live.
@@ -200,7 +200,12 @@ async function main(): Promise<number> {
   const guardOk = () => {
     const guard = runGuard(repoRoot);
     for (const f of guard.findings) console.error(`${f.file}:${f.line} ${f.rule}`);
-    return guard.ok;
+    if (!guard.ok) return false;
+    // The tests check the new content too (e.g. the Overview's session count); a red run stops the release
+    // before anything is committed (data architecture review 2026-11-07).
+    const tests = spawnSync("npm", ["test", "--silent"], { cwd: repoRoot, stdio: "inherit" });
+    if (tests.status !== 0) console.error("tests failed: fix them, then run publish:site again");
+    return tests.status === 0;
   };
   try {
     const slugOf = (f: string) => f.replace(/^.*\//, "").replace(/\.json$/, "");

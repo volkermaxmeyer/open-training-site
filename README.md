@@ -39,7 +39,7 @@ In November 2026 the base held 120 drills distilled from 205 reviewed videos, al
 
 Claude Code wrote most of the code and much of the content. I set the goal, the rules and the priorities, and I approve or reject the work at fixed points. The checks themselves run by machine:
 
-- 133 tests, among them a contrast test that fails below 7:1 and a test that keeps `DESIGN.md` and the CSS tokens in sync.
+- 144 tests, among them a contrast test that fails below 7:1 and a test that keeps `DESIGN.md` and the CSS tokens in sync. They run before every publish commit and every push; red tests stop the release.
 - A leak guard on every commit and push, so private notes and paths never reach this public repository (see below).
 - A canary script that confirms feedback rows actually arrive in the sheet.
 - A version number and a changelog line for every push, and a script that waits until Vercel serves the pushed commit.
@@ -82,7 +82,7 @@ private notes ──publish script──▶ src/content/sessions/*.json ──gi
 
 ```sh
 npm run publish:site -- --dry-run   # show what would change
-npm run publish:site                # validate, write JSON, guard, commit, push
+npm run publish:site                # validate, write JSON, guard, tests, commit, push
 npx tsx scripts/check-deploy.ts     # wait until Vercel serves the new commit
 ```
 
