@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.021 · 2026-11-07 · Drill pages published or updated: 02, 03, 04, 05, 106.
 - 1.020 · 2026-11-07 · Drill pages published or updated: 00, 02, 03, 04, 05, 08, 106, 17, 18, 22, 31, 36, 64, 80, 97.
 - 1.019 · 2026-11-07 · Release checks: publish:site warns when the Overview's totals are stale, and no longer warns about renamed sessions that redirect. No visible change on the site.
 - 1.018 · 2026-11-07 · Publishing stops when two drill files share a number.
