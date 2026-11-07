@@ -49,7 +49,9 @@ describe("built site", () => {
     expect(index).toContain('href="/s/warm-hands/"');
     // second line = chips: duration, who the session fits, and which drill needs more (design critique 2026-11-04)
     expect(index).not.toContain("data-chip-minutes"); // every session is 30 min, so the chip said nothing (2026-11-04)
-    expect(chip(index, "data-chip-base")).toContain("Wall");
+    // both fixtures start with a wall, so that is said once above the list, not on each card (design critique 2026-11-07)
+    expect(index).not.toContain("data-chip-base");
+    expect(index).toMatch(/data-shared-base[^>]*>Every session works with <span[\s\S]*?Wall<\/span>/);
     expect(chip(index, "data-chip-extra")).toEqual(expect.arrayContaining(["Drill 2 needs 2", "Drill 3 needs 4"]));
   });
 

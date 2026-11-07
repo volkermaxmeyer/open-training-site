@@ -9,6 +9,10 @@ const withGoal = sessions
   .filter((s) => s.goal)
   .sort((a, b) => a.goal!.order - b.goal!.order || a.title.localeCompare(b.title));
 const others = sessions.filter((s) => !s.goal).sort((a, b) => a.title.localeCompare(b.title));
+// When every session starts with the same player count, its chip said the same thing on every card: say it once above
+// the list instead (design critique 2026-11-07, like the minutes chip on 2026-11-04). The warn chips stay on the cards.
+const bases = new Set(sessions.map((s) => playersFitParts(s.stages.map((st) => st.drill.players)).base));
+const sharedBase = bases.size === 1 ? [...bases][0] : undefined;
 ---
 
 <Base wide title={site.name} description="Good training, no coach. Pick what you want to get better at, and follow three drills on your phone.">
@@ -19,23 +23,26 @@ const others = sessions.filter((s) => !s.goal).sort((a, b) => a.title.localeComp
       No sessions yet. Check back soon.
     </p>
   ) : (
+    <>
+    {sharedBase && <p data-shared-base class="mt-4 flex flex-wrap items-center gap-2">Every session works with <Chip tone="people" icon>{sharedBase}</Chip></p>}
     <ul class="mt-7 space-y-4 tablet:grid tablet:grid-cols-2 tablet:gap-5 tablet:space-y-0 lg:grid-cols-3">
       {[...withGoal, ...others].map((data) => (
         <li>
           <a data-goal={data.goal?.id} href={`/s/${data.slug}/`} class="flex tablet:h-full min-h-[6.875rem] max-[359px]:min-h-[8.75rem] items-center gap-3 border-2 border-ink bg-card px-4 py-3 shadow-[6px_6px_0_var(--color-ink)] active:translate-x-1 active:translate-y-1 active:shadow-none [@media(hover:hover)]:hover:translate-x-0.5 [@media(hover:hover)]:hover:translate-y-0.5 [@media(hover:hover)]:hover:shadow-[3px_3px_0_var(--color-ink)]">
             <span class="flex min-w-0 flex-1 flex-col gap-2">
               <span class="block font-head text-[22px] leading-tight font-bold">{data.goal?.label ?? data.title}</span>
-              <span data-fit class="flex flex-wrap gap-1.5">
-                <Chip data-chip-base tone="people" icon>{playersFitParts(data.stages.map((s) => s.drill.players)).base}</Chip>
+              {(!sharedBase || playersFitParts(data.stages.map((s) => s.drill.players)).extras.length > 0) && <span data-fit class="flex flex-wrap gap-1.5">
+                {!sharedBase && <Chip data-chip-base tone="people" icon>{playersFitParts(data.stages.map((s) => s.drill.players)).base}</Chip>}
                 {playersFitParts(data.stages.map((s) => s.drill.players)).extras.map((extra) => (
                   <Chip data-chip-extra tone="warn">{extra}</Chip>
                 ))}
-              </span>
+              </span>}
             </span>
             <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" class="shrink-0"><path d="M9 5l7 7-7 7" /></svg>
           </a>
         </li>
       ))}
     </ul>
+    </>
   )}
 </Base>
