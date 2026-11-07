@@ -118,6 +118,15 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
   uses the start-page wording ("2+ players · Drill 3 needs 4"), so it fits beside "30 min". (2) Jump tabs, 56 px high
   with the number and "DRILL" on one line, and the rule line tight under them as one band. (3) The drill cards, after a
   clear break. In the watch button, "at 3:54" never wraps on its own.
+- **Wide screens (Volker, 2026-11-07):** for the moment of preparing at home on a laptop or iPad and sending the link on.
+  Picked from a switchable preview (start page "B", session "B", closing "2"). Below 700 px nothing changes: the
+  phone on court is measured element by element against the version before. From 700 px (`tablet:`, so an iPad mini held
+  upright counts): the column is 720 px, headings 60 px, the goals a 2-column grid. From 1024 px (`lg:`), on the start
+  page and sessions only (`Base` prop `wide`): up to 1120 px, goals in 3 columns, and in each drill card the video fills
+  the left column at full card height with the text on the right. The replay button sits under the video with a fixed
+  grid row, or it would push the text column down. The closing becomes one row under a rule: finish, feedback,
+  next, all 96 px high. Text pages (About, Imprint, Privacy) stop at 720 px for line length. A phone held sideways
+  (844–932 px) gets the 700 px layout; accepted, since on court the phone is held upright.
 - **Polish (2026-11-04):**
   - The "new" badge is green like the feedback button it asks for, so yellow means Stage 3 only. The badge tokens are
     gone.

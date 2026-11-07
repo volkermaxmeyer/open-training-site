@@ -21,9 +21,9 @@ import Ball from "../../components/Ball.astro";
 import BackLink from "../../components/BackLink.astro";
 ---
 
-<Base title={`${session.title} | ${site.name}`} description={session.aim}>
+<Base wide title={`${session.title} | ${site.name}`} description={session.aim}>
   <BackLink />
-  <h1 class="mt-1 font-display text-[44px] leading-none font-bold tracking-[-0.02em] text-balance">{session.title}</h1>
+  <h1 class="mt-1 font-display text-[44px] leading-none font-bold tracking-[-0.02em] text-balance tablet:text-[60px]">{session.title}</h1>
   <div class="mt-2.5 flex flex-wrap gap-2">
     <Chip data-session-minutes>{session.duration} min</Chip>
     <Chip data-players-summary tone="people" icon>{playersFit(session.stages.map((s) => s.drill.players))}</Chip>
@@ -50,7 +50,10 @@ import BackLink from "../../components/BackLink.astro";
       <StageCard stage={stage} number={i + 1} minutes={Math.round(session.duration / 3)} basePlayers={session.stages[0].drill.players} />
     ))}
   </div>
-  <div data-finish class="mt-12 flex items-center gap-3.5">
+  {/* From lg the closing is one row under a rule: three equally tall fields (Volker, 2026-11-07, "Eine Zeile").
+      Below lg the wrapper has no style of its own, so the phone keeps the stacked order. */}
+  <div data-closing class="lg:mt-12 lg:grid lg:grid-cols-3 lg:items-stretch lg:gap-x-6 lg:border-t-2 lg:border-ink lg:pt-7">
+  <div data-finish class="mt-12 flex items-center gap-3.5 lg:mt-0 lg:min-h-[96px]">
     <Ball size={52} class="finish-ball shrink-0" />
     <p class="font-head text-xl leading-tight font-bold">
       That's {session.duration} minutes.
@@ -61,7 +64,7 @@ import BackLink from "../../components/BackLink.astro";
     href={feedbackUrl}
     target="_blank"
     rel="noopener"
-    class="mt-4 flex min-h-15 items-center justify-center border-2 border-ink bg-go px-4 py-3 font-head text-xl font-bold shadow-[6px_6px_0_var(--color-ink)]"
+    class="mt-4 flex min-h-15 items-center justify-center border-2 border-ink bg-go px-4 py-3 font-head text-xl font-bold shadow-[6px_6px_0_var(--color-ink)] lg:mt-0 lg:min-h-[96px] lg:text-center"
   >
     Tell us how it went<span class="sr-only"> (opens in a new tab)</span>
   </a>
@@ -69,12 +72,13 @@ import BackLink from "../../components/BackLink.astro";
     <a
       data-next
       href={`/s/${session.next.slug}/`}
-      class="mt-7 block min-h-14 border-2 border-ink bg-card p-4 shadow-[6px_6px_0_var(--color-ink)] active:translate-x-1 active:translate-y-1 active:shadow-none [@media(hover:hover)]:hover:translate-x-0.5 [@media(hover:hover)]:hover:translate-y-0.5 [@media(hover:hover)]:hover:shadow-[3px_3px_0_var(--color-ink)]"
+      class="mt-7 block min-h-14 border-2 border-ink bg-card p-4 shadow-[6px_6px_0_var(--color-ink)] lg:mt-0 lg:flex lg:min-h-[96px] lg:flex-col lg:justify-center active:translate-x-1 active:translate-y-1 active:shadow-none [@media(hover:hover)]:hover:translate-x-0.5 [@media(hover:hover)]:hover:translate-y-0.5 [@media(hover:hover)]:hover:shadow-[3px_3px_0_var(--color-ink)]"
     >
       <span class="block font-head text-[14px] font-semibold tracking-[0.08em] text-ink-soft uppercase">Got another 30 min?</span>
       <span class="mt-1 block font-head text-[22px] leading-tight font-bold">Next: {session.next.title} →</span>
     </a>
   )}
+  </div>
   <script is:inline>
     // The one exception to "no JavaScript" besides analytics (DESIGN.md): a tap on the video area plays the drill
     // segment inside the card. Without this script the area is a plain link to YouTube. Replay inserts a fresh iframe
@@ -121,7 +125,9 @@ import BackLink from "../../components/BackLink.astro";
         const replay = document.createElement("button");
         replay.type = "button";
         replay.textContent = "\u21BA Replay the drill";
-        replay.className = "mt-4 flex min-h-12 w-full items-center justify-center border-2 border-ink bg-card font-head font-bold";
+        // lg: back into the video column (the card body is a grid there), under the video. Row and column are both
+        // fixed: a button placed by auto-flow would push the text column below it, since it comes first in the markup.
+        replay.className = "mt-4 flex min-h-12 w-full items-center justify-center border-2 border-ink bg-card font-head font-bold lg:col-start-1 lg:row-start-6 lg:m-4 lg:w-auto";
         replay.addEventListener("click", () => {
           pauseOthers(current.frame);
           const next = playerFor(a);

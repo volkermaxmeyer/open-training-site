@@ -201,7 +201,8 @@ describe("built site", () => {
     expect(cards[0]).toMatch(/<a data-video[^>]*role="button"[^>]*href="https:\/\/youtu\.be\/AAAAAAA1111\?t=10"/);
     expect(cards[0]).toContain("0:10–1:10 · about 1 min");
     expect(cards[0]).not.toContain("or open it on YouTube"); // removed 2026-11-04 (Volker)
-    expect(cards[0]).toMatch(/<div data-player class="-mx-4 -mt-4">/);
+    // Edge to edge on the phone; the lg: classes after it only apply from 1024 px (wide layout, 2026-11-07).
+    expect(cards[0]).toMatch(/<div data-player class="-mx-4 -mt-4(?: lg:[^"]*)?">/);
     expect(cards[1]).not.toContain("data-video");
     expect(cards[1]).toContain("Watch the drill");
   });

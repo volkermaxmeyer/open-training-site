@@ -38,9 +38,11 @@ const block = ["bg-stage-1", "bg-stage-2", "bg-stage-3"][number - 1];
       </div>
     </div>
   </div>
-  <div class="px-4 pt-4 pb-4">
+  {/* From lg the body is two columns: the video fills the left one at full card height, the text sits on the right.
+      Everything on the right is placed with lg:col-start-2; the replay button (added by the page script) stays left. */}
+  <div class="px-4 pt-4 pb-4 lg:grid lg:grid-cols-[minmax(0,11fr)_minmax(0,9fr)] lg:items-start lg:gap-x-7 lg:p-0 lg:pr-6">
     {segment ? (
-      <div data-player class="-mx-4 -mt-4">
+      <div data-player class="-mx-4 -mt-4 lg:row-span-5 lg:m-0 lg:min-h-[324px] lg:self-stretch lg:border-r-2 lg:border-ink lg:bg-ink">
         <a
           data-video
           data-id={videoId}
@@ -51,7 +53,7 @@ const block = ["bg-stage-1", "bg-stage-2", "bg-stage-3"][number - 1];
           href={stage.drill.watchUrl}
           target="_blank"
           rel="noopener"
-          class="flex aspect-video w-full flex-col items-center justify-center gap-1.5 bg-ink px-4 text-center font-head text-on-ink"
+          class="flex aspect-video w-full flex-col items-center justify-center gap-1.5 bg-ink px-4 text-center font-head text-on-ink lg:aspect-auto lg:h-full"
         >
           <span aria-hidden="true" class="flex h-15 w-15 items-center justify-center rounded-full border-2 border-on-ink text-2xl">{"\u25B6\uFE0E"}</span>
           <span class="text-xl font-bold">Play the drill here</span>
@@ -64,26 +66,26 @@ const block = ["bg-stage-1", "bg-stage-2", "bg-stage-3"][number - 1];
         href={stage.drill.watchUrl}
         target="_blank"
         rel="noopener"
-        class="flex min-h-18 flex-col items-center justify-center bg-ink px-4 py-3 text-center font-head text-on-ink"
+        class="flex min-h-18 flex-col items-center justify-center bg-ink px-4 py-3 text-center font-head text-on-ink lg:row-span-5 lg:min-h-[324px] lg:self-stretch lg:border-r-2 lg:border-ink"
       >
         <span class="text-xl font-bold"><span aria-hidden="true">{"\u25B6\uFE0E"}</span> Watch the drill<span class="sr-only"> (opens YouTube)</span></span>
         <span class="mt-0.5 text-base font-semibold text-balance">{channel}{time && <span class="whitespace-nowrap"> at {time}</span>} on YouTube</span>
       </a>
     )}
-    <p data-in-short class="mt-3.5 text-[19px] leading-snug">{stage.inShort}</p>
+    <p data-in-short class="mt-3.5 text-[19px] leading-snug tablet:max-w-[62ch] lg:col-start-2 lg:mt-5">{stage.inShort}</p>
     {stage.onlyTwo && (
-      <p data-pair-hint class="mt-2.5 border-l-[6px] border-ink bg-chip px-3 py-2">
+      <p data-pair-hint class="mt-2.5 border-l-[6px] border-ink bg-chip px-3 py-2 lg:col-start-2">
         <span class="block font-head text-[14px] font-semibold tracking-[0.08em] uppercase">{site.pairHint}</span>
         <span class="block">{stage.onlyTwo}</span>
       </p>
     )}
-    <details class="mt-4 border-t-2 border-ink">
+    <details class="mt-4 border-t-2 border-ink lg:col-start-2">
       <summary class="flex min-h-13 cursor-pointer items-center font-head font-bold">How to play</summary>
       <ul class="mb-2.5 list-disc space-y-3.5 pl-5.5 marker:text-ink">
         {stage.rules.map((rule) => <li>{rule}</li>)}
       </ul>
     </details>
-    <details class="border-t-2 border-ink">
+    <details class="border-t-2 border-ink lg:col-start-2 lg:mb-3">
       <summary class="flex min-h-13 cursor-pointer items-center font-head font-bold">Too easy? Too hard?</summary>
       <p class="mb-2.5"><strong>Too easy:</strong> {stage.tooEasy}</p>
       <p class="mb-2.5"><strong>Too hard:</strong> {stage.tooHard}</p>

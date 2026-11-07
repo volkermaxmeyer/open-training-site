@@ -6,8 +6,10 @@ interface Props {
   title: string;
   description?: string;
   noindex?: boolean;
+  /** Start page and sessions use the full width on a laptop or iPad held sideways; text pages keep a reading width. */
+  wide?: boolean;
 }
-const { title, description, noindex = false } = Astro.props;
+const { title, description, noindex = false, wide = false } = Astro.props;
 // Preload the three bundled woff2 files so headings don't swap fonts on first paint (same files the CSS imports).
 import poppins600 from "@fontsource/poppins/files/poppins-latin-600-normal.woff2?url";
 import poppins700 from "@fontsource/poppins/files/poppins-latin-700-normal.woff2?url";
@@ -40,8 +42,8 @@ const fonts = [poppins600, poppins700, crimson700];
     <Analytics />
   </head>
   <body class="bg-paper font-sans text-ink antialiased">
-    <div class="mx-auto flex min-h-screen max-w-[430px] flex-col px-4">
-      <main class="flex-1 pt-4 pb-8"><slot /></main>
+    <div class:list={["mx-auto flex min-h-screen max-w-[430px] flex-col px-4 tablet:max-w-[720px]", wide && "lg:max-w-[1120px] lg:px-8"]}>
+      <main class="flex-1 pt-4 pb-8 tablet:pt-8"><slot /></main>
       <footer class="mt-4 flex flex-wrap gap-x-6 gap-y-1 border-t-2 border-ink py-2 text-base">
         <a href="/about/" class="inline-flex min-h-12 items-center underline underline-offset-4">About</a>
         <a href="/imprint/" class="inline-flex min-h-12 items-center underline underline-offset-4">Imprint</a>
