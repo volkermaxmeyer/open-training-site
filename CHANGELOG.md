@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.023 · 2026-11-07 · Drill pages: the address to copy under Wish for a drill? Mail me, for devices without a mail app.
 - 1.022 · 2026-11-07 · Drill pages end with a closing row like sessions: a wish mail (Wish for a drill? Mail me) and the session for points.
 - 1.021 · 2026-11-07 · Drill pages published or updated: 02, 03, 04, 05, 106.
 - 1.020 · 2026-11-07 · Drill pages published or updated: 00, 02, 03, 04, 05, 08, 106, 17, 18, 22, 31, 36, 64, 80, 97.
