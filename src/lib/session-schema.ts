@@ -1,4 +1,5 @@
 import { z } from "astro/zod";
+import { SHOTS } from "./shots";
 
 export const DrillCard = z
   .object({
@@ -40,6 +41,26 @@ export const Session = z
   })
   .strict();
 
+/** A released player card of an isolation drill, one file per drill in src/content/drills (Shots area, 2026-11-07). */
+export const DrillPage = z
+  .object({
+    id: z.string().regex(/^\d+$/),
+    cardTitle: z.string().min(1),
+    shot: z.enum(SHOTS),
+    variant: z.string().min(1).optional(),
+    tested: z.boolean(),
+    inShort: z.string().min(1).max(160),
+    rules: z.array(z.string().min(1)).min(1).max(6),
+    tooEasy: z.string().min(1),
+    tooHard: z.string().min(1),
+    goodLooksLike: z.string().min(1).optional(),
+    /** Player goals that reach the drill (vault goal filters); the page picks the session pointer from these. */
+    goals: z.array(z.string().min(1)),
+    drill: DrillCard,
+  })
+  .strict();
+
 export type DrillCard = z.infer<typeof DrillCard>;
 export type Stage = z.infer<typeof Stage>;
 export type Session = z.infer<typeof Session>;
+export type DrillPage = z.infer<typeof DrillPage>;

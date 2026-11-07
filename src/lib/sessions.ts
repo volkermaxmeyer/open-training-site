@@ -41,3 +41,21 @@ export function cardText(s: SessionLike, all: SessionLike[]): { title: string; s
   const shared = all.filter((o) => o.goal?.id === s.goal!.id).length > 1;
   return shared ? { title: s.goal.label, session: s.title } : { title: s.goal.label };
 }
+
+/**
+ * "Ready for points?" on a drill page (Shots area, 2026-11-07): the session the drill is a stage of (by goal order when
+ * several), else the one session of the one goal that reaches the drill. Several goals or several sessions of that goal:
+ * no pointer, rather than a guess (the vault reserves an override field for that case).
+ */
+export function sessionPointer(
+  drillId: string,
+  goals: string[],
+  sessions: (SessionLike & { goal?: { id: string; label: string; order?: number } })[],
+): { slug: string; title: string } | undefined {
+  const order = (s: { goal?: { order?: number } }) => s.goal?.order ?? Number.MAX_SAFE_INTEGER;
+  const holding = sessions.filter((s) => s.stages.some((st) => Number(st.drill.id) === Number(drillId))).sort((a, b) => order(a) - order(b));
+  if (holding.length) return { slug: holding[0].slug, title: holding[0].title };
+  if (goals.length !== 1) return undefined;
+  const ofGoal = sessions.filter((s) => s.goal?.id === goals[0]);
+  return ofGoal.length === 1 ? { slug: ofGoal[0].slug, title: ofGoal[0].title } : undefined;
+}

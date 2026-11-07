@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { Session } from "../src/lib/session-schema";
+import { DrillPage, Session } from "../src/lib/session-schema";
 import { CHANGELOG_FILE, VERSION_FILE, hasChangelogEntry, parseVersionFile, versionSteps } from "./lib/version";
 
 export type Finding = { file: string; line: number; rule: string };
@@ -19,6 +19,7 @@ const IDENTITY_EXEMPT = new Set(["scripts/guard.ts", "tests/guard.test.ts"]);
 const MANIFEST = "src/content/.manifest.json";
 const SCOPE = /^(src\/|public\/|README\.md$)/;
 const SESSION = /^src\/content\/sessions\/[^/]+\.json$/;
+const DRILL = /^src\/content\/drills\/[^/]+\.json$/;
 const ZERO = /^0+$/;
 
 function git(repoDir: string, args: string[]): string[] {
@@ -84,6 +85,13 @@ function checkContent(
       if (!Session.safeParse(JSON.parse(read(file).toString("utf8"))).success) out.push({ file: label(file), line: 0, rule: "session-schema" });
     } catch {
       out.push({ file: label(file), line: 0, rule: "session-schema" });
+    }
+  }
+  for (const file of paths.filter((f) => DRILL.test(f))) {
+    try {
+      if (!DrillPage.safeParse(JSON.parse(read(file).toString("utf8"))).success) out.push({ file: label(file), line: 0, rule: "drill-schema" });
+    } catch {
+      out.push({ file: label(file), line: 0, rule: "drill-schema" });
     }
   }
   return out;

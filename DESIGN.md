@@ -168,3 +168,9 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
   until the club has agreed; the imprint keeps the legal address.
 - **Version:** `src/version.json`, shown as the last line of the imprint ("Version 1.000", 14 px, ink, thin rule above;
   grey would miss 7:1 on paper). It goes up by 0.001 with every push to main, see README.
+
+## Shots area (prototype, 2026-11-07, branch `shots-prototype`)
+
+- **Start page:** below the goals, "Or practise one shot" and one tile per shot (13, order from `src/lib/shots.ts`): shot name and the number of released drills. A tile with one drill links straight to that drill. A shot with no released card is a **"Coming soon" tile**: dashed ink border, page background, no shadow, no chevron, ink text, not a link. It is greyed out by form, not by colour, so every text keeps 7:1 (opacity or `--color-ink-soft` on paper would break it).
+- **Shot page** `/shots/<shot>/`: the drills as list cards like the start page, the variant as a plain chip.
+- **Drill page** `/drill/<number>/`: the player card drawn like a stage card (`DrillCard.astro`): the number block shows the drill number on `--color-stage-1`, no minutes chip (not part of a timed session), then "Ready for points?" to a session. The in-card video player is shared with session pages (`VideoPlayerScript.astro`).

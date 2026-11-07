@@ -1,0 +1,43 @@
+---
+// Shot page of the Shots area (2026-11-07): every released isolation drill of one shot, the variant as a label.
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import BackLink from "../../components/BackLink.astro";
+import Chip from "../../components/Chip.astro";
+import { playersLabel, site } from "../../site.config";
+import { SHOTS, shotSlug } from "../../lib/shots";
+
+export async function getStaticPaths() {
+  const drills = (await getCollection("drills")).map((d) => d.data);
+  return SHOTS.filter((s) => drills.some((d) => d.shot === s)).map((shot) => ({
+    params: { shot: shotSlug(shot) },
+    props: { shot, drills: drills.filter((d) => d.shot === shot).sort((a, b) => Number(a.id) - Number(b.id)) },
+  }));
+}
+
+const { shot, drills } = Astro.props;
+---
+
+<Base wide title={`${shot} | ${site.name}`} description={`Drills to practise the ${shot.toLowerCase()} on its own.`}>
+  <BackLink href="/#shots" label="All shots" />
+  <p class="mt-2 font-head text-[14px] font-semibold tracking-[0.08em] uppercase">Practise one shot</p>
+  <h1 class="mt-1 font-display text-[44px] leading-none font-bold tracking-[-0.02em] text-balance tablet:text-[60px]">{shot}</h1>
+  <p class="mt-3 max-w-[62ch]">Each drill repeats this one shot. Turn the pace up when it gets easy.</p>
+  <ul class="mt-7 space-y-4 tablet:grid tablet:grid-cols-2 tablet:gap-5 tablet:space-y-0 lg:grid-cols-3">
+    {drills.map((d) => (
+      <li>
+        <a data-drill-link href={`/drill/${d.id}/`} class="flex tablet:h-full min-h-[6.875rem] items-center gap-3 border-2 border-ink bg-card px-4 py-3 shadow-[6px_6px_0_var(--color-ink)] active:translate-x-1 active:translate-y-1 active:shadow-none [@media(hover:hover)]:hover:translate-x-0.5 [@media(hover:hover)]:hover:translate-y-0.5 [@media(hover:hover)]:hover:shadow-[3px_3px_0_var(--color-ink)]">
+          <span class="flex min-w-0 flex-1 flex-col gap-2">
+            <span class="block font-head text-[22px] leading-tight font-bold">{d.cardTitle}</span>
+            <span class="flex flex-wrap gap-1.5">
+              {d.variant && <Chip data-variant>{d.variant}</Chip>}
+              <Chip tone="people" icon>{playersLabel(d.drill.players)}</Chip>
+              {d.tested && <Chip>Tested on court</Chip>}
+            </span>
+          </span>
+          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" class="shrink-0"><path d="M9 5l7 7-7 7" /></svg>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Base>

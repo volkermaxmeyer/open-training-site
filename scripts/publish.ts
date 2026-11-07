@@ -5,11 +5,13 @@ import { join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { PublishError } from "./lib/errors";
 import { parseSession, type Goals } from "./lib/parse-session";
+import { parseCard, type GoalFilter } from "./lib/parse-card";
+import { SHOTS } from "../src/lib/shots";
 import { renamedSlugs } from "./lib/renamed";
 import { splitFrontmatter } from "./lib/text";
 import { runGuard } from "./guard";
 import { CHANGELOG_FILE, VERSION_FILE, release } from "./lib/version";
-import type { Session } from "../src/lib/session-schema";
+import type { DrillPage, Session } from "../src/lib/session-schema";
 
 export const LIVE_URL = "https://open-training-site.vercel.app";
 const SLUG = /^[a-z0-9][a-z0-9-]*$/;
@@ -23,8 +25,8 @@ export type PublishOptions = {
   /** Command run before anything is read; non-zero exit aborts. Default: none (the CLI passes the python validator). */
   validateCmd?: string[];
 };
-export type PublishResult = { written: string[]; removed: string[]; warnings: string[]; slugs: string[] };
-type Manifest = { files: Record<string, string>; slugsEverPublished: string[] };
+export type PublishResult = { written: string[]; removed: string[]; warnings: string[]; slugs: string[]; drills?: string[] };
+type Manifest = { files: Record<string, string>; slugsEverPublished: string[]; drillsEverPublished?: string[] };
 
 const sha256 = (s: string | Buffer) => createHash("sha256").update(s).digest("hex");
 const posix = (p: string) => p.split(sep).join("/");
@@ -32,7 +34,7 @@ const posix = (p: string) => p.split(sep).join("/");
 function readManifest(path: string): Manifest {
   if (!existsSync(path)) return { files: {}, slugsEverPublished: [] };
   const m = JSON.parse(readFileSync(path, "utf8"));
-  return { files: m.files ?? {}, slugsEverPublished: m.slugsEverPublished ?? [] };
+  return { files: m.files ?? {}, slugsEverPublished: m.slugsEverPublished ?? [], drillsEverPublished: m.drillsEverPublished ?? [] };
 }
 
 /**
@@ -68,6 +70,37 @@ export function readGoals(vaultDir: string): Goals {
   if (!m) throw new PublishError("datenmodell.md", "no ```json schema block");
   const list: { id: string; label: string }[] = JSON.parse(m[1]).player_goals ?? [];
   return new Map(list.map((g, order) => [g.id, { label: g.label, order }]));
+}
+
+function schemaBlock(vaultDir: string): Record<string, any> | null {
+  const path = join(vaultDir, "system/datenmodell.md");
+  if (!existsSync(path)) return null;
+  const m = readFileSync(path, "utf8").match(/```json schema\n([\s\S]*?)\n```/);
+  return m ? JSON.parse(m[1]) : null;
+}
+
+/** Each player goal with the theme filters that reach a drill (Shots area: session pointer, 2026-11-07). */
+export function readGoalFilters(vaultDir: string): GoalFilter[] {
+  const schema = schemaBlock(vaultDir);
+  if (!schema) return [];
+  const themes = new Map<number, { field: string; value: string }>(
+    (schema.weekly_themes ?? []).map((t: { id: number; filter: { field: string; value: string } }) => [t.id, t.filter]),
+  );
+  return (schema.player_goals ?? []).map((g: { id: string; themes: number[] }) => ({
+    id: g.id,
+    filters: g.themes.map((t) => themes.get(t)).filter((f): f is { field: string; value: string } => Boolean(f)),
+  }));
+}
+
+/** The site's shot tiles (src/lib/shots.ts) must match the vault's `enums.shot` without `none`. */
+export function shotDrift(vaultDir: string): string[] {
+  const vault: string[] | undefined = schemaBlock(vaultDir)?.enums?.shot;
+  if (!vault) return [];
+  const want = vault.filter((x) => x !== "none");
+  const have = [...SHOTS] as string[];
+  return want.join("|") === have.join("|")
+    ? []
+    : [`shot tiles differ from the vault's enums.shot: site ${have.join(", ")} · vault ${want.join(", ")} (update src/lib/shots.ts)`];
 }
 
 export async function publish(opts: PublishOptions): Promise<PublishResult> {
@@ -113,6 +146,14 @@ export async function publish(opts: PublishOptions): Promise<PublishResult> {
     if (next) nextOf.set(session.slug, next);
   }
 
+  // Released player cards (Shots area, 2026-11-07): one file per drill, src/content/drills/<number>.json.
+  const goalFilters = readGoalFilters(opts.vaultDir);
+  const cards = new Map<string, DrillPage>();
+  for (const [name, text] of [...drills].filter(([n]) => /^\d+-/.test(n)).sort()) {
+    const card = parseCard(text, name, goalFilters);
+    if (card) cards.set(card.id, card);
+  }
+
   // "Got another 30 min?" only points at a session that is published in this same run.
   const outputs = new Map<string, string>(); // slug -> JSON text
   for (const [slug, session] of sessions) {
@@ -133,6 +174,13 @@ export async function publish(opts: PublishOptions): Promise<PublishResult> {
     const onDisk = join(repoRoot, k);
     if (prev.files[k] !== files[k] || !existsSync(onDisk)) written.push(k);
   }
+  const drillKey = (id: string) => posix(relative(repoRoot, join(opts.outDir, "drills", `${id}.json`)));
+  const cardOutputs = new Map<string, string>([...cards].map(([id, c]) => [id, JSON.stringify(c, null, 2) + "\n"]));
+  for (const [id, json] of cardOutputs) {
+    const k = drillKey(id);
+    files[k] = sha256(json);
+    if (prev.files[k] !== files[k] || !existsSync(join(repoRoot, k))) written.push(k);
+  }
   const removed = Object.keys(prev.files).filter((k) => !(k in files));
 
   const slugs = [...outputs.keys()];
@@ -142,23 +190,30 @@ export async function publish(opts: PublishOptions): Promise<PublishResult> {
     if (!outputs.has(s) && !(renamed[s] && outputs.has(renamed[s])))
       warnings.push(`previously published slug "${s}" is no longer published; its URL will 404`);
   }
+  for (const id of prev.drillsEverPublished ?? []) {
+    if (!cardOutputs.has(id)) warnings.push(`previously published drill page /drill/${id}/ is no longer published (card not released?); its URL will 404`);
+  }
   warnings.push(...overviewDrift(repoRoot, opts.vaultDir, drills));
+  warnings.push(...shotDrift(opts.vaultDir));
   const everPublished = [...new Set([...prev.slugsEverPublished, ...slugs])];
+  const drillsEver = [...new Set([...(prev.drillsEverPublished ?? []), ...cardOutputs.keys()])].sort();
 
   if (!opts.dryRun) {
     mkdirSync(join(opts.outDir, "sessions"), { recursive: true });
     for (const [slug, json] of outputs) writeFileSync(join(repoRoot, key(slug)), json);
+    if (cardOutputs.size) mkdirSync(join(opts.outDir, "drills"), { recursive: true });
+    for (const [id, json] of cardOutputs) writeFileSync(join(repoRoot, drillKey(id)), json);
     for (const k of removed) rmSync(join(repoRoot, k), { force: true });
-    const manifest: Manifest = { files, slugsEverPublished: everPublished };
+    const manifest: Manifest = { files, slugsEverPublished: everPublished, ...(drillsEver.length ? { drillsEverPublished: drillsEver } : {}) };
     writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
   }
-  return { written, removed, warnings, slugs };
+  return { written, removed, warnings, slugs, drills: [...cardOutputs.keys()] };
 }
 
 /** Returns an abort message when the run would unpublish sessions and that was not explicitly allowed. */
 export function checkUnpublish(result: PublishResult, allow: boolean): string | null {
   if (allow || result.removed.length === 0) return null;
-  return `this would unpublish ${result.removed.length} session(s): ${result.removed.join(", ")}. Re-run with --allow-unpublish if intended.`;
+  return `this would unpublish ${result.removed.length} page(s): ${result.removed.join(", ")}. Re-run with --allow-unpublish if intended.`;
 }
 
 export function loadEnv(repoRoot: string): void {
@@ -227,7 +282,7 @@ async function main(): Promise<number> {
     return 1;
   }
 
-  console.log(`${result.slugs.length} sessions`);
+  console.log(`${result.slugs.length} sessions, ${result.drills?.length ?? 0} drill pages`);
   for (const w of result.warnings) console.warn(`warning: ${w}`);
   for (const f of result.written) console.log(`write  ${f}`);
   for (const f of result.removed) console.log(`remove ${f}`);
@@ -248,10 +303,12 @@ async function main(): Promise<number> {
   };
   try {
     const slugOf = (f: string) => f.replace(/^.*\//, "").replace(/\.json$/, "");
+    const isDrill = (f: string) => f.includes("/drills/");
     const note = [
-      result.written.length ? `Sessions published or updated: ${result.written.map(slugOf).join(", ")}.` : "",
-      result.removed.length ? `Sessions taken offline: ${result.removed.map(slugOf).join(", ")}.` : "",
-    ].filter(Boolean).join(" ") || "Session content updated.";
+      result.written.filter((f) => !isDrill(f)).length ? `Sessions published or updated: ${result.written.filter((f) => !isDrill(f)).map(slugOf).join(", ")}.` : "",
+      result.written.filter(isDrill).length ? `Drill pages published or updated: ${result.written.filter(isDrill).map(slugOf).join(", ")}.` : "",
+      result.removed.length ? `Taken offline: ${result.removed.map(slugOf).join(", ")}.` : "",
+    ].filter(Boolean).join(" ") || "Content updated.";
     if (!commitContent(repoRoot, `content: publish ${result.slugs.join(", ") || "(none)"}`, guardOk, note)) {
       console.log("nothing to publish");
       return 0;

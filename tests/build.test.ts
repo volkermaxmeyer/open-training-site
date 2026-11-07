@@ -21,7 +21,7 @@ function walk(dir: string): string[] {
 beforeAll(() => {
   execFileSync("npx", ["astro", "build", "--outDir", out], {
     cwd: root,
-    env: { ...process.env, SESSIONS_DIR: join(root, "tests/fixtures/sessions-json"), TALLY_FORM_URL: "https://tally.so/r/test" },
+    env: { ...process.env, SESSIONS_DIR: join(root, "tests/fixtures/sessions-json"), DRILLS_DIR: join(root, "tests/fixtures/drills-json"), TALLY_FORM_URL: "https://tally.so/r/test" },
     stdio: "pipe",
   });
 }, 180_000);
@@ -39,6 +39,39 @@ describe("placeholder guard", () => {
     }
     expect(err).toContain("tallyFormUrl");
   }, 180_000);
+});
+
+describe("shots area (2026-11-07)", () => {
+  it("start page shows a tile per shot, Coming soon when nothing is released", () => {
+    const index = html("index.html");
+    expect(index.match(/data-shot-tile=/g)?.length ?? 0).toBe(2); // Dink (2 cards) and Lob (1)
+    expect(index.match(/data-shot-soon=/g)?.length ?? 0).toBe(11);
+    expect(index).toMatch(/data-shot-tile="dink" href="\/shots\/dink\/"/);
+    expect(index).toMatch(/data-shot-tile="lob" href="\/drill\/903\/"/); // one drill: straight to it
+    expect(index).not.toMatch(/<a[^>]*data-shot-soon/); // a Coming soon tile is no link
+    expect(text(index)).toContain("Coming soon");
+  });
+
+  it("shot page lists its drills with the variant as a label", () => {
+    const page = html("shots/dink/index.html");
+    expect(page.match(/data-drill-link/g)).toHaveLength(2);
+    expect(page).toContain('href="/drill/901/"');
+    expect(chip(page, "data-variant")).toEqual(["Cross-court dink"]);
+    expect(existsSync(join(out, "shots/lob/index.html"))).toBe(true);
+    expect(existsSync(join(out, "shots/drive/index.html"))).toBe(false);
+  });
+
+  it("drill page shows the card and the session for points", () => {
+    const page = html("drill/901/index.html");
+    expect(page).toContain("data-drill-card");
+    expect(text(page)).toContain("Tap It Soft");
+    expect(page).toContain('data-id="AAAAAAA9011"'); // in-card player
+    expect(page).toMatch(/data-session-pointer href="\/s\/warm-hands\/"/);
+    expect(html("drill/902/index.html")).toMatch(/data-session-pointer href="\/s\/warm-hands\/"/); // a stage of a session wins over its goal
+    const lob = html("drill/903/index.html");
+    expect(lob).toContain("data-watch"); // no end time: plain link
+    expect(lob).toMatch(/data-session-pointer href="\/s\/warm-hands\/"/);
+  });
 });
 
 describe("built site", () => {

@@ -1,1 +1,9 @@
-<a href="/" data-back class="mb-2 inline-flex min-h-12 items-center font-head font-semibold underline underline-offset-4">← All goals</a>
+---
+interface Props {
+  href?: string;
+  label?: string;
+}
+const { href = "/", label = "All goals" } = Astro.props;
+---
+
+<a href={href} data-back class="mb-2 inline-flex min-h-12 items-center font-head font-semibold underline underline-offset-4">← {label}</a>

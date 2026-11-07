@@ -4,12 +4,12 @@ import { splitFrontmatter, str, toPlainText } from "./text";
 import type { Session, Stage } from "../../src/lib/session-schema";
 
 const STAGES = 3;
-const MAX_RULES = 6;
-const MAX_IN_SHORT = 160;
+export const MAX_RULES = 6;
+export const MAX_IN_SHORT = 160;
 
 export type Goals = Map<string, { label: string; order: number }>;
 
-function labelled(block: string, label: string): string {
+export function labelled(block: string, label: string): string {
   const m = block.match(
     new RegExp(`^\\*\\*${label}:\\*\\*[ \\t]*([\\s\\S]*?)(?=^\\*\\*[^*\\n]+:\\*\\*|^- |^#|(?![\\s\\S]))`, "m"),
   );

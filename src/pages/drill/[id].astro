@@ -1,0 +1,40 @@
+---
+// Drill page of the Shots area (2026-11-07): one released player card, then where to play it for points.
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import BackLink from "../../components/BackLink.astro";
+import DrillCard from "../../components/DrillCard.astro";
+import VideoPlayerScript from "../../components/VideoPlayerScript.astro";
+import { site } from "../../site.config";
+import { sessionPointer } from "../../lib/sessions";
+import { shotSlug } from "../../lib/shots";
+
+export async function getStaticPaths() {
+  const drills = await getCollection("drills");
+  return drills.map((d) => ({ params: { id: d.data.id }, props: { card: d.data } }));
+}
+
+const { card } = Astro.props;
+const sessions = (await getCollection("sessions")).map((s) => s.data);
+const pointer = sessionPointer(card.id, card.goals, sessions);
+const sameShot = (await getCollection("drills")).filter((d) => d.data.shot === card.shot).length;
+---
+
+<Base wide title={`${card.cardTitle} | ${site.name}`} description={card.inShort}>
+  <BackLink href={sameShot > 1 ? `/shots/${shotSlug(card.shot)}/` : "/#shots"} label={sameShot > 1 ? `All ${card.shot} drills` : "All shots"} />
+  <p data-shot-label class="mt-2 font-head text-[14px] font-semibold tracking-[0.08em] uppercase">
+    {sameShot > 1 ? <a href={`/shots/${shotSlug(card.shot)}/`} class="underline underline-offset-4">{card.shot}</a> : card.shot}{card.variant && ` · ${card.variant}`}
+  </p>
+  <DrillCard card={card} />
+  {pointer && (
+    <a
+      data-session-pointer
+      href={`/s/${pointer.slug}/`}
+      class="mt-10 block min-h-14 max-w-xl border-2 border-ink bg-card p-4 shadow-[6px_6px_0_var(--color-ink)] active:translate-x-1 active:translate-y-1 active:shadow-none [@media(hover:hover)]:hover:translate-x-0.5 [@media(hover:hover)]:hover:translate-y-0.5 [@media(hover:hover)]:hover:shadow-[3px_3px_0_var(--color-ink)]"
+    >
+      <span class="block font-head text-[14px] font-semibold tracking-[0.08em] text-ink-soft uppercase">Ready for points?</span>
+      <span class="mt-1 block font-head text-[22px] leading-tight font-bold">Session: {pointer.title} →</span>
+    </a>
+  )}
+  <VideoPlayerScript />
+</Base>

@@ -1,0 +1,27 @@
+{
+  "id": "902",
+  "cardTitle": "Twenty in a Row",
+  "shot": "Dink",
+  "tested": false,
+  "inShort": "Invented fixture card 902: A feeds, B repeats one shot.",
+  "rules": [
+    "A feeds calm balls.",
+    "B repeats the shot ten times."
+  ],
+  "tooEasy": "A feeds faster.",
+  "tooHard": "A feeds slower.",
+  "goodLooksLike": "Calm, repeatable contact.",
+  "goals": [
+    "other-goal"
+  ],
+  "drill": {
+    "id": "902",
+    "title": "Fixture drill 902",
+    "players": "2",
+    "watchUrl": "https://youtu.be/AAAAAAA9021?t=10",
+    "watchLabel": "Fake Channel @0:10\u20131:10",
+    "videoId": "AAAAAAA9021",
+    "start": 10,
+    "end": 70
+  }
+}

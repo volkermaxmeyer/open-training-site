@@ -4,6 +4,7 @@ import Base from "../layouts/Base.astro";
 import Chip from "../components/Chip.astro";
 import { playersFitParts, site } from "../site.config";
 import { cardText } from "../lib/sessions";
+import { SHOTS, shotSlug } from "../lib/shots";
 
 const sessions = (await getCollection("sessions")).map((s) => s.data);
 const withGoal = sessions
@@ -14,6 +15,12 @@ const others = sessions.filter((s) => !s.goal).sort((a, b) => a.title.localeComp
 // the list instead (design critique 2026-11-07, like the minutes chip on 2026-11-04). The warn chips stay on the cards.
 const bases = new Set(sessions.map((s) => playersFitParts(s.stages.map((st) => st.drill.players)).base));
 const sharedBase = bases.size === 1 ? [...bases][0] : undefined;
+// Shots area (2026-11-07): one tile per shot; a shot without a released card is shown as "Coming soon", not a link.
+const drills = (await getCollection("drills")).map((d) => d.data);
+const tiles = SHOTS.map((shot) => {
+  const own = drills.filter((d) => d.shot === shot);
+  return { shot, count: own.length, href: own.length === 1 ? `/drill/${own[0].id}/` : `/shots/${shotSlug(shot)}/` };
+});
 ---
 
 <Base wide title={site.name} description="Good training, no coach. Pick what you want to get better at, and follow three drills on your phone.">
@@ -47,4 +54,25 @@ const sharedBase = bases.size === 1 ? [...bases][0] : undefined;
     </ul>
     </>
   )}
+  <section id="shots" data-shots aria-labelledby="shots-heading" class="mt-14 scroll-mt-6">
+    <p class="font-head text-[14px] font-semibold tracking-[0.08em] uppercase">Or practise one shot</p>
+    <h2 id="shots-heading" class="mt-1 font-display text-[36px] leading-none font-bold tracking-[-0.02em] tablet:text-[44px]">Shots</h2>
+    <ul class="mt-6 grid grid-cols-2 gap-3.5 tablet:grid-cols-3 tablet:gap-5 lg:grid-cols-4">
+      {tiles.map((t) => (
+        <li>
+          {t.count > 0 ? (
+            <a data-shot-tile={shotSlug(t.shot)} href={t.href} class="flex h-full min-h-[6.5rem] flex-col justify-between gap-2 border-2 border-ink bg-card px-3.5 py-3 shadow-[6px_6px_0_var(--color-ink)] active:translate-x-1 active:translate-y-1 active:shadow-none [@media(hover:hover)]:hover:translate-x-0.5 [@media(hover:hover)]:hover:translate-y-0.5 [@media(hover:hover)]:hover:shadow-[3px_3px_0_var(--color-ink)]">
+              <span class="font-head text-[19px] leading-tight font-bold">{t.shot}</span>
+              <span class="font-display text-[40px] leading-none font-bold">{t.count}<span class="ml-1.5 font-head text-[14px] font-semibold">{t.count === 1 ? "drill" : "drills"}</span></span>
+            </a>
+          ) : (
+            <div data-shot-soon={shotSlug(t.shot)} class="flex h-full min-h-[6.5rem] flex-col justify-between gap-2 border-2 border-dashed border-ink bg-paper px-3.5 py-3">
+              <span class="font-head text-[19px] leading-tight font-bold">{t.shot}</span>
+              <span class="font-head text-[14px] font-semibold tracking-[0.08em] uppercase">Coming soon</span>
+            </div>
+          )}
+        </li>
+      ))}
+    </ul>
+  </section>
 </Base>

@@ -1,0 +1,28 @@
+{
+  "id": "901",
+  "cardTitle": "Tap It Soft",
+  "shot": "Dink",
+  "variant": "Cross-court dink",
+  "tested": true,
+  "inShort": "Invented fixture card 901: A feeds, B repeats one shot.",
+  "rules": [
+    "A feeds calm balls.",
+    "B repeats the shot ten times."
+  ],
+  "tooEasy": "A feeds faster.",
+  "tooHard": "A feeds slower.",
+  "goodLooksLike": "Calm, repeatable contact.",
+  "goals": [
+    "fixture-goal"
+  ],
+  "drill": {
+    "id": "901",
+    "title": "Fixture drill 901",
+    "players": "2",
+    "watchUrl": "https://youtu.be/AAAAAAA9011?t=10",
+    "watchLabel": "Fake Channel @0:10\u20131:10",
+    "videoId": "AAAAAAA9011",
+    "start": 10,
+    "end": 70
+  }
+}
