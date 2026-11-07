@@ -2,7 +2,8 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
-- 1.011 · 2026-11-07 · Footer links stay in the same place on every page on iPad and desktop: text pages share the wide frame, text left-aligned.
+- 1.012 · 2026-11-07 · Closing row has two columns when a session has no next; test pins the wide layout; changelog and design notes completed.
+- 1.011 · 2026-11-07 · Footer links stay in the same place on every page on iPad and desktop: text pages share the wide frame, text left-aligned. The start page question uses the full width (one line on a laptop).
 - 1.010 · 2026-11-07 · Wider layout for iPad and desktop: goals as a grid, drill video beside the text from 1024 px, the closing as one row; the phone layout is unchanged.
 - 1.009 · 2026-11-07 · Imprint names Volker Max Meyer as the private operator, c/o BTV Olympia e.V., with a note that the site is not an offer of the club; privacy page names the same person; About says "by a player in Berlin".
 - 1.008 · 2026-11-06 · Privacy page: missing space before the contact email under Your rights.

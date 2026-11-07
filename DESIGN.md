@@ -128,7 +128,9 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
   however long the text column gets (Volker, after testing on the iPad). The closing becomes one row under a rule: finish, feedback,
   next, all 96 px high. Text pages (About, Imprint, Privacy) share the same 1120 px frame but keep their text at
   684 px, left-aligned, so the footer links never move between pages; `scrollbar-gutter: stable` keeps short pages from
-  sitting 7 px off where scrollbars take space (Volker, 2026-11-07). A phone held sideways
+  sitting 7 px off where scrollbars take space (Volker, 2026-11-07). The start page question has no line-length cap
+  on purpose: a 16ch cap broke it into three short lines on a laptop, and Volker wants the full width used (one line from
+  1024 px, two balanced lines on an iPad held upright). The closing row has 3 columns, or 2 when a session has no next. A phone held sideways
   (844–932 px) gets the 700 px layout; accepted, since on court the phone is held upright.
 - **Polish (2026-11-04):**
   - The "new" badge is green like the feedback button it asks for, so yellow means Stage 3 only. The badge tokens are

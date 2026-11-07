@@ -207,6 +207,34 @@ describe("built site", () => {
     expect(cards[1]).toContain("Watch the drill");
   });
 
+  it("wide layout (2026-11-07): the classes that carry the iPad/desktop layout are in place", () => {
+    // Class list of the first element whose opening tag matches `tag` (e.g. "div data-player").
+    const cls = (h: string, tag: string) => (h.match(new RegExp(`<${tag}[^>]*class="([^"]*)"`))?.[1] ?? "").split(" ");
+    const page = html("s/warm-hands/index.html");
+    const card = page.match(/<section[^>]*data-stage-card[\s\S]*?<\/section>/)![0];
+    // Video left at 16:9 with its rules, text right.
+    expect(cls(card, "div data-player")).toEqual(expect.arrayContaining(["lg:row-span-5", "lg:m-0", "lg:-mb-[2px]", "lg:border-r-2", "lg:border-b-2"]));
+    expect(cls(card, "a data-video")).toContain("aspect-video");
+    expect(cls(card, "a data-video").some((c) => c.startsWith("lg:"))).toBe(false);
+    expect(cls(card, "div data-player").some((c) => /^lg:(min-h|self-stretch|bg-)/.test(c))).toBe(false); // no stretched dark box
+    expect(card).toMatch(/class="[^"]*lg:grid lg:grid-cols-\[minmax\(0,11fr\)_minmax\(0,9fr\)\]/);
+    expect(cls(card, "p data-in-short")).toContain("lg:col-start-2");
+    expect([...card.matchAll(/<details class="([^"]*)"/g)].every((m) => m[1].includes("lg:col-start-2"))).toBe(true);
+    // Replay is a bar inside the player box; on the phone it undoes the box's bleed.
+    expect(page).toContain("box.append(replay)");
+    expect(page).toMatch(/replay\.className = "mx-4 mt-4 [^"]*w-\[calc\(100%-2rem\)\][^"]*lg:m-0[^"]*lg:w-full[^"]*lg:border-t-2"/);
+    // Closing row: 3 columns with a next session, 2 without.
+    expect(cls(page, "div data-closing")).toEqual(expect.arrayContaining(["lg:grid", "lg:grid-cols-3"]));
+    expect(cls(html("s/steady-lobs/index.html"), "div data-closing")).toEqual(expect.arrayContaining(["lg:grid", "lg:grid-cols-2"]));
+    // Start page grid; every page shares the lg frame, text pages keep 684 px.
+    expect(html("index.html")).toMatch(/<ul class="[^"]*tablet:grid tablet:grid-cols-2[^"]*lg:grid-cols-3/);
+    for (const f of ["index.html", "s/warm-hands/index.html", "about/index.html", "imprint/index.html"]) {
+      expect(html(f)).toMatch(/class="[^"]*max-w-\[430px\][^"]*tablet:max-w-\[720px\] lg:max-w-\[1120px\] lg:px-8/);
+    }
+    expect(cls(html("about/index.html"), "main")).toContain("lg:max-w-[684px]");
+    expect(cls(html("index.html"), "main")).not.toContain("lg:max-w-[684px]");
+  });
+
   it("footer shows no version to players; check-deploy reads version.txt instead", () => {
     expect(html("index.html")).not.toMatch(/<footer[\s\S]*?>v [^<]*<\/span>[\s\S]*?<\/footer>/);
     expect(html("index.html")).not.toContain(">v local<");

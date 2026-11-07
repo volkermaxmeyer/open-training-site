@@ -52,7 +52,7 @@ import BackLink from "../../components/BackLink.astro";
   </div>
   {/* From lg the closing is one row under a rule: three equally tall fields (Volker, 2026-11-07, "Eine Zeile").
       Below lg the wrapper has no style of its own, so the phone keeps the stacked order. */}
-  <div data-closing class="lg:mt-12 lg:grid lg:grid-cols-3 lg:items-stretch lg:gap-x-6 lg:border-t-2 lg:border-ink lg:pt-7">
+  <div data-closing class:list={["lg:mt-12 lg:grid lg:items-stretch lg:gap-x-6 lg:border-t-2 lg:border-ink lg:pt-7", session.next ? "lg:grid-cols-3" : "lg:grid-cols-2"]}>
   <div data-finish class="mt-12 flex items-center gap-3.5 lg:mt-0 lg:min-h-[96px]">
     <Ball size={52} class="finish-ball shrink-0" />
     <p class="font-head text-xl leading-tight font-bold">
