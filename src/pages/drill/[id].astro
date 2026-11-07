@@ -40,13 +40,18 @@ const sameShot = (await getCollection("drills")).filter((d) => d.data.shot === c
         <span class="block font-sans text-[19px] font-normal">Swap roles and go again.</span>
       </p>
     </div>
-    <a
-      data-wish
-      href={wishUrl}
-      class="mt-4 flex min-h-15 flex-col items-center justify-center border-2 border-ink bg-go px-4 py-3 text-center font-head shadow-[6px_6px_0_var(--color-ink)] lg:mt-0 lg:min-h-[96px]"
-    >
-      <span class="text-xl font-bold"><span class="whitespace-nowrap">Wish for a drill?</span> <span class="whitespace-nowrap lg:block">Mail me</span></span>
-    </a>
+    <div class="mt-4 flex flex-col lg:mt-0">
+      <a
+        data-wish
+        href={wishUrl}
+        class="flex min-h-15 flex-col items-center justify-center border-2 border-ink bg-go px-4 py-3 text-center font-head shadow-[6px_6px_0_var(--color-ink)] lg:min-h-[96px]"
+      >
+        <span class="text-xl font-bold"><span class="whitespace-nowrap">Wish for a drill?</span> <span class="whitespace-nowrap lg:block">Mail me</span></span>
+      </a>
+      {/* A mail link does nothing where no mail app is set up (found on Volker's Mac, 2026-11-07): the address is there
+          to copy, below the button, not on it. */}
+      <p data-wish-address class="mt-2.5 text-center text-[15px]">or write to <span class="font-semibold select-all">{site.contactEmail}</span></p>
+    </div>
     {pointer && (
       <a
         data-session-pointer

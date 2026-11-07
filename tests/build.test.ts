@@ -86,6 +86,7 @@ describe("shots area (2026-11-07)", () => {
     expect(page).toContain("data-closing");
     expect(page).toMatch(/data-wish href="mailto:[^"?]+\?subject=Shot%20or%20drill%20wish%20\(from%20drill%20901\)"/);
     expect(text(page)).toContain("Wish for a drill? Mail me");
+    expect(page).toMatch(/data-wish-address[^>]*>or write to <span[^>]*>[^<]+@[^<]+<\/span>/); // for devices without a mail app
     expect(page).not.toContain("tally.so"); // no feedback form on drill pages
   });
 });
