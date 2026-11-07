@@ -175,7 +175,8 @@ describe("built site", () => {
     expect(page).not.toContain("jump-tab");
     expect(page).toMatch(/data-four-on-court[^>]*>\s*Four of you\?\s*<strong>Never two balls with pace\.<\/strong>/);
     expect(page).not.toMatch(/data-watch[\s\S]{0,600}@\d/);
-    expect(page).toContain('<span aria-hidden="true">\u25B6\uFE0E</span> Watch the drill');
+    // Without an end time the link is drawn as large as the in-card player, so the card has no gap (2026-11-07).
+    expect(page).toMatch(/<a[^>]*data-watch[^>]*class="[^"]*aspect-video[\s\S]*?Watch the drill/);
     expect(page).toMatch(/<link rel="preload" href="[^"]+\.woff2" as="font" type="font\/woff2" crossorigin/);
   });
 
