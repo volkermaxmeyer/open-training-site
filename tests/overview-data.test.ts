@@ -1,7 +1,7 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
-// The Overview's data is a snapshot copied by hand from the vault (dashboard/data.json). These checks catch a miscount or
+// The Overview's data is a hand-kept snapshot, and since 2026-11-07 this file is its only copy. These checks catch a miscount or
 // a private detail in a refresh; they compare the totals with the lists, never the data with itself.
 const text = readFileSync(new URL("../src/data/overview.json", import.meta.url), "utf8");
 const D = JSON.parse(text);
