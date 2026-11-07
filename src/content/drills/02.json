@@ -1,0 +1,29 @@
+{
+  "id": "02",
+  "cardTitle": "Return and Run",
+  "shot": "Return",
+  "variant": "Deep return",
+  "tested": false,
+  "inShort": "A serves, and B returns deep and runs straight to the kitchen line, split-stepping on the way. A only blocks the third ball softly.",
+  "rules": [
+    "B starts just behind the baseline, feet wide, paddle ready. A serves easy balls.",
+    "B split-steps on A's serve: a small hop that lands just as A hits.",
+    "B returns deep, into the back third of the court, to the middle or at A's backhand foot.",
+    "No pause: right after the return, B runs to the kitchen line.",
+    "B split-steps again just before A hits the third ball. A only blocks it back softly.",
+    "Swap roles after 10 serves."
+  ],
+  "tooEasy": "A serves hard and deep, and B still has to return deep and get both split-steps in. Even harder: B calls the target before the serve, \"middle\" or \"backhand\".",
+  "tooHard": "B stays at the baseline after the return and works only on the first split-step and a deep return.",
+  "goodLooksLike": "The return lands deep, B never stops after it, and both feet land just as A hits the third ball.",
+  "goals": [
+    "serve-return-deep"
+  ],
+  "drill": {
+    "id": "02",
+    "title": "Return–Sprint–Split-Step Sequence (Serve-Return Live)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/722mGzXn4RA?t=850",
+    "watchLabel": "ThatPickleballGuy - Kyle Koszuta @14:10"
+  }
+}

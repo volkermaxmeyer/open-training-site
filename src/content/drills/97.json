@@ -1,0 +1,31 @@
+{
+  "id": "97",
+  "cardTitle": "Return Deep",
+  "shot": "Return",
+  "variant": "Deep return",
+  "tested": true,
+  "inShort": "A serves, and B returns 10 balls deep behind the mark, with the paddle back before the bounce.",
+  "rules": [
+    "Mark the back third at A's end: a shoe or bottle on each sideline, about 1.5 m in front of A's baseline. A return past the baseline is out.",
+    "A serves from the right side. B returns from just behind the far baseline, in the half diagonally across.",
+    "B aims all 10 returns deep, behind the mark. A calls each return \"deep\", \"short\" or \"out\" and counts.",
+    "Beat the bounce: take your paddle back early, so you are set before the ball bounces.",
+    "After 10 returns, swap roles."
+  ],
+  "tooEasy": "8 of 10 land deep: aim deep and to the middle, and A mixes the depth and pace of the serves.",
+  "tooHard": "A serves easy balls, nobody counts, and after each return you just say where it landed.",
+  "goodLooksLike": "Returns land deep, and the returner is set before the bounce instead of falling backward.",
+  "goals": [
+    "serve-return-deep"
+  ],
+  "drill": {
+    "id": "97",
+    "title": "Return Depth (Back Third)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/KLvEi8RA3nk?t=127",
+    "watchLabel": "Cam Luhring @2:07–3:56",
+    "videoId": "KLvEi8RA3nk",
+    "start": 127,
+    "end": 236
+  }
+}

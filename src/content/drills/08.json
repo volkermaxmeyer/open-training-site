@@ -1,0 +1,31 @@
+{
+  "id": "08",
+  "cardTitle": "Fifteen Soft Drops",
+  "shot": "Drop",
+  "tested": false,
+  "inShort": "B plays balls like a return, and A answers each one from the baseline with a soft drop into the kitchen. 15 balls, then swap.",
+  "rules": [
+    "A stands behind the baseline. B stands at the kitchen line on the other side and starts every ball: a flat, medium-deep ball, like a return.",
+    "B mixes where the balls go: to A's forehand, backhand and middle, in a set order (for example forehand, backhand, forehand).",
+    "A moves the feet to the ball and lets it rise and fall: hit it on the way down, after its highest point.",
+    "A plays a drop (a soft ball that lands in the kitchen), cross-court or to the middle: about 45 cm over the net, landing in the kitchen close to B's feet.",
+    "After each ball, A notes silently: good, too high, or into the net. B says nothing.",
+    "15 balls, then swap roles."
+  ],
+  "tooEasy": "B plays at real return pace and adds topspin to some balls, which are harder to read. A counts good drops in a row: 5, then 10, then 15.",
+  "tooHard": "B plays slow, medium balls, always to the same spot.",
+  "goodLooksLike": "About 12 of 15 drops are good: low over the net and landing in the kitchen.",
+  "goals": [
+    "third-shot-land-soft"
+  ],
+  "drill": {
+    "id": "08",
+    "title": "Feeder Drop: Consistency Block (2 Players)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/4FEuHE2xzZY?t=324",
+    "watchLabel": "Catherine Parenteau @5:24–7:30",
+    "videoId": "4FEuHE2xzZY",
+    "start": 324,
+    "end": 450
+  }
+}

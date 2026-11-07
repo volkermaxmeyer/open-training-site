@@ -1,0 +1,29 @@
+{
+  "id": "04",
+  "cardTitle": "Call the Scenario",
+  "shot": "Return",
+  "variant": "Return placement",
+  "tested": false,
+  "inShort": "Before each serve, A calls a game situation, and B returns to the target that fits it. C plays as A's partner.",
+  "rules": [
+    "Three players: A serves, C stands next to A as A's partner, B returns.",
+    "Before each serve, A calls one of these situations, and B aims for its target.",
+    "\"Two righties\": at the inside foot of the player on the right.",
+    "\"Stack\" (A and C swap sides after the serve): to the side the moving player is running away from.",
+    "\"Good crasher\" (A rushes in fast after serving) or \"just missed a third\": straight back at A.",
+    "After each return, talk briefly: was the target hit, and did it fit? 10 rounds, then rotate."
+  ],
+  "tooEasy": "A keeps the situation secret, for example on a card, and B has to read it from how A and C stand and move.",
+  "tooHard": "Play only two situations until B hits them, then add the others.",
+  "goodLooksLike": "B knows the target before the ball comes, and the return goes there instead of just over the net.",
+  "goals": [
+    "pick-the-right-shot"
+  ],
+  "drill": {
+    "id": "04",
+    "title": "Return Target Roulette (Target Awareness)",
+    "players": "3",
+    "watchUrl": "https://youtu.be/UPSacn3AXLQ?t=65",
+    "watchLabel": "ThatPickleballGuy - Kyle Koszuta @1:05"
+  }
+}

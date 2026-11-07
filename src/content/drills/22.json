@@ -1,0 +1,31 @@
+{
+  "id": "22",
+  "cardTitle": "Survive the Pressure",
+  "shot": "Reset",
+  "variant": "Transition reset",
+  "tested": true,
+  "inShort": "A attacks at the feet, and B resets soft from further and further back.",
+  "rules": [
+    "A stands at the kitchen line and attacks with pace at B's feet. Every ball must stay in the court.",
+    "B plays resets: soft balls that take the pace off and land in front of A's feet, near the middle.",
+    "B moves to every ball but holds the set distance: first at the kitchen line, then about 1 m behind it, then about 2 m behind it.",
+    "High ball: B stays balanced and lowers the paddle, the ball will come down. A ball clearly flying out: let it go.",
+    "Points to 5: B only has to survive, A plays to win. Then swap roles."
+  ],
+  "tooEasy": "A plays at full pace, and only resets that land in the middle count for B.",
+  "tooHard": "A aims clearly at the feet and plays at moderate pace, so B can read every ball.",
+  "goodLooksLike": "Quiet feet, a loose grip, and resets that drop low in front of A instead of popping up.",
+  "goals": [
+    "get-to-the-kitchen"
+  ],
+  "drill": {
+    "id": "22",
+    "title": "Survival Points (Progressive Reset Stress Test)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/_Oe45bLIOuo?t=862",
+    "watchLabel": "Briones Pickleball Academy @14:22–17:40",
+    "videoId": "_Oe45bLIOuo",
+    "start": 862,
+    "end": 1060
+  }
+}

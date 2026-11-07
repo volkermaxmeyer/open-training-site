@@ -1,0 +1,28 @@
+{
+  "id": "106",
+  "cardTitle": "Call It",
+  "shot": "Return",
+  "variant": "Return placement",
+  "tested": false,
+  "inShort": "A serves and calls a target while the ball is in the air. B has to return it there: line, middle or wide.",
+  "rules": [
+    "A serves and is also the caller. B returns.",
+    "As the serve leaves A's paddle, A calls a target: \"line\" (down the line), \"middle\" or \"wide\" (out wide).",
+    "B returns to the called target. Hit it: B's point. Miss it: A's point.",
+    "Play to 11. Serve to both the right and the left side.",
+    "Swap roles after each game."
+  ],
+  "tooEasy": "A calls later, as the ball crosses the net. Even harder: make the target zones smaller.",
+  "tooHard": "A calls before serving, or make the target zones bigger.",
+  "goodLooksLike": "B hits the called target more often than not, even when the call comes late.",
+  "goals": [
+    "serve-return-deep"
+  ],
+  "drill": {
+    "id": "106",
+    "title": "Call It (Reactive Return Placement)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/A4jzKk_I4NY?t=870",
+    "watchLabel": "PickleballPlaybook - Austin Hardy @14:30"
+  }
+}

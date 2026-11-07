@@ -1,0 +1,31 @@
+{
+  "id": "31",
+  "cardTitle": "Only A Attacks",
+  "shot": "Counter & block",
+  "tested": false,
+  "inShort": "A and B dink, only A may suddenly hit hard, and B blocks or counters without ever attacking.",
+  "rules": [
+    "A and B dink as normal at the kitchen line (soft shots that land in the kitchen).",
+    "Only A may speed up (a sudden fast, hard ball at B), whenever A wants: on the first dink or the fifth.",
+    "For now, A speeds up at about 60% pace.",
+    "B never speeds up. B blocks (holds the paddle still and lets the ball bounce off it) or counters (hits the fast ball back fast).",
+    "B's focus: paddle up in front, weight forward.",
+    "Then swap roles."
+  ],
+  "tooEasy": "A speeds up at normal pace, and B has to decide each time between block and counter. Neither is wrong, as long as the ball stays low.",
+  "tooHard": "Before the rally, A calls where the speed-up will go: \"line\", \"body\" or \"cross\". Drop the call once B is ready.",
+  "goodLooksLike": "B's paddle is already up and in front when the speed-up comes, and B's answer stays low over the net.",
+  "goals": [
+    "win-fast-balls"
+  ],
+  "drill": {
+    "id": "31",
+    "title": "Speed-Up Game (one-sided) – Counter off the Dink Pattern",
+    "players": "2",
+    "watchUrl": "https://youtu.be/pgMkaTR5HNM?t=1150",
+    "watchLabel": "Pickleball Studio @19:10–20:22",
+    "videoId": "pgMkaTR5HNM",
+    "start": 1150,
+    "end": 1222
+  }
+}

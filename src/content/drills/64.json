@@ -1,0 +1,31 @@
+{
+  "id": "64",
+  "cardTitle": "Throw It Down",
+  "shot": "Overhead",
+  "tested": false,
+  "inShort": "A tosses high balls, and B throws them down by hand first, then hits the same motion with the paddle as an overhead.",
+  "rules": [
+    "An overhead is a hard shot hit from above your head, like a tennis serve. B stands near the baseline. A tosses slow, high, predictable balls to B.",
+    "First without paddles: B uses the empty hand and the natural throwing motion. Step, pull the elbow back, reach up, throw down.",
+    "The elbow and the feet move at the same time.",
+    "Then with the paddle in the throwing hand: A plays high balls, and B keeps the same order: elbow back, reach up, hit down.",
+    "Point your free hand at the ball. That gives you the distance and gets you to hit high and in front.",
+    "Swap roles after about 5 minutes."
+  ],
+  "tooEasy": "A mixes the depth and pace: one step for a near ball, two or more for a deep one. Even harder: A tosses a little to the left or right, so B has to move sideways before the overhead.",
+  "tooHard": "Stay longer without the paddle, until the throwing motion and the footwork work together.",
+  "goodLooksLike": "Contact high and in front, the free arm stays up, and the paddle finishes across to the opposite hip.",
+  "goals": [
+    "special-shots"
+  ],
+  "drill": {
+    "id": "64",
+    "title": "Throwing → Overhead Connection",
+    "players": "2",
+    "watchUrl": "https://youtu.be/L65JcXD4_Js?t=134",
+    "watchLabel": "Building Pickleball @2:14–3:26",
+    "videoId": "L65JcXD4_Js",
+    "start": 134,
+    "end": 206
+  }
+}

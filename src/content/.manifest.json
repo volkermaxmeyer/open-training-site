@@ -8,7 +8,22 @@
     "src/content/sessions/read-and-choose.json": "c0f520bea25e7ffe6c77abff5747f61c043eb473ce8a42bed8f6ce963441cecb",
     "src/content/sessions/soft-third.json": "f6ca212e2fd3c64cae29a382f9cedf55ce8dbf4c0322b9cefac8c90392c716bc",
     "src/content/sessions/steady-dinks.json": "4f58655cbb91fd041c76a9a12b242bf2930659f5f009d79146fea57afa3de622",
-    "src/content/sessions/work-your-way-in.json": "072ec518f68471f8d63480789d39cd2455c1c678723d943aa9cf97363d50771f"
+    "src/content/sessions/work-your-way-in.json": "072ec518f68471f8d63480789d39cd2455c1c678723d943aa9cf97363d50771f",
+    "src/content/drills/00.json": "17410807f078a93b0e92065d44f6a30b0d5a800aceedc148ec0c8eeaefc0b04d",
+    "src/content/drills/02.json": "717cd3cf2a93a99d8587000f71b0919bf8f998f85f8506459864cf340431dea0",
+    "src/content/drills/03.json": "00af9297fd8afd0f41e1be216f9f6eb62d6e4350dd42f215190f662e99d53e6a",
+    "src/content/drills/04.json": "a719007725ab44cd31a5463c0528b39e224c7a7917140cb92817a2c1a78c090e",
+    "src/content/drills/05.json": "bb068598e52acbe2bfc6ba34682da6277169d2a4173bcdb4ecaa435defa9a1cc",
+    "src/content/drills/08.json": "601846cb604001b9704ba79bf261be970835cfef21b6c6d0d0ad2f2be74361c2",
+    "src/content/drills/106.json": "3a1c8920b882c36bcf78b80064ae9dc8e0fd1677effed8b64377d1b75bcc0d42",
+    "src/content/drills/17.json": "93d34e8881b3ad14ff5f08495e3c0bff7c866bd8af0ff63c7ffb7d21bf6e5836",
+    "src/content/drills/18.json": "86329db6149996952480899771af4ef8e45539d19768e9044bbeec8199fb591e",
+    "src/content/drills/22.json": "ba5904647d313592a4b811af0ac96d1bcede2ae341fbe5adecf92ece5e48f9f4",
+    "src/content/drills/31.json": "83c9e0bfb9c504b34942e2bd4457fd1c02752ffa98244af39741ef6da8e893c5",
+    "src/content/drills/36.json": "88ba84a59c062f145a2ed2ad4336cc48a22f802fd9cc7e55db1bb9456efad144",
+    "src/content/drills/64.json": "de82e9f7eb636356068c6a27a06e045b550258b21e0411b36986d6ada6260c76",
+    "src/content/drills/80.json": "7fe767d518a66795345b1eed4c55fe343e8366ac82b10eb9ba58c570637e42b5",
+    "src/content/drills/97.json": "7ad61e72f16309cda3dc0ca1b4e215153e8592b03b70266710f2bb60684bb083"
   },
   "slugsEverPublished": [
     "work-your-way-in",
@@ -21,5 +36,22 @@
     "soft-third",
     "win-the-dink-battle",
     "steady-dinks"
+  ],
+  "drillsEverPublished": [
+    "00",
+    "02",
+    "03",
+    "04",
+    "05",
+    "08",
+    "106",
+    "17",
+    "18",
+    "22",
+    "31",
+    "36",
+    "64",
+    "80",
+    "97"
   ]
 }

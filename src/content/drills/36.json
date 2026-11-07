@@ -1,0 +1,31 @@
+{
+  "id": "36",
+  "cardTitle": "Forehand, Backhand, Repeat",
+  "shot": "Volley",
+  "tested": false,
+  "inShort": "A and B volley back and forth at chest height, switching forehand and backhand on every ball.",
+  "rules": [
+    "A and B stand straight across from each other at the net (not diagonal).",
+    "A hits a forehand volley (a ball hit out of the air, before it bounces) at B's chest. B takes it on the backhand and sends it back.",
+    "Each of you switches on every ball: forehand, backhand, forehand, backhand. No free play.",
+    "Start so close to the net you can almost touch it. Once the streak holds, both step back to the kitchen line: you will feel you have far more time.",
+    "Medium pace, go for long streaks. A mistake costs nothing: just start again.",
+    "Between balls, hold the paddle up in front of your belly. Everything through the middle goes on the backhand."
+  ],
+  "tooEasy": "Raise the pace and play for the streak: whoever breaks it loses the point. Or both step in to about 2 m apart, for even less time.",
+  "tooHard": "Skip the close start and play only from the kitchen line, where you have the most time.",
+  "goodLooksLike": "Every ball arrives at chest height, the elbow stays in front of the body, and you let the ball come to you instead of reaching for it.",
+  "goals": [
+    "win-fast-balls"
+  ],
+  "drill": {
+    "id": "36",
+    "title": "Alternating Volleys (Chest-to-Chest)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/0aMgIXQYR5s?t=4",
+    "watchLabel": "Walker Sisters Pickleball - Angie & Alex Walker @0:04–1:10",
+    "videoId": "0aMgIXQYR5s",
+    "start": 4,
+    "end": 70
+  }
+}

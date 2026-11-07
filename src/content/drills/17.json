@@ -1,0 +1,32 @@
+{
+  "id": "17",
+  "cardTitle": "The 60% Drive",
+  "shot": "Drip",
+  "variant": "Hybrid drive",
+  "tested": false,
+  "inShort": "B hits a compact drive at 60% power to the cones at A's feet, then runs in. A says how it arrived.",
+  "rules": [
+    "Put two cones (or bottles) about 1.2–1.5 m behind the kitchen line on A's side. A stands there, like an opponent who has not reached the net yet.",
+    "From the baseline, B plays a hybrid drive: a compact swing at about 60% power, aimed at the cones, so it arrives at A's ankles.",
+    "A tries to return it and tells B: good ankle height, too high or too fast.",
+    "B runs in to the net right behind the hybrid drive.",
+    "A stands still for now.",
+    "Swap roles after 8 balls."
+  ],
+  "tooEasy": "A moves sideways while B hits. B has to place the hybrid drive where A is moving to, or behind A.",
+  "tooHard": "B stays at the baseline and works only on the 60% swing and the ankle height, without running in.",
+  "goodLooksLike": "Every ball arrives low at A's ankles, not at the body, and B is already moving in as it lands.",
+  "goals": [
+    "drives-that-hurt"
+  ],
+  "drill": {
+    "id": "17",
+    "title": "Hybrid-Drive Drill with Cone Targets",
+    "players": "2",
+    "watchUrl": "https://youtu.be/7Gs5ke38K-o?t=195",
+    "watchLabel": "Zane Navratil Pickleball @3:15–4:17",
+    "videoId": "7Gs5ke38K-o",
+    "start": 195,
+    "end": 257
+  }
+}
