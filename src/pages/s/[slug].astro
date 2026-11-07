@@ -125,16 +125,16 @@ import BackLink from "../../components/BackLink.astro";
         const replay = document.createElement("button");
         replay.type = "button";
         replay.textContent = "\u21BA Replay the drill";
-        // lg: back into the video column (the card body is a grid there), under the video. Row and column are both
-        // fixed: a button placed by auto-flow would push the text column below it, since it comes first in the markup.
-        replay.className = "mt-4 flex min-h-12 w-full items-center justify-center border-2 border-ink bg-card font-head font-bold lg:col-start-1 lg:row-start-6 lg:m-4 lg:w-auto";
+        // Inside the player box, so from lg it is a bar on the video (Volker, 2026-11-07). The box bleeds 1rem past the
+        // card padding on the phone; mx-4 and the calc width take that back, so on the phone it sits where it always did.
+        replay.className = "mx-4 mt-4 flex min-h-12 w-[calc(100%-2rem)] items-center justify-center border-2 border-ink bg-card font-head font-bold lg:m-0 lg:min-h-13 lg:w-full lg:border-0 lg:border-t-2";
         replay.addEventListener("click", () => {
           pauseOthers(current.frame);
           const next = playerFor(a);
           current.frame.replaceWith(next);
           current.frame = next;
         });
-        box.after(replay);
+        box.append(replay);
       });
     });
   </script>

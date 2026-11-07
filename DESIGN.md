@@ -123,8 +123,9 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
   phone on court is measured element by element against the version before. From 700 px (`tablet:`, so an iPad mini held
   upright counts): the column is 720 px, headings 60 px, the goals a 2-column grid. From 1024 px (`lg:`), on the start
   page and sessions only (`Base` prop `wide`): up to 1120 px, goals in 3 columns, and in each drill card the video fills
-  the left column at full card height with the text on the right. The replay button sits under the video with a fixed
-  grid row, or it would push the text column down. The closing becomes one row under a rule: finish, feedback,
+  the left column at 16:9, before and after play (a stretched dark box left a black band under the YouTube frame), with
+  the text on the right. Replay is a bar on the video's bottom edge, inside the player box, so it stays on the video
+  however long the text column gets (Volker, after testing on the iPad). The closing becomes one row under a rule: finish, feedback,
   next, all 96 px high. Text pages (About, Imprint, Privacy) stop at 720 px for line length. A phone held sideways
   (844–932 px) gets the 700 px layout; accepted, since on court the phone is held upright.
 - **Polish (2026-11-04):**

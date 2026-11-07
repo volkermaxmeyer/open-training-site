@@ -38,11 +38,12 @@ const block = ["bg-stage-1", "bg-stage-2", "bg-stage-3"][number - 1];
       </div>
     </div>
   </div>
-  {/* From lg the body is two columns: the video fills the left one at full card height, the text sits on the right.
-      Everything on the right is placed with lg:col-start-2; the replay button (added by the page script) stays left. */}
+  {/* From lg the body is two columns: the video (always 16:9, before and after play) on the left, the text on the right,
+      placed with lg:col-start-2. The replay bar is added inside data-player by the page script, so it stays on the
+      video. -mb-[2px] lets the player's bottom rule sit on the card's own border when the video is the taller column. */}
   <div class="px-4 pt-4 pb-4 lg:grid lg:grid-cols-[minmax(0,11fr)_minmax(0,9fr)] lg:items-start lg:gap-x-7 lg:p-0 lg:pr-6">
     {segment ? (
-      <div data-player class="-mx-4 -mt-4 lg:row-span-5 lg:m-0 lg:min-h-[324px] lg:self-stretch lg:border-r-2 lg:border-ink lg:bg-ink">
+      <div data-player class="-mx-4 -mt-4 lg:row-span-5 lg:m-0 lg:-mb-[2px] lg:border-r-2 lg:border-b-2 lg:border-ink">
         <a
           data-video
           data-id={videoId}
@@ -53,7 +54,7 @@ const block = ["bg-stage-1", "bg-stage-2", "bg-stage-3"][number - 1];
           href={stage.drill.watchUrl}
           target="_blank"
           rel="noopener"
-          class="flex aspect-video w-full flex-col items-center justify-center gap-1.5 bg-ink px-4 text-center font-head text-on-ink lg:aspect-auto lg:h-full"
+          class="flex aspect-video w-full flex-col items-center justify-center gap-1.5 bg-ink px-4 text-center font-head text-on-ink"
         >
           <span aria-hidden="true" class="flex h-15 w-15 items-center justify-center rounded-full border-2 border-on-ink text-2xl">{"\u25B6\uFE0E"}</span>
           <span class="text-xl font-bold">Play the drill here</span>
@@ -66,7 +67,7 @@ const block = ["bg-stage-1", "bg-stage-2", "bg-stage-3"][number - 1];
         href={stage.drill.watchUrl}
         target="_blank"
         rel="noopener"
-        class="flex min-h-18 flex-col items-center justify-center bg-ink px-4 py-3 text-center font-head text-on-ink lg:row-span-5 lg:min-h-[324px] lg:self-stretch lg:border-r-2 lg:border-ink"
+        class="flex min-h-18 flex-col items-center justify-center bg-ink px-4 py-3 text-center font-head text-on-ink lg:row-span-5"
       >
         <span class="text-xl font-bold"><span aria-hidden="true">{"\u25B6\uFE0E"}</span> Watch the drill<span class="sr-only"> (opens YouTube)</span></span>
         <span class="mt-0.5 text-base font-semibold text-balance">{channel}{time && <span class="whitespace-nowrap"> at {time}</span>} on YouTube</span>
