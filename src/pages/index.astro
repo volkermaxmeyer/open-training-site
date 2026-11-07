@@ -13,7 +13,7 @@ const others = sessions.filter((s) => !s.goal).sort((a, b) => a.title.localeComp
 
 <Base wide title={site.name} description="Good training, no coach. Pick what you want to get better at, and follow three drills on your phone.">
   <p class="mt-2 font-head text-[14px] font-semibold tracking-[0.08em] uppercase">Good training, no coach</p>
-  <h1 class="mt-2 font-display text-[44px] leading-none font-bold tracking-[-0.02em] text-balance tablet:max-w-[16ch] tablet:text-[60px]">{site.goalQuestion}</h1>
+  <h1 class="mt-2 font-display text-[44px] leading-none font-bold tracking-[-0.02em] text-balance tablet:text-[60px]">{site.goalQuestion}</h1>
   {sessions.length === 0 ? (
     <p class="mt-8 border-2 border-dashed border-ink bg-card p-4">
       No sessions yet. Check back soon.
