@@ -57,6 +57,15 @@ export async function publish(opts: PublishOptions): Promise<PublishResult> {
   const drills = new Map<string, string>(
     readdirSync(drillDir).filter((f) => f.endsWith(".md")).map((f) => [f.slice(0, -3), readFileSync(join(drillDir, f), "utf8")]),
   );
+  // A drill's number is its id on the site and in the Overview, so two files with one number must stop the run
+  // ("08" and "8" count as the same; data architecture review 2026-11-07).
+  const byNumber = new Map<number, string>();
+  for (const name of [...drills.keys()].filter((n) => /^\d+-/.test(n)).sort()) {
+    const n = Number(name.match(/^(\d+)-/)![1]);
+    const first = byNumber.get(n);
+    if (first) throw new PublishError("drills", `number ${n} is used by both ${first}.md and ${name}.md`);
+    byNumber.set(n, name);
+  }
   const goals = readGoals(opts.vaultDir);
   const sessionDir = join(opts.vaultDir, "sessions/web");
   const warnings: string[] = [];

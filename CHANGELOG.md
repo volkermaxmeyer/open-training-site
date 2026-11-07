@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.018 · 2026-11-07 · Publishing stops when two drill files share a number.
 - 1.017 · 2026-11-07 · Releases stop on red tests (publish and every push); the start page and the Overview handle several sessions per goal and per drill.
 - 1.016 · 2026-11-07 · Overview: drill names as plain lines so only links have a frame and shadow; 16 px text from tablet width; players count back on phones; phone layout up to 699 px like the rest of the site; tiles with the site's 6 px shadow; filter says Tested games. Session pages name the home page goal above the title.
 - 1.015 · 2026-11-07 · Overview: all text at least 14 px; phone matrix uses short column heads with a key below; tabs and filters 48 px; tiles and moments without gaps; drills and games link to their session; "Special shots" as on the home page; short serve and fed third get their tag colour; home page says "2+ players" once above the goals instead of on every card; the dot after the channel name in the video caption no longer starts a line.

@@ -73,6 +73,16 @@ describe("publish", () => {
     expect(Object.keys(manifest().files)).toEqual(["src/content/sessions/published-session.json"]);
   });
 
+  it("rejects two drill files with one number", async () => {
+    const vault = mkdtempSync(join(tmpdir(), "vault-"));
+    cpSync(vaultDir, vault, { recursive: true });
+    const first = readdirSync(join(vault, "drills")).find((f) => /^\d+-/.test(f))!;
+    const n = first.match(/^(\d+)-/)![1];
+    writeFileSync(join(vault, "drills", `0${n}-copy-with-padding.md`), readFileSync(join(vault, "drills", first), "utf8"));
+    await expect(publish(opts({ vaultDir: vault }))).rejects.toThrow(new RegExp(`number ${Number(n)} is used by both`));
+    expect(existsSync(outDir)).toBe(false);
+  });
+
   it("rejects slug that differs from filename", async () => {
     const vault = mkdtempSync(join(tmpdir(), "vault-"));
     cpSync(vaultDir, vault, { recursive: true });
