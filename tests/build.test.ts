@@ -48,6 +48,9 @@ describe("shots area (2026-11-07)", () => {
     expect(index).toMatch(/href="\/shots\/"[^>]*data-tab="shots"/);
     expect(index).not.toContain("data-shot-tile");
     expect(html("shots/index.html")).toMatch(/data-tab="shots"[^>]*aria-current="page"/);
+    expect(text(index)).toContain("One goal, three drills, 30 minutes.");
+    expect(text(html("shots/index.html"))).toContain("One shot, from calm to full pace.");
+    expect(html("shots/index.html")).toMatch(/data-shared-base[^>]*>Every drill works with <span[\s\S]*?2\+ players<\/span>/);
   });
 
   it("Shots tab shows a tile per shot, Coming soon when nothing is released", () => {

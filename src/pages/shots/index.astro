@@ -5,6 +5,7 @@ import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import HomeTabs from "../../components/HomeTabs.astro";
 import { site } from "../../site.config";
+import Chip from "../../components/Chip.astro";
 import { SHOTS, shotSlug } from "../../lib/shots";
 
 const drills = (await getCollection("drills")).map((d) => d.data);
@@ -12,12 +13,16 @@ const tiles = SHOTS.map((shot) => {
   const own = drills.filter((d) => d.shot === shot);
   return { shot, count: own.length, href: own.length === 1 ? `/drill/${own[0].id}/` : `/shots/${shotSlug(shot)}/` };
 });
+// Like the Goals tab's "Every session works with 2+ players": the smallest group any released drill needs.
+const counts = drills.map((d) => d.drill.players).filter((p) => p !== "Wall").map(Number);
+const minPlayers = counts.length ? Math.min(...counts) : undefined;
 ---
 
 <Base wide title={`Shots | ${site.name}`} description="Practise one shot at a time: drills that repeat a single shot, from calm to full pace.">
   <p class="mt-2 font-head text-[14px] font-semibold tracking-[0.08em] uppercase">Good training, no coach</p>
-  <div class="mt-4 max-w-xl"><HomeTabs active="shots" /></div>
-  <h1 class="mt-7 font-display text-[44px] leading-none font-bold tracking-[-0.02em] text-balance tablet:text-[60px]">Which shot do you want to practise?</h1>
+  <HomeTabs active="shots" />
+  <h1 class="mt-5 font-display text-[44px] leading-none font-bold tracking-[-0.02em] text-balance tablet:text-[60px]">Which shot do you want to practise?</h1>
+  {minPlayers && <p data-shared-base class="mt-4 flex flex-wrap items-center gap-2">Every drill works with <Chip tone="people" icon>{minPlayers}+ players</Chip></p>}
   <section data-shots>
     <ul class="mt-7 grid grid-cols-2 gap-3.5 tablet:grid-cols-3 tablet:gap-5 lg:grid-cols-4">
       {tiles.map((t) => (

@@ -1,30 +1,31 @@
 ---
-// Two tabs at the top of the start page (Shots area prototype, 2026-11-07): Goals (the sessions) and Shots (one shot
-// at a time). Two plain pages with the same bar, so no JavaScript and each tab has its own address.
+// Two tabs at the top of the start page (Shots area prototype, Volker 2026-11-07, variant G): a slim pill, then one
+// short line saying what the tab offers. Two plain pages with the same bar, so no JavaScript and each tab has its own
+// address. The page's big question follows below.
 interface Props {
   active: "goals" | "shots";
 }
 const { active } = Astro.props;
 const tabs = [
-  { id: "goals", label: "Goals", hint: "A 30-minute session", href: "/" },
-  { id: "shots", label: "Shots", hint: "One shot at a time", href: "/shots/" },
+  { id: "goals", label: "Goals", href: "/", line: "One goal, three drills, 30 minutes." },
+  { id: "shots", label: "Shots", href: "/shots/", line: "One shot, from calm to full pace." },
 ] as const;
+const current = tabs.find((t) => t.id === active)!;
 ---
 
-<nav aria-label="Start" data-home-tabs class="mt-1 grid grid-cols-2 border-2 border-ink bg-card shadow-[6px_6px_0_var(--color-ink)]">
-  {tabs.map((t, i) => (
+<nav aria-label="Start" data-home-tabs class="mt-4 grid max-w-sm grid-cols-2 rounded-full border-2 border-ink bg-card p-[3px]">
+  {tabs.map((t) => (
     <a
       href={t.href}
       data-tab={t.id}
       aria-current={active === t.id ? "page" : undefined}
       class:list={[
-        "flex min-h-15 flex-col justify-center px-4 py-2.5",
-        i === 1 && "border-l-2 border-ink",
-        active === t.id ? "bg-ink text-on-ink" : "bg-card text-ink [@media(hover:hover)]:hover:bg-chip",
+        "flex min-h-12 items-center justify-center rounded-full font-head text-[17px] font-bold",
+        active === t.id ? "bg-ink text-on-ink" : "text-ink [@media(hover:hover)]:hover:bg-chip",
       ]}
     >
-      <span class="font-head text-[20px] leading-tight font-bold">{t.label}</span>
-      <span class="text-[15px] leading-snug">{t.hint}</span>
+      {t.label}
     </a>
   ))}
 </nav>
+<p data-tab-line class="mt-2.5 text-[17px] leading-snug">{current.line}</p>
