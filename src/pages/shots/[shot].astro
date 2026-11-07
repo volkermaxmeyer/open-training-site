@@ -19,7 +19,7 @@ const { shot, drills } = Astro.props;
 ---
 
 <Base wide title={`${shot} | ${site.name}`} description={`Drills to practise the ${shot.toLowerCase()} on its own.`}>
-  <BackLink href="/#shots" label="All shots" />
+  <BackLink href="/shots/" label="All shots" />
   <p class="mt-2 font-head text-[14px] font-semibold tracking-[0.08em] uppercase">Practise one shot</p>
   <h1 class="mt-1 font-display text-[44px] leading-none font-bold tracking-[-0.02em] text-balance tablet:text-[60px]">{shot}</h1>
   <p class="mt-3 max-w-[62ch]">Each drill repeats this one shot. Turn the pace up when it gets easy.</p>

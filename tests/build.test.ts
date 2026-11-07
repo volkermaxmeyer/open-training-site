@@ -42,8 +42,16 @@ describe("placeholder guard", () => {
 });
 
 describe("shots area (2026-11-07)", () => {
-  it("start page shows a tile per shot, Coming soon when nothing is released", () => {
+  it("start page has two tabs, Goals active", () => {
     const index = html("index.html");
+    expect(index).toMatch(/data-tab="goals"[^>]*aria-current="page"/);
+    expect(index).toMatch(/href="\/shots\/"[^>]*data-tab="shots"/);
+    expect(index).not.toContain("data-shot-tile");
+    expect(html("shots/index.html")).toMatch(/data-tab="shots"[^>]*aria-current="page"/);
+  });
+
+  it("Shots tab shows a tile per shot, Coming soon when nothing is released", () => {
+    const index = html("shots/index.html");
     expect(index.match(/data-shot-tile=/g)?.length ?? 0).toBe(2); // Dink (2 cards) and Lob (1)
     expect(index.match(/data-shot-soon=/g)?.length ?? 0).toBe(11);
     expect(index).toMatch(/data-shot-tile="dink" href="\/shots\/dink\/"/);

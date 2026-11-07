@@ -21,7 +21,7 @@ const sameShot = (await getCollection("drills")).filter((d) => d.data.shot === c
 ---
 
 <Base wide title={`${card.cardTitle} | ${site.name}`} description={card.inShort}>
-  <BackLink href={sameShot > 1 ? `/shots/${shotSlug(card.shot)}/` : "/#shots"} label={sameShot > 1 ? `All ${card.shot} drills` : "All shots"} />
+  <BackLink href={sameShot > 1 ? `/shots/${shotSlug(card.shot)}/` : "/shots/"} label={sameShot > 1 ? `All ${card.shot} drills` : "All shots"} />
   <p data-shot-label class="mt-2 font-head text-[14px] font-semibold tracking-[0.08em] uppercase">
     {sameShot > 1 ? <a href={`/shots/${shotSlug(card.shot)}/`} class="underline underline-offset-4">{card.shot}</a> : card.shot}{card.variant && ` · ${card.variant}`}
   </p>

@@ -1,0 +1,30 @@
+---
+// Two tabs at the top of the start page (Shots area prototype, 2026-11-07): Goals (the sessions) and Shots (one shot
+// at a time). Two plain pages with the same bar, so no JavaScript and each tab has its own address.
+interface Props {
+  active: "goals" | "shots";
+}
+const { active } = Astro.props;
+const tabs = [
+  { id: "goals", label: "Goals", hint: "A 30-minute session", href: "/" },
+  { id: "shots", label: "Shots", hint: "One shot at a time", href: "/shots/" },
+] as const;
+---
+
+<nav aria-label="Start" data-home-tabs class="mt-1 grid grid-cols-2 border-2 border-ink bg-card shadow-[6px_6px_0_var(--color-ink)]">
+  {tabs.map((t, i) => (
+    <a
+      href={t.href}
+      data-tab={t.id}
+      aria-current={active === t.id ? "page" : undefined}
+      class:list={[
+        "flex min-h-15 flex-col justify-center px-4 py-2.5",
+        i === 1 && "border-l-2 border-ink",
+        active === t.id ? "bg-ink text-on-ink" : "bg-card text-ink [@media(hover:hover)]:hover:bg-chip",
+      ]}
+    >
+      <span class="font-head text-[20px] leading-tight font-bold">{t.label}</span>
+      <span class="text-[15px] leading-snug">{t.hint}</span>
+    </a>
+  ))}
+</nav>
