@@ -1,0 +1,1615 @@
+{
+ "as_of": "2026-11-05",
+ "totals": {
+  "drills": 117,
+  "tested": 11,
+  "tactical_cues": 95,
+  "mental_cues": 22,
+  "plays": 34,
+  "combos": 19,
+  "games": 31,
+  "web_sessions": 9,
+  "themes": 13
+ },
+ "shots": [
+  {
+   "name": "Dink",
+   "drills": 26,
+   "cues": 24,
+   "plays": 9,
+   "examples": [
+    {
+     "n": "80",
+     "title": "Dink Patterns: Series of 50 (Warm-Up + Pattern Lock)",
+     "tested": true
+    },
+    {
+     "n": "81",
+     "title": "Dink Duel with Penalty Points",
+     "tested": true
+    },
+    {
+     "n": "113",
+     "title": "Dinkles (Two Balls → Live Conversion)",
+     "tested": true
+    }
+   ],
+   "variants": [
+    {
+     "name": "Cross-court dink",
+     "drills": 2,
+     "examples": [
+      {
+       "n": "113",
+       "title": "Dinkles (Two Balls → Live Conversion)",
+       "tested": true
+      }
+     ]
+    },
+    {
+     "name": "Topspin dink",
+     "drills": 2,
+     "examples": [
+      {
+       "n": "28",
+       "title": "Two-Handed Backhand Dink Progression Drill (Introducing the Two-y)",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Backhand dink",
+     "drills": 2,
+     "examples": [
+      {
+       "n": "25",
+       "title": "Backhand Cross-Court Rally Game (Oddside Mirror Drill)",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Slice / underspin dink",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "89",
+       "title": "Spin-Continuation Dink Drill (Topspin vs Underspin)",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Dead dink",
+     "drills": 2,
+     "examples": [
+      {
+       "n": "37",
+       "title": "Dead-Dink → Speedup → Hands Battle",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Dink volley",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "26",
+       "title": "Dink-Volley Decision Drill (3 Contact Zones)",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Middle dink",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "87",
+       "title": "Middle-Dink Offense Drill",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Step-back dink",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "26",
+       "title": "Dink-Volley Decision Drill (3 Contact Zones)",
+       "tested": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Volley",
+   "drills": 21,
+   "cues": 9,
+   "plays": 1,
+   "examples": [
+    {
+     "n": "14",
+     "title": "4th-Shot Step-Back Drill",
+     "tested": true
+    },
+    {
+     "n": "15",
+     "title": "4th-Shot-Volley Gauntlet (2 Players, NVZ Side Under Pressure)",
+     "tested": true
+    },
+    {
+     "n": "16",
+     "title": "Shake & Bake with Poach Timing",
+     "tested": false
+    }
+   ],
+   "variants": [
+    {
+     "name": "Punch volley",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "15",
+       "title": "4th-Shot-Volley Gauntlet (2 Players, NVZ Side Under Pressure)",
+       "tested": true
+      }
+     ]
+    },
+    {
+     "name": "Roll volley",
+     "drills": 4,
+     "examples": [
+      {
+       "n": "44",
+       "title": "Roll Volley Drill — Transition Zone Attack",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Flick",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "65",
+       "title": "Flick/Roll Deception out of the Dink",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Swinging volley",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "95",
+       "title": "Swinging-Volley Charge (Transition Offense)",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Block volley",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "35",
+       "title": "Soft Hands Progression – Block Volley from the Kitchen to Midcourt",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Half-volley",
+     "drills": 2,
+     "examples": [
+      {
+       "n": "14",
+       "title": "4th-Shot Step-Back Drill",
+       "tested": true
+      }
+     ]
+    },
+    {
+     "name": "Poke",
+     "drills": 0,
+     "examples": []
+    },
+    {
+     "name": "Poach",
+     "drills": 3,
+     "examples": [
+      {
+       "n": "16",
+       "title": "Shake & Bake with Poach Timing",
+       "tested": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Reset",
+   "drills": 16,
+   "cues": 37,
+   "plays": 7,
+   "examples": [
+    {
+     "n": "18",
+     "title": "Split-Step Ladder",
+     "tested": true
+    },
+    {
+     "n": "22",
+     "title": "Survival Points (Progressive Reset Stress Test)",
+     "tested": true
+    },
+    {
+     "n": "47",
+     "title": "7-11 Game (Half-Court Transition)",
+     "tested": true
+    }
+   ],
+   "variants": [
+    {
+     "name": "Transition reset",
+     "drills": 3,
+     "examples": [
+      {
+       "n": "19",
+       "title": "Transition-Hold (7-11 Scoring)",
+       "tested": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Drop",
+   "drills": 12,
+   "cues": 33,
+   "plays": 7,
+   "examples": [
+    {
+     "n": "84",
+     "title": "Serve–Return–Third (Three-Shot Sequence)",
+     "tested": true
+    },
+    {
+     "n": "06",
+     "title": "Ball-Toss Drop Drill (Solo, No Paddle)",
+     "tested": false
+    },
+    {
+     "n": "07",
+     "title": "Diagonal Slinky Progression (Drop Build-Up)",
+     "tested": false
+    }
+   ],
+   "variants": [
+    {
+     "name": "Slice drop",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "09",
+       "title": "Slice-Drop Footwork Drill (2 Players, Game-Like Movement)",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Topspin drop",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "50",
+       "title": "Drive–Drop Combo (3rd–5th Shot Sequence)",
+       "tested": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Speed-up",
+   "drills": 12,
+   "cues": 24,
+   "plays": 6,
+   "examples": [
+    {
+     "n": "31",
+     "title": "Speed-Up Game (one-sided) – Counter off the Dink Pattern",
+     "tested": false
+    },
+    {
+     "n": "37",
+     "title": "Dead-Dink → Speedup → Hands Battle",
+     "tested": false
+    },
+    {
+     "n": "38",
+     "title": "Paranoid Dink → Live Speedup",
+     "tested": false
+    }
+   ],
+   "variants": [
+    {
+     "name": "Cross-body speed-up",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "66",
+       "title": "Cross-Body Speed-up (Dead-Dink Trigger)",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Body shot",
+     "drills": 0,
+     "examples": []
+    }
+   ]
+  },
+  {
+   "name": "Drive",
+   "drills": 11,
+   "cues": 24,
+   "plays": 8,
+   "examples": [
+    {
+     "n": "11",
+     "title": "Drive → 5th-Shot-Drop Sequence (2 Players, Live)",
+     "tested": false
+    },
+    {
+     "n": "13",
+     "title": "Drive Target Drill: Three Targets",
+     "tested": false
+    },
+    {
+     "n": "17",
+     "title": "Hybrid-Drive Drill with Cone Targets",
+     "tested": false
+    }
+   ],
+   "variants": [
+    {
+     "name": "Hybrid drive",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "17",
+       "title": "Hybrid-Drive Drill with Cone Targets",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Topspin drive",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "48",
+       "title": "Lefty-Forehand Isolation",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Down-the-line drive",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "101",
+       "title": "First Four Shots — Down-the-Line Drive Chain (Worst-Case Reps)",
+       "tested": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Counter & block",
+   "drills": 11,
+   "cues": 23,
+   "plays": 8,
+   "examples": [
+    {
+     "n": "14",
+     "title": "4th-Shot Step-Back Drill",
+     "tested": true
+    },
+    {
+     "n": "21",
+     "title": "Stoplight Paddle-Reading",
+     "tested": false
+    },
+    {
+     "n": "30",
+     "title": "Hard Ball – Progressive Drive Block",
+     "tested": false
+    }
+   ],
+   "variants": [
+    {
+     "name": "Counter",
+     "drills": 8,
+     "examples": [
+      {
+       "n": "21",
+       "title": "Stoplight Paddle-Reading",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Block",
+     "drills": 2,
+     "examples": [
+      {
+       "n": "30",
+       "title": "Hard Ball – Progressive Drive Block",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Push counter",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "34",
+       "title": "Firefight Sandwich – 5 Shot Types under Pressure",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Backhand slide",
+     "drills": 2,
+     "examples": [
+      {
+       "n": "42",
+       "title": "Colin Slide / Backhand Counter Drill",
+       "tested": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Specialty shots",
+   "drills": 6,
+   "cues": 8,
+   "plays": 2,
+   "examples": [
+    {
+     "n": "68",
+     "title": "Ernie Anticipation Drill",
+     "tested": false
+    },
+    {
+     "n": "102",
+     "title": "ATP Pull-and-Defend (Advanced)",
+     "tested": false
+    },
+    {
+     "n": "103",
+     "title": "Ernie Live-Point Game",
+     "tested": false
+    }
+   ],
+   "variants": [
+    {
+     "name": "Erne",
+     "drills": 2,
+     "examples": [
+      {
+       "n": "68",
+       "title": "Ernie Anticipation Drill",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "ATP (around the post)",
+     "drills": 2,
+     "examples": [
+      {
+       "n": "102",
+       "title": "ATP Pull-and-Defend (Advanced)",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Tweener",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "104",
+       "title": "Tweener Forced-Return Live Point",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Switcheroo",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "119",
+       "title": "Switcheroo — Off-Hand Deception Progression",
+       "tested": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Lob",
+   "drills": 3,
+   "cues": 9,
+   "plays": 2,
+   "examples": [
+    {
+     "n": "67",
+     "title": "Offensive Kitchen Lob (Attack-Ball Context)",
+     "tested": false
+    },
+    {
+     "n": "98",
+     "title": "Lob Retrieval (Drop-Step, Pivot & Run)",
+     "tested": false
+    },
+    {
+     "n": "99",
+     "title": "Lob ↔ Overhead Duel (Live-After-Lob)",
+     "tested": false
+    }
+   ],
+   "variants": [
+    {
+     "name": "Offensive lob",
+     "drills": 2,
+     "examples": [
+      {
+       "n": "67",
+       "title": "Offensive Kitchen Lob (Attack-Ball Context)",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Defensive lob",
+     "drills": 0,
+     "examples": []
+    },
+    {
+     "name": "Lob retrieval",
+     "drills": 2,
+     "examples": [
+      {
+       "n": "98",
+       "title": "Lob Retrieval (Drop-Step, Pivot & Run)",
+       "tested": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Overhead",
+   "drills": 2,
+   "cues": 8,
+   "plays": 3,
+   "examples": [
+    {
+     "n": "64",
+     "title": "Throwing → Overhead Connection",
+     "tested": false
+    },
+    {
+     "n": "99",
+     "title": "Lob ↔ Overhead Duel (Live-After-Lob)",
+     "tested": false
+    }
+   ],
+   "variants": []
+  },
+  {
+   "name": "Drip",
+   "drills": 1,
+   "cues": 3,
+   "plays": 2,
+   "examples": [
+    {
+     "n": "115",
+     "title": "Third-Shot Drip (Reps → Steal Time → Mix & Drip)",
+     "tested": false
+    }
+   ],
+   "variants": []
+  }
+ ],
+ "serve_return": [
+  {
+   "name": "Serve",
+   "drills": 7,
+   "variants": [
+    {
+     "name": "Deep serve",
+     "drills": 1
+    },
+    {
+     "name": "Power serve",
+     "drills": 3
+    }
+   ],
+   "examples": [
+    {
+     "n": "00",
+     "title": "Julian Arnold Depth Drill (Serve)",
+     "tested": true
+    },
+    {
+     "n": "84",
+     "title": "Serve–Return–Third (Three-Shot Sequence)",
+     "tested": true
+    },
+    {
+     "n": "01",
+     "title": "Step-In Serve Drill (Martínez Vic Drill)",
+     "tested": false
+    }
+   ]
+  },
+  {
+   "name": "Return",
+   "drills": 10,
+   "variants": [
+    {
+     "name": "Deep return",
+     "drills": 1
+    },
+    {
+     "name": "Slice return",
+     "drills": 2
+    },
+    {
+     "name": "Topspin return",
+     "drills": 0
+    },
+    {
+     "name": "Return placement",
+     "drills": 2
+    }
+   ],
+   "examples": [
+    {
+     "n": "84",
+     "title": "Serve–Return–Third (Three-Shot Sequence)",
+     "tested": true
+    },
+    {
+     "n": "97",
+     "title": "Return Depth (Back Third)",
+     "tested": true
+    },
+    {
+     "n": "02",
+     "title": "Return–Sprint–Split-Step Sequence (Serve-Return Live)",
+     "tested": false
+    }
+   ]
+  }
+ ],
+ "moments": [
+  {
+   "name": "Serve",
+   "drills": 9,
+   "plays": 4
+  },
+  {
+   "name": "Return",
+   "drills": 12,
+   "plays": 5
+  },
+  {
+   "name": "Third ball",
+   "drills": 18,
+   "plays": 2
+  },
+  {
+   "name": "Fourth ball",
+   "drills": 5,
+   "plays": 0
+  },
+  {
+   "name": "Transition",
+   "drills": 21,
+   "plays": 3
+  },
+  {
+   "name": "At the kitchen",
+   "drills": 48,
+   "plays": 12
+  }
+ ],
+ "matrix": {
+  "rows": [
+   "Dink",
+   "Volley",
+   "Reset",
+   "Drop",
+   "Speed-up",
+   "Drive",
+   "Counter & block",
+   "Specialty shots",
+   "Lob",
+   "Overhead",
+   "Drip"
+  ],
+  "cols": [
+   "Return",
+   "Third ball",
+   "Fourth ball",
+   "Transition",
+   "At the kitchen"
+  ],
+  "cells": [
+   [
+    0,
+    0,
+    0,
+    0,
+    26
+   ],
+   [
+    2,
+    1,
+    4,
+    7,
+    8
+   ],
+   [
+    0,
+    1,
+    0,
+    13,
+    2
+   ],
+   [
+    1,
+    12,
+    0,
+    2,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    12
+   ],
+   [
+    2,
+    8,
+    2,
+    0,
+    0
+   ],
+   [
+    1,
+    1,
+    2,
+    1,
+    7
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    5
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    2
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    1
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    0
+   ]
+  ]
+ },
+ "combos": [
+  {
+   "name": "Serve → Third",
+   "steps": [
+    "Serve with an intent (deep, wide, at a player)",
+    "the third you want"
+   ],
+   "moment": "Serve → Third ball",
+   "intent": "Serve and third are one unit: the serve sets up the third.",
+   "named": "partly",
+   "drills": [
+    {
+     "n": "84",
+     "title": "Serve–Return–Third (Three-Shot Sequence)",
+     "tested": true
+    },
+    {
+     "n": "101",
+     "title": "First Four Shots — Down-the-Line Drive Chain (Worst-Case Reps)",
+     "tested": false
+    },
+    {
+     "n": "115",
+     "title": "Third-Shot Drip (Reps → Steal Time → Mix & Drip)",
+     "tested": false
+    },
+    {
+     "n": "17",
+     "title": "Hybrid-Drive Drill with Cone Targets",
+     "tested": false
+    }
+   ],
+   "cues": 1,
+   "plays": 2
+  },
+  {
+   "name": "Serve → hit the stack runner",
+   "steps": [
+    "Aggressive serve",
+    "short return",
+    "third at the player still crossing"
+   ],
+   "moment": "Serve → Third ball",
+   "intent": "Against an off-court stack: attack them before they are set.",
+   "named": "no",
+   "drills": [
+    {
+     "n": "63",
+     "title": "Stack Unwind Attack – Attacking the Crossing Opponent as the Serving Team",
+     "tested": false
+    },
+    {
+     "n": "115",
+     "title": "Third-Shot Drip (Reps → Steal Time → Mix & Drip)",
+     "tested": false
+    }
+   ],
+   "cues": 0,
+   "plays": 1
+  },
+  {
+   "name": "Return → Fourth",
+   "steps": [
+    "Deep, slow return",
+    "run in behind it",
+    "fourth from the line"
+   ],
+   "moment": "Return → Fourth ball",
+   "intent": "Return and fourth are one unit: the return buys the time to arrive.",
+   "named": "no",
+   "drills": [
+    {
+     "n": "02",
+     "title": "Return–Sprint–Split-Step Sequence (Serve-Return Live)",
+     "tested": false
+    },
+    {
+     "n": "97",
+     "title": "Return Depth (Back Third)",
+     "tested": true
+    },
+    {
+     "n": "101",
+     "title": "First Four Shots — Down-the-Line Drive Chain (Worst-Case Reps)",
+     "tested": false
+    }
+   ],
+   "cues": 2,
+   "plays": 0
+  },
+  {
+   "name": "Drive → Drop",
+   "steps": [
+    "Drive the third (60–80 %)",
+    "read the volley",
+    "drop the fifth; finish instead if it floats"
+   ],
+   "moment": "Third → Fifth ball",
+   "intent": "The drive buys a weak reply so the drop gets you in. Max two drives.",
+   "named": "yes",
+   "drills": [
+    {
+     "n": "11",
+     "title": "Drive → 5th-Shot-Drop Sequence (2 Players, Live)",
+     "tested": false
+    },
+    {
+     "n": "50",
+     "title": "Drive–Drop Combo (3rd–5th Shot Sequence)",
+     "tested": false
+    },
+    {
+     "n": "83",
+     "title": "Drive–Drop Combo with Role Switch (7-11 Format)",
+     "tested": false
+    }
+   ],
+   "cues": 4,
+   "plays": 1
+  },
+  {
+   "name": "3rd → 5th read",
+   "steps": [
+    "Third (drop)",
+    "split at their contact",
+    "they hit up: attack the fifth · they hit down: drop or reset the fifth"
+   ],
+   "moment": "Third → Fifth ball",
+   "intent": "No shot stands alone; the reply to your third picks your fifth.",
+   "named": "yes",
+   "drills": [
+    {
+     "n": "12",
+     "title": "3rd/5th-Shot Sequence Reading Drill: 'Drop-Reaction' (2 Players, Decision Focus)",
+     "tested": false
+    },
+    {
+     "n": "10",
+     "title": "Traffic-Light Drill: Drop & Advance Decision",
+     "tested": false
+    }
+   ],
+   "cues": 1,
+   "plays": 0
+  },
+  {
+   "name": "Shake and bake",
+   "steps": [
+    "Big drive on a short ball",
+    "it comes back as a block or pop-up",
+    "partner poaches the middle"
+   ],
+   "moment": "Third → Fifth ball",
+   "intent": "The drive provokes; the partner finishes.",
+   "named": "yes",
+   "drills": [
+    {
+     "n": "16",
+     "title": "Shake & Bake with Poach Timing",
+     "tested": false
+    },
+    {
+     "n": "112",
+     "title": "Four Players, Four Shots (Role Drill with Poach)",
+     "tested": false
+    }
+   ],
+   "cues": 2,
+   "plays": 2
+  },
+  {
+   "name": "Middle until the pop-up, then wide",
+   "steps": [
+    "Keep it down the middle",
+    "wait for the big pop-up",
+    "finish out wide"
+   ],
+   "moment": "Fourth ball · At the kitchen",
+   "intent": "The middle denies angles until you earn the finish.",
+   "named": "partly",
+   "drills": [],
+   "cues": 1,
+   "plays": 0
+  },
+  {
+   "name": "Reset until the float → attack",
+   "steps": [
+    "Reset, reset, reset",
+    "the attacker floats one",
+    "put it away or move in"
+   ],
+   "moment": "Transition",
+   "intent": "Patience on defence turns into offence.",
+   "named": "no",
+   "drills": [
+    {
+     "n": "86",
+     "title": "Roll-and-Reset (Cooperative)",
+     "tested": false
+    },
+    {
+     "n": "96",
+     "title": "3 Resets to Live (Cooperative-Competitive Gate)",
+     "tested": false
+    },
+    {
+     "n": "85",
+     "title": "Space Invaders / Transition Reset + Approach",
+     "tested": false
+    }
+   ],
+   "cues": 1,
+   "plays": 0
+  },
+  {
+   "name": "Earn the attack",
+   "steps": [
+    "Dinks that move them or land at their feet (3+ balls)",
+    "dead dink or pop-up",
+    "speed-up or put-away"
+   ],
+   "moment": "At the kitchen",
+   "intent": "Attackability is built over several balls; don't fire off the bounce.",
+   "named": "partly",
+   "drills": [
+    {
+     "n": "37",
+     "title": "Dead-Dink → Speedup → Hands Battle",
+     "tested": false
+    },
+    {
+     "n": "38",
+     "title": "Paranoid Dink → Live Speedup",
+     "tested": false
+    },
+    {
+     "n": "66",
+     "title": "Cross-Body Speed-up (Dead-Dink Trigger)",
+     "tested": false
+    },
+    {
+     "n": "72",
+     "title": "Attack-&-Slide (Dominant Side + Counter Prep)",
+     "tested": false
+    },
+    {
+     "n": "76",
+     "title": "Speed-up & Counter-Drill: Offense/Defense State Recognition",
+     "tested": false
+    },
+    {
+     "n": "87",
+     "title": "Middle-Dink Offense Drill",
+     "tested": false
+    },
+    {
+     "n": "29",
+     "title": "'Dink with a Purpose' — Disruptor Rally",
+     "tested": false
+    },
+    {
+     "n": "65",
+     "title": "Flick/Roll Deception out of the Dink",
+     "tested": false
+    },
+    {
+     "n": "25",
+     "title": "Backhand Cross-Court Rally Game (Oddside Mirror Drill)",
+     "tested": false
+    }
+   ],
+   "cues": 3,
+   "plays": 1
+  },
+  {
+   "name": "Pull → inside foot → attack",
+   "steps": [
+    "Outside dink pulls them wide",
+    "dink at the inside foot",
+    "attack the low backhand"
+   ],
+   "moment": "At the kitchen",
+   "intent": "A three-ball dink pattern with a planned attack.",
+   "named": "yes",
+   "drills": [
+    {
+     "n": "73",
+     "title": "Pattern Sequence: Pull + Inside Foot + Attack",
+     "tested": false
+    }
+   ],
+   "cues": 1,
+   "plays": 0
+  },
+  {
+   "name": "Pull wide → attack the middle",
+   "steps": [
+    "Dinks wide (80/20)",
+    "the middle opens",
+    "attack it"
+   ],
+   "moment": "At the kitchen",
+   "intent": "Stretch them to open the middle.",
+   "named": "no",
+   "drills": [
+    {
+     "n": "90",
+     "title": "Dink Placement Drill: 50/50 vs 80/20 (Read the Opponent)",
+     "tested": false
+    }
+   ],
+   "cues": 0,
+   "plays": 0
+  },
+  {
+   "name": "Double jeopardy",
+   "steps": [
+    "Wide",
+    "volley-dink back into the same corner",
+    "partner sends the other one wide",
+    "attack the middle"
+   ],
+   "moment": "At the kitchen",
+   "intent": "Both stretched, the middle is open twice over.",
+   "named": "yes",
+   "drills": [],
+   "cues": 0,
+   "plays": 1
+  },
+  {
+   "name": "Outside-to-outside",
+   "steps": [
+    "Push a middle ball outside",
+    "stretched opponent resets back toward the middle",
+    "partner leans in and finishes"
+   ],
+   "moment": "At the kitchen",
+   "intent": "One partner sets up, the other finishes.",
+   "named": "yes",
+   "drills": [],
+   "cues": 1,
+   "plays": 0
+  },
+  {
+   "name": "Dink and close",
+   "steps": [
+    "Aggressive dink into the corner",
+    "follow it, don't back off",
+    "take their reply out of the air"
+   ],
+   "moment": "At the kitchen",
+   "intent": "Make them produce a second dink under pressure.",
+   "named": "no",
+   "drills": [
+    {
+     "n": "27",
+     "title": "Dinking Pattern Game (Right-Side Offensive Patterns)",
+     "tested": false
+    },
+    {
+     "n": "109",
+     "title": "Protect the Line (Out-of-Air Range Game)",
+     "tested": false
+    }
+   ],
+   "cues": 2,
+   "plays": 0
+  },
+  {
+   "name": "Body → open side",
+   "steps": [
+    "Speed-up at the body (chicken-wing)",
+    "their reply comes back up your line",
+    "next ball into the side they vacated"
+   ],
+   "moment": "At the kitchen",
+   "intent": "The first attack earns the next ball; you or your partner finish.",
+   "named": "partly",
+   "drills": [
+    {
+     "n": "70",
+     "title": "Triangle-Theory / Two-Ball Drill",
+     "tested": false
+    },
+    {
+     "n": "82",
+     "title": "Speedup–Counter–Reset Sequence (Hands-Battle Drill with Triangle Effect)",
+     "tested": false
+    },
+    {
+     "n": "41",
+     "title": "Speed-up & Shift (Positioning Drill)",
+     "tested": false
+    }
+   ],
+   "cues": 3,
+   "plays": 1
+  },
+  {
+   "name": "Corner dink → Erne",
+   "steps": [
+    "Two dinks into the sideline corner",
+    "opponent off balance",
+    "Erne"
+   ],
+   "moment": "At the kitchen",
+   "intent": "The Erne has to be set up, not just jumped.",
+   "named": "yes",
+   "drills": [
+    {
+     "n": "103",
+     "title": "Ernie Live-Point Game",
+     "tested": false
+    },
+    {
+     "n": "68",
+     "title": "Ernie Anticipation Drill",
+     "tested": false
+    }
+   ],
+   "cues": 1,
+   "plays": 1
+  },
+  {
+   "name": "Short and wide → ATP",
+   "steps": [
+    "Dink to the middle",
+    "then short and wide",
+    "around the post"
+   ],
+   "moment": "At the kitchen",
+   "intent": "The ATP needs a ball both short and wide.",
+   "named": "yes",
+   "drills": [
+    {
+     "n": "105",
+     "title": "ATP Cooperative Rally & Defense",
+     "tested": false
+    },
+    {
+     "n": "102",
+     "title": "ATP Pull-and-Defend (Advanced)",
+     "tested": false
+    }
+   ],
+   "cues": 1,
+   "plays": 0
+  },
+  {
+   "name": "Pull wide → lob the other",
+   "steps": [
+    "Partner pulls one opponent wide",
+    "lob over the other's exposed shoulder (disguised off a volley dink)"
+   ],
+   "moment": "At the kitchen",
+   "intent": "The lob goes where the court was just opened.",
+   "named": "no",
+   "drills": [
+    {
+     "n": "77",
+     "title": "Dink Pattern Drill: Pattern Break",
+     "tested": false
+    }
+   ],
+   "cues": 1,
+   "plays": 0
+  },
+  {
+   "name": "Lob → drive",
+   "steps": [
+    "Lob",
+    "opponent overheads",
+    "be ready to drive the reply"
+   ],
+   "moment": "At the kitchen",
+   "intent": "Tyra Black's lob + drive combo.",
+   "named": "yes",
+   "drills": [
+    {
+     "n": "75",
+     "title": "Court-Position Read (Tyra Black Drill / Traffic-Light Variant)",
+     "tested": false
+    }
+   ],
+   "cues": 0,
+   "plays": 0
+  }
+ ],
+ "games": [
+  {
+   "n": "78",
+   "title": "Three-States Mini-Game: Offense/Defense/Neutral Live-Reading",
+   "tested": false,
+   "scoring": "to 7; a point only counts if the state is named right",
+   "start": "short serve",
+   "court": "free point",
+   "players": "2"
+  },
+  {
+   "n": "88",
+   "title": "Skinny Singles with Constraint Focus",
+   "tested": false,
+   "scoring": "regular scoring, one constraint",
+   "start": "serve",
+   "court": "skinny singles",
+   "players": "2"
+  },
+  {
+   "n": "91",
+   "title": "Skinny Singles — 100-Dink Team Target",
+   "tested": false,
+   "scoring": "rally scoring; 100 dinks before 11",
+   "start": "serve",
+   "court": "skinny singles",
+   "players": "2"
+  },
+  {
+   "n": "104",
+   "title": "Tweener Forced-Return Live Point",
+   "tested": false,
+   "scoring": "to 11",
+   "start": "serve",
+   "court": "full court",
+   "players": "2"
+  },
+  {
+   "n": "112",
+   "title": "Four Players, Four Shots (Role Drill with Poach)",
+   "tested": false,
+   "scoring": "to 7",
+   "start": "serve",
+   "court": "full court doubles",
+   "players": "4"
+  },
+  {
+   "n": "116",
+   "title": "Kitchen Lock (Soft Point Play)",
+   "tested": false,
+   "scoring": "to 11, rally scoring",
+   "start": "serve",
+   "court": "full court doubles, locks into dinks",
+   "players": "4"
+  },
+  {
+   "n": "117",
+   "title": "Third Must Be a Drop (Point Play)",
+   "tested": false,
+   "scoring": "to 11, rally scoring; a driven or lobbed third loses",
+   "start": "serve",
+   "court": "full court doubles",
+   "players": "4"
+  },
+  {
+   "n": "118",
+   "title": "No Bounce for the Receivers (Return Rush)",
+   "tested": false,
+   "scoring": "to 11, rally scoring; a bounce on the receiving side loses",
+   "start": "serve",
+   "court": "full court doubles",
+   "players": "4"
+  },
+  {
+   "n": "22",
+   "title": "Survival Points (Progressive Reset Stress Test)",
+   "tested": true,
+   "scoring": "to 5, one side survives, one attacks",
+   "start": "feed",
+   "court": "half court",
+   "players": "2"
+  },
+  {
+   "n": "47",
+   "title": "7-11 Game (Half-Court Transition)",
+   "tested": true,
+   "scoring": "7-11",
+   "start": "feed",
+   "court": "half court",
+   "players": "2"
+  },
+  {
+   "n": "12",
+   "title": "3rd/5th-Shot Sequence Reading Drill: 'Drop-Reaction' (2 Players, Decision Focus)",
+   "tested": false,
+   "scoring": "10 points, then switch",
+   "start": "fed third",
+   "court": "half court",
+   "players": "2"
+  },
+  {
+   "n": "19",
+   "title": "Transition-Hold (7-11 Scoring)",
+   "tested": false,
+   "scoring": "7-11 (A to 11, B to 7)",
+   "start": "feed",
+   "court": "half court, B pinned in transition",
+   "players": "2"
+  },
+  {
+   "n": "32",
+   "title": "Escape Room – Reset out of the Transition Zone",
+   "tested": false,
+   "scoring": "first to 10",
+   "start": "feed",
+   "court": "half court, transition to kitchen",
+   "players": "2"
+  },
+  {
+   "n": "75",
+   "title": "Court-Position Read (Tyra Black Drill / Traffic-Light Variant)",
+   "tested": false,
+   "scoring": "7/11",
+   "start": "feed",
+   "court": "half court",
+   "players": "2"
+  },
+  {
+   "n": "83",
+   "title": "Drive–Drop Combo with Role Switch (7-11 Format)",
+   "tested": false,
+   "scoring": "7-11",
+   "start": "feed",
+   "court": "half court",
+   "players": "2"
+  },
+  {
+   "n": "85",
+   "title": "Space Invaders / Transition Reset + Approach",
+   "tested": false,
+   "scoring": "to 7 or 11; 2–3 resets before the kitchen",
+   "start": "feed",
+   "court": "half court",
+   "players": "2"
+  },
+  {
+   "n": "95",
+   "title": "Swinging-Volley Charge (Transition Offense)",
+   "tested": false,
+   "scoring": "first to 7, loser feeds",
+   "start": "feed",
+   "court": "half court",
+   "players": "2"
+  },
+  {
+   "n": "96",
+   "title": "3 Resets to Live (Cooperative-Competitive Gate)",
+   "tested": false,
+   "scoring": "to 11 after a gate of 3 clean resets",
+   "start": "feed",
+   "court": "half court, all four positions",
+   "players": "2"
+  },
+  {
+   "n": "114",
+   "title": "Modified 7-11: Unwind Under Score Pressure",
+   "tested": false,
+   "scoring": "modified 7-11",
+   "start": "feed",
+   "court": "half court, stack unwind",
+   "players": "2"
+  },
+  {
+   "n": "81",
+   "title": "Dink Duel with Penalty Points",
+   "tested": true,
+   "scoring": "to 11, rally scoring; netted dink costs an extra point",
+   "start": "dink",
+   "court": "dink duel, attack allowed",
+   "players": "2"
+  },
+  {
+   "n": "113",
+   "title": "Dinkles (Two Balls → Live Conversion)",
+   "tested": true,
+   "scoring": "not stated in the source",
+   "start": "dink",
+   "court": "full court doubles",
+   "players": "4"
+  },
+  {
+   "n": "24",
+   "title": "Cross-Court Dink Rally with Target Zone",
+   "tested": false,
+   "scoring": "first to 11; a dink outside the target zone = point",
+   "start": "dink",
+   "court": "cross-court dinks",
+   "players": "2"
+  },
+  {
+   "n": "25",
+   "title": "Backhand Cross-Court Rally Game (Oddside Mirror Drill)",
+   "tested": false,
+   "scoring": "to 5",
+   "start": "dink",
+   "court": "backhand cross-court dinks",
+   "players": "2"
+  },
+  {
+   "n": "27",
+   "title": "Dinking Pattern Game (Right-Side Offensive Patterns)",
+   "tested": false,
+   "scoring": "to 11; dink-volley winner = 2 points",
+   "start": "dink",
+   "court": "free dink rally",
+   "players": "2"
+  },
+  {
+   "n": "29",
+   "title": "'Dink with a Purpose' — Disruptor Rally",
+   "tested": false,
+   "scoring": "switch roles after 5 points",
+   "start": "dink",
+   "court": "dink rally, anchor vs disruptor",
+   "players": "2"
+  },
+  {
+   "n": "57",
+   "title": "Micro Steps Only Rally",
+   "tested": false,
+   "scoring": "a big step loses the point",
+   "start": "dink",
+   "court": "free dink rally",
+   "players": "2"
+  },
+  {
+   "n": "74",
+   "title": "Divide & Conquer — Targeted Dink Pattern",
+   "tested": false,
+   "scoring": "points, rotate after 5",
+   "start": "dink",
+   "court": "dinks, one player targeted",
+   "players": "2"
+  },
+  {
+   "n": "99",
+   "title": "Lob ↔ Overhead Duel (Live-After-Lob)",
+   "tested": false,
+   "scoring": "to 11; live only once a lob is hit, lob = bonus",
+   "start": "dink",
+   "court": "full court",
+   "players": "2"
+  },
+  {
+   "n": "103",
+   "title": "Ernie Live-Point Game",
+   "tested": false,
+   "scoring": "to 11; Erne winner = 2 points",
+   "start": "dink",
+   "court": "full court",
+   "players": "2"
+  },
+  {
+   "n": "109",
+   "title": "Protect the Line (Out-of-Air Range Game)",
+   "tested": false,
+   "scoring": "first to 11; a ball behind your line = point against",
+   "start": "dink",
+   "court": "dinks",
+   "players": "2"
+  },
+  {
+   "n": "100",
+   "title": "3-Player 1v2 Rotation (Solo vs. Team — No 4th Player)",
+   "tested": false,
+   "scoring": "game to 5 at each of 3 stations",
+   "start": "varies by station",
+   "court": "1 vs 2",
+   "players": "3"
+  }
+ ]
+}

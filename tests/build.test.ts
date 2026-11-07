@@ -148,6 +148,28 @@ describe("built site", () => {
     expect(about).toContain('href="/" data-back');
   });
 
+  it("overview (2026-11-07): footer order, the About link, and the page rendered from its data at build time", () => {
+    const D = JSON.parse(readFileSync(join(root, "src/data/overview.json"), "utf8"));
+    for (const f of ["index.html", "about/index.html", "overview/index.html", "s/warm-hands/index.html"]) {
+      const footer = html(f).match(/<footer[\s\S]*?<\/footer>/)![0];
+      expect([...footer.matchAll(/href="([^"]+)"/g)].map((m) => m[1])).toEqual(["/about/", "/overview/", "/imprint/", "/privacy/"]);
+    }
+    expect(html("about/index.html")).toMatch(/<a href="\/overview\/" data-overview-link[^>]*>See the Training System Overview →<\/a>/);
+    const page = html("overview/index.html");
+    // Tiles show the totals, rendered into the HTML (not by a script in the browser).
+    for (const [label, n] of [["drills", D.totals.drills], ["cues", D.totals.tactical_cues], ["plans", D.totals.plays], ["combos", D.totals.combos], ["games", D.totals.games]]) {
+      expect(page).toMatch(new RegExp(`data-tile="${label}"[^>]*><b[^>]*>${n}</b>`));
+    }
+    const asOf = new Date(D.as_of + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+    expect(page).toMatch(new RegExp(`as of <span data-as-of[^>]*>${asOf}</span>`)); // the snapshot date is visible
+    expect(page.match(/data-game[ >]/g)).toHaveLength(D.games.length);
+    expect(page.match(/<article class="combo/g)).toHaveLength(D.combos.length);
+    for (const id of ["shots", "when", "combos", "games"]) expect(page).toMatch(new RegExp(`<section[^>]*id="${id}"`));
+    expect(page).not.toMatch(/id="(shots|when|combos|games)"[^>]*hidden/); // all panels visible without JavaScript
+    expect(page).not.toContain("fonts.googleapis.com");
+    expect(page).toMatch(/class="[^"]*lg:max-w-\[1120px\]/); // the shared wide frame
+  });
+
   it("imprint shows the site version", () => {
     expect(html("imprint/index.html")).toMatch(/data-version[^>]*>Version \d+\.\d{3}</);
   });

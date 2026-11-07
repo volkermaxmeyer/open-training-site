@@ -13,6 +13,7 @@ const PAIRS: [text: string, background: string][] = [
   ["ink", "go"],
   ["ink", "warn"],
   ["ink", "chip"],
+  ["ink", "heat"],
 ];
 
 function themeColors(css: string): Map<string, string> {

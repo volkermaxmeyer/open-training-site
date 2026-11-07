@@ -47,6 +47,7 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 | Go | `--color-go` | the feedback button (neon green) |
 | Warn | `--color-warn` | the one-line four-on-court rule and the chips for a drill that needs more people (light red, ink text) |
 | Chip | `--color-chip` | player-count chips (light periwinkle, ink text) |
+| Heat | `--color-heat` | the strongest cell of the Overview's shot × moment matrix; weaker cells mix it with `--color-card`, so ink text stays at 7:1 on every step (2026-11-07) |
 
 ## Type
 

@@ -1,0 +1,265 @@
+---
+// Training System Overview (2026-11-07): the dashboard from the vault's dashboard/ folder, brought onto the site
+// without changes to its content. Everything is rendered here at build time from src/data/overview.json (a hand-copied
+// snapshot, its date shown on the page); the script below only switches tabs and filters games. Without JavaScript all
+// four panels show one under the other and the tab links jump to them.
+import Base from "../layouts/Base.astro";
+import BackLink from "../components/BackLink.astro";
+import { site } from "../site.config";
+import D from "../data/overview.json";
+
+type Example = { n: string; title: string; tested: boolean };
+type Shot = { name: string; drills: number; cues?: number; plays?: number; examples: Example[]; variants: { name: string; drills: number }[] };
+
+const num = (n: number, w: string) => `${n} ${w}${n === 1 ? "" : "s"}`;
+const asOf = new Date(D.as_of + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+const t = D.totals;
+const tiles = [
+  ["t1", t.drills, "drills", "an exercise with rules", `${t.tested} tested on court`],
+  ["t2", t.tactical_cues, "cues", "a read during the point", `+ ${t.mental_cues} mental cues`],
+  ["t3", t.plays, "plans", "a strategy set before the ball", ""],
+  ["t4", t.combos, "combos", "shots that set each other up", ""],
+  ["t5", t.games, "games", "a drill you play to win", ""],
+] as const;
+const shots = ([...D.shots, ...D.serve_return] as Shot[]).sort((a, b) => b.drills - a.drills);
+const maxShot = Math.max(...shots.map((s) => s.drills));
+const maxCell = Math.max(...D.matrix.cells.flat());
+// Phone-width column heads; "Kitchen" in capitals is wider than its 40 px column at 390 px.
+const tiny: Record<string, string> = { Transition: "Trans.", "At the kitchen": "Kitch." };
+const short: Record<string, string> = { Serve: "Serve", Return: "Return", "Third ball": "3rd", "Fourth ball": "4th", "Fifth ball": "5th", Transition: "Transition", "At the kitchen": "Kitchen" };
+type Game = (typeof D.games)[number];
+const filters: [string, string, (g: Game) => boolean][] = [
+  ["all", "All", () => true],
+  ["2", "2 players", (g) => g.players === "2"],
+  ["4", "4 players", (g) => g.players === "4"],
+  ["serve", "Starts with a serve", (g) => g.start.startsWith("serve")],
+  ["dink", "Starts at the kitchen", (g) => g.start.startsWith("dink")],
+  ["tested", "Tested", (g) => g.tested],
+];
+const startTag = (g: Game) => {
+  const s = g.start.split(" ")[0];
+  return ["serve", "feed", "dink"].includes(s) ? s : "";
+};
+---
+
+<Base wide title={`Training System Overview | ${site.name}`} description="What the Pickleball Training System contains: shots, when in the point they come up, combos and games.">
+  <BackLink />
+  <div class="ov">
+    <header class="head">
+      <span class="eyebrow">Pickleball Training System · what's inside · as of <span data-as-of>{asOf}</span></span>
+      <h1>Training System Overview</h1>
+      <div class="tiles">
+        {tiles.map(([c, n, l, d, x]) => (
+          <div class={`tile ${c}`} data-tile={l}><b>{n}</b><span>{l}</span><small>{d}</small>{x && <small class="x">{x}</small>}</div>
+        ))}
+      </div>
+      <div class="sub"><span><b>{t.themes}</b> themes</span><span><b>{t.web_sessions}</b> ready-made 30-minute sessions</span></div>
+    </header>
+
+    <nav class="tabs" aria-label="Views">
+      <a class="tab" href="#shots" data-tab="shots">Shots</a>
+      <a class="tab" href="#when" data-tab="when">When</a>
+      <a class="tab" href="#combos" data-tab="combos">Combos</a>
+      <a class="tab" href="#games" data-tab="games">Games</a>
+    </nav>
+
+    <section class="panel" id="shots" aria-label="Shots">
+      <div class="card">
+        <ul class="bars">
+          {shots.map((s) => (
+            <li>
+              <details>
+                <summary><span class="nm">{s.name}</span><span class="bar"><i style={`width:${(s.drills / maxShot) * 100}%`}></i></span><span class="ct">{s.drills}</span></summary>
+                <div class="more">
+                  {s.variants.length > 0 && <div class="chips">{s.variants.map((v) => <span class="chip">{v.name}<em>{v.drills}</em></span>)}</div>}
+                  <div>{s.examples.map((d) => <span class="drill"><b>{d.n}</b> {d.title}{d.tested && <span class="ok">tested</span>}</span>)}</div>
+                  {s.cues !== undefined && <div class="small muted">{num(s.cues, "cue")} · {num(s.plays ?? 0, "plan")}</div>}
+                </div>
+              </details>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel" id="when" aria-label="When">
+      <div class="card">
+        <h2>When in the point</h2>
+        <div class="moments">
+          {D.moments.map((m) => <div class="mo"><b>{m.drills}</b><span>{m.name}</span><small>{num(m.plays, "plan")}</small></div>)}
+        </div>
+      </div>
+      <div class="card">
+        <h2>Which shot, when</h2>
+        <p class="lead">Number of drills per shot and moment in the point. A dot means no drill yet.</p>
+        <div class="scroll">
+          <table class="mx">
+            <thead><tr><th></th>{D.matrix.cols.map((c) => <th scope="col" title={c}><span class="d">{short[c]}</span><span class="m">{tiny[c] ?? short[c]}</span></th>)}</tr></thead>
+            <tbody>
+              {D.matrix.rows.map((r, i) => (
+                <tr><th scope="row">{r}</th>{D.matrix.cells[i].map((v, j) => (
+                  <td class={v ? "" : "z"} style={`--h:${v ? Math.round((v / maxCell) * 88 + 8) : 0}%`} title={`${r} × ${D.matrix.cols[j]}: ${v} drills`}>{v || "·"}</td>
+                ))}</tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="combos" aria-label="Combos">
+      <div class="combos">
+        {D.combos.map((c) => (
+          <article class="combo">
+            <div class="when">{c.moment}</div>
+            <h3>{c.name}</h3>
+            <ol class="seq">{c.steps.map((s) => <li>{s}</li>)}</ol>
+            <div>{c.drills.length ? c.drills.map((d) => <span class="drill"><b>{d.n}</b> {d.title}{d.tested && <span class="ok">tested</span>}</span>) : <span class="small muted">no drill yet</span>}</div>
+            <div class="foot">{num(c.cues, "cue")} · {num(c.plays, "plan")}</div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="panel" id="games" aria-label="Games">
+      <div class="card">
+        <div class="filters" data-filters hidden>
+          {filters.map(([k, l, fn]) => <button type="button" class="chipbtn" aria-pressed={k === "all" ? "true" : "false"} data-k={k}>{l} <span class="cnt">({D.games.filter(fn).length})</span></button>)}
+        </div>
+        <div class="glegend"><span><span class="tag serve">serve</span> starts with a serve</span><span><span class="tag feed">feed</span> a ball is fed in</span><span><span class="tag dink">dink</span> starts with a dink</span></div>
+        <div class="games">
+          {D.games.map((g) => (
+            <div class="game" data-game data-f={filters.filter(([, , fn]) => fn(g)).map(([k]) => k).join(" ")}>
+              <h3>{g.title} <span class="muted small">#{g.n}</span>{g.tested && <span class="ok">tested</span>}</h3>
+              <span class="pl">{g.players} players</span>
+              <div class="meta"><span class={`tag ${startTag(g)}`}>{g.start}</span><span class="tag">{g.scoring}</span><span class="tag">{g.court}</span></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script is:inline>
+    // Tabs: show one panel, chosen by the address (#shots, #when, #combos, #games). Games: filter by the chip buttons.
+    (() => {
+      const TABS = ["shots", "when", "combos", "games"];
+      const show = (id) => {
+        if (!TABS.includes(id)) id = "shots";
+        TABS.forEach((k) => {
+          document.getElementById(k).hidden = k !== id;
+          const a = document.querySelector(`[data-tab="${k}"]`);
+          if (k === id) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+        });
+      };
+      addEventListener("hashchange", () => show(location.hash.slice(1)));
+      show(location.hash.slice(1));
+      const box = document.querySelector("[data-filters]");
+      box.hidden = false;
+      box.addEventListener("click", (e) => {
+        const b = e.target.closest("button");
+        if (!b) return;
+        box.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+        document.querySelectorAll("[data-game]").forEach((g) => { g.hidden = !g.dataset.f.split(" ").includes(b.dataset.k); });
+      });
+    })();
+  </script>
+</Base>
+
+<style>
+  /* Ported from the vault dashboard (dashboard/index.html) with the site's tokens: no dark mode, Google Fonts or white
+     text; grey (ink-soft) only on cards; the matrix mixes --color-heat into the card so ink stays at 7:1. */
+  .ov { display: grid; gap: 22px; font: 16px/1.5 var(--font-sans); }
+  .ov h1, .ov h2, .ov h3 { margin: 0; text-wrap: balance; }
+  .ov h1 { font: 700 clamp(46px, 9vw, 76px)/.92 var(--font-display); letter-spacing: -.02em; }
+  .ov h2 { font: 700 20px/1.2 var(--font-head); }
+  .ov h3 { font: 700 17px/1.25 var(--font-head); }
+  .ov p { margin: 0; }
+  .head { display: grid; gap: 12px; }
+  .eyebrow { font: 600 12px/1.2 var(--font-head); letter-spacing: .08em; text-transform: uppercase; color: var(--color-ink); }
+  .muted { color: var(--color-ink-soft); }
+  .small { font-size: 14px; }
+  .tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+  .tile { border: 2px solid var(--color-ink); box-shadow: 4px 4px 0 var(--color-ink); padding: 10px 12px; display: grid; gap: 2px; min-width: 0; align-content: start; }
+  .tile b { font: 700 clamp(26px, 5vw, 36px)/1 var(--font-head); font-variant-numeric: tabular-nums; }
+  .tile span { font: 600 13px/1.25 var(--font-head); }
+  .tile small { font-size: 12px; color: var(--color-ink); line-height: 1.3; }
+  .tile small.x { margin-top: 6px; padding-top: 6px; border-top: 1px solid color-mix(in oklab, var(--color-ink) 35%, transparent); font-weight: 600; }
+  .t1 { background: var(--color-go); } .t2 { background: var(--color-stage-1); } .t3 { background: var(--color-stage-2); }
+  .t4 { background: var(--color-stage-3); } .t5 { background: var(--color-chip); }
+  .sub { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; }
+  .sub b { font-family: var(--font-head); }
+  .tabs { position: sticky; top: 0; z-index: 5; background: var(--color-paper); padding-block: 8px; display: flex; gap: 8px; overflow-x: auto; border-bottom: 2px solid var(--color-ink); }
+  .tab { flex: none; border: 2px solid var(--color-ink); background: var(--color-card); color: var(--color-ink); padding: 6px 14px; font: 700 15px/1.3 var(--font-head); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+  .tab[aria-current="true"] { background: var(--color-ink); color: var(--color-on-ink); }
+  .panel { display: grid; gap: 16px; scroll-margin-top: 72px; }
+  .card { background: var(--color-card); border: 2px solid var(--color-ink); box-shadow: 6px 6px 0 var(--color-ink); padding: 16px 18px; display: grid; gap: 12px; min-width: 0; }
+  .lead { font-size: 15px; color: var(--color-ink-soft); }
+  .bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; --bc: 24px 170px 1fr 52px; }
+  .bars details { border-bottom: 1px solid color-mix(in oklab, var(--color-ink) 20%, transparent); padding-bottom: 6px; }
+  .bars summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: var(--bc); gap: 10px; align-items: center; min-height: 44px; }
+  .bars summary::before { content: ""; width: 0; height: 0; border-style: solid; border-width: 7px 0 7px 11px; border-color: transparent transparent transparent var(--color-ink); justify-self: start; }
+  /* The site's summaries end in "+"/"–" (global.css); these rows have their own triangle. */
+  .bars details summary::after, .bars details[open] summary::after { content: none; }
+  .bars details[open] summary::before { transform: rotate(90deg); }
+  .bars summary::-webkit-details-marker { display: none; }
+  .nm { font: 600 15px/1.2 var(--font-head); white-space: nowrap; }
+  .bar { height: 22px; border: 2px solid var(--color-ink); position: relative; background: var(--color-card); }
+  .bar i { position: absolute; inset: 0 auto 0 0; background: var(--color-go); }
+  .ct { font: 700 15px/1 var(--font-head); font-variant-numeric: tabular-nums; min-width: 2ch; text-align: right; }
+  .more { display: grid; gap: 8px; padding: 10px 0 4px 2px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { background: var(--color-chip); padding: 2px 9px; font-size: 14px; line-height: 1.5; }
+  .chip em { font-style: normal; color: var(--color-ink); font-size: 12px; margin-left: 4px; }
+  .drill { display: inline-block; border: 1.5px solid var(--color-ink); background: var(--color-card); padding: 1px 8px; font-size: 13px; line-height: 1.5; margin: 0 4px 4px 0; }
+  .drill b { font-family: var(--font-head); }
+  .ok { background: var(--color-go); font: 700 10px/1.5 var(--font-head); text-transform: uppercase; letter-spacing: .06em; padding: 0 5px; margin-left: 5px; }
+  .scroll { overflow-x: auto; min-width: 0; }
+  /* 2 px less than the box: the collapsed cell borders reach 1 px past each side and would make it scroll. */
+  .mx { border-collapse: collapse; width: calc(100% - 2px); margin-inline: 1px; font-variant-numeric: tabular-nums; min-width: 560px; table-layout: fixed; }
+  .mx th { font: 600 12px/1.2 var(--font-head); letter-spacing: .08em; text-transform: uppercase; color: var(--color-ink-soft); }
+  .mx th .m { display: none; }
+  .mx thead th:first-child, .mx tbody th { width: 150px; }
+  .mx th, .mx td { padding: 6px 4px; text-align: center; }
+  .mx tbody th { text-align: left; font: 600 14px/1.2 var(--font-head); color: var(--color-ink); text-transform: none; letter-spacing: 0; white-space: nowrap; padding-right: 10px; }
+  .mx td { font: 700 14px/1 var(--font-head); background: color-mix(in srgb, var(--color-heat) var(--h), var(--color-card)); border: 2px solid var(--color-card); color: var(--color-ink); }
+  .mx td.z { color: var(--color-ink-soft); font-weight: 600; }
+  .moments { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; }
+  .mo { border: 2px solid var(--color-ink); padding: 8px 10px; display: grid; gap: 2px; background: var(--color-card); }
+  .mo b { font: 700 24px/1 var(--font-head); }
+  .mo span { font: 600 13px/1.2 var(--font-head); }
+  .mo small { font-size: 12px; color: var(--color-ink-soft); }
+  .combos { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  .combo { background: var(--color-card); border: 2px solid var(--color-ink); padding: 14px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+  .combo .when { font: 600 12px/1.3 var(--font-head); color: var(--color-ink-soft); text-transform: uppercase; letter-spacing: .06em; }
+  .seq { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+  .seq li { background: var(--color-stage-2); padding: 3px 8px; font-size: 13px; line-height: 1.35; }
+  .seq li + li::before { content: "→"; margin-right: 6px; font-weight: 700; }
+  .combo .foot { font-size: 13px; color: var(--color-ink-soft); }
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; }
+  .filters[hidden] { display: none; }
+  .chipbtn { border: 2px solid var(--color-ink); background: var(--color-card); color: var(--color-ink); padding: 3px 12px; font: 600 14px/1.4 var(--font-head); cursor: pointer; min-height: 44px; }
+  .chipbtn[aria-pressed="true"] { background: var(--color-ink); color: var(--color-on-ink); }
+  .cnt { color: var(--color-ink-soft); margin-left: 2px; }
+  .chipbtn[aria-pressed="true"] .cnt { color: inherit; }
+  .games { display: grid; gap: 8px; }
+  .game { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; border-bottom: 1px solid color-mix(in oklab, var(--color-ink) 20%, transparent); padding-bottom: 8px; }
+  .game[hidden] { display: none; }
+  .game:first-child { border-top: 1px solid color-mix(in oklab, var(--color-ink) 20%, transparent); padding-top: 8px; }
+  .game h3 { font-size: 15px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px; grid-column: 1 / -1; }
+  .tag { color: var(--color-ink); border: 1.5px solid var(--color-ink); padding: 0 7px; font: 600 12px/1.6 var(--font-head); white-space: nowrap; }
+  .tag.serve { background: var(--color-stage-1); } .tag.feed { background: var(--color-stage-3); } .tag.dink { background: var(--color-go); }
+  .pl { font: 700 14px/1.2 var(--font-head); white-space: nowrap; }
+  .glegend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--color-ink-soft); align-items: center; }
+  .glegend > span { display: inline-flex; gap: 6px; align-items: center; }
+  @media (max-width: 640px) {
+    .tab { padding: 6px 10px; font-size: 14px; } .tabs { gap: 6px; } .tag { white-space: normal; }
+    .mx { min-width: 0; } .mx thead th:first-child, .mx tbody th { width: 100px; }
+    .mx tbody th { white-space: normal; padding-right: 4px; font-size: 13px; } .mx th, .mx td { padding: 6px 2px; }
+    .mx thead th { font-size: 9.5px; letter-spacing: 0; } .mx th .d { display: none; } .mx th .m { display: inline; }
+    .pl { display: none; } .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .bars { --bc: 24px 120px 1fr 52px; } .nm { white-space: normal; }
+  }
+  @media (prefers-reduced-motion: no-preference) { .bar i { transition: width .4s ease; } }
+</style>
