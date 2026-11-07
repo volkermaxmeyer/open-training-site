@@ -5,6 +5,7 @@ import Base from "../../layouts/Base.astro";
 import BackLink from "../../components/BackLink.astro";
 import DrillCard from "../../components/DrillCard.astro";
 import VideoPlayerScript from "../../components/VideoPlayerScript.astro";
+import Ball from "../../components/Ball.astro";
 import { site } from "../../site.config";
 import { sessionPointer } from "../../lib/sessions";
 import { shotSlug } from "../../lib/shots";
@@ -17,6 +18,9 @@ export async function getStaticPaths() {
 const { card } = Astro.props;
 const sessions = (await getCollection("sessions")).map((s) => s.data);
 const pointer = sessionPointer(card.id, card.goals, sessions);
+// The green box asks for wishes instead of feedback (Volker 2026-11-07): a tap opens a mail to the project address with
+// a subject naming the drill. The address itself stays off the button (it is in the imprint).
+const wishUrl = `mailto:${site.contactEmail}?subject=${encodeURIComponent(`Shot or drill wish (from drill ${card.id})`)}`;
 const sameShot = (await getCollection("drills")).filter((d) => d.data.shot === card.shot).length;
 ---
 
@@ -26,15 +30,33 @@ const sameShot = (await getCollection("drills")).filter((d) => d.data.shot === c
     {sameShot > 1 ? <a href={`/shots/${shotSlug(card.shot)}/`} class="underline underline-offset-4">{card.shot}</a> : card.shot}{card.variant && ` · ${card.variant}`}
   </p>
   <DrillCard card={card} />
-  {pointer && (
+  {/* Closing row like a session page (Volker 2026-11-07): a short finish line, a mail for wishes, and where to play it
+      for points. */}
+  <div data-closing class:list={["lg:mt-12 lg:grid lg:items-stretch lg:gap-x-6 lg:border-t-2 lg:border-ink lg:pt-7", pointer ? "lg:grid-cols-3" : "lg:grid-cols-2"]}>
+    <div data-finish class="mt-12 flex items-center gap-3.5 lg:mt-0 lg:min-h-[96px]">
+      <Ball size={52} class="finish-ball shrink-0" />
+      <p class="font-head text-xl leading-tight font-bold">
+        Good reps.
+        <span class="block font-sans text-[19px] font-normal">Swap roles and go again.</span>
+      </p>
+    </div>
     <a
-      data-session-pointer
-      href={`/s/${pointer.slug}/`}
-      class="mt-10 block min-h-14 max-w-xl border-2 border-ink bg-card p-4 shadow-[6px_6px_0_var(--color-ink)] active:translate-x-1 active:translate-y-1 active:shadow-none [@media(hover:hover)]:hover:translate-x-0.5 [@media(hover:hover)]:hover:translate-y-0.5 [@media(hover:hover)]:hover:shadow-[3px_3px_0_var(--color-ink)]"
+      data-wish
+      href={wishUrl}
+      class="mt-4 flex min-h-15 flex-col items-center justify-center border-2 border-ink bg-go px-4 py-3 text-center font-head shadow-[6px_6px_0_var(--color-ink)] lg:mt-0 lg:min-h-[96px]"
     >
-      <span class="block font-head text-[14px] font-semibold tracking-[0.08em] text-ink-soft uppercase">Ready for points?</span>
-      <span class="mt-1 block font-head text-[22px] leading-tight font-bold">Session: {pointer.title} →</span>
+      <span class="text-xl font-bold"><span class="whitespace-nowrap">Wish for a drill?</span> <span class="whitespace-nowrap lg:block">Mail me</span></span>
     </a>
-  )}
+    {pointer && (
+      <a
+        data-session-pointer
+        href={`/s/${pointer.slug}/`}
+        class="mt-7 block min-h-14 border-2 border-ink bg-card p-4 shadow-[6px_6px_0_var(--color-ink)] lg:mt-0 lg:flex lg:min-h-[96px] lg:flex-col lg:justify-center active:translate-x-1 active:translate-y-1 active:shadow-none [@media(hover:hover)]:hover:translate-x-0.5 [@media(hover:hover)]:hover:translate-y-0.5 [@media(hover:hover)]:hover:shadow-[3px_3px_0_var(--color-ink)]"
+      >
+        <span class="block font-head text-[14px] font-semibold tracking-[0.08em] text-ink-soft uppercase">Ready for points?</span>
+        <span class="mt-1 block font-head text-[22px] leading-tight font-bold">Session: {pointer.title} →</span>
+      </a>
+    )}
+  </div>
   <VideoPlayerScript />
 </Base>

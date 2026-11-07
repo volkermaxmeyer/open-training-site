@@ -82,6 +82,11 @@ describe("shots area (2026-11-07)", () => {
     const lob = html("drill/903/index.html");
     expect(lob).toContain("data-watch"); // no end time: plain link
     expect(lob).toMatch(/data-session-pointer href="\/s\/warm-hands\/"/);
+    // Closing row (2026-11-07): finish line, a wish mail with a subject naming the drill, the session pointer.
+    expect(page).toContain("data-closing");
+    expect(page).toMatch(/data-wish href="mailto:[^"?]+\?subject=Shot%20or%20drill%20wish%20\(from%20drill%20901\)"/);
+    expect(text(page)).toContain("Wish for a drill? Mail me");
+    expect(page).not.toContain("tally.so"); // no feedback form on drill pages
   });
 });
 
