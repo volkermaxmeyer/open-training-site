@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.019 · 2026-11-07 · Release checks: publish:site warns when the Overview's totals are stale, and no longer warns about renamed sessions that redirect. No visible change on the site.
 - 1.018 · 2026-11-07 · Publishing stops when two drill files share a number.
 - 1.017 · 2026-11-07 · Releases stop on red tests (publish and every push); the start page and the Overview handle several sessions per goal and per drill.
 - 1.016 · 2026-11-07 · Overview: drill names as plain lines so only links have a frame and shadow; 16 px text from tablet width; players count back on phones; phone layout up to 699 px like the rest of the site; tiles with the site's 6 px shadow; filter says Tested games. Session pages name the home page goal above the title.
