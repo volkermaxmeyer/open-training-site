@@ -226,13 +226,13 @@ describe("built site", () => {
     // Closing row: 3 columns with a next session, 2 without.
     expect(cls(page, "div data-closing")).toEqual(expect.arrayContaining(["lg:grid", "lg:grid-cols-3"]));
     expect(cls(html("s/steady-lobs/index.html"), "div data-closing")).toEqual(expect.arrayContaining(["lg:grid", "lg:grid-cols-2"]));
-    // Start page grid; every page shares the lg frame, text pages keep 684 px.
+    // Start page grid; every page shares the lg frame, text pages keep a 600 px measure.
     expect(html("index.html")).toMatch(/<ul class="[^"]*tablet:grid tablet:grid-cols-2[^"]*lg:grid-cols-3/);
     for (const f of ["index.html", "s/warm-hands/index.html", "about/index.html", "imprint/index.html"]) {
       expect(html(f)).toMatch(/class="[^"]*max-w-\[430px\][^"]*tablet:max-w-\[720px\] lg:max-w-\[1120px\] lg:px-8/);
     }
-    expect(cls(html("about/index.html"), "main")).toContain("lg:max-w-[684px]");
-    expect(cls(html("index.html"), "main")).not.toContain("lg:max-w-[684px]");
+    expect(cls(html("about/index.html"), "main")).toContain("tablet:max-w-[600px]");
+    expect(cls(html("index.html"), "main")).not.toContain("tablet:max-w-[600px]");
   });
 
   it("footer shows no version to players; check-deploy reads version.txt instead", () => {

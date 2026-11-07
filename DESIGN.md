@@ -127,7 +127,7 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
   the text on the right. Replay is a bar on the video's bottom edge, inside the player box, so it stays on the video
   however long the text column gets (Volker, after testing on the iPad). The closing becomes one row under a rule: finish, feedback,
   next, all 96 px high. Text pages (About, Imprint, Privacy) share the same 1120 px frame but keep their text at
-  684 px, left-aligned, so the footer links never move between pages; `scrollbar-gutter: stable` keeps short pages from
+  a 600 px measure from 700 px, about 74 characters (684 px ran to ~88 a line, and 65ch is wider still in the system font; audit 2026-11-07), left-aligned, so the footer links never move between pages; `scrollbar-gutter: stable` keeps short pages from
   sitting 7 px off where scrollbars take space (Volker, 2026-11-07). The start page question has no line-length cap
   on purpose: a 16ch cap broke it into three short lines on a laptop, and Volker wants the full width used (one line from
   1024 px, two balanced lines on an iPad held upright). The closing row has 3 columns, or 2 when a session has no next. A phone held sideways

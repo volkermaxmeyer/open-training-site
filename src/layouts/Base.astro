@@ -43,9 +43,10 @@ const fonts = [poppins600, poppins700, crimson700];
   </head>
   <body class="bg-paper font-sans text-ink antialiased">
     {/* From lg every page shares the same 1120 px frame, so the footer links stay in one place from page to page
-        (Volker, 2026-11-07). Text pages keep their reading width inside it, left-aligned. */}
+        (Volker, 2026-11-07). Text pages keep a reading measure of 600 px (about 74 characters) inside it, left-aligned.
+        684 px gave ~88 characters a line in the system font, 65ch even more (audit 2026-11-07). */}
     <div class="mx-auto flex min-h-screen max-w-[430px] flex-col px-4 tablet:max-w-[720px] lg:max-w-[1120px] lg:px-8">
-      <main class:list={["flex-1 pt-4 pb-8 tablet:pt-8", !wide && "lg:w-full lg:max-w-[684px]"]}><slot /></main>
+      <main class:list={["flex-1 pt-4 pb-8 tablet:pt-8", !wide && "tablet:w-full tablet:max-w-[600px]"]}><slot /></main>
       <footer class="mt-4 flex flex-wrap gap-x-6 gap-y-1 border-t-2 border-ink py-2 text-base">
         <a href="/about/" class="inline-flex min-h-12 items-center underline underline-offset-4">About</a>
         <a href="/imprint/" class="inline-flex min-h-12 items-center underline underline-offset-4">Imprint</a>
