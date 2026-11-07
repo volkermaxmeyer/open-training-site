@@ -7,10 +7,21 @@ import Base from "../layouts/Base.astro";
 import BackLink from "../components/BackLink.astro";
 import { site } from "../site.config";
 import D from "../data/overview.json";
+import { getCollection } from "astro:content";
 
 type Example = { n: string; title: string; tested: boolean };
 type Shot = { name: string; drills: number; cues?: number; plays?: number; examples: Example[]; variants: { name: string; drills: number }[] };
 
+// Drills that are a stage of a ready-made session link there (2026-11-07). Matched by drill number.
+const inSession = new Map<number, { slug: string; title: string; stage: number }>();
+for (const s of await getCollection("sessions")) s.data.stages.forEach((st, i) => inSession.set(Number(st.drill.id), { slug: s.data.slug, title: s.data.title, stage: i + 1 }));
+const sessionsOf = (ns: string[]) => {
+  const by = new Map<string, { title: string; ns: string[] }>();
+  for (const n of ns) { const w = inSession.get(Number(n)); if (w) (by.get(w.slug) ?? by.set(w.slug, { title: w.title, ns: [] }).get(w.slug)!).ns.push(n); }
+  return [...by].map(([slug, v]) => ({ slug, ...v }));
+};
+// The vault says "Specialty shots"; the home page goal says "Special shots". Show the home page's word here too.
+const shotName = (n: string) => (n === "Specialty shots" ? "Special shots" : n);
 const num = (n: number, w: string) => `${n} ${w}${n === 1 ? "" : "s"}`;
 const asOf = new Date(D.as_of + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
 const t = D.totals;
@@ -32,14 +43,12 @@ const filters: [string, string, (g: Game) => boolean][] = [
   ["all", "All", () => true],
   ["2", "2 players", (g) => g.players === "2"],
   ["4", "4 players", (g) => g.players === "4"],
-  ["serve", "Starts with a serve", (g) => g.start.startsWith("serve")],
+  ["serve", "Starts with a serve", (g) => startTag(g) === "serve"],
   ["dink", "Starts at the kitchen", (g) => g.start.startsWith("dink")],
   ["tested", "Tested", (g) => g.tested],
 ];
-const startTag = (g: Game) => {
-  const s = g.start.split(" ")[0];
-  return ["serve", "feed", "dink"].includes(s) ? s : "";
-};
+// "short serve" is a serve and "fed third" a feed: match the word anywhere, not only the first one.
+const startTag = (g: Game) => (/\bserve\b/.test(g.start) ? "serve" : /\b(feed|fed)\b/.test(g.start) ? "feed" : /^dink\b/.test(g.start) ? "dink" : "");
 ---
 
 <Base wide title={`Training System Overview | ${site.name}`} description="What the Pickleball Training System contains: shots, when in the point they come up, combos and games.">
@@ -69,10 +78,11 @@ const startTag = (g: Game) => {
           {shots.map((s) => (
             <li>
               <details>
-                <summary><span class="nm">{s.name}</span><span class="bar"><i style={`width:${(s.drills / maxShot) * 100}%`}></i></span><span class="ct">{s.drills}</span></summary>
+                <summary><span class="nm">{shotName(s.name)}</span><span class="bar"><i style={`width:${(s.drills / maxShot) * 100}%`}></i></span><span class="ct">{s.drills}</span></summary>
                 <div class="more">
                   {s.variants.length > 0 && <div class="chips">{s.variants.map((v) => <span class="chip">{v.name}<em>{v.drills}</em></span>)}</div>}
                   <div>{s.examples.map((d) => <span class="drill"><b>{d.n}</b> {d.title}{d.tested && <span class="ok">tested</span>}</span>)}</div>
+                  {sessionsOf(s.examples.map((d) => d.n)).map((x) => <a class="inses" href={`/s/${x.slug}/`}><span>In session: <b>{x.title}</b> <span class="muted">#{x.ns.join(", #")}</span>&nbsp;<span aria-hidden="true">→</span></span></a>)}
                   {s.cues !== undefined && <div class="small muted">{num(s.cues, "cue")} · {num(s.plays ?? 0, "plan")}</div>}
                 </div>
               </details>
@@ -91,14 +101,14 @@ const startTag = (g: Game) => {
       </div>
       <div class="card">
         <h2>Which shot, when</h2>
-        <p class="lead">Number of drills per shot and moment in the point. A dot means no drill yet.</p>
+        <p class="lead">Number of drills per shot and moment in the point. A dot means no drill yet. A drill can train several shots and moments, so it can count in more than one cell.</p>
         <div class="scroll">
           <table class="mx">
             <thead><tr><th></th>{D.matrix.cols.map((c) => <th scope="col" title={c}><span class="d">{short[c]}</span><span class="m">{tiny[c] ?? short[c]}</span></th>)}</tr></thead>
             <tbody>
               {D.matrix.rows.map((r, i) => (
-                <tr><th scope="row">{r}</th>{D.matrix.cells[i].map((v, j) => (
-                  <td class={v ? "" : "z"} style={`--h:${v ? Math.round((v / maxCell) * 88 + 8) : 0}%`} title={`${r} × ${D.matrix.cols[j]}: ${v} drills`}>{v || "·"}</td>
+                <tr><th scope="row">{shotName(r)}</th>{D.matrix.cells[i].map((v, j) => (
+                  <td class={v ? "" : "z"} style={`--h:${v ? Math.round((v / maxCell) * 88 + 8) : 0}%`} title={`${shotName(r)} × ${D.matrix.cols[j]}: ${v} drills`}>{v || "·"}</td>
                 ))}</tr>
               ))}
             </tbody>
@@ -116,6 +126,7 @@ const startTag = (g: Game) => {
             <h3>{c.name}</h3>
             <ol class="seq">{c.steps.map((s) => <li>{s}</li>)}</ol>
             <div>{c.drills.length ? c.drills.map((d) => <span class="drill"><b>{d.n}</b> {d.title}{d.tested && <span class="ok">tested</span>}</span>) : <span class="small muted">no drill yet</span>}</div>
+            {sessionsOf(c.drills.map((d) => d.n)).map((x) => <a class="inses" href={`/s/${x.slug}/`}><span>In session: <b>{x.title}</b> <span class="muted">#{x.ns.join(", #")}</span>&nbsp;<span aria-hidden="true">→</span></span></a>)}
             <div class="foot">{num(c.cues, "cue")} · {num(c.plays, "plan")}</div>
           </article>
         ))}
@@ -134,6 +145,7 @@ const startTag = (g: Game) => {
               <h3>{g.title} <span class="muted small">#{g.n}</span>{g.tested && <span class="ok">tested</span>}</h3>
               <span class="pl">{g.players} players</span>
               <div class="meta"><span class={`tag ${startTag(g)}`}>{g.start}</span><span class="tag">{g.scoring}</span><span class="tag">{g.court}</span></div>
+              {inSession.has(Number(g.n)) && (() => { const w = inSession.get(Number(g.n))!; return <a class="inses" href={`/s/${w.slug}/#stage-${w.stage}`}><span>In session: <b>{w.title}</b>, drill&nbsp;{w.stage}&nbsp;<span aria-hidden="true">→</span></span></a>; })()}
             </div>
           ))}
         </div>
@@ -191,14 +203,14 @@ const startTag = (g: Game) => {
   .sub { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; }
   .sub b { font-family: var(--font-head); }
   .tabs { position: sticky; top: 0; z-index: 5; background: var(--color-paper); padding-block: 8px; display: flex; gap: 8px; overflow-x: auto; border-bottom: 2px solid var(--color-ink); }
-  .tab { flex: none; border: 2px solid var(--color-ink); background: var(--color-card); color: var(--color-ink); padding: 6px 14px; font: 700 15px/1.3 var(--font-head); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+  .tab { flex: none; border: 2px solid var(--color-ink); background: var(--color-card); color: var(--color-ink); padding: 6px 14px; font: 700 15px/1.3 var(--font-head); text-decoration: none; min-height: 48px; display: inline-flex; align-items: center; }
   .tab[aria-current="true"] { background: var(--color-ink); color: var(--color-on-ink); }
   .panel { display: grid; gap: 16px; scroll-margin-top: 72px; }
   .card { background: var(--color-card); border: 2px solid var(--color-ink); box-shadow: 6px 6px 0 var(--color-ink); padding: 16px 18px; display: grid; gap: 12px; min-width: 0; }
   .lead { font-size: 15px; color: var(--color-ink-soft); }
   .bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; --bc: 24px 170px 1fr 52px; }
   .bars details { border-bottom: 1px solid color-mix(in oklab, var(--color-ink) 20%, transparent); padding-bottom: 6px; }
-  .bars summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: var(--bc); gap: 10px; align-items: center; min-height: 44px; }
+  .bars summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: var(--bc); gap: 10px; align-items: center; min-height: 48px; }
   .bars summary::before { content: ""; width: 0; height: 0; border-style: solid; border-width: 7px 0 7px 11px; border-color: transparent transparent transparent var(--color-ink); justify-self: start; }
   /* The site's summaries end in "+"/"–" (global.css); these rows have their own triangle. */
   .bars details summary::after, .bars details[open] summary::after { content: none; }
@@ -214,6 +226,9 @@ const startTag = (g: Game) => {
   .chip em { font-style: normal; color: var(--color-ink); font-size: 14px; margin-left: 4px; }
   .drill { display: inline-block; border: 1.5px solid var(--color-ink); background: var(--color-card); padding: 1px 8px; font-size: 14px; line-height: 1.5; margin: 0 4px 4px 0; }
   .drill b { font-family: var(--font-head); }
+  .inses { grid-column: 1 / -1; display: flex; align-items: center; min-height: 48px; padding: 4px 12px; border: 2px solid var(--color-ink); background: var(--color-card); color: var(--color-ink); font: 600 14px/1.3 var(--font-head); text-decoration: none; justify-self: start; }
+  .inses b { text-decoration: underline; text-underline-offset: 3px; }
+  @media (hover: hover) { .inses:hover { background: var(--color-chip); } }
   .ok { background: var(--color-go); font: 700 14px/1.4 var(--font-head); padding: 0 6px; margin-left: 5px; }
   .scroll { overflow-x: auto; min-width: 0; }
   /* 2 px less than the box: the collapsed cell borders reach 1 px past each side and would make it scroll. */
@@ -227,7 +242,7 @@ const startTag = (g: Game) => {
   .mx td.z { color: var(--color-ink-soft); font-weight: 600; }
   .mxkey { display: none; flex-wrap: wrap; gap: 4px 14px; font-size: 14px; }
   .mxkey b { font-family: var(--font-head); }
-  .moments { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; }
+  .moments { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
   .mo { border: 2px solid var(--color-ink); padding: 8px 10px; display: grid; gap: 2px; background: var(--color-card); }
   .mo b { font: 700 24px/1 var(--font-head); }
   .mo span { font: 600 14px/1.2 var(--font-head); }
@@ -241,7 +256,7 @@ const startTag = (g: Game) => {
   .combo .foot { font-size: 14px; color: var(--color-ink-soft); }
   .filters { display: flex; flex-wrap: wrap; gap: 6px; }
   .filters[hidden] { display: none; }
-  .chipbtn { border: 2px solid var(--color-ink); background: var(--color-card); color: var(--color-ink); padding: 3px 12px; font: 600 14px/1.4 var(--font-head); cursor: pointer; min-height: 44px; }
+  .chipbtn { border: 2px solid var(--color-ink); background: var(--color-card); color: var(--color-ink); padding: 3px 12px; font: 600 14px/1.4 var(--font-head); cursor: pointer; min-height: 48px; }
   .chipbtn[aria-pressed="true"] { background: var(--color-ink); color: var(--color-on-ink); }
   .cnt { color: var(--color-ink-soft); margin-left: 2px; }
   .chipbtn[aria-pressed="true"] .cnt { color: inherit; }
@@ -261,7 +276,8 @@ const startTag = (g: Game) => {
     .mx { min-width: 0; } .mx thead th:first-child, .mx tbody th { width: 100px; }
     .mx tbody th { white-space: normal; padding-right: 4px; font-size: 14px; } .mx th, .mx td { padding: 6px 2px; }
     .mx thead th { letter-spacing: 0; text-transform: none; } .mxkey { display: flex; } .mx th .d { display: none; } .mx th .m { display: inline; }
-    .pl { display: none; } .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .pl { display: none; } .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tile.t1 { grid-column: 1 / -1; }
+    .moments { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .bars { --bc: 24px 120px 1fr 52px; } .nm { white-space: normal; }
   }
   @media (prefers-reduced-motion: no-preference) { .bar i { transition: width .4s ease; } }
