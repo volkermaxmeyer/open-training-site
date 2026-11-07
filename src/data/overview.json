@@ -256,7 +256,7 @@
   },
   {
    "name": "Reset",
-   "drills": 16,
+   "drills": 17,
    "cues": 37,
    "plays": 7,
    "examples": [
@@ -380,7 +380,7 @@
   },
   {
    "name": "Drive",
-   "drills": 12,
+   "drills": 11,
    "cues": 30,
    "plays": 9,
    "examples": [
@@ -425,11 +425,11 @@
     },
     {
      "name": "ATP (around the post)",
-     "drills": 2,
+     "drills": 1,
      "examples": [
       {
-       "n": "102",
-       "title": "ATP Pull-and-Defend (Advanced)",
+       "n": "105",
+       "title": "ATP Cooperative Rally & Defense",
        "tested": false
       }
      ]
@@ -763,7 +763,7 @@
     1,
     0,
     13,
-    2
+    3
    ],
    [
     1,
@@ -784,7 +784,7 @@
     7,
     2,
     0,
-    2
+    1
    ],
    [
     1,
