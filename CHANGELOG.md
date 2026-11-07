@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.015 · 2026-11-07 · Overview: all text at least 14 px; phone matrix uses short column heads with a key below.
 - 1.014 · 2026-11-07 · Training System Overview on the site at /overview/ (snapshot of 5 Nov 2026), linked from the footer and the About page.
 - 1.013 · 2026-11-07 · Text pages keep a reading width of about 74 characters on iPad and desktop; subheadings wrap into even lines.
 - 1.012 · 2026-11-07 · Closing row has two columns when a session has no next; test pins the wide layout; changelog and design notes completed.

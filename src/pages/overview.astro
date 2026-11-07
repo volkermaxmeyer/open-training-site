@@ -24,8 +24,8 @@ const tiles = [
 const shots = ([...D.shots, ...D.serve_return] as Shot[]).sort((a, b) => b.drills - a.drills);
 const maxShot = Math.max(...shots.map((s) => s.drills));
 const maxCell = Math.max(...D.matrix.cells.flat());
-// Phone-width column heads; "Kitchen" in capitals is wider than its 40 px column at 390 px.
-const tiny: Record<string, string> = { Transition: "Trans.", "At the kitchen": "Kitch." };
+// Phone-width column heads: five full names do not fit at 14 px in 390 px, so the phone shows these with a key below.
+const tiny: Record<string, string> = { Return: "Ret", "Third ball": "3rd", "Fourth ball": "4th", "Fifth ball": "5th", Transition: "Tra", "At the kitchen": "Kit" };
 const short: Record<string, string> = { Serve: "Serve", Return: "Return", "Third ball": "3rd", "Fourth ball": "4th", "Fifth ball": "5th", Transition: "Transition", "At the kitchen": "Kitchen" };
 type Game = (typeof D.games)[number];
 const filters: [string, string, (g: Game) => boolean][] = [
@@ -104,6 +104,7 @@ const startTag = (g: Game) => {
             </tbody>
           </table>
         </div>
+        <p class="mxkey">{D.matrix.cols.map((c) => <span><b>{tiny[c] ?? short[c]}</b> {c}</span>)}</p>
       </div>
     </section>
 
@@ -176,14 +177,14 @@ const startTag = (g: Game) => {
   .ov h3 { font: 700 17px/1.25 var(--font-head); }
   .ov p { margin: 0; }
   .head { display: grid; gap: 12px; }
-  .eyebrow { font: 600 12px/1.2 var(--font-head); letter-spacing: .08em; text-transform: uppercase; color: var(--color-ink); }
+  .eyebrow { font: 600 14px/1.2 var(--font-head); letter-spacing: .08em; text-transform: uppercase; color: var(--color-ink); }
   .muted { color: var(--color-ink-soft); }
   .small { font-size: 14px; }
   .tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
   .tile { border: 2px solid var(--color-ink); box-shadow: 4px 4px 0 var(--color-ink); padding: 10px 12px; display: grid; gap: 2px; min-width: 0; align-content: start; }
   .tile b { font: 700 clamp(26px, 5vw, 36px)/1 var(--font-head); font-variant-numeric: tabular-nums; }
-  .tile span { font: 600 13px/1.25 var(--font-head); }
-  .tile small { font-size: 12px; color: var(--color-ink); line-height: 1.3; }
+  .tile span { font: 600 14px/1.25 var(--font-head); }
+  .tile small { font-size: 14px; color: var(--color-ink); line-height: 1.3; }
   .tile small.x { margin-top: 6px; padding-top: 6px; border-top: 1px solid color-mix(in oklab, var(--color-ink) 35%, transparent); font-weight: 600; }
   .t1 { background: var(--color-go); } .t2 { background: var(--color-stage-1); } .t3 { background: var(--color-stage-2); }
   .t4 { background: var(--color-stage-3); } .t5 { background: var(--color-chip); }
@@ -210,32 +211,34 @@ const startTag = (g: Game) => {
   .more { display: grid; gap: 8px; padding: 10px 0 4px 2px; }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; }
   .chip { background: var(--color-chip); padding: 2px 9px; font-size: 14px; line-height: 1.5; }
-  .chip em { font-style: normal; color: var(--color-ink); font-size: 12px; margin-left: 4px; }
-  .drill { display: inline-block; border: 1.5px solid var(--color-ink); background: var(--color-card); padding: 1px 8px; font-size: 13px; line-height: 1.5; margin: 0 4px 4px 0; }
+  .chip em { font-style: normal; color: var(--color-ink); font-size: 14px; margin-left: 4px; }
+  .drill { display: inline-block; border: 1.5px solid var(--color-ink); background: var(--color-card); padding: 1px 8px; font-size: 14px; line-height: 1.5; margin: 0 4px 4px 0; }
   .drill b { font-family: var(--font-head); }
-  .ok { background: var(--color-go); font: 700 10px/1.5 var(--font-head); text-transform: uppercase; letter-spacing: .06em; padding: 0 5px; margin-left: 5px; }
+  .ok { background: var(--color-go); font: 700 14px/1.4 var(--font-head); padding: 0 6px; margin-left: 5px; }
   .scroll { overflow-x: auto; min-width: 0; }
   /* 2 px less than the box: the collapsed cell borders reach 1 px past each side and would make it scroll. */
   .mx { border-collapse: collapse; width: calc(100% - 2px); margin-inline: 1px; font-variant-numeric: tabular-nums; min-width: 560px; table-layout: fixed; }
-  .mx th { font: 600 12px/1.2 var(--font-head); letter-spacing: .08em; text-transform: uppercase; color: var(--color-ink-soft); }
+  .mx th { font: 600 14px/1.2 var(--font-head); letter-spacing: .04em; text-transform: uppercase; color: var(--color-ink-soft); }
   .mx th .m { display: none; }
   .mx thead th:first-child, .mx tbody th { width: 150px; }
   .mx th, .mx td { padding: 6px 4px; text-align: center; }
   .mx tbody th { text-align: left; font: 600 14px/1.2 var(--font-head); color: var(--color-ink); text-transform: none; letter-spacing: 0; white-space: nowrap; padding-right: 10px; }
   .mx td { font: 700 14px/1 var(--font-head); background: color-mix(in srgb, var(--color-heat) var(--h), var(--color-card)); border: 2px solid var(--color-card); color: var(--color-ink); }
   .mx td.z { color: var(--color-ink-soft); font-weight: 600; }
+  .mxkey { display: none; flex-wrap: wrap; gap: 4px 14px; font-size: 14px; }
+  .mxkey b { font-family: var(--font-head); }
   .moments { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; }
   .mo { border: 2px solid var(--color-ink); padding: 8px 10px; display: grid; gap: 2px; background: var(--color-card); }
   .mo b { font: 700 24px/1 var(--font-head); }
-  .mo span { font: 600 13px/1.2 var(--font-head); }
-  .mo small { font-size: 12px; color: var(--color-ink-soft); }
+  .mo span { font: 600 14px/1.2 var(--font-head); }
+  .mo small { font-size: 14px; color: var(--color-ink-soft); }
   .combos { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
   .combo { background: var(--color-card); border: 2px solid var(--color-ink); padding: 14px; display: grid; gap: 10px; align-content: start; min-width: 0; }
-  .combo .when { font: 600 12px/1.3 var(--font-head); color: var(--color-ink-soft); text-transform: uppercase; letter-spacing: .06em; }
+  .combo .when { font: 600 14px/1.3 var(--font-head); color: var(--color-ink-soft); text-transform: uppercase; letter-spacing: .06em; }
   .seq { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
-  .seq li { background: var(--color-stage-2); padding: 3px 8px; font-size: 13px; line-height: 1.35; }
+  .seq li { background: var(--color-stage-2); padding: 3px 8px; font-size: 14px; line-height: 1.35; }
   .seq li + li::before { content: "→"; margin-right: 6px; font-weight: 700; }
-  .combo .foot { font-size: 13px; color: var(--color-ink-soft); }
+  .combo .foot { font-size: 14px; color: var(--color-ink-soft); }
   .filters { display: flex; flex-wrap: wrap; gap: 6px; }
   .filters[hidden] { display: none; }
   .chipbtn { border: 2px solid var(--color-ink); background: var(--color-card); color: var(--color-ink); padding: 3px 12px; font: 600 14px/1.4 var(--font-head); cursor: pointer; min-height: 44px; }
@@ -248,16 +251,16 @@ const startTag = (g: Game) => {
   .game:first-child { border-top: 1px solid color-mix(in oklab, var(--color-ink) 20%, transparent); padding-top: 8px; }
   .game h3 { font-size: 15px; }
   .meta { display: flex; flex-wrap: wrap; gap: 6px; grid-column: 1 / -1; }
-  .tag { color: var(--color-ink); border: 1.5px solid var(--color-ink); padding: 0 7px; font: 600 12px/1.6 var(--font-head); white-space: nowrap; }
+  .tag { color: var(--color-ink); border: 1.5px solid var(--color-ink); padding: 0 7px; font: 600 14px/1.5 var(--font-head); white-space: nowrap; }
   .tag.serve { background: var(--color-stage-1); } .tag.feed { background: var(--color-stage-3); } .tag.dink { background: var(--color-go); }
   .pl { font: 700 14px/1.2 var(--font-head); white-space: nowrap; }
-  .glegend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--color-ink-soft); align-items: center; }
+  .glegend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; color: var(--color-ink-soft); align-items: center; }
   .glegend > span { display: inline-flex; gap: 6px; align-items: center; }
   @media (max-width: 640px) {
     .tab { padding: 6px 10px; font-size: 14px; } .tabs { gap: 6px; } .tag { white-space: normal; }
     .mx { min-width: 0; } .mx thead th:first-child, .mx tbody th { width: 100px; }
-    .mx tbody th { white-space: normal; padding-right: 4px; font-size: 13px; } .mx th, .mx td { padding: 6px 2px; }
-    .mx thead th { font-size: 9.5px; letter-spacing: 0; } .mx th .d { display: none; } .mx th .m { display: inline; }
+    .mx tbody th { white-space: normal; padding-right: 4px; font-size: 14px; } .mx th, .mx td { padding: 6px 2px; }
+    .mx thead th { letter-spacing: 0; text-transform: none; } .mxkey { display: flex; } .mx th .d { display: none; } .mx th .m { display: inline; }
     .pl { display: none; } .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .bars { --bc: 24px 120px 1fr 52px; } .nm { white-space: normal; }
   }
