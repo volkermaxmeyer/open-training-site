@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.027 · 2026-11-08 · About: a private project by Volker Max Meyer, with Goals and Shots and a feedback section. Shorter questions on Goals and Shots. Imprint and Privacy in first person, Privacy adds Email.
 - 1.026 · 2026-11-08 · Overview: drill 102 (ATP Pull-and-Defend) counts under Reset, which it trains, not under Drive.
 - 1.025 · 2026-11-08 · Footer pages (About, Overview, Imprint, Privacy, Not me) show Home › page instead of "All goals". Overview: title first, then one sentence with the date; shot data as of 8 Nov 2026 with the special shots under Volley, Drive and Lob and Hybrid drive under Drip.
 - 1.024 · 2026-11-07 · Breadcrumbs on session, shot and drill pages (Goals › goal, Shots › shot › variant) instead of the back link and the label above the title.
