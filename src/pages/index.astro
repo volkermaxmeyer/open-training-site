@@ -17,7 +17,7 @@ const bases = new Set(sessions.map((s) => playersFitParts(s.stages.map((st) => s
 const sharedBase = bases.size === 1 ? [...bases][0] : undefined;
 ---
 
-<Base wide title={site.name} description="Good training, no coach. Pick what you want to get better at, and follow three drills on your phone.">
+<Base wide title={site.name} description="Pick a goal for a 30-minute session, or a single shot to practise on its own. Ready-made drills with video, on your phone.">
   <HomeTabs active="goals" />
   <h1 class="mt-7 font-display text-[44px] leading-none font-bold tracking-[-0.02em] text-balance tablet:text-[60px]">{site.goalQuestion}</h1>
   {sessions.length === 0 ? (
@@ -27,7 +27,7 @@ const sharedBase = bases.size === 1 ? [...bases][0] : undefined;
   ) : (
     <>
     {/* One line instead of two (Volker 2026-11-07): what a session is, and the group size every session works with. */}
-    <p data-tab-line class="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[17px]">One goal, three drills, 30 minutes{sharedBase ? <>, for <Chip data-shared-base tone="people" icon>{sharedBase}</Chip></> : "."}</p>
+    <p data-tab-line class="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[17px]">Pick a goal, get three drills, play 30 minutes.{sharedBase && <> For <Chip data-shared-base tone="people" icon>{sharedBase}</Chip>.</>}</p>
     <ul class="mt-7 space-y-4 tablet:grid tablet:grid-cols-2 tablet:gap-5 tablet:space-y-0 lg:grid-cols-3">
       {[...withGoal, ...others].map((data) => (
         <li>

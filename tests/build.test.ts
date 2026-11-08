@@ -48,8 +48,8 @@ describe("shots area (2026-11-07)", () => {
     expect(index).toMatch(/href="\/shots\/"[^>]*data-tab="shots"/);
     expect(index).not.toContain("data-shot-tile");
     expect(html("shots/index.html")).toMatch(/data-tab="shots"[^>]*aria-current="page"/);
-    expect(text(index)).toContain("One goal, three drills, 30 minutes, for Wall"); // the fixtures start with a wall
-    expect(text(html("shots/index.html"))).toContain("One shot, from calm to full pace, for 2+ players");
+    expect(text(index)).toContain("Pick a goal, get three drills, play 30 minutes. For Wall."); // the fixtures start with a wall
+    expect(text(html("shots/index.html"))).toContain("Pick a shot and build it up from calm to full pace. For 2+ players.");
     expect(index).not.toContain("Good training, no coach</p>"); // the kicker went (Volker 2026-11-07, R2)
   });
 
@@ -128,7 +128,7 @@ describe("built site", () => {
 
   it("index asks the goal question with one button per goal, in goal order", () => {
     const index = html("index.html");
-    expect(index).toContain("What do you want to get better at today?");
+    expect(index).toContain("What do you want to improve?");
     const goals = [...index.matchAll(/data-goal="([^"]+)"/g)].map((m) => m[1]);
     expect(goals).toEqual(["fixture-goal", "other-goal"]);
     expect(index).toContain("Hit soft balls");
@@ -220,7 +220,7 @@ describe("built site", () => {
   it("footer starts with About; the about page explains the project", () => {
     expect(html("index.html")).toMatch(/<footer[\s\S]*?href="\/about\/"[\s\S]*?href="\/imprint\/"[\s\S]*?href="\/privacy\/"/);
     const about = html("about/index.html");
-    for (const t of ["more than 200 reviewed YouTube videos", "Made with AI, checked by a player", "non-commercial", "bring pickleball to the people"]) expect(about).toContain(t);
+    for (const t of ["more than 200 reviewed YouTube videos", "AI helped turn the videos into drills and sessions", "non-commercial", "bring pickleball to the people"]) expect(about).toContain(t);
     expect(about).toMatch(/href="\/"[^>]*>Home<\/a>/);
   });
 
@@ -365,7 +365,7 @@ describe("built site", () => {
 
   it("privacy page names legal bases, transfers and the operator", () => {
     const page = html("privacy/index.html");
-    for (const s of ["Art. 6(1)(f) GDPR", "Art. 6(1)(a) GDPR", "Data Privacy Framework", "only the operator", "Please do not enter names"]) {
+    for (const s of ["Art. 6(1)(f) GDPR", "Art. 6(1)(a) GDPR", "Data Privacy Framework", "only I, the operator", "Please do not enter names"]) {
       expect(page).toContain(s);
     }
     expect(page).not.toContain("organisers");

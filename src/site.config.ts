@@ -6,7 +6,7 @@ export const site = {
     name: "Volker Max Meyer",
     address: ["c/o BTV Olympia e.V., Abt. Pickleball", "Paul-Heyse-Str. 25", "10407 Berlin, Germany"],
   },
-  goalQuestion: "What do you want to get better at today?",
+  goalQuestion: "What do you want to improve?",
   fourOnCourt: {
     text: "Four of you?",
     rule: "Never two balls with pace.",

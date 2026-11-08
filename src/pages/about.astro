@@ -6,10 +6,11 @@ import Breadcrumbs from "../components/Breadcrumbs.astro";
 
 <Base title={`About | ${site.name}`}>
   <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About" }]} />
-  <h1 class="mt-1 font-display text-[44px] leading-none font-bold">About</h1>
+  <h1 class="mt-1 font-display text-[44px] leading-none font-bold text-balance">Good training, no coach.</h1>
   <p class="mt-4">
-    Open Training gives you a ready-made 30-minute session for the court, with no coach needed. Pick what you want to get
-    better at, and you get three drills that build on each other, each with a short video that shows how it is played.
+    Open Training gives you ready-made practice for the court. Pick a goal, and you get a 30-minute session of three
+    drills that build on each other. Or pick a single shot, and you get drills that repeat only that shot, from calm to
+    full pace. Every drill comes with a short video that shows how it is played.
   </p>
 
   <h2 class="mt-6 font-head text-xl font-bold text-balance">Where the drills come from</h2>
@@ -28,20 +29,21 @@ import Breadcrumbs from "../components/Breadcrumbs.astro";
     lets you find the shot, Drill 2 adds pressure, and Drill 3 puts it into a real point. Every step uses constraints,
     simple rules like a target zone, a limited number of shots or a point scored differently. Under such a rule, the right
     shot is the one that wins, so you learn it without anyone explaining it. Aim for about seven good balls in ten. If a
-    drill is too easy or too hard, it tells you how to adjust it.
-  </p>
-
-  <h2 class="mt-6 font-head text-xl font-bold text-balance">Made with AI, checked by a player</h2>
-  <p class="mt-2">
-    AI helped turn the videos into drills and sessions. A player decides which sessions go online, and your feedback from
-    the court decides what stays.
+    drill is too easy or too hard, it tells you how to adjust it. AI helped turn the videos into drills and sessions,
+    and I decide which ones go online.
   </p>
 
   <h2 class="mt-6 font-head text-xl font-bold text-balance">Non-commercial</h2>
   <p class="mt-2">
-    Open Training is a non-commercial project by a player in Berlin. There are no ads and no sign-up, and nothing is for
-    sale. We want to help players get better and bring pickleball to the people.
+    Open Training is a private, non-commercial project by Volker Max Meyer, a pickleball player in Berlin. No club or
+    company runs it. There are no ads and no sign-up, and nothing is for sale. I want to help players get better and
+    bring pickleball to the people.
   </p>
 
-  <p class="mt-6">Every session ends with a short feedback form. What you tell us there is how the sessions get better.</p>
+  <h2 class="mt-6 font-head text-xl font-bold text-balance">Feedback welcome</h2>
+  <p class="mt-2">
+    Open Training is a work in progress. I add and change sessions and drills based on what players tell me. After a goal
+    session, the short form at the end is the quickest way. For a shot drill, a missing drill or anything else, just email
+    me at {site.contactEmail}.
+  </p>
 </Base>
