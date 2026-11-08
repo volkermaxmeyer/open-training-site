@@ -84,7 +84,7 @@
   "status": "v1",
   "goal": {
     "id": "special-shots",
-    "label": "Special shots",
+    "label": "Add a shot to your game",
     "order": 8
   },
   "next": {
