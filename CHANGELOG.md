@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.031 · 2026-11-08 · About: opens with who Open Training is for and the problem it solves, with examples for goals and shots; The system behind it is shorter and plainer. Shots: "from slow to full pace".
 - 1.030 · 2026-11-08 · About: "Where the drills come from", "What's inside" and "How a session is built" become one section, The system behind it, which also says who Open Training is for.
 - 1.029 · 2026-11-08 · Goals and Shots: the line under the question ends with the players chip, without a stray period on phones.
 - 1.028 · 2026-11-08 · Sessions published or updated: lob-game.
