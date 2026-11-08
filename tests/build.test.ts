@@ -48,8 +48,8 @@ describe("shots area (2026-11-07)", () => {
     expect(index).toMatch(/href="\/shots\/"[^>]*data-tab="shots"/);
     expect(index).not.toContain("data-shot-tile");
     expect(html("shots/index.html")).toMatch(/data-tab="shots"[^>]*aria-current="page"/);
-    expect(text(index)).toContain("Pick a goal, get three drills, play 30 minutes. For Wall."); // the fixtures start with a wall
-    expect(text(html("shots/index.html"))).toContain("Pick a shot and build it up from calm to full pace. For 2+ players.");
+    expect(text(index)).toContain("Pick a goal, get three drills, play 30 minutes. For Wall"); // the fixtures start with a wall
+    expect(text(html("shots/index.html"))).toContain("Pick a shot and build it up from calm to full pace. For 2+ players");
     expect(index).not.toContain("Good training, no coach</p>"); // the kicker went (Volker 2026-11-07, R2)
   });
 

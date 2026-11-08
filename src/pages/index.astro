@@ -27,7 +27,7 @@ const sharedBase = bases.size === 1 ? [...bases][0] : undefined;
   ) : (
     <>
     {/* One line instead of two (Volker 2026-11-07): what a session is, and the group size every session works with. */}
-    <p data-tab-line class="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[17px]">Pick a goal, get three drills, play 30 minutes.{sharedBase && <> For <Chip data-shared-base tone="people" icon>{sharedBase}</Chip>.</>}</p>
+    <p data-tab-line class="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[17px]">Pick a goal, get three drills, play 30 minutes.{sharedBase && <> For <Chip data-shared-base tone="people" icon>{sharedBase}</Chip></>}</p>
     <ul class="mt-7 space-y-4 tablet:grid tablet:grid-cols-2 tablet:gap-5 tablet:space-y-0 lg:grid-cols-3">
       {[...withGoal, ...others].map((data) => (
         <li>
