@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.029 · 2026-11-08 · Goals and Shots: the line under the question ends with the players chip, without a stray period on phones.
 - 1.028 · 2026-11-08 · Sessions published or updated: lob-game.
 - 1.027 · 2026-11-08 · About: a private project by Volker Max Meyer, with Goals and Shots and a feedback section. Shorter questions on Goals and Shots. Imprint and Privacy in first person, Privacy adds Email.
 - 1.026 · 2026-11-08 · Overview: drill 102 (ATP Pull-and-Defend) counts under Reset, which it trains, not under Drive.
