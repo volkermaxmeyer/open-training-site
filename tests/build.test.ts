@@ -281,19 +281,21 @@ describe("built site", () => {
     }
   });
 
-  it("session pages carry exactly three inline scripts: own-visit opt-out, analytics and the video player", () => {
+  it("session pages carry exactly four inline scripts: own-visit opt-out, analytics, speed insights and the video player", () => {
     // Deliberately widened 2026-11-04 (video in the card): one inline video script, no <script src>, and the only
     // host it may load is youtube-nocookie.com/embed, and only after a tap. 2026-11-05: plus the opt-out check.
+    // 2026-11-09: plus the Speed Insights script.
     for (const s of ["warm-hands", "steady-lobs"]) {
       const page = html(`s/${s}/index.html`);
       const scripts = page.match(/<script[\s\S]*?<\/script>/gi) ?? [];
-      expect(scripts).toHaveLength(3);
+      expect(scripts).toHaveLength(4);
       expect(page).not.toMatch(/<script[^>]*\ssrc=/);
       expect(scripts.filter((x) => x.includes("@vercel/analytics"))).toHaveLength(1);
+      expect(scripts.filter((x) => x.includes("@vercel/speed-insights"))).toHaveLength(1);
       const optOut = scripts.filter((x) => x.includes("va-disable"));
       expect(optOut).toHaveLength(1);
       expect(optOut[0]).not.toMatch(/https?:\/\//);
-      const video = scripts.find((x) => !x.includes("@vercel/analytics") && !x.includes("va-disable"))!;
+      const video = scripts.find((x) => !x.includes("@vercel/analytics") && !x.includes("@vercel/speed-insights") && !x.includes("va-disable"))!;
       const hosts = [...video.matchAll(/https?:\/\/[a-z0-9.-]+/gi)].map((m) => m[0]);
       expect(hosts.length).toBeGreaterThan(0);
       expect(new Set(hosts)).toEqual(new Set(["https://www.youtube-nocookie.com"]));
