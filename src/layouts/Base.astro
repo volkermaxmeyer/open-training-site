@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
 
 interface Props {
   title: string;
@@ -40,6 +41,7 @@ const fonts = [poppins600, poppins700, crimson700];
       };
     </script>
     <Analytics />
+    <SpeedInsights />
   </head>
   <body class="bg-paper font-sans text-ink antialiased">
     {/* From lg every page shares the same 1120 px frame, so the footer links stay in one place from page to page
