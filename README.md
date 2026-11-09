@@ -71,7 +71,6 @@ private notes ──publish script──▶ src/content/sessions/*.json ──gi
   each one from named fields only, so private notes and links never reach the repo. The site validates the JSON
   against `src/lib/session-schema.ts`.
 - **Feedback** goes to a Tally form; the link carries the session slug as a hidden field. Answers stay in Tally.
-  `scripts/canary.ts` is retired: it read a Google Sheet that is no longer connected.
 - **Visitor statistics** come from Vercel Web Analytics: no cookies, no personal profiles.
 - **Every deploy is checkable.** The site serves `version.txt` with the commit it was built from;
   `scripts/check-deploy.ts` polls it until the pushed commit is live.
