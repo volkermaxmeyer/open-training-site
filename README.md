@@ -41,7 +41,6 @@ Claude Code wrote most of the code and much of the content. I set the goal, the 
 
 - 145 tests, among them a contrast test that fails below 7:1 and a test that keeps `DESIGN.md` and the CSS tokens in sync. They run before every publish commit and every push; red tests stop the release.
 - A leak guard on every commit and push, so private notes and paths never reach this public repository (see below).
-- A canary script that confirms feedback rows actually arrive in the sheet.
 - A version number and a changelog line for every push, and a script that waits until Vercel serves the pushed commit.
 - In the private base, three scripts check the vocabulary, the cue consistency and the links on every change. Every new drill's video link is checked against frames from the video before the drill is saved, because an audit in July 2026 found 26 of 100 links pointing to the wrong moment.
 
@@ -71,9 +70,8 @@ private notes ──publish script──▶ src/content/sessions/*.json ──gi
 - **Content is JSON, not copied notes.** `scripts/publish.ts` reads the sessions marked for publishing and builds
   each one from named fields only, so private notes and links never reach the repo. The site validates the JSON
   against `src/lib/session-schema.ts`.
-- **Feedback** goes to a Tally form; the link carries the session slug as a hidden field. `scripts/canary.ts` reads
-  the connected Google Sheet and reports rows without a session, rows with an unknown one, and published sessions
-  that never received a row.
+- **Feedback** goes to a Tally form; the link carries the session slug as a hidden field. Answers stay in Tally.
+  `scripts/canary.ts` is retired: it read a Google Sheet that is no longer connected.
 - **Visitor statistics** come from Vercel Web Analytics: no cookies, no personal profiles.
 - **Every deploy is checkable.** The site serves `version.txt` with the commit it was built from;
   `scripts/check-deploy.ts` polls it until the pushed commit is live.

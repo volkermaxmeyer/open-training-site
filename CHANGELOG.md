@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.034 · 2026-11-09 · Privacy: feedback answers are stored at Tally in the EU only (no Google Sheet any more), and the email address is used to reply.
 - 1.033 · 2026-11-08 · About: fewer repetitions; the intro says where the drill video starts, Non-commercial and Feedback no longer open with "Open Training is".
 - 1.032 · 2026-11-08 · About: The system behind it repeats "Each" less often.
 - 1.031 · 2026-11-08 · About: opens with who Open Training is for and the problem it solves, with examples for goals and shots; The system behind it is shorter and plainer. Shots: "from slow to full pace".
