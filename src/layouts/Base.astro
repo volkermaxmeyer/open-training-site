@@ -9,8 +9,13 @@ interface Props {
   noindex?: boolean;
   /** Start page and sessions use the full width on a laptop or iPad held sideways; text pages keep a reading width. */
   wide?: boolean;
+  /** Link preview text when it should differ from the meta description (sessions: minutes, players, level). */
+  ogDescription?: string;
 }
-const { title, description, noindex = false, wide = false } = Astro.props;
+const { title, description, noindex = false, wide = false, ogDescription } = Astro.props;
+// Link preview (build list R2, 2026-11-11): what a group chat shows before anyone taps. No image yet, on purpose.
+const ogUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const ogText = ogDescription ?? description;
 // Preload the three bundled woff2 files so headings don't swap fonts on first paint (same files the CSS imports).
 import poppins600 from "@fontsource/poppins/files/poppins-latin-600-normal.woff2?url";
 import poppins700 from "@fontsource/poppins/files/poppins-latin-700-normal.woff2?url";
@@ -26,6 +31,11 @@ const fonts = [poppins600, poppins700, crimson700];
     <meta name="generator" content={Astro.generator} />
     {description && <meta name="description" content={description} />}
     {noindex && <meta name="robots" content="noindex" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Open Training" />
+    <meta property="og:title" content={title} />
+    {ogText && <meta property="og:description" content={ogText} />}
+    {ogUrl && <meta property="og:url" content={ogUrl} />}
     {fonts.map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
     {/* ?v= forces browsers that cached the old Astro icon to fetch the ball; raise it when the icon changes */}
     <link rel="icon" href="/favicon.ico?v=2" sizes="32x32" />

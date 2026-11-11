@@ -1,6 +1,6 @@
 # Open Training
 
-Pickleball sessions a group can run without a coach, one phone page per session:
+Pickleball sessions a group of advanced players (around 4.0 and up) can run without a coach, one phone page per session:
 https://open-training-site.vercel.app/
 
 A free, non-commercial side project, built in my spare time by Volker Max Meyer, a product manager and service designer in Berlin, with Claude Code.

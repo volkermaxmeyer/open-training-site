@@ -48,8 +48,18 @@ describe("shots area (2026-11-07)", () => {
     expect(index).toMatch(/href="\/shots\/"[^>]*data-tab="shots"/);
     expect(index).not.toContain("data-shot-tile");
     expect(html("shots/index.html")).toMatch(/data-tab="shots"[^>]*aria-current="page"/);
-    expect(text(index)).toContain("Pick a goal, get three drills, play 30 minutes. For Wall"); // the fixtures start with a wall
-    expect(text(html("shots/index.html"))).toContain("Pick a shot and build it up from slow to full pace. For 2+ players");
+    expect(text(index)).toContain("Pick a goal, get three drills, play 30 minutes. For Advanced (around 4.0+) Wall"); // the fixtures start with a wall
+    expect(text(html("shots/index.html"))).toContain("Pick a shot and build it up from slow to full pace. For Advanced (around 4.0+) 2+ players");
+    // target group (decision-log 2026-11-11): the level chip stands on start, shots and every session page
+    expect(chip(index, "data-level")).toEqual(["Advanced (around 4.0+)"]);
+    expect(chip(html("shots/index.html"), "data-level")).toEqual(["Advanced (around 4.0+)"]);
+    for (const f of walk(join(out, "s")).filter((f) => f.endsWith("index.html"))) {
+      const page = readFileSync(f, "utf8");
+      expect(chip(page, "data-level"), f).toEqual(["Advanced (around 4.0+)"]);
+      expect(page, f).toMatch(/<meta property="og:description" content="\d+ min · [^"]*Advanced \(around 4\.0\+\) · free, no login"/);
+      expect(page, f).toMatch(/<meta property="og:url" content="https:\/\/open-training-site\.vercel\.app\/s\/[^"]+\/"/);
+      expect(page, f).toMatch(/<meta property="og:title" content="[^"]+ \| Open Training"/);
+    }
     expect(index).not.toContain("Good training, no coach</p>"); // the kicker went (Volker 2026-11-07, R2)
   });
 

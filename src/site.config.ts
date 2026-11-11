@@ -7,6 +7,8 @@ export const site = {
     address: ["c/o BTV Olympia e.V., Abt. Pickleball", "Paul-Heyse-Str. 25", "10407 Berlin, Germany"],
   },
   goalQuestion: "What do you want to improve?",
+  /** Who Open Training is for (decision-log 2026-11-11): one wording for the level chip and the link preview. */
+  level: "Advanced (around 4.0+)",
   fourOnCourt: {
     text: "Four of you?",
     rule: "Never two balls with pace.",

@@ -81,8 +81,9 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
   button. Below it the one-sentence summary ("In short"), visible. On a 4-player stage, the authored "Only two of you?"
   block (see critique round 2). Then two collapsed `<details>`: "How to play" (the rules) and "Too
   easy? Too hard?" (Too easy, Too hard, Good looks like).
-- **Session top:** back link, title, then two chips (the aim is not shown on the page, only as the meta description for
-  link previews; Volker 2026-11-04): "30 min" and the players ("2+ players · Drill 3 needs 4"). Then the jump bar, then
+- **Session top:** back link, title, then three chips (the aim is not shown on the page, only as the meta description for
+  link previews; Volker 2026-11-04): "30 min", the players ("2+ players · Drill 3 needs 4") and, since 2026-11-11, the
+  level ("Advanced (around 4.0+)", `plain`, from `site.level`; target group in the vault decision-log). Then the jump bar, then
   the **four-on-court line**: one line on `--color-warn` with a 6 px `--color-ink`
   bar on the left, no box shadow, the safety rule in bold. Red, not yellow, so it does not rhyme with Drill 3 (design critique
   2026-11-04).
@@ -115,7 +116,7 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
   `aria-hidden`.
 - **Small fixes:** the "+"/"–" of summaries is not read aloud; the three woff2 files are preloaded; the "new" badge has
   6.75 px vertical padding; titles use `text-wrap: balance`; goal cards are taller below 360 px so they stay equal.
-- **Session page order (Volker, the same evening):** back link, title, the two chips, then the sticky jump tabs, then the
+- **Session page order (Volker, the same evening):** back link, title, the chips, then the sticky jump tabs, then the
   rule line and the cards. The title comes first, so the page opens on what the session is.
 - **Layout pass (2026-11-04):** the session page reads in three groups. (1) Title and one chip row, tight: the players chip
   uses the start-page wording ("2+ players · Drill 3 needs 4"), so it fits beside "30 min". (2) Jump tabs, 56 px high
@@ -178,3 +179,4 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 - **A drill without an end time** (session stage or drill page, 2026-11-07): the plain YouTube link is drawn in the same 16:9 ink block as the in-card player (circle icon, "Watch the drill", channel and time), so the card never shows a gap under a short bar.
 - **Drill page closing row** (Volker 2026-11-07): like a session page, three equal fields from lg: the ball with "Good reps. Swap roles and go again.", a green box "Wish for a drill? Mail me" (a mail to the project address with a subject naming the drill; no feedback form on drill pages, no address on the button; under it a small line "or write to …" with the address to copy, because a mail link does nothing where no mail app is set up), and "Ready for points?" to a session. On lg the green box breaks after the question mark.
 - **Breadcrumbs** (`Breadcrumbs.astro`, Volker 2026-11-07, style 1 of three previews): on session, shot and drill pages one line in the label type (14 px, uppercase, letter-spaced) replaces the old back link and the label above the title: "Goals › <goal>", "Shots › <shot>", "Shots › <shot> › <variant>". Links underlined and at least 44 px high, the last level plain; the separator ends a line, so a wrapped line starts with a level. The page title is not repeated in the crumbs. The footer pages (About, Overview, Imprint, Privacy, Not me) show "Home › <page>" (Volker 2026-11-08, variant 2 of three previews): "← All goals" was wrong for visitors from Shots. Here the page name is the last crumb, because "Home" alone would not read as a path. "Home" leads to the start page, which opens on Goals.
+- **Target group signal (2026-11-11):** the Goals and Shots lines read "… For [Advanced (around 4.0+)] [2+ players]": a `plain` level chip (`data-level`, text from `site.level`) before the players chip. The same text closes the link preview of every session (`og:description` "30 min · players · level · free, no login"); `og:title`, `og:url` (from `site` in `astro.config.mjs`), `og:type` and `og:site_name` sit in `Base.astro`. No preview image yet.
