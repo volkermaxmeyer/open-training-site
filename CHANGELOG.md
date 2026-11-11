@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.036 · 2026-11-11 · Speaks to advanced players: About names the target group, a level chip "Advanced (around 4.0+)" on Start, Shots and sessions, link previews (og tags).
 - 1.035 · 2026-11-09 · Tidy-up: the retired feedback canary and its Sheet setting are removed (no change on the site).
 - 1.034 · 2026-11-09 · Privacy: feedback answers are stored at Tally in the EU only (no Google Sheet any more), and the email address is used to reply.
 - 1.033 · 2026-11-08 · About: fewer repetitions; the intro says where the drill video starts, Non-commercial and Feedback no longer open with "Open Training is".
