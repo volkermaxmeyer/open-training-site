@@ -9,7 +9,7 @@
       "title": "Count to 50",
       "inShort": "A and B dink together and count out loud: 50 in a row, and a ball in the net sends you back to zero.",
       "rules": [
-        "A and B face each other at the kitchen line and dink (soft shots that land in the kitchen). Count every ball out loud together.",
+        "A and B face each other at the kitchen line and dink. Count every ball out loud together.",
         "Four rounds of about 2–3 minutes: cross-court from the right half, cross-court from the left half, middle to middle, straight ahead along one sideline.",
         "A ball in the net sends the count back to zero. A ball wide, or one that just trickles over the net, keeps the count going.",
         "No hard hits. If a ball comes up high, roll it back with topspin and keep the pressure on.",
@@ -41,7 +41,7 @@
         "Whoever lost the rally starts the next one with a dink.",
         "Cross-court only: if you get pulled far out wide, you may play one straight dink to recover. The next ball goes cross-court again."
       ],
-      "tooEasy": "A ball you pop up (high enough for the other player to attack) costs you two points. Still easy: mix topspin and slice dinks and change your targets to break the rhythm.",
+      "tooEasy": "A ball you pop up costs you two points. Still easy: mix topspin and slice dinks and change your targets to break the rhythm.",
       "tooHard": "Drop the penalty: a ball in the net just loses the rally. Still too hard: no score, just dink in a free rhythm.",
       "goodLooksLike": "Patient dinks and very few balls in the net. You attack a ball that is really up, never one that is still below the net.",
       "drill": {

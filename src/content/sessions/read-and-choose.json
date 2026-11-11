@@ -9,7 +9,7 @@
       "title": "Air or Step Back",
       "inShort": "A drops from the baseline, and B takes it out of the air or steps back and hits it at the top of the bounce.",
       "rules": [
-        "A starts at the baseline, B at the kitchen line. A plays drops (soft balls that land in or near the kitchen): some low and good, some high and easy to attack.",
+        "A starts at the baseline, B at the kitchen line. A plays drops: some low and good, some high and easy to attack.",
         "B always tries first to take the ball out of the air, reaching in with a roll volley (a volley with a short brushing upward swing).",
         "Can't reach it in the air? Step back, open the outside foot, let it bounce and hit it at the top of the bounce with a compact topspin swing.",
         "No half-volleys (hitting the ball just after it bounces, down at your feet). If B gets caught with one, the point goes to A."
@@ -34,11 +34,11 @@
       "rules": [
         "A stands at the kitchen line, B in the middle of the court (between baseline and kitchen line).",
         "Before each shot, A clearly shows the paddle: high, middle or low. A mixes forehand and backhand.",
-        "Paddle high: B lowers the paddle and gets ready to reset (a soft ball that takes the pace off and drops low).",
+        "Paddle high: B lowers the paddle and gets ready to reset.",
         "Paddle low: B gets into an attacking stance, ready to step forward.",
-        "Paddle middle: B split-steps (a small hop that lands just as A hits) and decides after A has hit."
+        "Paddle middle: B split-steps and decides after A has hit."
       ],
-      "tooEasy": "A hides the paddle and mixes freely, so B has to read it. B may only counter (hit back hard) when B read the paddle right.",
+      "tooEasy": "A hides the paddle and mixes freely, so B has to read it. B may only counter when B read the paddle right.",
       "tooHard": "A also calls the position out loud before hitting: \"high\", \"middle\" or \"low\".",
       "goodLooksLike": "B always takes a step in the right direction before the ball arrives.",
       "drill": {
@@ -61,7 +61,7 @@
         "Round 2, A plays passive: lets every ball bounce, steady. B dinks mostly wide, now and then to the middle or down the line.",
         "Before each round B says the split out loud: \"half and half\" or \"mostly wide\". No points.",
         "Pulled wide: B takes a drop step (a step back that makes room) and gets back toward the middle.",
-        "B attacks only a pop-up (a ball that bounces up high), and only when balanced. Never speed up off-balance."
+        "B attacks only a pop-up, and only when balanced. Never speed up off-balance."
       ],
       "tooEasy": "Play for points: a pop-up B puts away scores. Harder still: A switches style at random each rally, and B reads it and changes the split live.",
       "tooHard": "Stay longer in one round with the same style, until B's split feels automatic.",

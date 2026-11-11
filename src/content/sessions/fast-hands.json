@@ -10,7 +10,7 @@
       "inShort": "A and B volley back and forth at chest height, switching forehand and backhand on every ball.",
       "rules": [
         "A and B stand straight across from each other at the net (not diagonal).",
-        "A hits a forehand volley (a ball hit out of the air, before it bounces) at B's chest. B takes it on the backhand and sends it back.",
+        "A hits a forehand volley at B's chest. B takes it on the backhand and sends it back.",
         "Each of you switches on every ball: forehand, backhand, forehand, backhand. No free play.",
         "Start so close to the net you can almost touch it. Once the streak holds, both step back to the kitchen line: you will feel you have far more time.",
         "Medium pace, go for long streaks. A mistake costs nothing: just start again.",
@@ -34,10 +34,10 @@
       "title": "Only A Attacks",
       "inShort": "A and B dink, only A may suddenly hit hard, and B blocks or counters without ever attacking.",
       "rules": [
-        "A and B dink as normal at the kitchen line (soft shots that land in the kitchen).",
-        "Only A may speed up (a sudden fast, hard ball at B), whenever A wants: on the first dink or the fifth.",
+        "A and B dink as normal at the kitchen line.",
+        "Only A may speed up, whenever A wants: on the first dink or the fifth.",
         "For now, A speeds up at about 60% pace.",
-        "B never speeds up. B blocks (holds the paddle still and lets the ball bounce off it) or counters (hits the fast ball back fast).",
+        "B never speeds up. B blocks or counters.",
         "B's focus: paddle up in front, weight forward.",
         "Then swap roles."
       ],
@@ -62,7 +62,7 @@
         "A and B dink together at the kitchen line.",
         "Either of you may speed up at any time. Do not give it away in advance.",
         "For now: about 3 speed-ups in every 10 dinks, at moderate pace.",
-        "The other answers with a counter or a reset (a soft ball that takes the pace off and drops low).",
+        "The other answers with a counter or a reset.",
         "No points yet."
       ],
       "tooEasy": "Speed up whenever you like, at full pace, and play for points.",
