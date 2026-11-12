@@ -27,7 +27,7 @@ export const SHOT_EXPLAINERS: Record<Shot, string> = {
   Drop: "A soft shot from the back of the court that lands in the opponents' kitchen, so you can move up to the net.",
   Drip: "Half drive, half drop: a shorter, slower drive that lands low at the feet of a player still moving in.",
   Dink: "A soft shot from the kitchen line into the opponents' kitchen, kept low so they can't attack it.",
-  Volley: "Any ball you hit out of the air before it bounces, including flick and roll speed-ups.",
+  Volley: "Any ball you hit out of the air before it bounces.",
   Reset: "A soft shot that takes the pace off a hard ball and drops it into the kitchen, so you stop defending.",
   "Speed-up": "A planned switch from soft to fast that starts your attack or forces a weak reply.",
   "Counter & block": "Your answer to a fast ball at you: block it soft into the kitchen, or counter it back hard.",
