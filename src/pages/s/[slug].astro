@@ -12,10 +12,15 @@ export async function getStaticPaths() {
       `site.tallyFormUrl is "${site.tallyFormUrl}": set a real https:// feedback form URL in src/site.config.ts (or TALLY_FORM_URL) before building with sessions.`,
     );
   }
-  return sessions.map((s) => ({ params: { slug: s.data.slug }, props: { session: s.data } }));
+  // "Got another 30 min?" names the next session's goal, not its title (wording pass 1.040, Volker 2026-11-12).
+  const goalOf = new Map(sessions.map((s) => [s.data.slug, s.data.goal?.label]));
+  return sessions.map((s) => ({
+    params: { slug: s.data.slug },
+    props: { session: s.data, nextLabel: s.data.next ? (goalOf.get(s.data.next.slug) ?? s.data.next.title) : undefined },
+  }));
 }
 
-const { session } = Astro.props;
+const { session, nextLabel } = Astro.props;
 const feedbackUrl = `${site.tallyFormUrl}?session=${encodeURIComponent(session.slug)}`;
 import Ball from "../../components/Ball.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
@@ -79,7 +84,7 @@ import VideoPlayerScript from "../../components/VideoPlayerScript.astro";
       class="mt-7 block min-h-14 border-2 border-ink bg-card p-4 shadow-[6px_6px_0_var(--color-ink)] lg:mt-0 lg:flex lg:min-h-[96px] lg:flex-col lg:justify-center active:translate-x-1 active:translate-y-1 active:shadow-none [@media(hover:hover)]:hover:translate-x-0.5 [@media(hover:hover)]:hover:translate-y-0.5 [@media(hover:hover)]:hover:shadow-[3px_3px_0_var(--color-ink)]"
     >
       <span class="block font-head text-[14px] font-semibold tracking-[0.08em] text-ink-soft uppercase">Got another 30 min?</span>
-      <span class="mt-1 block font-head text-[22px] leading-tight font-bold">Next: {session.next.title} →</span>
+      <span class="mt-1 block font-head text-[22px] leading-tight font-bold">Next: {nextLabel} →</span>
     </a>
   )}
   </div>

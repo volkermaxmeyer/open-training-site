@@ -1,6 +1,6 @@
 ---
 // "Shots" tab of the start page (Shots area prototype, 2026-11-07): one tile per shot; a shot without a released card
-// is a "Coming soon" tile, not a link; a shot with one drill links straight to it.
+// is a "Coming soon" tile, not a link; every other tile opens its shot page, which explains the shot (1.040, 2026-11-12).
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import HomeTabs from "../../components/HomeTabs.astro";
@@ -11,7 +11,7 @@ import { SHOTS, shotSlug } from "../../lib/shots";
 const drills = (await getCollection("drills")).map((d) => d.data);
 const tiles = SHOTS.map((shot) => {
   const own = drills.filter((d) => d.shot === shot);
-  return { shot, count: own.length, href: own.length === 1 ? `/drill/${own[0].id}/` : `/shots/${shotSlug(shot)}/` };
+  return { shot, count: own.length, href: `/shots/${shotSlug(shot)}/` };
 });
 // Like the Goals tab's "Every session works with 2+ players": the smallest group any released drill needs.
 const counts = drills.map((d) => d.drill.players).filter((p) => p !== "Wall").map(Number);

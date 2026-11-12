@@ -5,7 +5,7 @@ describe("players wording", () => {
   it("start page says the minimum, and names a stage that needs more", () => {
     expect(playersFit(["2", "2", "2"])).toBe("2+ players");
     expect(playersFit(["2", "2", "4"])).toBe("2+ players · Drill 3 needs 4");
-    expect(playersFitParts(["Wall", "2", "4"])).toEqual({ base: "Wall", extras: ["Drill 2 needs 2", "Drill 3 needs 4"] });
+    expect(playersFitParts(["Wall", "2", "4"])).toEqual({ base: "Wall", extras: ["Drill 2 needs 2 players", "Drill 3 needs 4 players"] });
   });
 
 

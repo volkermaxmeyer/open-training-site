@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.040 · 2026-11-12 · Wording pass: every shot tile opens its shot page, which explains the shot in one sentence; four-on-court rule "Only one ball may be hit hard at a time"; "Watch the drill"; start page "Drill 3 needs 4 players"; "Next:" names the next goal; clearer texts in Move as One, Soft Third, Drives That Hurt and drill 17.
 - 1.039 · 2026-11-12 · Overview totals refreshed: 119 drills, 101 tactical cues (per-shot counts still from 8 Nov).
 - 1.038 · 2026-11-11 · Overview totals refreshed: 118 drills, 100 tactical cues, 40 strategy entries (per-shot counts still from 8 Nov).
 - 1.037 · 2026-11-11 · Privacy page names Vercel Speed Insights (cookieless loading times); README and DESIGN.md say so too.

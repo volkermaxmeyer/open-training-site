@@ -68,7 +68,7 @@ describe("shots area (2026-11-07)", () => {
     expect(index.match(/data-shot-tile=/g)?.length ?? 0).toBe(2); // Dink (2 cards) and Lob (1)
     expect(index.match(/data-shot-soon=/g)?.length ?? 0).toBe(11);
     expect(index).toMatch(/data-shot-tile="dink" href="\/shots\/dink\/"/);
-    expect(index).toMatch(/data-shot-tile="lob" href="\/drill\/903\/"/); // one drill: straight to it
+    expect(index).toMatch(/data-shot-tile="lob" href="\/shots\/lob\/"/); // one drill opens its shot page too (1.040)
     expect(index).not.toMatch(/<a[^>]*data-shot-soon/); // a Coming soon tile is no link
     expect(text(index)).toContain("Coming soon");
   });
@@ -79,6 +79,7 @@ describe("shots area (2026-11-07)", () => {
     expect(page).toContain('href="/drill/901/"');
     expect(chip(page, "data-variant")).toEqual(["Cross-court dink"]);
     expect(existsSync(join(out, "shots/lob/index.html"))).toBe(true);
+    expect(text(page)).toContain("A soft shot from the kitchen line into the opponents"); // explainer (1.040)
     expect(existsSync(join(out, "shots/drive/index.html"))).toBe(false);
   });
 
@@ -112,7 +113,7 @@ describe("built site", () => {
     // both fixtures start with a wall, so that is said once above the list, not on each card (design critique 2026-11-07)
     expect(index).not.toContain("data-chip-base");
     expect(index).toMatch(/<span[^>]*data-shared-base[^>]*>[\s\S]*?Wall<\/span>/);
-    expect(chip(index, "data-chip-extra")).toEqual(expect.arrayContaining(["Drill 2 needs 2", "Drill 3 needs 4"]));
+    expect(chip(index, "data-chip-extra")).toEqual(expect.arrayContaining(["Drill 2 needs 2 players", "Drill 3 needs 4 players"]));
   });
 
   it("session page has 3 stage cards and 3 watch links", () => {
@@ -194,7 +195,7 @@ describe("built site", () => {
       const page = html(`s/${s}/index.html`);
       expect(page.match(/data-four-on-court/g)).toHaveLength(1);
       expect(page.indexOf("data-four-on-court")).toBeLessThan(page.indexOf("data-stage-card"));
-      expect(page).toContain("Never two balls with pace.");
+      expect(page).toContain("Only one ball may be hit hard at a time.");
     }
   });
 
@@ -203,7 +204,7 @@ describe("built site", () => {
     const tabs = page.match(/<a[^>]*href="#stage-\d"[^>]*>/g)!;
     expect(tabs.map((t) => t.match(/background: var\(--color-(stage-\d)\)/)![1])).toEqual(["stage-1", "stage-2", "stage-3"]);
     expect(page).not.toContain("jump-tab");
-    expect(page).toMatch(/data-four-on-court[^>]*>\s*Four of you\?\s*<strong>Never two balls with pace\.<\/strong>/);
+    expect(page).toMatch(/data-four-on-court[^>]*>\s*Four on one court\?\s*<strong>Only one ball may be hit hard at a time\.<\/strong>/);
     expect(page).not.toMatch(/data-watch[\s\S]{0,600}@\d/);
     // Without an end time the link is drawn as large as the in-card player, so the card has no gap (2026-11-07).
     expect(page).toMatch(/<a[^>]*data-watch[^>]*class="[^"]*aspect-video[\s\S]*?Watch the drill/);
@@ -213,6 +214,7 @@ describe("built site", () => {
   it("next box only when next is set, after the feedback button", () => {
     const page = html("s/warm-hands/index.html");
     expect(page).toMatch(/data-next[^>]*href="\/s\/steady-lobs\/"/);
+    expect(text(page)).toContain("Next: Lob better →"); // the next session's goal, not its title (1.040)
     expect(page.indexOf("data-next")).toBeGreaterThan(page.indexOf("?session=warm-hands"));
     expect(html("s/steady-lobs/index.html")).not.toContain("data-next");
     // aim only in the link preview, not on the page (Volker 2026-11-04)

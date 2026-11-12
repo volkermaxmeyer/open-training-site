@@ -90,10 +90,11 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 - **Badges:** none. The session badge under the title and the per-drill "New — tell us how it went" badge were both
   removed on 2026-11-04 (Volker). The `isNew` field was removed from the data the same day.
 - **Feedback button:** after the last card, `--color-go` with the card border and shadow. Below it, when the next
-  session is published, a card-style link "Got another 30 min? Next: …".
+  session is published, a card-style link "Got another 30 min? Next: …" naming the next session's goal, not its title
+  (1.040: the title meant nothing to a new player; goal + title took three lines at 360 px).
 - **Start page:** the goal question as the display heading, then one card-style button per goal: the goal label large, a
   chevron on the right, and chips under the label: the minimum ("2+ players" or "Wall") and one warn chip per drill that
-  needs more ("Drill 3 needs 4"). No duration chip: every session is 30 min. All cards share one height (room for a
+  needs more ("Drill 3 needs 4 players", since 1.040). No duration chip: every session is 30 min. All cards share one height (room for a
   two-line label and one chip row), content centred, so the list reads as an even grid. No site-name header on any page: the start page is the question, and every
   other page starts with breadcrumbs.
 
@@ -111,7 +112,8 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 - **Pairs on a 4-player stage:** an authored `**Only two:**` line per such stage (required by parser and validator). It
   is shown as a block on `--color-chip` with a 6 px ink bar and the label "ONLY TWO OF YOU?". It replaces the
   automatic reuse of Drill 2's "Too easy", which told a pair to play with a serving team.
-- **Four-on-court rule:** "Four of you? **Never two balls with pace.**" At 390 px it still takes two lines.
+- **Four-on-court rule:** "Four on one court? **Only one ball may be hit hard at a time.**" (1.040) At 360 px it still
+  takes two lines.
 - **Watch label:** channel only, and "at 1:41" instead of "@1:41". ▶ uses text presentation (U+FE0E) and is
   `aria-hidden`.
 - **Small fixes:** the "+"/"–" of summaries is not read aloud; the three woff2 files are preloaded; the "new" badge has
@@ -119,7 +121,8 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 - **Session page order (Volker, the same evening):** back link, title, the chips, then the sticky jump tabs, then the
   rule line and the cards. The title comes first, so the page opens on what the session is.
 - **Layout pass (2026-11-04):** the session page reads in three groups. (1) Title and one chip row, tight: the players chip
-  uses the start-page wording ("2+ players · Drill 3 needs 4"), so it fits beside "30 min". (2) Jump tabs, 56 px high
+  keeps the short wording ("2+ players · Drill 3 needs 4"), so it fits beside "30 min"; with "4 players" it no longer
+  did at 360 px (checked 1.040), so only the start page says "players". (2) Jump tabs, 56 px high
   with the number and "DRILL" on one line, and the rule line tight under them as one band. (3) The drill cards, after a
   clear break. In the watch button, "at 3:54" never wraps on its own.
 - **Wide screens (Volker, 2026-11-07):** for the moment of preparing at home on a laptop or iPad and sending the link on.
@@ -153,7 +156,7 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
     drops in and bounces once as it scrolls into view. This is CSS only (scroll timeline), skipped for reduced motion, and
     static where unsupported. No other motion on the site.
 - **Video in the card (2026-11-04):** for a drill whose Watch line has an end time (`@1:41–2:41`), the stage card shows
-  a 16:9 `--color-ink` surface with a round play mark: "Play the drill here" and "Channel · 1:41–2:41 · about 1 min".
+  a 16:9 `--color-ink` surface with a round play mark: "Watch the drill" (1.040) and "Channel · 1:41–2:41 · about 1 min".
   It runs edge to edge in the card, directly under the title row, and the channel/segment line is 14 px. It is a link to
   YouTube. A tap swaps it for a youtube-nocookie player with start, end, `playsinline` and `rel=0`, and adds "↺ Replay the
   drill" below it. Replay inserts a new iframe, so the back gesture is untouched. **Only one video at a time:** when one player starts (by tap, replay or its own play button), every other player on the page pauses in place, via YouTube's postMessage protocol (`enablejsapi=1`, no extra script). A paused player keeps its frame and resumes where it stopped (Volker, after the phone test). There is no separate YouTube link (removed
@@ -173,8 +176,8 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 ## Shots area (prototype, 2026-11-07, branch `shots-prototype`)
 
 - **Two tabs at the top** (`HomeTabs.astro`, Volker 2026-11-07, variant "R2 wide" after nine previews): a slim pill "Goals | Shots" is the first thing on the page (no kicker line): full width on the phone, 360 px from tablet width, 56 px high, 19 px labels, the active tab ink with white text, a hard 5 px shadow like the cards. Under the big question one line says what the tab offers and the group size, "One goal, three drills, 30 minutes, for 2+ players" / "One shot, from calm to full pace, for 2+ players" (one line instead of two). Goals = `/`, Shots = `/shots/`: two pages with the same bar, no JavaScript.
-- **Shots tab:** "Which shot do you want to practise?" and one tile per shot (13, order from `src/lib/shots.ts`): shot name and the number of released drills. A tile with one drill links straight to that drill. A shot with no released card is a **"Coming soon" tile**: dashed ink border, page background, no shadow, no chevron, ink text, not a link. It is greyed out by form, not by colour, so every text keeps 7:1 (opacity or `--color-ink-soft` on paper would break it).
-- **Shot page** `/shots/<shot>/`: the drills as list cards like the start page, the variant as a plain chip.
+- **Shots tab:** "Which shot do you want to practise?" and one tile per shot (13, order from `src/lib/shots.ts`): shot name and the number of released drills. Every tile opens its shot page, also with one drill (1.040; the shot page is where the shot is explained). A shot with no released card is a **"Coming soon" tile**: dashed ink border, page background, no shadow, no chevron, ink text, not a link. It is greyed out by form, not by colour, so every text keeps 7:1 (opacity or `--color-ink-soft` on paper would break it).
+- **Shot page** `/shots/<shot>/`: one sentence that explains the shot (`SHOT_EXPLAINERS` in `src/lib/shots.ts`, 1.040) in front of "Each drill repeats this one shot…", then the drills as list cards like the start page, the variant as a plain chip.
 - **Drill page** `/drill/<number>/`: the player card drawn like a stage card (`DrillCard.astro`): the number block shows the drill number on `--color-stage-1`, no minutes chip (not part of a timed session), then "Ready for points?" to a session. The in-card video player is shared with session pages (`VideoPlayerScript.astro`).
 - **A drill without an end time** (session stage or drill page, 2026-11-07): the plain YouTube link is drawn in the same 16:9 ink block as the in-card player (circle icon, "Watch the drill", channel and time), so the card never shows a gap under a short bar.
 - **Drill page closing row** (Volker 2026-11-07): like a session page, three equal fields from lg: the ball with "Good reps. Swap roles and go again.", a green box "Wish for a drill? Mail me" (a mail to the project address with a subject naming the drill; no feedback form on drill pages, no address on the button; under it a small line "or write to …" with the address to copy, because a mail link does nothing where no mail app is set up), and "Ready for points?" to a session. On lg the green box breaks after the question mark.
