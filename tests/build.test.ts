@@ -80,6 +80,7 @@ describe("shots area (2026-11-07)", () => {
     expect(chip(page, "data-variant")).toEqual(["Cross-court dink"]);
     expect(existsSync(join(out, "shots/lob/index.html"))).toBe(true);
     expect(text(page)).toContain("A soft shot from the kitchen line into the opponents"); // explainer (1.040)
+    expect(text(page)).not.toContain("Each drill repeats this one shot"); // one sentence only (1.041)
     expect(existsSync(join(out, "shots/drive/index.html"))).toBe(false);
   });
 
