@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.039 · 2026-11-12 · Overview totals refreshed: 119 drills, 101 tactical cues (per-shot counts still from 8 Nov).
 - 1.038 · 2026-11-11 · Overview totals refreshed: 118 drills, 100 tactical cues, 40 strategy entries (per-shot counts still from 8 Nov).
 - 1.037 · 2026-11-11 · Privacy page names Vercel Speed Insights (cookieless loading times); README and DESIGN.md say so too.
 - 1.036 · 2026-11-11 · Speaks to advanced players: About names the target group, a level chip "Advanced (around 4.0+)" on Start, Shots and sessions, link previews (og tags).

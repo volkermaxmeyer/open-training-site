@@ -1,9 +1,9 @@
 {
- "as_of": "2026-11-11",
+ "as_of": "2026-11-12",
  "totals": {
-  "drills": 118,
+  "drills": 119,
   "tested": 11,
-  "tactical_cues": 100,
+  "tactical_cues": 101,
   "mental_cues": 22,
   "plays": 40,
   "combos": 19,
