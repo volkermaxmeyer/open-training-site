@@ -55,6 +55,11 @@ describe("parseCard", () => {
     expect(() => parseCard(drill(RELEASED.replace('shot: "Dink"', 'shot: "none"')), "07-x", GOALS)).toThrow(/no tile/);
   });
 
+  it("finds goals through also-trains, for competency filters only (2026-11-12)", () => {
+    expect(goalsOfDrill({ competency: "Serve & Return", "also-trains": ["Dink"] }, GOALS)).toEqual(["dink-goal"]);
+    expect(goalsOfDrill({ competency: "Serve & Return", "also-trains": ["Split-Step"] }, GOALS)).toEqual([]);
+  });
+
   it("finds goals through list fields too", () => {
     expect(goalsOfDrill({ competency: "Reset", themes: ["Split-Step"] }, GOALS)).toEqual(["theme-goal"]);
   });

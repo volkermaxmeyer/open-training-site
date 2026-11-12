@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.044 · 2026-11-12 · Goal matching reads also-trains: a drill that trains several skills in sequence can be found through more than one competency (no visible change today).
 - 1.043 · 2026-11-12 · The Overview is labelled Under the hood: footer, breadcrumb, About link (Look under the hood) and page heading; the address stays /overview/.
 - 1.042 · 2026-11-12 · Wording from Sam's read of the shot pages: Volley sentence without the flick/roll promise; drill titles One Side Attacks (was Only A Attacks) and Late Call (was Call It).
 - 1.041 · 2026-11-12 · Shot pages: one sentence that explains the shot, nothing else ("Each drill repeats this one shot…" removed).

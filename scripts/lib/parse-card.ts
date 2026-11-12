@@ -8,11 +8,16 @@ import type { DrillPage } from "../../src/lib/session-schema";
 /** A goal and the theme filters that put a drill under it (vault schema: player_goals → weekly_themes). */
 export type GoalFilter = { id: string; filters: { field: string; value: string }[] };
 
-/** Goals whose themes reach a drill, by its competency / cluster / themes, like validate.py's drill_theme_ids(). */
+/**
+ * Goals whose themes reach a drill, by its competency / cluster / themes, like validate.py's drill_theme_ids().
+ * A competency filter also matches `also-trains` (2026-11-12): a drill that trains several skills in sequence keeps one
+ * main competency and lists the others there.
+ */
 export function goalsOfDrill(fm: Record<string, unknown>, goals: GoalFilter[]): string[] {
-  const has = (field: string, value: string) => {
+  const has = (field: string, value: string): boolean => {
     const v = fm[field];
-    return Array.isArray(v) ? v.map(String).includes(value) : str(v) === value;
+    if (Array.isArray(v) ? v.map(String).includes(value) : str(v) === value) return true;
+    return field === "competency" && has("also-trains", value);
   };
   return goals.filter((g) => g.filters.some((f) => has(f.field, f.value))).map((g) => g.id);
 }
