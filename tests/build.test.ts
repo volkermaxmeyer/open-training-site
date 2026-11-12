@@ -223,7 +223,7 @@ describe("built site", () => {
     expect(page.replace(/<head>[\s\S]*<\/head>/, "")).not.toContain("Keep a soft rally going");
     for (const f of ["index.html", "s/warm-hands/index.html", "imprint/index.html"]) expect(html(f)).not.toContain("<header");
     // footer pages: "Home › <page>" breadcrumbs instead of "← All goals", right for visitors from Goals and Shots (Volker 2026-11-08, variant 2)
-    for (const [f, t] of [["imprint/index.html", "Imprint"], ["privacy/index.html", "Privacy"], ["about/index.html", "About"], ["overview/index.html", "Overview"], ["not-me/index.html", "Not me"]]) {
+    for (const [f, t] of [["imprint/index.html", "Imprint"], ["privacy/index.html", "Privacy"], ["about/index.html", "About"], ["overview/index.html", "Under the hood"], ["not-me/index.html", "Not me"]]) {
       expect(crumbText(html(f))).toBe(`Home › ${t}`);
       expect(html(f)).not.toContain("data-back");
       expect(html(f)).not.toContain("All goals");
@@ -251,7 +251,7 @@ describe("built site", () => {
       const footer = html(f).match(/<footer[\s\S]*?<\/footer>/)![0];
       expect([...footer.matchAll(/href="([^"]+)"/g)].map((m) => m[1])).toEqual(["/about/", "/overview/", "/imprint/", "/privacy/"]);
     }
-    expect(html("about/index.html")).toMatch(/<a href="\/overview\/" data-overview-link[^>]*>See the Training System Overview →<\/a>/);
+    expect(html("about/index.html")).toMatch(/<a href="\/overview\/" data-overview-link[^>]*>Look under the hood →<\/a>/);
     const page = html("overview/index.html");
     // Tiles show the totals, rendered into the HTML (not by a script in the browser).
     for (const [label, n] of [["drills", D.totals.drills], ["cues", D.totals.tactical_cues], ["plans", D.totals.plays], ["combos", D.totals.combos], ["games", D.totals.games]]) {

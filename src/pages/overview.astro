@@ -48,12 +48,12 @@ const filters: [string, string, (g: Game) => boolean][] = [
 const startTag = (g: Game) => (/\bserve\b/.test(g.start) ? "serve" : /\b(feed|fed)\b/.test(g.start) ? "feed" : /^dink\b/.test(g.start) ? "dink" : "");
 ---
 
-<Base wide title={`Training System Overview | ${site.name}`} description="What the Pickleball Training System contains: shots, when in the point they come up, combos and games.">
-  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Overview" }]} />
+<Base wide title={`Under the hood | ${site.name}`} description="What the Pickleball Training System contains: shots, when in the point they come up, combos and games.">
+  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Under the hood" }]} />
   <div class="ov">
     <header class="head">
-      <h1>Training System Overview</h1>
-      <p class="intro">Everything inside the Pickleball Training System, as of <span data-as-of>{asOf}</span>.</p>
+      <h1>Under the hood</h1>
+      <p class="intro">The Training System Overview, as of <span data-as-of>{asOf}</span>.</p>
       <div class="tiles">
         {tiles.map(([c, n, l, d, x]) => (
           <div class={`tile ${c}`} data-tile={l}><b>{n}</b><span>{l}</span><small>{d}</small>{x && <small class="x">{x}</small>}</div>
