@@ -47,7 +47,6 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 | Go | `--color-go` | the feedback button (neon green); also the shot parts in the When tab bars of "Under the hood" (1.047) |
 | Warn | `--color-warn` | the one-line four-on-court rule and the chips for a drill that needs more people (light red, ink text) |
 | Chip | `--color-chip` | player-count chips (light periwinkle, ink text) |
-| Heat | `--color-heat` | unused since 1.047: it coloured the Overview's shot × moment matrix, which the When tab bars replaced |
 
 ## Type
 

@@ -25,7 +25,6 @@ html { font-size: 112.5%; scrollbar-gutter: stable; }
   --color-go: #c5e17a;
   --color-warn: #ffc9c9;
   --color-chip: #e6e6ff;
-  --color-heat: #b9adff;
 
   /* Wide screens (2026-11-07): tablet from 700 px so an iPad mini held upright (744 px) gets it too; lg (1024 px) is
      Tailwind's own. Below 700 px nothing changes: the phone on court stays exactly as it was. */
