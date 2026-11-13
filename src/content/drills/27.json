@@ -1,0 +1,28 @@
+{
+  "id": "27",
+  "cardTitle": "Middle, Then Air",
+  "shot": "Dink",
+  "tested": false,
+  "inShort": "A and B dink to the other's backhand in the middle and take the reply out of the air. A point won that way counts double.",
+  "rules": [
+    "A and B dink at the kitchen line, each on their own half (right or left). No switching sides.",
+    "Run the pattern: dink to the other player's backhand in the middle, then take the reply out of the air.",
+    "A point won after such a volley counts 2. Any other point counts 1.",
+    "Down the line only with an advantage, such as a ball you can take out of the air. Down the line without one: point to the other player.",
+    "Dinks only. A point ends with a ball in the net, out or popped up high.",
+    "Play to 11, then swap halves."
+  ],
+  "tooEasy": "The first three dinks of every rally go cross-court only, so the pattern has to come later in the rally.",
+  "tooHard": "Call the direction out loud before each dink: \"cross\", \"middle\" or \"line\".",
+  "goodLooksLike": "The ball goes to the middle backhand on purpose, and the reply gets taken out of the air.",
+  "goals": [
+    "win-the-dink-battle"
+  ],
+  "drill": {
+    "id": "27",
+    "title": "Dinking Pattern Game (Right-Side Offensive Patterns)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/C_kSFztGCog?t=35",
+    "watchLabel": "Zane Navratil Pickleball @0:35"
+  }
+}

@@ -15,3 +15,11 @@ export function renamedSlugs(repoRoot: string): Record<string, string> {
   }
   return out;
 }
+
+/** Drill ids whose page redirects elsewhere (a `/drill/<id>/` source in vercel.json), so an unpublished page does not 404. */
+export function redirectedDrills(repoRoot: string): Set<string> {
+  const file = join(repoRoot, "vercel.json");
+  if (!existsSync(file)) return new Set();
+  const redirects: { source: string }[] = JSON.parse(readFileSync(file, "utf8")).redirects ?? [];
+  return new Set(redirects.map((r) => r.source.match(/^\/drill\/(\d+)\/?$/)?.[1]).filter((x): x is string => !!x));
+}

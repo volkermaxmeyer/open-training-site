@@ -2,6 +2,12 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     { "source": "/s/win-the-dink-battle", "destination": "/s/steady-dinks", "permanent": true },
-    { "source": "/s/win-the-dink-battle/", "destination": "/s/steady-dinks/", "permanent": true }
+    { "source": "/s/win-the-dink-battle/", "destination": "/s/steady-dinks/", "permanent": true },
+    { "source": "/shots/counter-and-block", "destination": "/shots/volley/", "permanent": true },
+    { "source": "/shots/counter-and-block/", "destination": "/shots/volley/", "permanent": true },
+    { "source": "/shots/footwork", "destination": "/shots/", "permanent": true },
+    { "source": "/shots/footwork/", "destination": "/shots/", "permanent": true },
+    { "source": "/drill/18", "destination": "/shots/", "permanent": true },
+    { "source": "/drill/18/", "destination": "/shots/", "permanent": true }
   ]
 }

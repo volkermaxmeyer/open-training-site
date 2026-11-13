@@ -1,14 +1,15 @@
 {
   "id": "31",
   "cardTitle": "One Side Attacks",
-  "shot": "Counter & block",
+  "shot": "Volley",
+  "role": "defend",
   "tested": false,
   "inShort": "A and B dink, only A may suddenly hit hard, and B blocks or counters without ever attacking.",
   "rules": [
-    "A and B dink as normal at the kitchen line (soft shots that land in the kitchen).",
-    "Only A may speed up (a sudden fast, hard ball at B), whenever A wants: on the first dink or the fifth.",
+    "A and B dink as normal at the kitchen line.",
+    "Only A may speed up, whenever A wants: on the first dink or the fifth.",
     "For now, A speeds up at about 60% pace.",
-    "B never speeds up. B blocks (holds the paddle still and lets the ball bounce off it) or counters (hits the fast ball back fast).",
+    "B never speeds up. B blocks or counters.",
     "B's focus: paddle up in front, weight forward.",
     "Then swap roles."
   ],

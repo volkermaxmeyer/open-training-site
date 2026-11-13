@@ -1,0 +1,26 @@
+{
+  "id": "905",
+  "cardTitle": "Hold the Wall",
+  "shot": "Volley",
+  "role": "defend",
+  "tested": false,
+  "inShort": "Invented fixture card 905: A feeds, B repeats one shot.",
+  "rules": [
+    "A feeds calm balls.",
+    "B repeats the shot ten times."
+  ],
+  "tooEasy": "A feeds faster.",
+  "tooHard": "A feeds slower.",
+  "goodLooksLike": "Calm, repeatable contact.",
+  "goals": [
+    "fixture-goal",
+    "other-goal"
+  ],
+  "drill": {
+    "id": "905",
+    "title": "Fixture drill 905",
+    "players": "2",
+    "watchUrl": "https://youtu.be/AAAAAAA9051?t=10",
+    "watchLabel": "Fake Channel @0:10"
+  }
+}

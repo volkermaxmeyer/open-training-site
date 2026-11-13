@@ -1,0 +1,31 @@
+{
+  "id": "35",
+  "cardTitle": "Catch the Pace",
+  "shot": "Volley",
+  "variant": "Block",
+  "role": "defend",
+  "tested": false,
+  "inShort": "B learns to take the pace off without a swing: first catch and send A's soft balls, then block A's hard third ball after two dinks.",
+  "rules": [
+    "A and B stand straight across at the kitchen line.",
+    "Round 1, catch and send: A taps the ball up and sends it to B. B catches it softly on the paddle and sends it back, with no swing at all.",
+    "Round 2: A dinks twice, then hits the third ball hard at B. B blocks it into the kitchen, then you dink on.",
+    "Keep the paddle out in front, never behind the body. No loop before the block.",
+    "The harder A hits, the less B pushes; on softer balls B pushes a little more.",
+    "After about 5 minutes, swap roles."
+  ],
+  "tooEasy": "B stands in the middle of the transition zone, blocks A's hard balls into the kitchen and moves up to the line after every good block.",
+  "tooHard": "Stay in round 1 until B catches every ball softly.",
+  "goodLooksLike": "B's block drops softly into the kitchen, and B's paddle barely moves.",
+  "goals": [
+    "get-to-the-kitchen",
+    "win-fast-balls"
+  ],
+  "drill": {
+    "id": "35",
+    "title": "Soft Hands Progression – Block Volley from the Kitchen to Midcourt",
+    "players": "2",
+    "watchUrl": "https://youtu.be/KeA4ffpFWh8?t=119",
+    "watchLabel": "Simone Jardim Pickleball @1:59"
+  }
+}

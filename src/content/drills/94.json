@@ -1,0 +1,29 @@
+{
+  "id": "94",
+  "cardTitle": "Volley on the Move",
+  "shot": "Volley",
+  "role": "basics",
+  "tested": false,
+  "inShort": "A and B volley back and forth while shuffling together along the kitchen line, to the far sideline and back.",
+  "rules": [
+    "A and B start straight across at the kitchen line, both at the same sideline.",
+    "Volley back and forth while you both shuffle sideways along the line. To the far sideline and back is one round.",
+    "On the way out, one of you hits only backhands, the other only forehands. On the way back it flips.",
+    "Stay in an open stance: feet never square to the net, so you can still reach both sides.",
+    "A ball may bounce once and you keep going.",
+    "Go for 2 rounds in a row. A miss sends both of you back to zero."
+  ],
+  "tooEasy": "No bounce allowed. Even harder: raise the pace, or widen the zone you shuffle along.",
+  "tooHard": "Shuffle slowly and go for one round only.",
+  "goodLooksLike": "The paddles stay in front of the body while moving, and the rally survives the turn at the sideline.",
+  "goals": [
+    "win-fast-balls"
+  ],
+  "drill": {
+    "id": "94",
+    "title": "Bosnian Volleys (Lateral-Shift Hands)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/mwIorEUP6j0?t=1869",
+    "watchLabel": "PickleballPlaybook - Austin Hardy @31:09"
+  }
+}

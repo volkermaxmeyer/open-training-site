@@ -7,14 +7,14 @@
   "rules": [
     "A serves at a calm pace. B returns from just behind the baseline.",
     "Before each return, B calls the spin out loud: \"slice\" or \"topspin\".",
-    "Round 1: five slice returns. Slice spins backward and stays low.",
-    "Round 2: five topspin returns. Topspin spins forward and jumps up after the bounce.",
+    "Round 1: five slice returns.",
+    "Round 2: five topspin returns.",
     "After each round, A says which return was easier to play the next ball from.",
     "Round 3: B picks the spin to fit the serve: deep or hard → slice, short or medium → topspin. Then swap roles."
   ],
   "tooEasy": "Every return must land deep; the spin comes second. Even harder: A serves with topspin, which makes a topspin return harder.",
   "tooHard": "Stay with one spin for a whole round and leave out round 3.",
-  "goodLooksLike": "B calls the spin and then hits it, and A can feel the difference on the next ball.",
+  "goodLooksLike": "B calls the spin and then hits it: the slice stays low, the topspin jumps up after the bounce.",
   "goals": [
     "serve-return-deep"
   ],

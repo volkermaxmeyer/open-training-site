@@ -4,14 +4,14 @@
   "shot": "Return",
   "variant": "Slice return",
   "tested": false,
-  "inShort": "A serves to B's backhand, and B returns with a backhand slice: a low ball with backspin that buys time to reach the kitchen.",
+  "inShort": "A serves to B's backhand, and B returns with a backhand slice that stays low and lands deep.",
   "rules": [
     "A serves only to B's backhand side, short and easy at first. Slow motion is fine.",
     "B split-steps on A's serve, then turns: the foot pivots first, then the feet go shoulder-wide.",
     "Bend the back knee and turn hips and shoulders until the hitting shoulder is almost at the chin.",
-    "Hold the paddle at shoulder height, the face slightly open, in a continental grip (like holding a hammer).",
+    "Hold the paddle at shoulder height, the face slightly open, in a continental grip.",
     "Swing in a U from shoulder to shoulder, like peeling an orange. Do not chop down.",
-    "Meet the ball out in front, follow through, and let the free hand go back. The head stays down."
+    "Meet the ball out in front, follow through, and let the free hand go back. After 10 returns, swap roles."
   ],
   "tooEasy": "A serves hard and deep to the backhand, and B still places it deep with backspin. Even harder: B calls the target first, middle or backhand line.",
   "tooHard": "Swing without a ball first, in slow motion, until the U-shape feels natural.",

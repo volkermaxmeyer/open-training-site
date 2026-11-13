@@ -1,0 +1,28 @@
+{
+  "id": "29",
+  "cardTitle": "Break the Rhythm",
+  "shot": "Dink",
+  "tested": false,
+  "inShort": "A dinks steadily to the middle, and B changes something on every dink until A pops one up. After 5 points, swap roles.",
+  "rules": [
+    "A and B dink at the kitchen line, cross-court or straight. A keeps the rhythm, B tries to break it.",
+    "A dinks steadily, always to the middle of B's half.",
+    "B changes something on every ball: outside foot, inside foot, low over the net, out of the air, slice, topspin.",
+    "B may play down the line only after two cross-court dinks.",
+    "Every pop-up or miss by A is a point for B.",
+    "After 5 points, swap roles. Whoever forced more pop-ups wins."
+  ],
+  "tooEasy": "Both of you change something on every ball at once: no steady player, just read and react.",
+  "tooHard": "B calls the change out loud before the dink, for example \"Wide!\", so A can set up for it.",
+  "goodLooksLike": "A has to move and adjust on every ball, and B's dinks still stay low.",
+  "goals": [
+    "pick-the-right-shot"
+  ],
+  "drill": {
+    "id": "29",
+    "title": "'Dink with a Purpose' — Disruptor Rally",
+    "players": "2",
+    "watchUrl": "https://youtu.be/Hqk_kCGQa-w?t=293",
+    "watchLabel": "PlayPickleball.com @4:53"
+  }
+}

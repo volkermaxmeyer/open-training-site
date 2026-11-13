@@ -1,0 +1,30 @@
+{
+  "id": "98",
+  "cardTitle": "Run Down the Lob",
+  "shot": "Lob",
+  "variant": "Lob retrieval",
+  "tested": false,
+  "inShort": "A lobs over B's head, and B turns, runs back and sends a high lob back. Never backpedal. 10 lobs, then swap.",
+  "rules": [
+    "A and B stand at the kitchen line, straight across.",
+    "A calls a side, then lobs over that shoulder of B.",
+    "B drops the foot on that side back, turns and runs to the ball. A backpedal restarts the ball.",
+    "Take the direct route; don't run around the ball to get a forehand.",
+    "At the ball, B sends a lob back, as high as B can.",
+    "After 10 lobs, swap roles."
+  ],
+  "tooEasy": "A no longer calls the side, and B reads it from the ball. Even harder: A varies depth and height, and B counts the controlled replies out of 10.",
+  "tooHard": "A lobs shorter and slower, always over the same shoulder.",
+  "goodLooksLike": "B turns sideways on the first step and runs, never walks backwards, and the reply goes very high and deep.",
+  "goals": [
+    "get-to-the-kitchen",
+    "move-as-a-team"
+  ],
+  "drill": {
+    "id": "98",
+    "title": "Lob Retrieval (Drop-Step, Pivot & Run)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/j6S0qNCcmEU?t=392",
+    "watchLabel": "Briones Pickleball Academy @6:32"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "13",
+  "cardTitle": "Drive with a Target",
+  "shot": "Drive",
+  "tested": false,
+  "inShort": "B serves, A returns and runs in, and B drives the third ball at a target: into A's path to the net, or the middle.",
+  "rules": [
+    "B serves from the baseline. A returns calmly to the middle of B's court, then runs to the kitchen line.",
+    "Put two cones on A's side, both halfway between the baseline and the kitchen line: one straight in front of where A returns from, one on the centre line. The first marks where A will be running when the drive arrives.",
+    "B calls the target before the serve, then drives the third ball there.",
+    "After each drive, A says \"attackable\" or \"I had time\".",
+    "Turn the shoulders as one block, chest toward the sideline, and meet the ball out in front.",
+    "5 drives per target, then switch target. After 10 drives, swap roles."
+  ],
+  "tooEasy": "B no longer calls the target and picks it from where A is and how fast A moves.",
+  "tooHard": "Drive at one target only, and A walks in slowly.",
+  "goodLooksLike": "The drive arrives low at A's feet while A is still moving, and A has to hit up.",
+  "goals": [
+    "drives-that-hurt"
+  ],
+  "drill": {
+    "id": "13",
+    "title": "Drive Target Drill: Three Targets",
+    "players": "2",
+    "watchUrl": "https://youtu.be/WAP-wN5Wjjw?t=40",
+    "watchLabel": "ThatPickleballGuy - Kyle Koszuta @0:40"
+  }
+}

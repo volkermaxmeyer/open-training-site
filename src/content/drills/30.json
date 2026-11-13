@@ -1,0 +1,31 @@
+{
+  "id": "30",
+  "cardTitle": "Block the Drive",
+  "shot": "Volley",
+  "variant": "Block",
+  "role": "defend",
+  "tested": false,
+  "inShort": "A drives at B from the baseline, a little harder each round, and B blocks every ball back without moving the feet.",
+  "rules": [
+    "A stands at the baseline, B at the kitchen line across the net.",
+    "A drives every ball at B, like a third-shot drive. Start at about 60 % pace.",
+    "B blocks it back: paddle out in front, weight forward, no backswing.",
+    "B's feet stay where they are. A water bottle behind B's heels marks the line not to step back over.",
+    "After every 10 good blocks, A adds about 10 % pace, up to full pace.",
+    "Then swap roles."
+  ],
+  "tooEasy": "A drives at full pace and mixes the target: body, left hip, right hip. Even harder: A moves up to midcourt, so B has less time.",
+  "tooHard": "A stays at about 60 % and drives straight at B's paddle.",
+  "goodLooksLike": "B's weight stays forward through contact, and the block comes back low over the net instead of popping up.",
+  "goals": [
+    "get-to-the-kitchen",
+    "win-fast-balls"
+  ],
+  "drill": {
+    "id": "30",
+    "title": "Hard Ball – Progressive Drive Block",
+    "players": "2",
+    "watchUrl": "https://youtu.be/pgMkaTR5HNM?t=640",
+    "watchLabel": "Pickleball Studio @10:40"
+  }
+}

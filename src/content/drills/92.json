@@ -1,0 +1,27 @@
+{
+  "id": "92",
+  "cardTitle": "Sideline to Sideline",
+  "shot": "Dink",
+  "tested": false,
+  "inShort": "A and B dink while shuffling together from one sideline to the other. Five sidelines in a row without a miss.",
+  "rules": [
+    "A and B start straight across at the kitchen line, both at the same sideline.",
+    "Dink back and forth while you both shuffle sideways toward the other sideline.",
+    "Touch the sideline: 1 point for the team. Then shuffle back the other way.",
+    "A miss sends the count back to zero.",
+    "Close to 5 the pressure rises: relax on purpose and keep your normal swing."
+  ],
+  "tooEasy": "Raise the target to 10. Even harder: one of you dinks with more pressure, the other defends, then switch.",
+  "tooHard": "Lower the target to 3.",
+  "goodLooksLike": "Close to the target, the dinks stay as soft and low as at the start, and both of you keep shuffling without stopping.",
+  "goals": [
+    "win-the-dink-battle"
+  ],
+  "drill": {
+    "id": "92",
+    "title": "Lateral Transition Dink (5 Sidelines)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/L2FImX3dTLI?t=321",
+    "watchLabel": "PickleballPlaybook - Austin Hardy @5:21"
+  }
+}

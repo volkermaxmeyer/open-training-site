@@ -1,0 +1,29 @@
+{
+  "id": "09",
+  "cardTitle": "Slice Drop on the Move",
+  "shot": "Drop",
+  "variant": "Slice drop",
+  "tested": false,
+  "inShort": "B feeds return-like balls to changing spots, and A moves to each one, slice-drops it and keeps moving in. 12 balls, then swap.",
+  "rules": [
+    "A stands at the baseline, B cross-court at the kitchen line and feeds balls like returns, below shoulder height.",
+    "B changes depth and side: forehand, backhand, wider out. A slices both sides with the same grip.",
+    "A moves the feet close to the ball instead of reaching, wrist locked, and cuts under it.",
+    "Weight on the front foot: A slides through the shot and keeps moving toward the kitchen, no stop.",
+    "B raises a hand when a drop sits up high enough to attack.",
+    "After 12 balls, swap roles."
+  ],
+  "tooEasy": "B mixes depth without a pattern. Even harder: B also feeds very short balls, so A has to run far forward and still slice-drop.",
+  "tooHard": "B feeds the same ball to the same spot, and A thinks only about the feet.",
+  "goodLooksLike": "The drop lands low in the kitchen and almost stops after the bounce, and A is already moving forward as it crosses the net.",
+  "goals": [
+    "third-shot-land-soft"
+  ],
+  "drill": {
+    "id": "09",
+    "title": "Slice-Drop Footwork Drill (2 Players, Game-Like Movement)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/qu971XPP2XM?t=400",
+    "watchLabel": "tanner.pickleball @6:40"
+  }
+}

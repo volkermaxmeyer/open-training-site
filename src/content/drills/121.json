@@ -1,0 +1,33 @@
+{
+  "id": "121",
+  "cardTitle": "Backhand Flick",
+  "shot": "Volley",
+  "variant": "Flick",
+  "role": "attack",
+  "tested": false,
+  "inShort": "A dinks low to B's backhand, and B flicks it out of the air: wrist down, paddle tip down, then forward, not up. 10, then swap.",
+  "rules": [
+    "A and B stand across from each other at the kitchen line. B holds a continental grip.",
+    "A dinks soft and low to B's backhand. B takes it out of the air, below net height.",
+    "Drop the wrist so the paddle tip points down. Keep the face only slightly open, a little more closed than feels natural.",
+    "Then go forward with the paddle, not up, and hit the ball straight.",
+    "A blocks the flick back softly or catches it, then feeds the next one.",
+    "10 balls, then swap roles."
+  ],
+  "tooEasy": "A varies the height and depth of the dink; B still flicks only backhands. Even harder: A feeds faster, or calls a target.",
+  "tooHard": "A feeds by hand from close range.",
+  "goodLooksLike": "7 of 10 flicks go low over the net into A's half, and none pops up.",
+  "goals": [
+    "special-shots"
+  ],
+  "drill": {
+    "id": "121",
+    "title": "Backhand Flick out of the Dink (Gabe Tardio)",
+    "players": "2",
+    "watchUrl": "https://www.youtube.com/watch?v=DpP9mgzkbSg&t=3",
+    "watchLabel": "Friday Pickleball @0:03–1:01",
+    "videoId": "DpP9mgzkbSg",
+    "start": 3,
+    "end": 61
+  }
+}

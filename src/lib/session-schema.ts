@@ -48,6 +48,8 @@ export const DrillPage = z
     cardTitle: z.string().min(1),
     shot: z.enum(SHOTS),
     variant: z.string().min(1).optional(),
+    /** Volley only: the heading the drill sits under on the Volley page (vault `volley-role`, 2026-11-13). */
+    role: z.enum(["attack", "defend", "basics"]).optional(),
     tested: z.boolean(),
     inShort: z.string().min(1).max(160),
     rules: z.array(z.string().min(1)).min(1).max(6),

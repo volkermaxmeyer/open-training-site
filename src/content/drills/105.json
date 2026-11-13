@@ -1,0 +1,29 @@
+{
+  "id": "105",
+  "cardTitle": "Around the Post",
+  "shot": "Special shot",
+  "variant": "ATP",
+  "tested": false,
+  "inShort": "A dinks to the middle, then short and wide. B hits the ATP, and A resets it back into the kitchen. 10 rounds in a row, then swap.",
+  "rules": [
+    "A and B stand diagonally at the kitchen line, cross-court.",
+    "A dinks to the middle, then plays the next dink short and wide, close to the net: the ATP setup.",
+    "B moves out wide and hits the ATP around the post, one-handed or two-handed, whatever the time allows.",
+    "A defends: turns toward the ball, paddle low, and resets it soft into the kitchen.",
+    "Back to the middle and straight into the next round, no break.",
+    "10 rounds in a row, then swap roles."
+  ],
+  "tooEasy": "A varies the angle and pace of the wide ball, so B has to read one hand or two. Even harder: A plays the rounds faster.",
+  "tooHard": "A plays the wide ball wider and shorter, so the ATP gets easier.",
+  "goodLooksLike": "B's ATP passes low around the post and lands in the court, and A's reset lands in the kitchen.",
+  "goals": [
+    "special-shots"
+  ],
+  "drill": {
+    "id": "105",
+    "title": "ATP Cooperative Rally & Defense",
+    "players": "2",
+    "watchUrl": "https://youtu.be/meUjybQRm1g?t=1353",
+    "watchLabel": "PickleballPlaybook - Austin Hardy @22:33"
+  }
+}

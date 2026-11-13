@@ -1,0 +1,29 @@
+{
+  "id": "108",
+  "cardTitle": "Step In and Swing",
+  "shot": "Volley",
+  "role": "attack",
+  "tested": false,
+  "inShort": "A and B stand a step behind the kitchen line and volley hard with a fuller swing, stepping into every ball. 10 in a row.",
+  "rules": [
+    "A and B stand about 1.5–2 m behind the kitchen line, straight across.",
+    "A starts with an easy ball, then both volley back and forth at pace.",
+    "Take a bigger swing than at the line: you have more time, so use it for pace.",
+    "Step into every ball, weight moving forward.",
+    "Hit every ball back at body height.",
+    "Go for 10 hard exchanges in a row without a miss."
+  ],
+  "tooEasy": "Move closer to the kitchen line, so you have less time. Even harder: a ball hit off the back foot breaks the streak.",
+  "tooHard": "Move further back for more time, and play at medium pace.",
+  "goodLooksLike": "Each swing ends with the weight on the front foot, and the ball travels low and fast over the net instead of floating up.",
+  "goals": [
+    "win-fast-balls"
+  ],
+  "drill": {
+    "id": "108",
+    "title": "Long Hands (Off-the-Line Power Hands)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/PkcScApgfLw?t=160",
+    "watchLabel": "Zane Navratil Pickleball @2:40"
+  }
+}

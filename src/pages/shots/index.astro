@@ -6,7 +6,7 @@ import Base from "../../layouts/Base.astro";
 import HomeTabs from "../../components/HomeTabs.astro";
 import { site } from "../../site.config";
 import Chip from "../../components/Chip.astro";
-import { SHOTS, shotSlug } from "../../lib/shots";
+import { SHOTS, shotLabel, shotSlug } from "../../lib/shots";
 
 const drills = (await getCollection("drills")).map((d) => d.data);
 const tiles = SHOTS.map((shot) => {
@@ -21,19 +21,19 @@ const minPlayers = counts.length ? Math.min(...counts) : undefined;
 <Base wide title={`Shots | ${site.name}`} description="For advanced players: practise one shot at a time, with drills that repeat a single shot, from slow to full pace.">
   <HomeTabs active="shots" />
   <h1 class="mt-7 font-display text-[44px] leading-none font-bold tracking-[-0.02em] text-balance tablet:text-[60px]">Which shot do you want to practise?</h1>
-  <p data-tab-line class="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[17px]">Pick a shot and build it up from slow to full pace. For <Chip data-level>{site.level}</Chip>{minPlayers ? <>{" "}<Chip data-shared-base tone="people" icon>{minPlayers}+ players</Chip></> : null}</p>
+  <p data-tab-line class="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[17px]">Pick a shot and build it up from slow to full pace. <Chip data-level>{site.level}</Chip>{minPlayers ? <>{" "}<Chip data-shared-base tone="people" icon>{minPlayers}+ players</Chip></> : null}</p>
   <section data-shots>
     <ul class="mt-7 grid grid-cols-2 gap-3.5 tablet:grid-cols-3 tablet:gap-5 lg:grid-cols-4">
       {tiles.map((t) => (
         <li>
           {t.count > 0 ? (
             <a data-shot-tile={shotSlug(t.shot)} href={t.href} class="flex h-full min-h-[6.5rem] flex-col justify-between gap-2 border-2 border-ink bg-card px-3.5 py-3 shadow-[6px_6px_0_var(--color-ink)] active:translate-x-1 active:translate-y-1 active:shadow-none [@media(hover:hover)]:hover:translate-x-0.5 [@media(hover:hover)]:hover:translate-y-0.5 [@media(hover:hover)]:hover:shadow-[3px_3px_0_var(--color-ink)]">
-              <span class="font-head text-[19px] leading-tight font-bold">{t.shot}</span>
+              <span class="font-head text-[19px] leading-tight font-bold">{shotLabel(t.shot)}</span>
               <span class="font-display text-[40px] leading-none font-bold">{t.count}<span class="ml-1.5 font-head text-[14px] font-semibold">{t.count === 1 ? "drill" : "drills"}</span></span>
             </a>
           ) : (
             <div data-shot-soon={shotSlug(t.shot)} class="flex h-full min-h-[6.5rem] flex-col justify-between gap-2 border-2 border-dashed border-ink bg-paper px-3.5 py-3">
-              <span class="font-head text-[19px] leading-tight font-bold">{t.shot}</span>
+              <span class="font-head text-[19px] leading-tight font-bold">{shotLabel(t.shot)}</span>
               <span class="font-head text-[14px] font-semibold tracking-[0.08em] uppercase">Coming soon</span>
             </div>
           )}

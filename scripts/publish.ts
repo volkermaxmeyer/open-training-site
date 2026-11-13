@@ -7,7 +7,7 @@ import { PublishError } from "./lib/errors";
 import { parseSession, type Goals } from "./lib/parse-session";
 import { parseCard, type GoalFilter } from "./lib/parse-card";
 import { SHOTS } from "../src/lib/shots";
-import { renamedSlugs } from "./lib/renamed";
+import { redirectedDrills, renamedSlugs } from "./lib/renamed";
 import { splitFrontmatter } from "./lib/text";
 import { runGuard } from "./guard";
 import { CHANGELOG_FILE, VERSION_FILE, release } from "./lib/version";
@@ -92,7 +92,7 @@ export function readGoalFilters(vaultDir: string): GoalFilter[] {
   }));
 }
 
-/** The site's shot tiles (src/lib/shots.ts) must match the vault's `enums.shot` without `none`. */
+/** The site's shot tiles (src/lib/shots.ts) must match the vault's `enums.shot` without `none`, in order; publish stops otherwise. */
 export function shotDrift(vaultDir: string): string[] {
   const vault: string[] | undefined = schemaBlock(vaultDir)?.enums?.shot;
   if (!vault) return [];
@@ -190,11 +190,14 @@ export async function publish(opts: PublishOptions): Promise<PublishResult> {
     if (!outputs.has(s) && !(renamed[s] && outputs.has(renamed[s])))
       warnings.push(`previously published slug "${s}" is no longer published; its URL will 404`);
   }
+  const redirected = redirectedDrills(repoRoot);
   for (const id of prev.drillsEverPublished ?? []) {
-    if (!cardOutputs.has(id)) warnings.push(`previously published drill page /drill/${id}/ is no longer published (card not released?); its URL will 404`);
+    if (!cardOutputs.has(id) && !redirected.has(id)) warnings.push(`previously published drill page /drill/${id}/ is no longer published (card not released?); its URL will 404`);
   }
   warnings.push(...overviewDrift(repoRoot, opts.vaultDir, drills));
-  warnings.push(...shotDrift(opts.vaultDir));
+  // Site tiles and vault shots must match: a drift stops the publish (2026-11-13; it was a warning and drifted twice).
+  const drift = shotDrift(opts.vaultDir);
+  if (drift.length) throw new PublishError("datenmodell.md", drift[0]);
   const everPublished = [...new Set([...prev.slugsEverPublished, ...slugs])];
   const drillsEver = [...new Set([...(prev.drillsEverPublished ?? []), ...cardOutputs.keys()])].sort();
 

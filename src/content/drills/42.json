@@ -1,0 +1,30 @@
+{
+  "id": "42",
+  "cardTitle": "Slide and Punch",
+  "shot": "Volley",
+  "variant": "Backhand slide",
+  "role": "defend",
+  "tested": false,
+  "inShort": "A dinks, then speeds up at B's paddle-side hip. B slides toward that side, so the ball ends up on the backhand, and punches it back.",
+  "rules": [
+    "A and B stand at the kitchen line, A on the left half, B on the right half (left-handers: mirror it).",
+    "A dinks, then speeds up at B's right hip.",
+    "B slides to the right, weight onto the right foot, and takes the ball with the backhand in front of the body.",
+    "Punch, then snap: arm first, wrist last, about 80 % arm. No take-back.",
+    "Keep the paddle tip up, so the face doesn't open and the ball doesn't sail.",
+    "Straight back to the start position. 10 balls, then swap roles."
+  ],
+  "tooEasy": "A plays at full pace and picks the moment of the speed-up freely.",
+  "tooHard": "A calls \"now\" before the speed-up and plays at half pace.",
+  "goodLooksLike": "B's feet move before the paddle, the tip stays up, and the ball goes down at A's feet.",
+  "goals": [
+    "drives-that-hurt"
+  ],
+  "drill": {
+    "id": "42",
+    "title": "Colin Slide / Backhand Counter Drill",
+    "players": "2",
+    "watchUrl": "https://youtu.be/jAiWB3mIiyo?t=33",
+    "watchLabel": "Pickleburner @0:33"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "07",
+  "cardTitle": "Step Back Drops",
+  "shot": "Drop",
+  "tested": false,
+  "inShort": "B drops cross-court from the kitchen line and steps back after each ball until reaching the baseline. A collects the balls.",
+  "rules": [
+    "Put 2–3 markers (shoes, bottles) in the middle of the kitchen, cross-court from B. A stands there.",
+    "B starts just behind the kitchen line, drops a ball, lets it bounce, and drops it to the markers.",
+    "Hit it out in front and finish high, with a light grip.",
+    "After each drop, B takes one step back, until B stands behind the baseline.",
+    "A lets the balls land, collects them and rolls them back. Once B is behind the baseline, swap roles."
+  ],
+  "tooEasy": "From the baseline, A hand-feeds the ball to B, then feeds with the paddle. Even harder: one marker instead of an area.",
+  "tooHard": "Stay at each distance for 3 drops. Aim high over the net first, then bring the height down.",
+  "goodLooksLike": "The drops float over the net and land near the markers, and B finishes with the paddle high.",
+  "goals": [
+    "third-shot-land-soft"
+  ],
+  "drill": {
+    "id": "07",
+    "title": "Diagonal Slinky Progression (Drop Build-Up)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/ysfEASsFHQs?t=196",
+    "watchLabel": "PickleballCentral @3:16"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "111",
+  "cardTitle": "Loose Arm Serve",
+  "shot": "Serve",
+  "variant": "Power serve",
+  "tested": false,
+  "inShort": "A builds serve power in three steps, from a squat to a full serve with a loose wrist. B watches and listens. Then swap.",
+  "rules": [
+    "A stands at the baseline with balls, B beside A to watch.",
+    "Step 1: A squats low, drops the ball, stands up into the court onto the front foot and lets the arm swing through loosely. 10 serves.",
+    "Step 2: A holds the paddle with thumb and two fingers only, so the arm can't force it. If the balls fly long, aim lower. 10 serves.",
+    "Step 3: normal grip, full serve. Wrist loose, push the butt of the paddle toward the target and let the paddle trail behind the hand; don't snap it. Slow to fast, never slowing before contact. B listens: the whoosh through contact gets louder and longer.",
+    "After step 3, swap roles."
+  ],
+  "tooEasy": "Put a shoe 1.5 m in front of the far baseline and count serves behind it with the loose arm: 8 of 10.",
+  "tooHard": "Shadow swing without a ball until the motion is smooth, then add the ball.",
+  "goodLooksLike": "The swing starts slow and is fastest at the ball, the paddle finishes high, and the serve lands deep.",
+  "goals": [
+    "serve-return-deep"
+  ],
+  "drill": {
+    "id": "111",
+    "title": "Serve Power — Solo Kinetic-Chain & Lag Progression",
+    "players": "2",
+    "watchUrl": "https://youtu.be/pZ2INuGcegw?t=1239",
+    "watchLabel": "PickleballPlaybook - Austin Hardy @20:39"
+  }
+}

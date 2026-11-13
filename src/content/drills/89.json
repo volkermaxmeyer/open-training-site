@@ -1,0 +1,28 @@
+{
+  "id": "89",
+  "cardTitle": "Slice Against Topspin",
+  "shot": "Dink",
+  "tested": false,
+  "inShort": "A plays only topspin dinks, and B answers every one with slice to keep it low. After 5 minutes, swap roles.",
+  "rules": [
+    "A and B stand diagonally at the kitchen line.",
+    "A plays only topspin dinks: brush up from low to high, like a windshield wiper.",
+    "B answers every ball with slice or a push (backspin, paddle face slightly open), low and toward the middle. Topspin back would sit up; slice keeps it low.",
+    "B takes the ball after the bounce, in front of the body and between the feet.",
+    "No pop-ups: every reply stays low over the net.",
+    "After about 5 minutes, swap roles. Then a free round: topspin back only when the ball is comfortable and out in front, otherwise slice."
+  ],
+  "tooEasy": "Count low dinks in a row as a team, up to 15; three misses and you start again. Even harder: turn it around: A slices everything, B has to topspin everything.",
+  "tooHard": "A plays slower with less spin, and nobody counts.",
+  "goodLooksLike": "B's slice replies stay low over the net and land in the kitchen, even when A's topspin comes with pace.",
+  "goals": [
+    "win-the-dink-battle"
+  ],
+  "drill": {
+    "id": "89",
+    "title": "Spin-Continuation Dink Drill (Topspin vs Underspin)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/-1rLB-T4OlM?t=2036",
+    "watchLabel": "PickleballPlaybook - Austin Hardy @33:56"
+  }
+}

@@ -8,7 +8,7 @@ import VideoPlayerScript from "../../components/VideoPlayerScript.astro";
 import Ball from "../../components/Ball.astro";
 import { site } from "../../site.config";
 import { sessionPointer } from "../../lib/sessions";
-import { shotSlug } from "../../lib/shots";
+import { shotLabel, shotSlug } from "../../lib/shots";
 
 export async function getStaticPaths() {
   const drills = await getCollection("drills");
@@ -27,7 +27,7 @@ const wishUrl = `mailto:${site.contactEmail}?subject=${encodeURIComponent(`Shot 
   <Breadcrumbs
     items={[
       { label: "Shots", href: "/shots/" },
-      { label: card.shot, href: `/shots/${shotSlug(card.shot)}/` },
+      { label: shotLabel(card.shot), href: `/shots/${shotSlug(card.shot)}/` },
       ...(card.variant ? [{ label: card.variant }] : []),
     ]}
   />

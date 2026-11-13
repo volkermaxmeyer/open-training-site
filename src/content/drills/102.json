@@ -1,0 +1,28 @@
+{
+  "id": "102",
+  "cardTitle": "Pulled Wide",
+  "shot": "Reset",
+  "tested": false,
+  "inShort": "A dinks short to the middle, then pulls B wide. B resets into the kitchen, and you go straight into the next round. 5 in a row.",
+  "rules": [
+    "A and B stand diagonally at the kitchen line, cross-court.",
+    "A dinks short to the middle, then pulls the next ball out wide.",
+    "B gets to the ball, turns toward it, paddle low, and resets it soft into the kitchen.",
+    "Both go straight back to the middle and into the next round, no break.",
+    "Go for 5 rounds in a row. A miss starts the count again.",
+    "After each miss, swap roles."
+  ],
+  "tooEasy": "Play at normal rally tempo, and A varies how wide and how fast the pull comes.",
+  "tooHard": "A shows each pull clearly and plays slowly; B thinks only about the feet between balls.",
+  "goodLooksLike": "B's feet have stopped when B hits the wide ball, and the reset lands low in the kitchen, so A has to dink it back instead of attacking.",
+  "goals": [
+    "special-shots"
+  ],
+  "drill": {
+    "id": "102",
+    "title": "ATP Pull-and-Defend (Advanced)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/meUjybQRm1g?t=1385",
+    "watchLabel": "PickleballPlaybook - Austin Hardy @23:05"
+  }
+}

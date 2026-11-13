@@ -1,0 +1,29 @@
+{
+  "id": "25",
+  "cardTitle": "Backhand Duel",
+  "shot": "Dink",
+  "variant": "Backhand dink",
+  "tested": false,
+  "inShort": "A and B dink backhand to backhand from the left side and try to pull each other wide. Points to 5.",
+  "rules": [
+    "A and B both stand on the left half of their kitchen line, so the cross-court dink is a backhand for both (for right-handers).",
+    "Dink cross-court and try to pull the other player wide.",
+    "Pulled wide, with a foot past the sideline? Play the next ball to the middle, not back cross-court.",
+    "You win a point when the other player pops the ball up or hits it into the net or out.",
+    "Shuffle to every ball and meet it out in front of the knee on your non-paddle side.",
+    "Play to 5, then start the next game."
+  ],
+  "tooEasy": "Play one game with slice only, one with topspin only, then mix.",
+  "tooHard": "Play without points and think only about the shuffle step and meeting the ball out in front.",
+  "goodLooksLike": "The feet keep moving, contact is out in front, and the ball stays low even when you are pulled wide.",
+  "goals": [
+    "win-the-dink-battle"
+  ],
+  "drill": {
+    "id": "25",
+    "title": "Backhand Cross-Court Rally Game (Oddside Mirror Drill)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/G9aLt-UsvLo?t=520",
+    "watchLabel": "Briones Pickleball Academy @8:40"
+  }
+}

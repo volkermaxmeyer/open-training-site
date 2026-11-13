@@ -1,0 +1,29 @@
+{
+  "id": "85",
+  "cardTitle": "Earn the Kitchen",
+  "shot": "Reset",
+  "variant": "Transition reset",
+  "tested": false,
+  "inShort": "B starts at the baseline and may move up to the kitchen only after 2 clean resets in a row. A plays from the kitchen line.",
+  "rules": [
+    "A stands at the kitchen line, B at the baseline.",
+    "B plays a drop and moves into the transition zone, not yet all the way in.",
+    "A answers with balls at B's feet. B resets each one into the kitchen.",
+    "After 2 clean resets in a row, B may step up to the kitchen line. A reset that sits up: B stays back.",
+    "B scores a point by reaching the kitchen line. A scores a point when a reset misses or sits up. First to 5, then swap roles."
+  ],
+  "tooEasy": "A plays real pressure at the feet, with topspin and changing pace. Even harder: B needs 3 clean resets before moving up.",
+  "tooHard": "A plays slower, predictable balls.",
+  "goodLooksLike": "B moves up only after a good reset, and the resets drop low into the kitchen.",
+  "goals": [
+    "get-to-the-kitchen",
+    "move-as-a-team"
+  ],
+  "drill": {
+    "id": "85",
+    "title": "Space Invaders / Transition Reset + Approach",
+    "players": "2",
+    "watchUrl": "https://youtu.be/1Y2zpXxK6ag?t=200",
+    "watchLabel": "ThatPickleballGuy - Kyle Koszuta @3:20"
+  }
+}

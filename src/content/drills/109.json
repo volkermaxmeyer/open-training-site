@@ -1,0 +1,27 @@
+{
+  "id": "109",
+  "cardTitle": "Protect Your Line",
+  "shot": "Dink",
+  "tested": false,
+  "inShort": "A and B play a dink-only game. A ball that lands on or behind your own kitchen line is a point for the other player.",
+  "rules": [
+    "A and B stand straight across at the kitchen line. Dinks only, no hard hits.",
+    "A ball that lands on or behind your own kitchen line is a point for the other player: you should have taken it out of the air.",
+    "Win points by pulling the other player wide, then pushing the next dink deep past their line.",
+    "Find your range: stand right on the line or a step back, wherever you can still cover it.",
+    "First to 11, then start the next game."
+  ],
+  "tooEasy": "Play it cross-court: there is more line to protect.",
+  "tooHard": "Play without points and just practise taking every ball out of the air.",
+  "goodLooksLike": "Hardly any ball lands behind your line, and you take balls early without leaving the kitchen line.",
+  "goals": [
+    "win-the-dink-battle"
+  ],
+  "drill": {
+    "id": "109",
+    "title": "Protect the Line (Out-of-Air Range Game)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/PkcScApgfLw?t=278",
+    "watchLabel": "Zane Navratil Pickleball @4:38"
+  }
+}

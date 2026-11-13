@@ -1,0 +1,27 @@
+{
+  "id": "49",
+  "cardTitle": "T-Rex Arms",
+  "shot": "Drive",
+  "tested": false,
+  "inShort": "A feeds, and B drives with the elbows tucked to the hips, so the body does the work. Forehand first, then backhand.",
+  "rules": [
+    "A feeds from across the net, out of the air or with a bounce. B stands 2–3 steps off the centre line.",
+    "B tucks the elbows against the hips and locks the arms to the body, like a T-Rex.",
+    "B hits from this position: the turn of the body moves the paddle, the arms just ride along. Keep your head still.",
+    "10 balls in pure T-Rex. Then let the arms go at contact and swing through.",
+    "Then swap roles."
+  ],
+  "tooEasy": "Let the arms go at contact, and 3 of 5 balls have to land in one half. Even harder: hit standing on the left foot only.",
+  "tooHard": "Stay in pure T-Rex, and the ball may go anywhere.",
+  "goodLooksLike": "The ball still goes deep with the arms locked, and the head stays still through contact.",
+  "goals": [
+    "drives-that-hurt"
+  ],
+  "drill": {
+    "id": "49",
+    "title": "T-Rex Drill: Body-Arm Connection",
+    "players": "2",
+    "watchUrl": "https://youtu.be/F_PncWXX-cA?t=628",
+    "watchLabel": "Ed Ju @10:28"
+  }
+}

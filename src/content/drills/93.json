@@ -1,0 +1,28 @@
+{
+  "id": "93",
+  "cardTitle": "Spaghetti Arm",
+  "shot": "Dink",
+  "tested": false,
+  "inShort": "A and B hit every ball as softly as possible, with a loose arm and a follow-through that touches the opposite shoulder.",
+  "rules": [
+    "A and B stand across from each other at the kitchen line.",
+    "First a check: A lifts B's arm at the backswing and at the finish. Heavy and the shoulder drops? Loose. Then swap.",
+    "Hit every ball as softly as possible. Hold the paddle loosely, about 1 out of 5.",
+    "Every follow-through goes all the way over and touches the opposite shoulder.",
+    "Keep speeding up through the ball. Don't slow down and push.",
+    "Give the ball a little height at first, so you have time to finish. Forehands and backhands."
+  ],
+  "tooEasy": "Count clean soft shots with a full finish in a row, up to 20; a missed finish starts again. Even harder: switch forehand and backhand on every ball.",
+  "tooHard": "Hit higher and slower until the full finish happens every time.",
+  "goodLooksLike": "The arm swings through to the shoulder without stopping short, and the ball floats slowly over the net and drops into the kitchen.",
+  "goals": [
+    "get-to-the-kitchen"
+  ],
+  "drill": {
+    "id": "93",
+    "title": "Relaxation Swings (Ribbon Arm Touch Drill)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/L2FImX3dTLI?t=560",
+    "watchLabel": "PickleballPlaybook - Austin Hardy @9:20"
+  }
+}

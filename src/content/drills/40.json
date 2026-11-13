@@ -1,0 +1,28 @@
+{
+  "id": "40",
+  "cardTitle": "Five Speed-Up Targets",
+  "shot": "Speed-up",
+  "tested": false,
+  "inShort": "B feeds dinks that sit up, and A speeds up to one target per round: shoulder, hip, across the body, off-pace, slider. Then swap.",
+  "rules": [
+    "A and B stand at the kitchen line, straight across. B feeds dinks that sit up enough to attack.",
+    "Round 1: speed up at B's paddle-side shoulder. Round 2: at B's paddle-side hip.",
+    "Round 3: from A's forehand side, go across B's body to the other side. Round 4: speed-ups that are clearly slower than full pace.",
+    "Round 5: B slides a step to one side just before A hits. A aims a step outside the spot B slides to.",
+    "8–10 balls per round. B blocks softly or lets the ball go, then feeds the next dink.",
+    "After round 5, swap roles."
+  ],
+  "tooEasy": "A mixes the five targets without saying which, and B tries to block it back. Even harder: 8 of 10 hit the chosen spot.",
+  "tooHard": "A calls the target out loud before each ball, and B feeds the same dink every time.",
+  "goodLooksLike": "The ball hits the chosen spot, and B's block pops up or misses.",
+  "goals": [
+    "pick-the-right-shot"
+  ],
+  "drill": {
+    "id": "40",
+    "title": "Spot-Targeting Speedup (5 Spots)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/eyGO7QJ8ez4?t=400",
+    "watchLabel": "John Cincola Pickleball @6:40"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "107",
+  "cardTitle": "Three Serve Fixes",
+  "shot": "Serve",
+  "variant": "Power serve",
+  "tested": false,
+  "inShort": "A serves for power and depth, and B checks three things: a wide stance, contact out in front and a full turn. 10 serves, then swap.",
+  "rules": [
+    "A serves from the baseline with a bag of balls. B stands beside A.",
+    "Stance: wide, like a boxer. Front foot turned about 45° toward the baseline, back foot along it. B gives A a light push from the side; if A wobbles, widen.",
+    "Contact: out in front, far enough that A reaches a little for it. Elbow away from the body, not tucked in.",
+    "Turn: the paddle side turns away, then through the ball. B checks the finish: the back foot steps into the court, the paddle side ends facing the target. Back foot still on the ground means arm only.",
+    "A serves deep cross-court. After 10 serves, swap roles."
+  ],
+  "tooEasy": "8 of 10 serves land in the back third with the full finish. Even harder: add topspin and aim deeper, because topspin lands shorter.",
+  "tooHard": "Work one fix at a time, slowly, and use the drop serve only.",
+  "goodLooksLike": "The back foot steps into the court on the finish, and the serve bounces in the back third of the box.",
+  "goals": [
+    "serve-return-deep"
+  ],
+  "drill": {
+    "id": "107",
+    "title": "Serve Power Mechanics (Base → Extension → Rotation)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/qazUxtEX_-4?t=45",
+    "watchLabel": "ThatPickleballGuy - Kyle Koszuta @0:45"
+  }
+}

@@ -1,11 +1,12 @@
 ---
 // Shot page of the Shots area (2026-11-07): every released isolation drill of one shot, the variant as a label.
+// Volley groups its drills under Attack · Defend · Basics by the card's role (2026-11-13); an empty heading is left out.
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Chip from "../../components/Chip.astro";
 import { playersLabel, site } from "../../site.config";
-import { SHOTS, SHOT_EXPLAINERS, shotSlug } from "../../lib/shots";
+import { SHOTS, SHOT_EXPLAINERS, shotLabel, shotSlug } from "../../lib/shots";
 
 export async function getStaticPaths() {
   const drills = (await getCollection("drills")).map((d) => d.data);
@@ -16,14 +17,28 @@ export async function getStaticPaths() {
 }
 
 const { shot, drills } = Astro.props;
+const label = shotLabel(shot);
+const explainer = SHOT_EXPLAINERS[shot];
+const ROLES = [
+  { role: "attack", heading: "Attack" },
+  { role: "defend", heading: "Defend" },
+  { role: "basics", heading: "Basics" },
+] as const;
+const groups =
+  shot === "Volley"
+    ? ROLES.map(({ role, heading }) => ({ role, heading, drills: drills.filter((d) => d.role === role) })).filter((g) => g.drills.length)
+    : [{ role: null, heading: null, drills }];
 ---
 
-<Base wide title={`${shot} | ${site.name}`} description={`Drills to practise the ${shot.toLowerCase()} on its own.`}>
-  <Breadcrumbs items={[{ label: "Shots", href: "/shots/" }, { label: shot }]} />
-  <h1 class="mt-1 font-display text-[44px] leading-none font-bold tracking-[-0.02em] text-balance tablet:text-[60px]">{shot}</h1>
-  <p data-shot-explainer class="mt-3 max-w-[62ch]">{SHOT_EXPLAINERS[shot]}</p>
-  <ul class="mt-7 space-y-4 tablet:grid tablet:grid-cols-2 tablet:gap-5 tablet:space-y-0 lg:grid-cols-3">
-    {drills.map((d) => (
+<Base wide title={`${label} | ${site.name}`} description={`Drills to practise the ${label.toLowerCase()} on its own.`}>
+  <Breadcrumbs items={[{ label: "Shots", href: "/shots/" }, { label }]} />
+  <h1 class="mt-1 font-display text-[44px] leading-none font-bold tracking-[-0.02em] text-balance tablet:text-[60px]">{label}</h1>
+  {explainer && <p data-shot-explainer class="mt-3 max-w-[62ch]">{explainer}</p>}
+  {groups.map((g) => (
+  <section data-role-group={g.role ?? undefined}>
+  {g.heading && <h2 data-role-heading class="mt-8 font-head text-xl font-bold text-balance">{g.heading}</h2>}
+  <ul class={`${g.heading ? "mt-3" : "mt-7"} space-y-4 tablet:grid tablet:grid-cols-2 tablet:gap-5 tablet:space-y-0 lg:grid-cols-3`}>
+    {g.drills.map((d) => (
       <li>
         <a data-drill-link href={`/drill/${d.id}/`} class="flex tablet:h-full min-h-[6.875rem] items-center gap-3 border-2 border-ink bg-card px-4 py-3 shadow-[6px_6px_0_var(--color-ink)] active:translate-x-1 active:translate-y-1 active:shadow-none [@media(hover:hover)]:hover:translate-x-0.5 [@media(hover:hover)]:hover:translate-y-0.5 [@media(hover:hover)]:hover:shadow-[3px_3px_0_var(--color-ink)]">
           <span class="flex min-w-0 flex-1 flex-col gap-2">
@@ -39,4 +54,6 @@ const { shot, drills } = Astro.props;
       </li>
     ))}
   </ul>
+  </section>
+  ))}
 </Base>

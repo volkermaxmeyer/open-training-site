@@ -1,0 +1,26 @@
+{
+  "id": "906",
+  "cardTitle": "Around the Post",
+  "shot": "Special shot",
+  "variant": "ATP",
+  "tested": false,
+  "inShort": "Invented fixture card 906: A feeds, B repeats one shot.",
+  "rules": [
+    "A feeds calm balls.",
+    "B repeats the shot ten times."
+  ],
+  "tooEasy": "A feeds faster.",
+  "tooHard": "A feeds slower.",
+  "goodLooksLike": "Calm, repeatable contact.",
+  "goals": [
+    "fixture-goal",
+    "other-goal"
+  ],
+  "drill": {
+    "id": "906",
+    "title": "Fixture drill 906",
+    "players": "2",
+    "watchUrl": "https://youtu.be/AAAAAAA9061?t=10",
+    "watchLabel": "Fake Channel @0:10"
+  }
+}

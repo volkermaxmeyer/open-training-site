@@ -1,0 +1,26 @@
+{
+  "id": "52",
+  "cardTitle": "Six Fast Balls",
+  "shot": "Drive",
+  "tested": false,
+  "inShort": "A tosses six balls in quick succession, and B drives each one out of the air as fast as possible with a short backswing, ready again at once.",
+  "rules": [
+    "A stands a few steps away and tosses 6 balls quickly, one after the other. B takes them out of the air.",
+    "B drives every ball as fast as possible and is ready for the next one at once.",
+    "No big backswing: the power comes from a short, quick swing forward.",
+    "After 6 balls, a short break. After 3 sets, swap roles."
+  ],
+  "tooEasy": "4 of 6 balls have to land in the court. Even harder: A varies the tempo, so B can't tell when the next ball comes.",
+  "tooHard": "A tosses at a calm rhythm, and B thinks only about the short swing.",
+  "goodLooksLike": "The backswing stays short, the ball still flies deep into the court, and B's paddle is back in front before the next toss.",
+  "goals": [
+    "drives-that-hurt"
+  ],
+  "drill": {
+    "id": "52",
+    "title": "Rapid-Fire Acceleration (6-Ball Toss)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/NTXDE_MD4fU?t=210",
+    "watchLabel": "Zane Navratil Pickleball @3:30"
+  }
+}

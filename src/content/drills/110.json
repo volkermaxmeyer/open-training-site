@@ -1,0 +1,28 @@
+{
+  "id": "110",
+  "cardTitle": "Cover 70%",
+  "shot": "Dink",
+  "tested": false,
+  "inShort": "A dinks into B's backhand corner and makes B reach. B covers about 70% of the kitchen's width and still lands every dink.",
+  "rules": [
+    "A and B dink from backhand corner to backhand corner, diagonally across at the kitchen line.",
+    "On B's side, put a cone a quarter of the way into the other half. B covers everything from the sideline to the cone: about 70% of the width.",
+    "A dinks anywhere in B's zone, wide and short, so B has to reach.",
+    "B stretches and still lands every dink.",
+    "Pulled far out of position? Play the safe ball: to A's forehand or the middle, not another wide one.",
+    "Go for 15 dinks in a row without a pop-up. Then swap roles."
+  ],
+  "tooEasy": "Move the cone further, so B covers more. Even harder: run the forehand corner too, and only dinks inside the kitchen count.",
+  "tooHard": "Move the cone toward the middle, so B covers less.",
+  "goodLooksLike": "B stays low while stretching, and the ball still lands soft in the kitchen.",
+  "goals": [
+    "win-the-dink-battle"
+  ],
+  "drill": {
+    "id": "110",
+    "title": "Dink 70 (Cover-the-Zone Reach Drill)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/PkcScApgfLw?t=360",
+    "watchLabel": "Zane Navratil Pickleball @6:00"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "119",
+  "cardTitle": "The Switcheroo",
+  "shot": "Special shot",
+  "variant": "Switcheroo",
+  "tested": false,
+  "inShort": "B feeds floaty dinks, and A rolls them back with the off hand alone, then adds a fake: head and free hand go cross-court.",
+  "rules": [
+    "A and B stand at the kitchen line, straight across. A takes the dominant hand off a two-handed backhand grip; that is the off-hand grip.",
+    "Step 1: B feeds higher, floatier dinks. A rolls each one back to B with the off hand alone. 10 balls.",
+    "Step 2: same ball straight to B, but as A swings, the free hand and the head move cross-court. 10 balls.",
+    "After each ball in step 2, B says which way it looked like it was going.",
+    "After step 2, swap roles."
+  ],
+  "tooEasy": "B moves cross-court, and A and B dink normally. On the first short dink in front of A, A switches to the off hand and rolls it up the line. Even harder: B feeds lower dinks.",
+  "tooHard": "Stay on step 1 with higher, slower feeds until the off-hand roll lands safely.",
+  "goodLooksLike": "The off-hand roll lands low in B's kitchen, and A's head and free hand point cross-court at contact.",
+  "goals": [
+    "special-shots"
+  ],
+  "drill": {
+    "id": "119",
+    "title": "Switcheroo — Off-Hand Deception Progression",
+    "players": "2",
+    "watchUrl": "https://www.youtube.com/watch?v=l__Qq4ySh-I&t=30",
+    "watchLabel": "Pickleballdotcom @0:30"
+  }
+}

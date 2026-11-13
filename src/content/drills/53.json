@@ -1,0 +1,28 @@
+{
+  "id": "53",
+  "cardTitle": "Two Hands or One",
+  "shot": "Volley",
+  "role": "basics",
+  "tested": false,
+  "inShort": "For two-handed backhands: A and B volley backhand to backhand and switch to one hand only when the ball comes too close to the body or too wide.",
+  "rules": [
+    "A and B stand diagonally at the kitchen line and volley cross-court, backhand to backhand.",
+    "Start every ball from the two-handed ready position.",
+    "Ball within reach: two-handed backhand volley.",
+    "Ball close to the body or too far out: let go with the off hand and volley one-handed.",
+    "Slow and cooperative at first. Find out where your own limit lies."
+  ],
+  "tooEasy": "Aim at the other's body on purpose; a point for every ball that forces a one-handed answer.",
+  "tooHard": "A feeds slow single balls to B's backhand, some at the body, some wide. B volleys each one back, two hands or one, and A starts the next ball. No rally.",
+  "goodLooksLike": "The switch to one hand comes early, and both kinds of volley stay low over the net.",
+  "goals": [
+    "win-fast-balls"
+  ],
+  "drill": {
+    "id": "53",
+    "title": "Hands-Exchange Crosscourt (2-Hand / 1-Hand Switch)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/R81BjOsT-3A?t=73",
+    "watchLabel": "Briones Pickleball Academy @1:13"
+  }
+}

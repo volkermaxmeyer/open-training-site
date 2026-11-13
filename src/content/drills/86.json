@@ -1,0 +1,29 @@
+{
+  "id": "86",
+  "cardTitle": "Topspin at the Feet",
+  "shot": "Reset",
+  "variant": "Transition reset",
+  "tested": false,
+  "inShort": "A hits topspin balls (aka rolls) at B's feet in the transition zone, and B resets every one back into the kitchen.",
+  "rules": [
+    "A stands at the kitchen line, B halfway between the baseline and the kitchen.",
+    "A hits every ball with topspin at B's feet, at about half pace, like a fourth shot in a game.",
+    "B resets every ball soft back into the kitchen.",
+    "Stay low, paddle in front, and let the ball come to you.",
+    "Count the resets in a row that land in the kitchen.",
+    "After 2 minutes, swap roles."
+  ],
+  "tooEasy": "A raises the pace and varies the target: body, backhand, forehand. Even harder: A aims only at B's backhand.",
+  "tooHard": "A plays slower and straight at B's paddle.",
+  "goodLooksLike": "The resets land low in the kitchen, so A has to dink them instead of rolling again, even when A's ball comes fast.",
+  "goals": [
+    "get-to-the-kitchen"
+  ],
+  "drill": {
+    "id": "86",
+    "title": "Roll-and-Reset (Cooperative)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/eQ9FKwiFGhQ?t=343",
+    "watchLabel": "John Cincola Pickleball @5:43"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "79",
+  "cardTitle": "Reset From Anywhere",
+  "shot": "Reset",
+  "tested": false,
+  "inShort": "A feeds from the kitchen line, and B resets from midcourt: first from one spot, then on the move as A spreads the balls.",
+  "rules": [
+    "A stands at the kitchen line, B in midcourt.",
+    "Round 1: A feeds calm balls, and B resets each one into the kitchen from the same spot.",
+    "Round 2: A spreads the balls: forehand, backhand, middle, line, wide. B moves, sets up and resets.",
+    "Train forehand and backhand resets in separate blocks of 10.",
+    "After both rounds, swap roles."
+  ],
+  "tooEasy": "A raises the pace and hunts for errors. Even harder: B starts at the baseline.",
+  "tooHard": "A throws the balls by hand from close range.",
+  "goodLooksLike": "B is set before every ball, and the resets land low in the kitchen.",
+  "goals": [
+    "get-to-the-kitchen"
+  ],
+  "drill": {
+    "id": "79",
+    "title": "Progression Drill — Reset/Third off a Live Feed",
+    "players": "2",
+    "watchUrl": "https://youtu.be/Se7osLZVZQY?t=43",
+    "watchLabel": "Richard Pickleball @0:43"
+  }
+}

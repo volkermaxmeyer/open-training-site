@@ -1,0 +1,28 @@
+{
+  "id": "115",
+  "cardTitle": "Short Swing Drip",
+  "shot": "Drip",
+  "tested": false,
+  "inShort": "B feeds from the kitchen, and A drips from the baseline: short backswing, long finish, low at the feet. 40 balls, then swap.",
+  "rules": [
+    "A stands at the baseline. B stands at the kitchen line and feeds balls like a return. Put one shoe down the line and one cross-court, each about 2 m behind the kitchen line.",
+    "Short backswing like a dink. Let the ball meet the paddle, then accelerate through like a drive.",
+    "10 balls down the line, 10 cross-court, then the same on the backhand: 40 balls.",
+    "The drip clears the net low and is below net height when it reaches the shoe. Count the good ones per set of 10.",
+    "After 40 balls, swap roles."
+  ],
+  "tooEasy": "7 of 10 per set reach the shoe below net height. Even harder: take every ball early, right after the bounce, with the feet set.",
+  "tooHard": "B stands still and feeds the same ball, and the target is the whole transition zone, not the shoe.",
+  "goodLooksLike": "The ball crosses the net low and dips at the shoe, and A's backswing is short but the finish long.",
+  "goals": [
+    "third-shot-land-soft",
+    "drives-that-hurt"
+  ],
+  "drill": {
+    "id": "115",
+    "title": "Third-Shot Drip (Reps → Steal Time → Mix & Drip)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/D6dsrM1jhWw?t=55",
+    "watchLabel": "Cam Luhring @0:55"
+  }
+}

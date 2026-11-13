@@ -1,0 +1,26 @@
+{
+  "id": "904",
+  "cardTitle": "Hit Through",
+  "shot": "Volley",
+  "role": "attack",
+  "tested": false,
+  "inShort": "Invented fixture card 904: A feeds, B repeats one shot.",
+  "rules": [
+    "A feeds calm balls.",
+    "B repeats the shot ten times."
+  ],
+  "tooEasy": "A feeds faster.",
+  "tooHard": "A feeds slower.",
+  "goodLooksLike": "Calm, repeatable contact.",
+  "goals": [
+    "fixture-goal",
+    "other-goal"
+  ],
+  "drill": {
+    "id": "904",
+    "title": "Fixture drill 904",
+    "players": "2",
+    "watchUrl": "https://youtu.be/AAAAAAA9041?t=10",
+    "watchLabel": "Fake Channel @0:10"
+  }
+}

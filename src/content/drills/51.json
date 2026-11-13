@@ -1,0 +1,31 @@
+{
+  "id": "51",
+  "cardTitle": "Wide Ball, Safe Ball",
+  "shot": "Drive",
+  "tested": false,
+  "inShort": "A feeds high balls and wide balls to B at the baseline. B drives the wide ones safely to the middle and goes for line or angle only with time.",
+  "rules": [
+    "A and B stand at their baselines. A feeds every ball (hits or tosses it), B starts in the middle.",
+    "A mixes two kinds of ball, 8 per set: slower, higher balls B reaches in time, and wide balls B has to run for.",
+    "Higher ball with time: B may drive it down the line or short cross-court.",
+    "Wide ball: B drives it cross-court a little higher, toward the middle, just past the centre line. Then straight back to the middle.",
+    "Keep the full stroke, also when you take pace off: swing slower, don't stop short. On a wide ball, an open stance saves steps.",
+    "8 balls, then swap roles."
+  ],
+  "tooEasy": "A gives no hint and mixes freely, and after a wide ball A feeds the next one into the opposite corner.",
+  "tooHard": "A calls \"wide\" or \"high\" before each ball, so B can get ready.",
+  "goodLooksLike": "Wide balls land just past the centre line, and B is back in the middle before A hits the next one.",
+  "goals": [
+    "pick-the-right-shot"
+  ],
+  "drill": {
+    "id": "51",
+    "title": "Wide-Ball Shot-Selection Drill",
+    "players": "2",
+    "watchUrl": "https://youtu.be/vTHqasnQWlQ?t=160",
+    "watchLabel": "Backpaddle Pickleball @2:40–4:56",
+    "videoId": "vTHqasnQWlQ",
+    "start": 160,
+    "end": 296
+  }
+}

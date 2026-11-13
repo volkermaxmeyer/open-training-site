@@ -1,0 +1,32 @@
+{
+  "id": "120",
+  "cardTitle": "Wide, Then Inside",
+  "shot": "Dink",
+  "variant": "Topspin dink",
+  "tested": false,
+  "inShort": "A feeds dinks, and B plays topspin dinks (aka rolls) to two targets in turn: wide at A's sideline, then at A's inside foot.",
+  "rules": [
+    "A and B stand diagonally at the kitchen line, B on the left half. Optional: a cone near A's outside sideline and one at A's inside foot (the foot nearer the middle).",
+    "Forehand round: A dinks every ball to the middle of B's half. B plays a topspin dink: wide, inside, wide, inside.",
+    "After each ball, A steps back to the middle.",
+    "A topspin dink only counts if it bounces on A's side. If A can calmly take it out of the air, it does not count.",
+    "Backhand round: A feeds to B's backhand, same order. Between topspin dinks, lean in with the paddle out in front.",
+    "10 topspin dinks per round, then swap roles."
+  ],
+  "tooEasy": "Count: 7 of 10 topspin dinks on target and bouncing, on each side. Even harder: A tries to take every one out of the air and gets back to the middle faster.",
+  "tooHard": "A feeds slower, and the targets get bigger.",
+  "goodLooksLike": "The topspin dinks land on target and bounce, and A's replies come back to the middle.",
+  "goals": [
+    "win-the-dink-battle"
+  ],
+  "drill": {
+    "id": "120",
+    "title": "Inside-Out Roll Placement (Left Side)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/tLe0THCSnYk?t=277",
+    "watchLabel": "Briones Pickleball Academy @4:37–7:17",
+    "videoId": "tLe0THCSnYk",
+    "start": 277,
+    "end": 437
+  }
+}

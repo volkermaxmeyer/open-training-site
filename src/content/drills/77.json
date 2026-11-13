@@ -1,0 +1,28 @@
+{
+  "id": "77",
+  "cardTitle": "Switch It Up",
+  "shot": "Dink",
+  "tested": false,
+  "inShort": "A and B dink cross-court, and either may suddenly change direction: down the line, middle or deep. The other has to keep it low.",
+  "rules": [
+    "A and B dink cross-court at the kitchen line.",
+    "Either of you picks your own moment to change direction: down the line, to the middle at the inside foot, or a deeper dink that pushes the other back.",
+    "No arranged switch: the change has to come out of the rally.",
+    "The other player reacts and tries to keep the next ball low.",
+    "A pop-up or a miss is a point for the other player.",
+    "Play to 11, then play the other diagonal."
+  ],
+  "tooEasy": "For 5 minutes, no cross-court at all: middle only, which forces new patterns.",
+  "tooHard": "At most three direction changes per rally, so the pattern stays readable.",
+  "goodLooksLike": "The other player can't tell when the change is coming, and still keeps the reply low over the net.",
+  "goals": [
+    "win-the-dink-battle"
+  ],
+  "drill": {
+    "id": "77",
+    "title": "Dink Pattern Drill: Pattern Break",
+    "players": "2",
+    "watchUrl": "https://youtu.be/JxVFdb1PixU?t=321",
+    "watchLabel": "ThatPickleballGuy - Kyle Koszuta @5:21"
+  }
+}

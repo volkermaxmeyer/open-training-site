@@ -1,0 +1,27 @@
+{
+  "id": "01",
+  "cardTitle": "Step Into the Serve",
+  "shot": "Serve",
+  "tested": false,
+  "inShort": "A serves out of a short two-step walk-in, and B returns calmly or rolls the ball back. 10 serves, then swap.",
+  "rules": [
+    "A stands about 60 cm behind the baseline, feet apart. B stands at the far baseline, cross-court.",
+    "A takes a small shuffle step: the paddle-side foot moves toward the other foot.",
+    "Then the other foot steps up to just behind the baseline, and A hits the serve there.",
+    "The weight rolls forward onto the front foot as A serves deep cross-court.",
+    "B returns calmly or rolls the ball back. After 10 serves, swap roles."
+  ],
+  "tooEasy": "8 of 10 serves land in the back third of the service box. Even harder: switch the target between backhand, middle and line.",
+  "tooHard": "Walk in a few times without a ball, then serve slowly. Serves go long: hit lower over the net, not softer.",
+  "goodLooksLike": "The front hip points at the target as A hits, and A finishes with the weight over the front foot.",
+  "goals": [
+    "serve-return-deep"
+  ],
+  "drill": {
+    "id": "01",
+    "title": "Step-In Serve Drill (Martínez Vic Drill)",
+    "players": "2",
+    "watchUrl": "https://youtu.be/1gBC2lC2JvY?t=623",
+    "watchLabel": "PickleballPlaybook - Austin Hardy @10:23"
+  }
+}

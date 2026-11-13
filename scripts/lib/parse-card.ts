@@ -58,12 +58,16 @@ export function parseCard(fileText: string, name: string, goals: GoalFilter[]): 
 
   const drill = parseDrill(fileText, name);
   const variant = str(fm["shot-variant"]);
+  const role = str(fm["volley-role"]);
+  if (shot === "Volley" && !["attack", "defend", "basics"].includes(role)) fail(`volley-role must be attack, defend or basics, got '${role}'`);
+  if (shot !== "Volley" && role) fail(`volley-role is only for Volley, not '${shot}'`);
   const status = str(fm.status);
   return {
     id: drill.id,
     cardTitle,
     shot: shot as DrillPage["shot"],
     ...(variant ? { variant } : {}),
+    ...(role ? { role: role as NonNullable<DrillPage["role"]> } : {}),
     tested: status === "tested" || status === "favorite",
     inShort,
     rules,

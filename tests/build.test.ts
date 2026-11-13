@@ -48,8 +48,8 @@ describe("shots area (2026-11-07)", () => {
     expect(index).toMatch(/href="\/shots\/"[^>]*data-tab="shots"/);
     expect(index).not.toContain("data-shot-tile");
     expect(html("shots/index.html")).toMatch(/data-tab="shots"[^>]*aria-current="page"/);
-    expect(text(index)).toContain("Pick a goal, get three drills, play 30 minutes. For Advanced (around 4.0+) Wall"); // the fixtures start with a wall
-    expect(text(html("shots/index.html"))).toContain("Pick a shot and build it up from slow to full pace. For Advanced (around 4.0+) 2+ players");
+    expect(text(index)).toContain("Pick a goal, get three drills, play 30 minutes. Advanced (around 4.0+) Wall"); // the fixtures start with a wall
+    expect(text(html("shots/index.html"))).toContain("Pick a shot and build it up from slow to full pace. Advanced (around 4.0+) 2+ players");
     // target group (decision-log 2026-11-11): the level chip stands on start, shots and every session page
     expect(chip(index, "data-level")).toEqual(["Advanced (around 4.0+)"]);
     expect(chip(html("shots/index.html"), "data-level")).toEqual(["Advanced (around 4.0+)"]);
@@ -65,8 +65,12 @@ describe("shots area (2026-11-07)", () => {
 
   it("Shots tab shows a tile per shot, Coming soon when nothing is released", () => {
     const index = html("shots/index.html");
-    expect(index.match(/data-shot-tile=/g)?.length ?? 0).toBe(2); // Dink (2 cards) and Lob (1)
-    expect(index.match(/data-shot-soon=/g)?.length ?? 0).toBe(11);
+    // fixtures: Dink (901, 902), Lob (903), Volley (904, 905), Special shot (906), Serve (907); 12 tiles since 2026-11-13
+    expect(index.match(/data-shot-tile=/g)?.length ?? 0).toBe(5);
+    expect(index.match(/data-shot-soon=/g)?.length ?? 0).toBe(7);
+    expect(index).not.toMatch(/data-shot-(tile|soon)="(footwork|counter-and-block)"/);
+    expect(index).toMatch(/data-shot-tile="special-shots" href="\/shots\/special-shots\/"/);
+    expect(text(index)).toContain("Special shots"); // the tile names it in the plural (Volker 2026-11-13)
     expect(index).toMatch(/data-shot-tile="dink" href="\/shots\/dink\/"/);
     expect(index).toMatch(/data-shot-tile="lob" href="\/shots\/lob\/"/); // one drill opens its shot page too (1.040)
     expect(index).not.toMatch(/<a[^>]*data-shot-soon/); // a Coming soon tile is no link
@@ -82,6 +86,36 @@ describe("shots area (2026-11-07)", () => {
     expect(text(page)).toContain("A soft shot from the kitchen line into the opponents"); // explainer (1.040)
     expect(text(page)).not.toContain("Each drill repeats this one shot"); // one sentence only (1.041)
     expect(existsSync(join(out, "shots/drive/index.html"))).toBe(false);
+  });
+
+  it("Volley groups its drills under Attack, Defend, Basics; empty headings stay out (2026-11-13)", () => {
+    const page = html("shots/volley/index.html");
+    expect([...page.matchAll(/data-role-heading[^>]*>([^<]+)</g)].map((m) => m[1])).toEqual(["Attack", "Defend"]);
+    const group = (role: string) => page.split(`data-role-group="${role}"`)[1]?.split("data-role-group=")[0] ?? "";
+    expect(group("attack")).toContain('href="/drill/904/"');
+    expect(group("defend")).toContain('href="/drill/905/"');
+    expect(page.match(/data-drill-link/g)).toHaveLength(2);
+    expect(html("shots/dink/index.html")).not.toContain("data-role-heading");
+  });
+
+  it("Serve has no explaining sentence, Special shots has one (2026-11-13)", () => {
+    expect(html("shots/serve/index.html")).not.toContain("data-shot-explainer");
+    const special = html("shots/special-shots/index.html");
+    expect(text(special)).toContain("Shots for one special moment: around the post, over the kitchen, behind your partner.");
+    expect(special).toMatch(/<h1[^>]*>Special shots<\/h1>/);
+    expect(html("drill/906/index.html")).toMatch(/href="\/shots\/special-shots\/"[^>]*>Special shots</);
+  });
+
+  it("every internal link in the build points to a page that exists", () => {
+    const missing: string[] = [];
+    for (const f of walk(out).filter((f) => f.endsWith(".html"))) {
+      for (const m of readFileSync(f, "utf8").matchAll(/href="(\/[^"#?]*)"/g)) {
+        const p = m[1];
+        if (/\.[a-z0-9]+$/i.test(p)) continue; // assets
+        if (!existsSync(join(out, p, "index.html")) && !existsSync(join(out, p))) missing.push(`${f.slice(out.length)} -> ${p}`);
+      }
+    }
+    expect(missing).toEqual([]);
   });
 
   it("drill page shows the card and the session for points", () => {

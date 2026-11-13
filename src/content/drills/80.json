@@ -5,7 +5,7 @@
   "tested": true,
   "inShort": "A and B dink together and count out loud: 50 in a row, and a ball in the net sends you back to zero.",
   "rules": [
-    "A and B face each other at the kitchen line and dink (soft shots that land in the kitchen). Count every ball out loud together.",
+    "A and B face each other at the kitchen line and dink. Count every ball out loud together.",
     "Four rounds of about 2–3 minutes: cross-court from the right half, cross-court from the left half, middle to middle, straight ahead along one sideline.",
     "A ball in the net sends the count back to zero. A ball wide, or one that just trickles over the net, keeps the count going.",
     "No hard hits. If a ball comes up high, roll it back with topspin and keep the pressure on.",
@@ -14,7 +14,7 @@
   ],
   "tooEasy": "One of you plays faster dinks and tries to force the other into the net. Or raise the target to 75.",
   "tooHard": "Lower the target to 30.",
-  "goodLooksLike": "A calm, steady rally, both players leaning in, and the pattern runs without thinking.",
+  "goodLooksLike": "The rally stays calm and steady, the dinks stay low over the net, and both players lean in.",
   "goals": [
     "win-the-dink-battle"
   ],

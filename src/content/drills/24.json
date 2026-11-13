@@ -1,0 +1,29 @@
+{
+  "id": "24",
+  "cardTitle": "Front of the Kitchen",
+  "shot": "Dink",
+  "variant": "Cross-court dink",
+  "tested": false,
+  "inShort": "A and B dink cross-court into the front of the kitchen and take every ball they can out of the air. First to 11.",
+  "rules": [
+    "A and B stand diagonally across at the kitchen line. Mark the front three quarters of each kitchen with cones or shoes.",
+    "Dink cross-court and keep every ball in front of the marks, not deep.",
+    "A ball that lands behind the marks or outside the kitchen is a point for the other player. The rally goes on.",
+    "Take every ball you can out of the air. Each one is a bonus point.",
+    "When the ball comes fast, get softer and slower, and keep your belly button behind the ball.",
+    "First to 11, then play the other diagonal."
+  ],
+  "tooEasy": "Shrink the target to the front half of the kitchen. Even harder: either of you may dink deep on purpose, so the other has to take it out of the air.",
+  "tooHard": "Play without points and count dinks in a row that land in front of the marks.",
+  "goodLooksLike": "Most dinks land in front of the marks, and both of you take balls out of the air instead of stepping back.",
+  "goals": [
+    "win-the-dink-battle"
+  ],
+  "drill": {
+    "id": "24",
+    "title": "Cross-Court Dink Rally with Target Zone",
+    "players": "2",
+    "watchUrl": "https://youtu.be/UjdZwT8u4xY?t=590",
+    "watchLabel": "PickleballPlaybook - Austin Hardy @9:50"
+  }
+}

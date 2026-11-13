@@ -1,4 +1,4 @@
-import { cpSync, existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -7,7 +7,8 @@ import { goalsOfDrill, parseCard } from "../scripts/lib/parse-card";
 import { checkUnpublish, publish, readGoalFilters } from "../scripts/publish";
 import { DrillPage } from "../src/lib/session-schema";
 import { sessionPointer } from "../src/lib/sessions";
-import { SHOTS, shotSlug } from "../src/lib/shots";
+import { SHOTS, SHOT_EXPLAINERS, shotLabel, shotSlug } from "../src/lib/shots";
+import { shotDrift } from "../scripts/publish";
 
 const CARD = `## Player card
 **Title:** Tap It Soft
@@ -55,6 +56,17 @@ describe("parseCard", () => {
     expect(() => parseCard(drill(RELEASED.replace('shot: "Dink"', 'shot: "none"')), "07-x", GOALS)).toThrow(/no tile/);
   });
 
+  it("passes volley-role through for Volley only, and stops on a missing or stray role (2026-11-13)", () => {
+    const volley = RELEASED.replace(/"Dink"/g, '"Volley"').replace('shot-variant: "Cross-court dink"', 'volley-role: "defend"');
+    const c = parseCard(drill(volley), "07-x", GOALS)!;
+    expect(c.role).toBe("defend");
+    expect(DrillPage.safeParse(c).success).toBe(true);
+    expect("role" in parseCard(drill(RELEASED), "07-x", GOALS)!).toBe(false);
+    expect(() => parseCard(drill(volley.replace('volley-role: "defend"\n', "")), "07-x", GOALS)).toThrow(/volley-role/);
+    expect(() => parseCard(drill(volley.replace('"defend"', '"offense"')), "07-x", GOALS)).toThrow(/volley-role/);
+    expect(() => parseCard(drill(RELEASED + '\nvolley-role: "attack"'), "07-x", GOALS)).toThrow(/only for Volley/);
+  });
+
   it("finds goals through also-trains, for competency filters only (2026-11-12)", () => {
     expect(goalsOfDrill({ competency: "Serve & Return", "also-trains": ["Dink"] }, GOALS)).toEqual(["dink-goal"]);
     expect(goalsOfDrill({ competency: "Serve & Return", "also-trains": ["Split-Step"] }, GOALS)).toEqual([]);
@@ -67,9 +79,44 @@ describe("parseCard", () => {
 
 describe("shots helpers", () => {
   it("slugs every shot for its URL", () => {
-    expect(shotSlug("Counter & block")).toBe("counter-and-block");
+    expect(shotSlug("A & B")).toBe("a-and-b");
     expect(shotSlug("Speed-up")).toBe("speed-up");
+    expect(shotSlug("Special shot")).toBe("special-shots");
+    expect(shotLabel("Special shot")).toBe("Special shots");
+    expect(shotLabel("Volley")).toBe("Volley");
     expect(new Set(SHOTS.map(shotSlug)).size).toBe(SHOTS.length);
+  });
+
+  it("tiles of 2026-11-13: no Footwork, no Counter & block; Serve and Return without a sentence", () => {
+    expect(SHOTS).not.toContain("Footwork");
+    expect(SHOTS).not.toContain("Counter & block");
+    expect(SHOTS).toContain("Special shot");
+    expect(SHOT_EXPLAINERS.Serve).toBeUndefined();
+    expect(SHOT_EXPLAINERS.Return).toBeUndefined();
+    for (const s of SHOTS.filter((s) => s !== "Serve" && s !== "Return")) expect(SHOT_EXPLAINERS[s], s).toBeTruthy();
+  });
+
+  // The real vault, when present (VAULT_DIR in .env.local); skipped elsewhere so CI needs no vault.
+  const vaultDir = process.env.VAULT_DIR ?? (() => {
+    const env = join(__dirname, "../.env.local");
+    return existsSync(env) ? readFileSync(env, "utf8").match(/^VAULT_DIR=(.*)$/m)?.[1]?.replace(/^["']|["']$/g, "") : undefined;
+  })();
+  it.skipIf(!vaultDir || !existsSync(join(vaultDir, "system/datenmodell.md")))("site tiles equal the vault's shot list, in order", () => {
+    expect(shotDrift(vaultDir!)).toEqual([]);
+  });
+
+  it("shotDrift reports a site/vault difference", () => {
+    const vault = mkdtempSync(join(tmpdir(), "vault-"));
+    const write = (shots: string[]) => {
+      mkdirSync(join(vault, "system"), { recursive: true });
+      writeFileSync(join(vault, "system/datenmodell.md"), "```json schema\n" + JSON.stringify({ enums: { shot: shots } }) + "\n```\n");
+    };
+    write([...SHOTS, "none"]);
+    expect(shotDrift(vault)).toEqual([]);
+    write([...SHOTS, "Footwork", "none"]);
+    expect(shotDrift(vault)[0]).toMatch(/shot tiles differ/);
+    write([...SHOTS].filter((s) => s !== "Lob").concat("none"));
+    expect(shotDrift(vault)[0]).toMatch(/shot tiles differ/);
   });
 
   it("points a drill at its own session, else at its one goal's session", () => {

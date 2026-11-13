@@ -1,0 +1,28 @@
+{
+  "id": "48",
+  "cardTitle": "Off Hand Only",
+  "shot": "Drive",
+  "tested": false,
+  "inShort": "For two-handed backhands: B takes the paddle hand off and hits off-hand forehands, to feel the hand that shapes the stroke.",
+  "rules": [
+    "B stands at the baseline. A stands at the kitchen line across the net and feeds calm balls to B's backhand side.",
+    "B takes the paddle hand off and swings with the off hand alone, like a forehand with that hand. This hand guides the paddle and puts the spin on the ball.",
+    "On the take-back, point the paddle face toward the back fence, not flat down.",
+    "Brush up the back of the ball from below, swing through and forward, and finish like a windshield wiper.",
+    "After 10–15 balls, put the paddle hand back on and keep the same brush.",
+    "Then swap roles."
+  ],
+  "tooEasy": "With both hands back on, 7 of 10 drives land cross-court behind A's kitchen. Even harder: A varies the height, from knee to shoulder.",
+  "tooHard": "A feeds slow, easy balls, and nobody counts.",
+  "goodLooksLike": "The ball leaves with topspin and dips into the court, and the paddle turns over out in front like a windshield wiper.",
+  "goals": [
+    "drives-that-hurt"
+  ],
+  "drill": {
+    "id": "48",
+    "title": "Lefty-Forehand Isolation",
+    "players": "2",
+    "watchUrl": "https://youtu.be/MCae6x-xgQg?t=28",
+    "watchLabel": "tanner.pickleball @0:28"
+  }
+}
