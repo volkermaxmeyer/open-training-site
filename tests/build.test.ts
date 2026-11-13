@@ -304,6 +304,10 @@ describe("built site", () => {
     expect(page).toMatch(new RegExp(`data-when-sum[^>]*>${D.totals.drills} drills: ${inPhase} in a phase\\. ${D.when.whole_point_drills} more play full points, see <a href="#games"[^>]*>Games</a>\\.`));
     expect(page).toContain(`+ ${D.when.between_points_plays} plans for between points and before the match.`);
     expect(page).not.toContain('class="mx"');
+    // 1.049: an opened shot shows variants, examples and sessions, no "N cues · M plans" line
+    const shotsPanel = page.slice(page.indexOf('id="shots"'), page.indexOf('id="when"'));
+    expect(shotsPanel).not.toMatch(/\d+ cues? · \d+ plans?/);
+    expect(shotsPanel).not.toContain("Cues and plans");
     expect(page).not.toContain("fonts.googleapis.com");
     expect(page).toMatch(/class="[^"]*lg:max-w-\[1120px\]/); // the shared wide frame
   });

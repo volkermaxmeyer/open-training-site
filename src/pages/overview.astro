@@ -79,7 +79,7 @@ const startTag = (g: Game) => (/\bserve\b/.test(g.start) ? "serve" : /\b(feed|fe
 
     <section class="panel" id="shots" aria-label="Shots">
       <div class="card">
-        <p class="lead">Each drill counts once, under its main shot. Cues and plans are the ones these drills train.</p>
+        <p class="lead">Each drill counts once, under its main shot.</p>
         <ul class="bars">
           {shots.map((s) => (
             <li>
@@ -89,7 +89,6 @@ const startTag = (g: Game) => (/\bserve\b/.test(g.start) ? "serve" : /\b(feed|fe
                   {s.variants.length > 0 && <div class="chips">{s.variants.map((v) => <span class="chip">{v.name}<em>{v.drills}</em></span>)}</div>}
                   <div>{s.examples.map((d) => <span class="drill"><b>{d.n}</b> {d.title}{d.tested && <span class="ok">tested</span>}</span>)}</div>
                   {sessionsOf(s.examples.map((d) => d.n)).map((x) => <a class="inses" href={`/s/${x.slug}/`}><span>In session: <b>{x.title}</b> <span class="muted">#{x.ns.join(", #")}</span>&nbsp;<span aria-hidden="true">→</span></span></a>)}
-                  {s.cues !== undefined && <div class="small muted">{num(s.cues, "cue")} · {num(s.plays ?? 0, "plan")}</div>}
                 </div>
               </details>
             </li>
