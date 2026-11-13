@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.048 · 2026-11-13 · Tidy-up: the unused colour of the old shot × moment matrix is removed (no change on the site).
 - 1.047 · 2026-11-13 · Under the hood, When tab: one bar per phase of the point (Serve, Return, Third shot, Fourth shot, Transition, At the kitchen line), split by shot, instead of the shot × moment matrix; Footwork & positioning drills shown as their own part; the 4 full-point drills in a sum line that links to Games.
 - 1.046 · 2026-11-13 · Under the hood is computed from the vault: each drill counts once, under its main shot and at one moment in the point; cues and plans are the ones these drills train. Special shots (ATP, Erne, Switcheroo, Tweener) are rows of their own, Counter & block is part of Volley, new moment Whole point; one sentence on Shots and on the matrix says how it is counted.
 - 1.045 · 2026-11-13 · Shots: new tile Special shots (Around the Post, The Switcheroo); Footwork and Counter & block tiles removed, the Counter & block drills now sit on Volley under Attack, Defend and Basics, old addresses redirect; Serve and Return pages without an explaining sentence; no "For" before the chips; 37 new player cards and cleaned text on 8 live cards; drill 18 taken offline (redirects to Shots).
