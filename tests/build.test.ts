@@ -273,14 +273,15 @@ describe("built site", () => {
 
   it("overview (2026-11-07): footer order, the About link, and the page rendered from its data at build time", () => {
     const D = JSON.parse(readFileSync(join(root, "src/data/overview.json"), "utf8"));
-    // special shots dissolved, hybrid drive under Drip (Volker 2026-11-07, Overview refreshed 2026-11-08)
-    expect(D.shots.map((s: { name: string }) => s.name)).not.toContain("Specialty shots");
-    expect(D.matrix.rows).toEqual(D.shots.map((s: { name: string }) => s.name));
+    // 1.046 (vault rule under-the-hood-counting-rule): each special shot is a row of its own, Counter & block is part of
+    // Volley, hybrid drive stays under Drip
+    const names = D.shots.map((s: { name: string }) => s.name);
+    expect(names).toEqual(expect.arrayContaining(["ATP", "Erne", "Switcheroo", "Tweener"]));
+    expect(names).not.toContain("Counter & block");
+    expect(D.matrix.rows).toEqual(names);
     const variantsOf = (n: string) => D.shots.find((s: { name: string }) => s.name === n).variants.map((v: { name: string }) => v.name);
     expect(variantsOf("Drip")).toContain("Hybrid drive");
-    expect(variantsOf("Volley")).toEqual(expect.arrayContaining(["Erne", "Switcheroo"]));
-    expect(variantsOf("Drive")).toContain("ATP (around the post)");
-    expect(variantsOf("Lob")).toContain("Tweener");
+    expect(variantsOf("Volley")).toEqual(expect.arrayContaining(["Block", "Counter"]));
     for (const f of ["index.html", "about/index.html", "overview/index.html", "s/warm-hands/index.html"]) {
       const footer = html(f).match(/<footer[\s\S]*?<\/footer>/)![0];
       expect([...footer.matchAll(/href="([^"]+)"/g)].map((m) => m[1])).toEqual(["/about/", "/overview/", "/imprint/", "/privacy/"]);

@@ -1,7 +1,7 @@
 ---
 // Training System Overview (2026-11-07): the dashboard from the vault's dashboard/ folder, brought onto the site
-// without changes to its content. Everything is rendered here at build time from src/data/overview.json (a hand-copied
-// snapshot, its date shown on the page); the script below only switches tabs and filters games. Without JavaScript all
+// without changes to its content. Everything is rendered here at build time from src/data/overview.json (computed by the vault's
+// app/tooling/count-overview.py since 1.046, its date shown on the page); the script below only switches tabs and filters games. Without JavaScript all
 // four panels show one under the other and the tab links jump to them.
 import Base from "../layouts/Base.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
@@ -71,6 +71,7 @@ const startTag = (g: Game) => (/\bserve\b/.test(g.start) ? "serve" : /\b(feed|fe
 
     <section class="panel" id="shots" aria-label="Shots">
       <div class="card">
+        <p class="lead">Each drill counts once, under its main shot. Cues and plans are the ones these drills train.</p>
         <ul class="bars">
           {shots.map((s) => (
             <li>
@@ -98,7 +99,7 @@ const startTag = (g: Game) => (/\bserve\b/.test(g.start) ? "serve" : /\b(feed|fe
       </div>
       <div class="card">
         <h2>Which shot, when</h2>
-        <p class="lead">Number of drills per shot and moment in the point. A dot means no drill yet. A drill can train several shots and moments, so it can count in more than one cell.</p>
+        <p class="lead">Number of drills per shot and moment in the point. A dot means no drill yet. Each drill counts once: under its main shot, at the moment that shot is played.</p>
         <div class="scroll">
           <table class="mx">
             <thead><tr><th></th>{D.matrix.cols.map((c) => <th scope="col" title={c}><span class="d">{short[c]}</span><span class="m">{tiny[c] ?? short[c]}</span></th>)}</tr></thead>
@@ -241,7 +242,7 @@ const startTag = (g: Game) => (/\bserve\b/.test(g.start) ? "serve" : /\b(feed|fe
   .mx td.z { color: var(--color-ink-soft); font-weight: 600; }
   .mxkey { display: none; flex-wrap: wrap; gap: 4px 14px; font-size: 14px; }
   .mxkey b { font-family: var(--font-head); }
-  .moments { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
+  .moments { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; }
   .mo { border: 2px solid var(--color-ink); padding: 8px 10px; display: grid; gap: 2px; background: var(--color-card); }
   .mo b { font: 700 24px/1 var(--font-head); }
   .mo span { font: 600 14px/1.2 var(--font-head); }

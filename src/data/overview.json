@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-12",
+ "as_of": "2026-11-13",
  "totals": {
   "drills": 119,
   "tested": 11,
@@ -14,9 +14,9 @@
  "shots": [
   {
    "name": "Dink",
-   "drills": 26,
-   "cues": 24,
-   "plays": 9,
+   "drills": 24,
+   "cues": 16,
+   "plays": 6,
    "examples": [
     {
      "n": "80",
@@ -36,17 +36,6 @@
    ],
    "variants": [
     {
-     "name": "Cross-court dink",
-     "drills": 2,
-     "examples": [
-      {
-       "n": "113",
-       "title": "Dinkles (Two Balls → Live Conversion)",
-       "tested": true
-      }
-     ]
-    },
-    {
      "name": "Topspin dink",
      "drills": 2,
      "examples": [
@@ -54,12 +43,17 @@
        "n": "28",
        "title": "Two-Handed Backhand Dink Progression Drill (Introducing the Two-y)",
        "tested": false
+      },
+      {
+       "n": "120",
+       "title": "Inside-Out Roll Placement (Left Side)",
+       "tested": false
       }
      ]
     },
     {
      "name": "Backhand dink",
-     "drills": 2,
+     "drills": 1,
      "examples": [
       {
        "n": "25",
@@ -69,56 +63,12 @@
      ]
     },
     {
-     "name": "Slice / underspin dink",
+     "name": "Cross-court dink",
      "drills": 1,
      "examples": [
       {
-       "n": "89",
-       "title": "Spin-Continuation Dink Drill (Topspin vs Underspin)",
-       "tested": false
-      }
-     ]
-    },
-    {
-     "name": "Dead dink",
-     "drills": 2,
-     "examples": [
-      {
-       "n": "37",
-       "title": "Dead-Dink → Speedup → Hands Battle",
-       "tested": false
-      }
-     ]
-    },
-    {
-     "name": "Dink volley",
-     "drills": 1,
-     "examples": [
-      {
-       "n": "26",
-       "title": "Dink-Volley Decision Drill (3 Contact Zones)",
-       "tested": false
-      }
-     ]
-    },
-    {
-     "name": "Middle dink",
-     "drills": 1,
-     "examples": [
-      {
-       "n": "87",
-       "title": "Middle-Dink Offense Drill",
-       "tested": false
-      }
-     ]
-    },
-    {
-     "name": "Step-back dink",
-     "drills": 1,
-     "examples": [
-      {
-       "n": "26",
-       "title": "Dink-Volley Decision Drill (3 Contact Zones)",
+       "n": "24",
+       "title": "Cross-Court Dink Rally with Target Zone",
        "tested": false
       }
      ]
@@ -127,8 +77,8 @@
   },
   {
    "name": "Volley",
-   "drills": 23,
-   "cues": 15,
+   "drills": 21,
+   "cues": 20,
    "plays": 3,
    "examples": [
     {
@@ -149,20 +99,46 @@
    ],
    "variants": [
     {
-     "name": "Punch volley",
-     "drills": 1,
+     "name": "Block",
+     "drills": 2,
      "examples": [
       {
-       "n": "15",
-       "title": "4th-Shot-Volley Gauntlet (2 Players, NVZ Side Under Pressure)",
-       "tested": true
+       "n": "30",
+       "title": "Hard Ball – Progressive Drive Block",
+       "tested": false
+      },
+      {
+       "n": "35",
+       "title": "Soft Hands Progression – Block Volley from the Kitchen to Midcourt",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Flick",
+     "drills": 2,
+     "examples": [
+      {
+       "n": "65",
+       "title": "Flick/Roll Deception out of the Dink",
+       "tested": false
+      },
+      {
+       "n": "121",
+       "title": "Backhand Flick out of the Dink (Gabe Tardio)",
+       "tested": false
       }
      ]
     },
     {
      "name": "Roll volley",
-     "drills": 4,
+     "drills": 2,
      "examples": [
+      {
+       "n": "14",
+       "title": "4th-Shot Step-Back Drill",
+       "tested": true
+      },
       {
        "n": "44",
        "title": "Roll Volley Drill — Transition Zone Attack",
@@ -171,12 +147,34 @@
      ]
     },
     {
-     "name": "Flick",
+     "name": "Backhand slide",
      "drills": 1,
      "examples": [
       {
-       "n": "65",
-       "title": "Flick/Roll Deception out of the Dink",
+       "n": "42",
+       "title": "Colin Slide / Backhand Counter Drill",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Counter",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "70",
+       "title": "Triangle-Theory / Two-Ball Drill",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Poach",
+     "drills": 1,
+     "examples": [
+      {
+       "n": "112",
+       "title": "Four Players, Four Shots (Role Drill with Poach)",
        "tested": false
       }
      ]
@@ -191,99 +189,49 @@
        "tested": false
       }
      ]
-    },
-    {
-     "name": "Block volley",
-     "drills": 1,
-     "examples": [
-      {
-       "n": "35",
-       "title": "Soft Hands Progression – Block Volley from the Kitchen to Midcourt",
-       "tested": false
-      }
-     ]
-    },
-    {
-     "name": "Half-volley",
-     "drills": 2,
-     "examples": [
-      {
-       "n": "14",
-       "title": "4th-Shot Step-Back Drill",
-       "tested": true
-      }
-     ]
-    },
-    {
-     "name": "Poke",
-     "drills": 0,
-     "examples": []
-    },
-    {
-     "name": "Poach",
-     "drills": 3,
-     "examples": [
-      {
-       "n": "16",
-       "title": "Shake & Bake with Poach Timing",
-       "tested": false
-      }
-     ]
-    },
-    {
-     "name": "Erne",
-     "drills": 2,
-     "examples": [
-      {
-       "n": "68",
-       "title": "Ernie Anticipation Drill",
-       "tested": false
-      }
-     ]
-    },
-    {
-     "name": "Switcheroo",
-     "drills": 1,
-     "examples": [
-      {
-       "n": "119",
-       "title": "Switcheroo — Off-Hand Deception Progression",
-       "tested": false
-      }
-     ]
     }
    ]
   },
   {
    "name": "Reset",
-   "drills": 17,
-   "cues": 37,
-   "plays": 7,
+   "drills": 10,
+   "cues": 10,
+   "plays": 1,
    "examples": [
-    {
-     "n": "18",
-     "title": "Split-Step Ladder",
-     "tested": true
-    },
     {
      "n": "22",
      "title": "Survival Points (Progressive Reset Stress Test)",
      "tested": true
     },
     {
-     "n": "47",
-     "title": "7-11 Game (Half-Court Transition)",
-     "tested": true
+     "n": "19",
+     "title": "Transition-Hold (7-11 Scoring)",
+     "tested": false
+    },
+    {
+     "n": "20",
+     "title": "Bounce-or-Air Decision Drill",
+     "tested": false
     }
    ],
    "variants": [
     {
      "name": "Transition reset",
-     "drills": 3,
+     "drills": 7,
      "examples": [
+      {
+       "n": "22",
+       "title": "Survival Points (Progressive Reset Stress Test)",
+       "tested": true
+      },
       {
        "n": "19",
        "title": "Transition-Hold (7-11 Scoring)",
+       "tested": false
+      },
+      {
+       "n": "20",
+       "title": "Bounce-or-Air Decision Drill",
        "tested": false
       }
      ]
@@ -292,9 +240,9 @@
   },
   {
    "name": "Drop",
-   "drills": 12,
-   "cues": 33,
-   "plays": 7,
+   "drills": 10,
+   "cues": 9,
+   "plays": 2,
    "examples": [
     {
      "n": "84",
@@ -323,72 +271,15 @@
        "tested": false
       }
      ]
-    },
-    {
-     "name": "Topspin drop",
-     "drills": 1,
-     "examples": [
-      {
-       "n": "50",
-       "title": "Drive–Drop Combo (3rd–5th Shot Sequence)",
-       "tested": false
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "name": "Speed-up",
-   "drills": 12,
-   "cues": 24,
-   "plays": 6,
-   "examples": [
-    {
-     "n": "31",
-     "title": "Speed-Up Game (one-sided) – Counter off the Dink Pattern",
-     "tested": false
-    },
-    {
-     "n": "37",
-     "title": "Dead-Dink → Speedup → Hands Battle",
-     "tested": false
-    },
-    {
-     "n": "38",
-     "title": "Paranoid Dink → Live Speedup",
-     "tested": false
-    }
-   ],
-   "variants": [
-    {
-     "name": "Cross-body speed-up",
-     "drills": 1,
-     "examples": [
-      {
-       "n": "66",
-       "title": "Cross-Body Speed-up (Dead-Dink Trigger)",
-       "tested": false
-      }
-     ]
-    },
-    {
-     "name": "Body shot",
-     "drills": 0,
-     "examples": []
     }
    ]
   },
   {
    "name": "Drive",
-   "drills": 11,
-   "cues": 30,
-   "plays": 9,
+   "drills": 7,
+   "cues": 2,
+   "plays": 0,
    "examples": [
-    {
-     "n": "11",
-     "title": "Drive → 5th-Shot-Drop Sequence (2 Players, Live)",
-     "tested": false
-    },
     {
      "n": "13",
      "title": "Drive Target Drill: Three Targets",
@@ -398,118 +289,44 @@
      "n": "48",
      "title": "Lefty-Forehand Isolation",
      "tested": false
+    },
+    {
+     "n": "49",
+     "title": "T-Rex Drill: Body-Arm Connection",
+     "tested": false
     }
    ],
-   "variants": [
-    {
-     "name": "Topspin drive",
-     "drills": 1,
-     "examples": [
-      {
-       "n": "48",
-       "title": "Lefty-Forehand Isolation",
-       "tested": false
-      }
-     ]
-    },
-    {
-     "name": "Down-the-line drive",
-     "drills": 1,
-     "examples": [
-      {
-       "n": "101",
-       "title": "First Four Shots — Down-the-Line Drive Chain (Worst-Case Reps)",
-       "tested": false
-      }
-     ]
-    },
-    {
-     "name": "ATP (around the post)",
-     "drills": 1,
-     "examples": [
-      {
-       "n": "105",
-       "title": "ATP Cooperative Rally & Defense",
-       "tested": false
-      }
-     ]
-    }
-   ]
+   "variants": []
   },
   {
-   "name": "Counter & block",
-   "drills": 11,
-   "cues": 23,
-   "plays": 8,
+   "name": "Speed-up",
+   "drills": 5,
+   "cues": 6,
+   "plays": 1,
    "examples": [
     {
-     "n": "14",
-     "title": "4th-Shot Step-Back Drill",
-     "tested": true
-    },
-    {
-     "n": "21",
-     "title": "Stoplight Paddle-Reading",
+     "n": "37",
+     "title": "Dead-Dink → Speedup → Hands Battle",
      "tested": false
     },
     {
-     "n": "30",
-     "title": "Hard Ball – Progressive Drive Block",
+     "n": "40",
+     "title": "Spot-Targeting Speedup (5 Spots)",
+     "tested": false
+    },
+    {
+     "n": "66",
+     "title": "Cross-Body Speed-up (Dead-Dink Trigger)",
      "tested": false
     }
    ],
-   "variants": [
-    {
-     "name": "Counter",
-     "drills": 8,
-     "examples": [
-      {
-       "n": "21",
-       "title": "Stoplight Paddle-Reading",
-       "tested": false
-      }
-     ]
-    },
-    {
-     "name": "Block",
-     "drills": 2,
-     "examples": [
-      {
-       "n": "30",
-       "title": "Hard Ball – Progressive Drive Block",
-       "tested": false
-      }
-     ]
-    },
-    {
-     "name": "Push counter",
-     "drills": 1,
-     "examples": [
-      {
-       "n": "34",
-       "title": "Firefight Sandwich – 5 Shot Types under Pressure",
-       "tested": false
-      }
-     ]
-    },
-    {
-     "name": "Backhand slide",
-     "drills": 2,
-     "examples": [
-      {
-       "n": "42",
-       "title": "Colin Slide / Backhand Counter Drill",
-       "tested": false
-      }
-     ]
-    }
-   ]
+   "variants": []
   },
   {
    "name": "Lob",
-   "drills": 4,
-   "cues": 13,
-   "plays": 2,
+   "drills": 3,
+   "cues": 6,
+   "plays": 0,
    "examples": [
     {
      "n": "67",
@@ -536,17 +353,17 @@
        "n": "67",
        "title": "Offensive Kitchen Lob (Attack-Ball Context)",
        "tested": false
+      },
+      {
+       "n": "99",
+       "title": "Lob ↔ Overhead Duel (Live-After-Lob)",
+       "tested": false
       }
      ]
     },
     {
-     "name": "Defensive lob",
-     "drills": 0,
-     "examples": []
-    },
-    {
      "name": "Lob retrieval",
-     "drills": 2,
+     "drills": 1,
      "examples": [
       {
        "n": "98",
@@ -554,53 +371,23 @@
        "tested": false
       }
      ]
-    },
-    {
-     "name": "Tweener",
-     "drills": 1,
-     "examples": [
-      {
-       "n": "104",
-       "title": "Tweener Forced-Return Live Point",
-       "tested": false
-      }
-     ]
     }
    ]
   },
   {
-   "name": "Overhead",
-   "drills": 2,
-   "cues": 8,
-   "plays": 3,
-   "examples": [
-    {
-     "n": "64",
-     "title": "Throwing → Overhead Connection",
-     "tested": false
-    },
-    {
-     "n": "99",
-     "title": "Lob ↔ Overhead Duel (Live-After-Lob)",
-     "tested": false
-    }
-   ],
-   "variants": []
-  },
-  {
    "name": "Drip",
    "drills": 2,
-   "cues": 3,
-   "plays": 2,
+   "cues": 2,
+   "plays": 1,
    "examples": [
-    {
-     "n": "115",
-     "title": "Third-Shot Drip (Reps → Steal Time → Mix & Drip)",
-     "tested": false
-    },
     {
      "n": "17",
      "title": "Hybrid-Drive Drill with Cone Targets",
+     "tested": false
+    },
+    {
+     "n": "115",
+     "title": "Third-Shot Drip (Reps → Steal Time → Mix & Drip)",
      "tested": false
     }
    ],
@@ -617,20 +404,95 @@
      ]
     }
    ]
+  },
+  {
+   "name": "Overhead",
+   "drills": 1,
+   "cues": 0,
+   "plays": 0,
+   "examples": [
+    {
+     "n": "64",
+     "title": "Throwing → Overhead Connection",
+     "tested": false
+    }
+   ],
+   "variants": []
+  },
+  {
+   "name": "ATP",
+   "drills": 1,
+   "cues": 2,
+   "plays": 0,
+   "examples": [
+    {
+     "n": "105",
+     "title": "ATP Cooperative Rally & Defense",
+     "tested": false
+    }
+   ],
+   "variants": []
+  },
+  {
+   "name": "Erne",
+   "drills": 2,
+   "cues": 2,
+   "plays": 1,
+   "examples": [
+    {
+     "n": "68",
+     "title": "Ernie Anticipation Drill",
+     "tested": false
+    },
+    {
+     "n": "103",
+     "title": "Ernie Live-Point Game",
+     "tested": false
+    }
+   ],
+   "variants": []
+  },
+  {
+   "name": "Switcheroo",
+   "drills": 1,
+   "cues": 0,
+   "plays": 0,
+   "examples": [
+    {
+     "n": "119",
+     "title": "Switcheroo — Off-Hand Deception Progression",
+     "tested": false
+    }
+   ],
+   "variants": []
+  },
+  {
+   "name": "Tweener",
+   "drills": 1,
+   "cues": 1,
+   "plays": 0,
+   "examples": [
+    {
+     "n": "104",
+     "title": "Tweener Forced-Return Live Point",
+     "tested": false
+    }
+   ],
+   "variants": []
   }
  ],
  "serve_return": [
   {
    "name": "Serve",
-   "drills": 7,
+   "drills": 4,
    "variants": [
+    {
+     "name": "Power serve",
+     "drills": 2
+    },
     {
      "name": "Deep serve",
      "drills": 1
-    },
-    {
-     "name": "Power serve",
-     "drills": 3
     }
    ],
    "examples": [
@@ -640,44 +502,35 @@
      "tested": true
     },
     {
-     "n": "84",
-     "title": "Serve–Return–Third (Three-Shot Sequence)",
-     "tested": true
-    },
-    {
      "n": "01",
      "title": "Step-In Serve Drill (Martínez Vic Drill)",
+     "tested": false
+    },
+    {
+     "n": "107",
+     "title": "Serve Power Mechanics (Base → Extension → Rotation)",
      "tested": false
     }
    ]
   },
   {
    "name": "Return",
-   "drills": 10,
+   "drills": 6,
    "variants": [
     {
      "name": "Deep return",
-     "drills": 1
-    },
-    {
-     "name": "Slice return",
      "drills": 2
-    },
-    {
-     "name": "Topspin return",
-     "drills": 0
     },
     {
      "name": "Return placement",
      "drills": 2
+    },
+    {
+     "name": "Slice return",
+     "drills": 1
     }
    ],
    "examples": [
-    {
-     "n": "84",
-     "title": "Serve–Return–Third (Three-Shot Sequence)",
-     "tested": true
-    },
     {
      "n": "97",
      "title": "Return Depth (Back Third)",
@@ -687,6 +540,11 @@
      "n": "02",
      "title": "Return–Sprint–Split-Step Sequence (Serve-Return Live)",
      "tested": false
+    },
+    {
+     "n": "03",
+     "title": "Topspin vs. Slice Return Comparison",
+     "tested": false
     }
    ]
   }
@@ -694,17 +552,17 @@
  "moments": [
   {
    "name": "Serve",
-   "drills": 9,
+   "drills": 5,
    "plays": 4
   },
   {
    "name": "Return",
-   "drills": 12,
-   "plays": 5
+   "drills": 7,
+   "plays": 6
   },
   {
    "name": "Third ball",
-   "drills": 18,
+   "drills": 21,
    "plays": 2
   },
   {
@@ -719,8 +577,13 @@
   },
   {
    "name": "At the kitchen",
-   "drills": 48,
-   "plays": 12
+   "drills": 57,
+   "plays": 16
+  },
+  {
+   "name": "Whole point",
+   "drills": 3,
+   "plays": 0
   }
  ],
  "matrix": {
@@ -729,12 +592,15 @@
    "Volley",
    "Reset",
    "Drop",
-   "Speed-up",
    "Drive",
-   "Counter & block",
+   "Speed-up",
    "Lob",
+   "Drip",
    "Overhead",
-   "Drip"
+   "ATP",
+   "Erne",
+   "Switcheroo",
+   "Tweener"
   ],
   "cols": [
    "Return",
@@ -749,27 +615,34 @@
     0,
     0,
     0,
-    26
+    24
    ],
    [
-    2,
+    0,
+    0,
+    5,
+    5,
+    11
+   ],
+   [
+    0,
     1,
-    4,
+    0,
+    8,
+    1
+   ],
+   [
+    0,
+    10,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
     7,
-    10
-   ],
-   [
     0,
-    1,
     0,
-    13,
-    3
-   ],
-   [
-    1,
-    12,
-    0,
-    2,
     0
    ],
    [
@@ -777,21 +650,35 @@
     0,
     0,
     0,
-    12
+    5
    ],
    [
+    0,
+    0,
+    0,
+    0,
+    3
+   ],
+   [
+    0,
     2,
-    7,
-    2,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
     0,
     1
    ],
    [
-    1,
-    1,
-    2,
-    1,
-    7
+    0,
+    0,
+    0,
+    0,
+    1
    ],
    [
     0,
@@ -809,10 +696,10 @@
    ],
    [
     0,
-    2,
     0,
     0,
-    0
+    0,
+    1
    ]
   ]
  },

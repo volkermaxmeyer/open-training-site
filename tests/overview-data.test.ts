@@ -21,6 +21,18 @@ describe("overview data", () => {
     expect(D.matrix.cells.flat().every((n: unknown) => Number.isInteger(n) && (n as number) >= 0)).toBe(true);
   });
 
+  it("counts each drill once (1.046, vault rule under-the-hood-counting-rule)", () => {
+    type Row = { name: string; drills: number };
+    const rows = [...D.shots, ...D.serve_return] as Row[];
+    expect(rows.reduce((n, r) => n + r.drills, 0)).toBeLessThanOrEqual(D.totals.drills);
+    expect(D.moments.reduce((n: number, m: Row) => n + m.drills, 0)).toBe(D.totals.drills);
+    D.matrix.rows.forEach((name: string, i: number) => {
+      const row = (D.shots as Row[]).find((s) => s.name === name);
+      expect(row, name).toBeDefined();
+      expect(D.matrix.cells[i].reduce((n: number, c: number) => n + c, 0)).toBeLessThanOrEqual(row!.drills);
+    });
+  });
+
   it("carries a date, and nothing private or external", () => {
     expect(D.as_of).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     // Vault markup, links and addresses: the repository is public. Local paths and account names are left to the push
