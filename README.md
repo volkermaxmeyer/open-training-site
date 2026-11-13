@@ -114,6 +114,10 @@ git config core.hooksPath .githooks
 
 The hook lives in each clone, and `git push --no-verify` skips it. Both are accepted risks.
 
+Before a release with code changes, run `npx tsx scripts/guard.ts` by hand. The markup check also hits code (a nested
+array that opened with two square brackets in an `.astro` file stopped 1.045), and fixing it in a later commit is not enough, since the push
+scans every commit: rewrite it before the first commit, or squash the unpushed commits.
+
 ## Development
 
 Node 24 (`.nvmrc`).
