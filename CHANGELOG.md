@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.049 · 2026-11-13 · Under the hood, Shots tab: an opened shot shows its variants, example drills and sessions without the cues and plans line; the lead keeps only "Each drill counts once, under its main shot."
 - 1.048 · 2026-11-13 · Tidy-up: the unused colour of the old shot × moment matrix is removed (no change on the site).
 - 1.047 · 2026-11-13 · Under the hood, When tab: one bar per phase of the point (Serve, Return, Third shot, Fourth shot, Transition, At the kitchen line), split by shot, instead of the shot × moment matrix; Footwork & positioning drills shown as their own part; the 4 full-point drills in a sum line that links to Games.
 - 1.046 · 2026-11-13 · Under the hood is computed from the vault: each drill counts once, under its main shot and at one moment in the point; cues and plans are the ones these drills train. Special shots (ATP, Erne, Switcheroo, Tweener) are rows of their own, Counter & block is part of Volley, new moment Whole point; one sentence on Shots and on the matrix says how it is counted.
