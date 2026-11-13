@@ -278,7 +278,6 @@ describe("built site", () => {
     const names = D.shots.map((s: { name: string }) => s.name);
     expect(names).toEqual(expect.arrayContaining(["ATP", "Erne", "Switcheroo", "Tweener"]));
     expect(names).not.toContain("Counter & block");
-    expect(D.matrix.rows).toEqual(names);
     const variantsOf = (n: string) => D.shots.find((s: { name: string }) => s.name === n).variants.map((v: { name: string }) => v.name);
     expect(variantsOf("Drip")).toContain("Hybrid drive");
     expect(variantsOf("Volley")).toEqual(expect.arrayContaining(["Block", "Counter"]));
@@ -298,6 +297,13 @@ describe("built site", () => {
     expect(page.match(/<article class="combo/g)).toHaveLength(D.combos.length);
     for (const id of ["shots", "when", "combos", "games"]) expect(page).toMatch(new RegExp(`<section[^>]*id="${id}"`));
     expect(page).not.toMatch(/id="(shots|when|combos|games)"[^>]*hidden/); // all panels visible without JavaScript
+    // When tab (1.047): six phase bars with the players' names, the sum line adds up to the totals and links to Games, no matrix
+    expect(page.match(/<li data-phase=/g)).toHaveLength(6);
+    for (const n of ["Third shot", "Fourth shot", "At the kitchen line"]) expect(page).toContain(`>${n}<`);
+    const inPhase = D.when.phases.reduce((n: number, p: { drills: number }) => n + p.drills, 0);
+    expect(page).toMatch(new RegExp(`data-when-sum[^>]*>${D.totals.drills} drills: ${inPhase} in a phase\\. ${D.when.whole_point_drills} more play full points, see <a href="#games"[^>]*>Games</a>\\.`));
+    expect(page).toContain(`+ ${D.when.between_points_plays} plans for between points and before the match.`);
+    expect(page).not.toContain('class="mx"');
     expect(page).not.toContain("fonts.googleapis.com");
     expect(page).toMatch(/class="[^"]*lg:max-w-\[1120px\]/); // the shared wide frame
   });

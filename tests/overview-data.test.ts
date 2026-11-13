@@ -15,22 +15,27 @@ describe("overview data", () => {
     expect(D.games.filter((g: { tested: boolean }) => g.tested).length).toBeLessThanOrEqual(D.totals.tested);
   });
 
-  it("the matrix has one row of cells per shot and one cell per moment", () => {
-    expect(D.matrix.cells).toHaveLength(D.matrix.rows.length);
-    for (const row of D.matrix.cells) expect(row).toHaveLength(D.matrix.cols.length);
-    expect(D.matrix.cells.flat().every((n: unknown) => Number.isInteger(n) && (n as number) >= 0)).toBe(true);
-  });
-
-  it("counts each drill once (1.046, vault rule under-the-hood-counting-rule)", () => {
+  it("counts each drill once (vault rule under-the-hood-counting-rule)", () => {
     type Row = { name: string; drills: number };
     const rows = [...D.shots, ...D.serve_return] as Row[];
     expect(rows.reduce((n, r) => n + r.drills, 0)).toBeLessThanOrEqual(D.totals.drills);
-    expect(D.moments.reduce((n: number, m: Row) => n + m.drills, 0)).toBe(D.totals.drills);
-    D.matrix.rows.forEach((name: string, i: number) => {
-      const row = (D.shots as Row[]).find((s) => s.name === name);
-      expect(row, name).toBeDefined();
-      expect(D.matrix.cells[i].reduce((n: number, c: number) => n + c, 0)).toBeLessThanOrEqual(row!.drills);
-    });
+  });
+
+  it("When tab (1.047): parts add up per phase, phases + full points = all drills, plans add up", () => {
+    type Part = { name: string; drills: number; kind: string };
+    type Phase = { name: string; drills: number; tested: number; plays: number; parts: Part[] };
+    const W = D.when;
+    expect(W.phases.map((p: Phase) => p.name)).toEqual(["Serve", "Return", "Third ball", "Fourth ball", "Transition", "At the kitchen"]);
+    for (const p of W.phases as Phase[]) {
+      expect(p.parts.reduce((n, x) => n + x.drills, 0), p.name).toBe(p.drills);
+      expect(p.parts.every((x) => ["shot", "footwork"].includes(x.kind) && x.drills > 0), p.name).toBe(true);
+      expect(p.tested).toBeLessThanOrEqual(p.drills);
+    }
+    expect(W.phases.reduce((n: number, p: Phase) => n + p.drills, 0) + W.whole_point_drills).toBe(D.totals.drills);
+    expect(W.phases.reduce((n: number, p: Phase) => n + p.tested, 0) + W.whole_point_tested).toBe(D.totals.tested);
+    expect(W.phases.reduce((n: number, p: Phase) => n + p.plays, 0) + W.between_points_plays).toBe(D.totals.plays);
+    expect(D.matrix).toBeUndefined();
+    expect(D.moments).toBeUndefined();
   });
 
   it("carries a date, and nothing private or external", () => {

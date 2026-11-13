@@ -43,11 +43,11 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
 | Page | `--color-paper` | page background (periwinkle) |
 | Card | `--color-card` | stage cards, session list items |
 | Text on dark | `--color-on-ink` | text on `--color-ink` buttons |
-| Stage blocks | `--color-stage-1`, `--color-stage-2`, `--color-stage-3` | the number block of each stage card (blue, purple, yellow) |
-| Go | `--color-go` | the feedback button (neon green) |
+| Stage blocks | `--color-stage-1`, `--color-stage-2`, `--color-stage-3` | the number block of each stage card (blue, purple, yellow); `--color-stage-3` also marks the "Footwork & positioning" parts in the When tab bars of "Under the hood" (1.047) |
+| Go | `--color-go` | the feedback button (neon green); also the shot parts in the When tab bars of "Under the hood" (1.047) |
 | Warn | `--color-warn` | the one-line four-on-court rule and the chips for a drill that needs more people (light red, ink text) |
 | Chip | `--color-chip` | player-count chips (light periwinkle, ink text) |
-| Heat | `--color-heat` | the strongest cell of the Overview's shot × moment matrix; weaker cells mix it with `--color-card`, so ink text stays at 7:1 on every step (2026-11-07) |
+| Heat | `--color-heat` | unused since 1.047: it coloured the Overview's shot × moment matrix, which the When tab bars replaced |
 
 ## Type
 
@@ -60,6 +60,7 @@ Deviations from Y2K, each for the 7:1 rule or a site constraint:
   letter-spaced. Above the session title, the home page goal as such a label (2026-11-07), so the two names read as one.
 - **Overview** (`/overview/`, labelled **"Under the hood"** in footer, breadcrumb, About link and heading since 1.043; the address stays; a dense page for iPad and desktop): nothing below 14 px; from tablet width 18 px base and
   16 px for running text, uppercase labels stay 14 px. Drill names are plain lines; only links carry border and shadow.
+  When tab (1.047): six phase tiles, then one bar per phase split by shot (`--color-go`, 2 px ink dividers) and "Footwork & positioning" (`--color-stage-3`); not expandable. Phone: name and count above a full-width bar, every part listed below. From 700 px: name · bar · count, parts labelled where they fit, the rest after a "+". A sum line links to Games for the 4 full-point drills.
 
 ## Shapes
 

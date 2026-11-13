@@ -549,160 +549,6 @@
    ]
   }
  ],
- "moments": [
-  {
-   "name": "Serve",
-   "drills": 5,
-   "plays": 4
-  },
-  {
-   "name": "Return",
-   "drills": 7,
-   "plays": 6
-  },
-  {
-   "name": "Third ball",
-   "drills": 21,
-   "plays": 2
-  },
-  {
-   "name": "Fourth ball",
-   "drills": 5,
-   "plays": 0
-  },
-  {
-   "name": "Transition",
-   "drills": 21,
-   "plays": 3
-  },
-  {
-   "name": "At the kitchen",
-   "drills": 57,
-   "plays": 16
-  },
-  {
-   "name": "Whole point",
-   "drills": 3,
-   "plays": 0
-  }
- ],
- "matrix": {
-  "rows": [
-   "Dink",
-   "Volley",
-   "Reset",
-   "Drop",
-   "Drive",
-   "Speed-up",
-   "Lob",
-   "Drip",
-   "Overhead",
-   "ATP",
-   "Erne",
-   "Switcheroo",
-   "Tweener"
-  ],
-  "cols": [
-   "Return",
-   "Third ball",
-   "Fourth ball",
-   "Transition",
-   "At the kitchen"
-  ],
-  "cells": [
-   [
-    0,
-    0,
-    0,
-    0,
-    24
-   ],
-   [
-    0,
-    0,
-    5,
-    5,
-    11
-   ],
-   [
-    0,
-    1,
-    0,
-    8,
-    1
-   ],
-   [
-    0,
-    10,
-    0,
-    0,
-    0
-   ],
-   [
-    0,
-    7,
-    0,
-    0,
-    0
-   ],
-   [
-    0,
-    0,
-    0,
-    0,
-    5
-   ],
-   [
-    0,
-    0,
-    0,
-    0,
-    3
-   ],
-   [
-    0,
-    2,
-    0,
-    0,
-    0
-   ],
-   [
-    0,
-    0,
-    0,
-    0,
-    1
-   ],
-   [
-    0,
-    0,
-    0,
-    0,
-    1
-   ],
-   [
-    0,
-    0,
-    0,
-    0,
-    2
-   ],
-   [
-    0,
-    0,
-    0,
-    0,
-    1
-   ],
-   [
-    0,
-    0,
-    0,
-    0,
-    1
-   ]
-  ]
- },
  "combos": [
   {
    "name": "Serve → Third",
@@ -1471,5 +1317,180 @@
    "court": "1 vs 2",
    "players": "3"
   }
- ]
+ ],
+ "when": {
+  "phases": [
+   {
+    "name": "Serve",
+    "drills": 5,
+    "tested": 1,
+    "plays": 4,
+    "parts": [
+     {
+      "name": "Serve",
+      "drills": 4,
+      "kind": "shot"
+     },
+     {
+      "name": "Footwork & positioning",
+      "drills": 1,
+      "kind": "footwork"
+     }
+    ]
+   },
+   {
+    "name": "Return",
+    "drills": 7,
+    "tested": 1,
+    "plays": 6,
+    "parts": [
+     {
+      "name": "Return",
+      "drills": 6,
+      "kind": "shot"
+     },
+     {
+      "name": "Footwork & positioning",
+      "drills": 1,
+      "kind": "footwork"
+     }
+    ]
+   },
+   {
+    "name": "Third ball",
+    "drills": 21,
+    "tested": 1,
+    "plays": 2,
+    "parts": [
+     {
+      "name": "Drop",
+      "drills": 10,
+      "kind": "shot"
+     },
+     {
+      "name": "Drive",
+      "drills": 7,
+      "kind": "shot"
+     },
+     {
+      "name": "Drip",
+      "drills": 2,
+      "kind": "shot"
+     },
+     {
+      "name": "Reset",
+      "drills": 1,
+      "kind": "shot"
+     },
+     {
+      "name": "Footwork & positioning",
+      "drills": 1,
+      "kind": "footwork"
+     }
+    ]
+   },
+   {
+    "name": "Fourth ball",
+    "drills": 5,
+    "tested": 2,
+    "plays": 0,
+    "parts": [
+     {
+      "name": "Volley",
+      "drills": 5,
+      "kind": "shot"
+     }
+    ]
+   },
+   {
+    "name": "Transition",
+    "drills": 20,
+    "tested": 2,
+    "plays": 3,
+    "parts": [
+     {
+      "name": "Reset",
+      "drills": 8,
+      "kind": "shot"
+     },
+     {
+      "name": "Volley",
+      "drills": 5,
+      "kind": "shot"
+     },
+     {
+      "name": "Footwork & positioning",
+      "drills": 7,
+      "kind": "footwork"
+     }
+    ]
+   },
+   {
+    "name": "At the kitchen",
+    "drills": 57,
+    "tested": 3,
+    "plays": 16,
+    "parts": [
+     {
+      "name": "Dink",
+      "drills": 24,
+      "kind": "shot"
+     },
+     {
+      "name": "Volley",
+      "drills": 11,
+      "kind": "shot"
+     },
+     {
+      "name": "Speed-up",
+      "drills": 5,
+      "kind": "shot"
+     },
+     {
+      "name": "Lob",
+      "drills": 3,
+      "kind": "shot"
+     },
+     {
+      "name": "Erne",
+      "drills": 2,
+      "kind": "shot"
+     },
+     {
+      "name": "Reset",
+      "drills": 1,
+      "kind": "shot"
+     },
+     {
+      "name": "Overhead",
+      "drills": 1,
+      "kind": "shot"
+     },
+     {
+      "name": "ATP",
+      "drills": 1,
+      "kind": "shot"
+     },
+     {
+      "name": "Switcheroo",
+      "drills": 1,
+      "kind": "shot"
+     },
+     {
+      "name": "Tweener",
+      "drills": 1,
+      "kind": "shot"
+     },
+     {
+      "name": "Footwork & positioning",
+      "drills": 7,
+      "kind": "footwork"
+     }
+    ]
+   }
+  ],
+  "between_points_plays": 9,
+  "whole_point_drills": 4,
+  "whole_point_tested": 1
+ }
 }
