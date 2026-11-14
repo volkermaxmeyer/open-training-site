@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.053 · 2026-11-14 · Under the hood counts 120 drills: drill 123 (Volley, Counter, at the kitchen line) added by the vault count.
 - 1.052 · 2026-11-14 · Redirect /s/fast-hands/ to /s/survive-the-speed-up/; a test now fails if a live session uses a redirected slug (a slug is never reused).
 - 1.051 · 2026-11-14 · Sessions published or updated: soft-third, survive-the-speed-up. Drill pages published or updated: 123. Taken offline: fast-hands.
 - 1.050 · 2026-11-14 · Sessions published or updated: fast-hands, soft-third.

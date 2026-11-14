@@ -1,7 +1,7 @@
 {
- "as_of": "2026-11-13",
+ "as_of": "2026-11-14",
  "totals": {
-  "drills": 119,
+  "drills": 120,
   "tested": 11,
   "tactical_cues": 101,
   "mental_cues": 22,
@@ -77,7 +77,7 @@
   },
   {
    "name": "Volley",
-   "drills": 21,
+   "drills": 22,
    "cues": 20,
    "plays": 3,
    "examples": [
@@ -110,6 +110,22 @@
       {
        "n": "35",
        "title": "Soft Hands Progression – Block Volley from the Kitchen to Midcourt",
+       "tested": false
+      }
+     ]
+    },
+    {
+     "name": "Counter",
+     "drills": 2,
+     "examples": [
+      {
+       "n": "70",
+       "title": "Triangle-Theory / Two-Ball Drill",
+       "tested": false
+      },
+      {
+       "n": "123",
+       "title": "Counter Window Progression (Block → Short Push → Power)",
        "tested": false
       }
      ]
@@ -153,17 +169,6 @@
       {
        "n": "42",
        "title": "Colin Slide / Backhand Counter Drill",
-       "tested": false
-      }
-     ]
-    },
-    {
-     "name": "Counter",
-     "drills": 1,
-     "examples": [
-      {
-       "n": "70",
-       "title": "Triangle-Theory / Two-Ball Drill",
        "tested": false
       }
      ]
@@ -1427,7 +1432,7 @@
    },
    {
     "name": "At the kitchen",
-    "drills": 57,
+    "drills": 58,
     "tested": 3,
     "plays": 16,
     "parts": [
@@ -1438,7 +1443,7 @@
      },
      {
       "name": "Volley",
-      "drills": 11,
+      "drills": 12,
       "kind": "shot"
      },
      {
