@@ -2,12 +2,12 @@
   "files": {
     "src/content/sessions/deep-serve-deep-return.json": "da3dfa7863955b3725bad2d1355e3822336e977e281708803fdefb600862f198",
     "src/content/sessions/drives-that-hurt.json": "40776816883d6efade2d1b94d293d1c44a036584a22424fb65a78bfcad06a1c0",
-    "src/content/sessions/fast-hands.json": "8677a50554b4ea8cafe0f825eb2b74be04c4157af9dbbf33d9228ed34bac0c28",
     "src/content/sessions/lob-game.json": "ef65edd0b21d48cf14e2127f2d6ff6bb03ba8c84403101c7ecd1839c286895cc",
     "src/content/sessions/move-as-one.json": "ce2909438df0aa5a2b6aa7b43b9f5909a841f5f234fa0880732720c892dea4bd",
     "src/content/sessions/read-and-choose.json": "f9fbb8e952c788be709c4422214ffb89f61f7d78ff7e9bd71272524c2221f03f",
-    "src/content/sessions/soft-third.json": "d717af53757e8f1d72372257af8770d1b86546d0e25a098b0b67b0e4042d790d",
+    "src/content/sessions/soft-third.json": "e6f13dc4f8dee26912ad5b366474acc7017b1b4c7c6c7a744a26657c9a026b11",
     "src/content/sessions/steady-dinks.json": "b1b8bbe124487b50e39cb6cdb470e9b8346792f256c7c23f91a4a39038d6c950",
+    "src/content/sessions/survive-the-speed-up.json": "7d153fd17ac676e7b57c563fcc11d282d440e351bb9fe056065847002f34f1bb",
     "src/content/sessions/work-your-way-in.json": "3f65c20896e005e835a8e62a223aef466a1b1e25426f0fc1d25d8b1642051add",
     "src/content/drills/00.json": "17410807f078a93b0e92065d44f6a30b0d5a800aceedc148ec0c8eeaefc0b04d",
     "src/content/drills/01.json": "73882a35e1ebdaf1e02f3648f634653f2975482040dfdd5c080349656244c54c",
@@ -30,6 +30,7 @@
     "src/content/drills/119.json": "64e5e12c3464ab5307ef200bab9c5a924f1e1725d3aa7cf85b639f73ac350315",
     "src/content/drills/120.json": "947dfa08388269e09c56ae8cc941c2b47b410ffd942f21e3267aef37354749b4",
     "src/content/drills/121.json": "c0053c26d20c0c80ed3d83fe2d78da8ab691cf2e137678030f9c72dc626ab83b",
+    "src/content/drills/123.json": "d2d916e35b9604214aa04b6853443444adfa1d11dacff7fb49de5c1ba7e16567",
     "src/content/drills/13.json": "29f929edca9e3abcbb1734c324d9fe726a09e2312f68baa36f8dbcb7e267f263",
     "src/content/drills/17.json": "9d180f33146652429cc002f5d0df815fd21f654a64d526f5875df30de13ea45b",
     "src/content/drills/22.json": "1f48a586e5566e3b11d99f71b673da9cda165d8e2c4fb37d5742419325e9c71b",
@@ -71,7 +72,8 @@
     "read-and-choose",
     "soft-third",
     "win-the-dink-battle",
-    "steady-dinks"
+    "steady-dinks",
+    "survive-the-speed-up"
   ],
   "drillsEverPublished": [
     "00",
@@ -95,6 +97,7 @@
     "119",
     "120",
     "121",
+    "123",
     "13",
     "17",
     "18",

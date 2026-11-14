@@ -1,0 +1,32 @@
+{
+  "id": "123",
+  "cardTitle": "Short Swing Counter",
+  "shot": "Volley",
+  "variant": "Counter",
+  "role": "defend",
+  "tested": false,
+  "inShort": "A speeds up at B, and B counters with a short push and no backswing: first a block, then 30 % power, then 70–80 %.",
+  "rules": [
+    "A and B stand at the kitchen line, straight across. A feeds firm balls at B's forehand side, from the body out to wide.",
+    "Round 1: B only blocks. Paddle out in front, elbow in front of the ribs, no backswing. 10 balls.",
+    "Round 2: B pushes through the ball by 15–30 cm at about 30 % power. 10 balls.",
+    "Round 3: the same short push at 70–80 % power. Set the paddle first, then accelerate. 10 balls.",
+    "After round 3, swap roles."
+  ],
+  "tooEasy": "B plays a high, dead dink, and A speeds it up without warning: 8 of 10 at B's forehand, 2 down B's line. B counts clean counters; 5 of 10 is a good score.",
+  "tooHard": "B stays on round 2, and A feeds slower, always to the same spot.",
+  "goodLooksLike": "B's counter goes back flat and low over the net, and B's paddle ends in front of the body, never behind it.",
+  "goals": [
+    "win-fast-balls"
+  ],
+  "drill": {
+    "id": "123",
+    "title": "Counter Window Progression (Block → Short Push → Power)",
+    "players": "2",
+    "watchUrl": "https://www.youtube.com/watch?v=g4gByF0fQpg&t=30",
+    "watchLabel": "Briones Pickleball Academy @0:30–3:38",
+    "videoId": "g4gByF0fQpg",
+    "start": 30,
+    "end": 218
+  }
+}
