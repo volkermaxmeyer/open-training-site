@@ -2,6 +2,7 @@
 
 One line per site version, newest first. The version goes up by 0.001 with every push to main (see README, "Version").
 
+- 1.050 · 2026-11-14 · Sessions published or updated: fast-hands, soft-third.
 - 1.049 · 2026-11-13 · Under the hood, Shots tab: an opened shot shows its variants, example drills and sessions without the cues and plans line; the lead keeps only "Each drill counts once, under its main shot."
 - 1.048 · 2026-11-13 · Tidy-up: the unused colour of the old shot × moment matrix is removed (no change on the site).
 - 1.047 · 2026-11-13 · Under the hood, When tab: one bar per phase of the point (Serve, Return, Third shot, Fourth shot, Transition, At the kitchen line), split by shot, instead of the shot × moment matrix; Footwork & positioning drills shown as their own part; the 4 full-point drills in a sum line that links to Games.
